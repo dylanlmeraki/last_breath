@@ -22,6 +22,9 @@ import type {
   AuditLog, InsertAuditLog,
   Notification, InsertNotification,
   ClientInvite, InsertClientInvite,
+  InternalInvite, InsertInternalInvite,
+  EmailTemplate, InsertEmailTemplate,
+  CommunicationTemplate, InsertCommunicationTemplate,
   ProjectRequest, InsertProjectRequest,
   Rfi, InsertRfi,
   SalesOutreach, InsertSalesOutreach,
@@ -82,6 +85,13 @@ export interface IStorage {
   markNotificationRead(id: string): Promise<Notification | undefined>;
   markAllNotificationsRead(userEmail: string): Promise<void>;
   getClientInviteByToken(token: string): Promise<ClientInvite | undefined>;
+  getInternalInviteByToken(token: string): Promise<InternalInvite | undefined>;
+  listUsers(sort?: string, limit?: number): Promise<User[]>;
+  updateSessionTwofaVerified(id: string, verified: boolean): Promise<void>;
+  getSessionWithTwofa(id: string): Promise<{ id: string; userId: string; expiresAt: Date; twofaVerified: boolean | null } | undefined>;
+  createPasswordResetToken(userId: string, token: string, expiresAt: Date): Promise<void>;
+  getPasswordResetToken(token: string): Promise<{ userId: string; expiresAt: Date } | undefined>;
+  deletePasswordResetToken(token: string): Promise<void>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -352,6 +362,82 @@ export class DatabaseStorage implements IStorage {
     } catch (error) {
       console.error("[storage] getClientInviteByToken failed:", error);
       throw new Error("Failed to fetch client invite");
+    }
+  }
+
+  async getInternalInviteByToken(token: string): Promise<InternalInvite | undefined> {
+    try {
+      const [invite] = await db.select().from(schema.internalInvites)
+        .where(and(
+          eq(schema.internalInvites.invite_token, token),
+          eq(schema.internalInvites.used, false)
+        ))
+        .limit(1);
+      return invite;
+    } catch (error) {
+      console.error("[storage] getInternalInviteByToken failed:", error);
+      throw new Error("Failed to fetch internal invite");
+    }
+  }
+
+  async listUsers(sort?: string, limit: number = 50): Promise<User[]> {
+    try {
+      const orderBy = buildOrderBy(schema.users, sort);
+      return await db.select().from(schema.users).orderBy(orderBy).limit(limit);
+    } catch (error) {
+      console.error("[storage] listUsers failed:", error);
+      throw new Error("Failed to list users");
+    }
+  }
+
+  async updateSessionTwofaVerified(id: string, verified: boolean): Promise<void> {
+    try {
+      await db.update(schema.sessions)
+        .set({ twofaVerified: verified })
+        .where(eq(schema.sessions.id, id));
+    } catch (error) {
+      console.error("[storage] updateSessionTwofaVerified failed:", error);
+      throw new Error("Failed to update session 2FA status");
+    }
+  }
+
+  async getSessionWithTwofa(id: string): Promise<{ id: string; userId: string; expiresAt: Date; twofaVerified: boolean | null } | undefined> {
+    try {
+      const [session] = await db.select().from(schema.sessions).where(eq(schema.sessions.id, id)).limit(1);
+      return session ? { id: session.id, userId: session.userId, expiresAt: session.expiresAt, twofaVerified: session.twofaVerified } : undefined;
+    } catch (error) {
+      console.error("[storage] getSessionWithTwofa failed:", error);
+      throw new Error("Failed to fetch session with 2FA");
+    }
+  }
+
+  async createPasswordResetToken(userId: string, token: string, expiresAt: Date): Promise<void> {
+    try {
+      await db.insert(schema.passwordResetTokens).values({ userId, token, expiresAt });
+    } catch (error) {
+      console.error("[storage] createPasswordResetToken failed:", error);
+      throw new Error("Failed to create password reset token");
+    }
+  }
+
+  async getPasswordResetToken(token: string): Promise<{ userId: string; expiresAt: Date } | undefined> {
+    try {
+      const [row] = await db.select().from(schema.passwordResetTokens)
+        .where(eq(schema.passwordResetTokens.token, token)).limit(1);
+      return row ? { userId: row.userId, expiresAt: row.expiresAt } : undefined;
+    } catch (error) {
+      console.error("[storage] getPasswordResetToken failed:", error);
+      throw new Error("Failed to fetch password reset token");
+    }
+  }
+
+  async deletePasswordResetToken(token: string): Promise<void> {
+    try {
+      await db.delete(schema.passwordResetTokens)
+        .where(eq(schema.passwordResetTokens.token, token));
+    } catch (error) {
+      console.error("[storage] deletePasswordResetToken failed:", error);
+      throw new Error("Failed to delete password reset token");
     }
   }
 }

@@ -2,8 +2,9 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { Router, type Request, type Response } from "express";
 import { storage } from "./storage";
-import { authRouter, requireAuth, requireAdmin, requireClient, optionalAuth } from "./auth";
+import { authRouter, inviteRouter, usersRouter, requireAuth, requireAdmin, requireClient, requireInternalUser, optionalAuth } from "./auth";
 import { entityTableMap } from "@shared/schema";
+import { sendEmail, sendNotificationEmail, sendTemplatedEmail, interpolateTemplate } from "./email";
 
 function createEntityRouter(entityName: string, authMiddleware: any = requireAuth) {
   const router = Router();
@@ -116,6 +117,8 @@ export async function registerRoutes(
   app: Express
 ): Promise<Server> {
   app.use("/api/auth", authRouter);
+  app.use("/api/invites", inviteRouter);
+  app.use("/api/users", usersRouter);
 
   app.get("/api/health", (_req: Request, res: Response) => {
     res.json({
@@ -309,13 +312,16 @@ export async function registerRoutes(
       if (new Date(invite.expires_at) < new Date()) {
         return res.status(410).json({ error: "Invite has expired" });
       }
-      return res.json({ email: invite.email, company_name: invite.company_name });
+      return res.json({ email: invite.email, company_name: invite.company_name, name: invite.name });
     } catch (error) {
       return res.status(500).json({ error: "Failed to validate invite" });
     }
   });
 
   app.use("/api/client-invites", createEntityRouter("client-invites"));
+  app.use("/api/internal-invites", createEntityRouter("internal-invites", requireAdmin));
+  app.use("/api/email-templates", createEntityRouter("email-templates"));
+  app.use("/api/communication-templates", createEntityRouter("communication-templates"));
   app.use("/api/project-requests", createEntityRouter("project-requests"));
   app.use("/api/rfis", createEntityRouter("rfis"));
   app.use("/api/sales-outreach", createEntityRouter("sales-outreach"));
@@ -334,7 +340,12 @@ export async function registerRoutes(
 
   app.post("/api/integrations/email", requireAuth, async (req: Request, res: Response) => {
     try {
-      return res.json({ message: "Email integration endpoint — configure provider in settings" });
+      const { to, subject, body, from_name, reply_to, cc, bcc } = req.body;
+      if (!to || !subject || !body) {
+        return res.status(400).json({ error: "to, subject, and body are required" });
+      }
+      const result = await sendEmail({ to, subject, body, from_name, reply_to, cc, bcc });
+      return res.json(result);
     } catch (error) {
       return res.status(500).json({ error: "Email integration failed" });
     }
@@ -345,6 +356,76 @@ export async function registerRoutes(
       return res.json({ message: "Upload integration endpoint — configure storage provider in settings" });
     } catch (error) {
       return res.status(500).json({ error: "Upload integration failed" });
+    }
+  });
+
+  app.post("/api/functions/:functionName", requireAuth, async (req: Request, res: Response) => {
+    try {
+      const { functionName } = req.params;
+
+      switch (functionName) {
+        case "sendNotification": {
+          const { recipient_email, type, title, message, link, priority, send_email } = req.body;
+          if (!recipient_email || !type || !title || !message) {
+            return res.status(400).json({ error: "Missing required fields" });
+          }
+          const notification = await storage.createEntity("notifications", {
+            user_email: recipient_email,
+            type,
+            title,
+            message,
+            link,
+            priority: priority || "normal",
+            created_by: req.user?.email || "system",
+          });
+          if (send_email !== false) {
+            sendNotificationEmail({
+              to: recipient_email,
+              heading: title,
+              body: `<p style="font-size:15px;color:#4b5563;">${message}</p>`,
+              cta_text: link ? "View Details" : undefined,
+              cta_url: link,
+              subject: title,
+            }).catch((e) => console.error("[notification] email failed:", e));
+          }
+          return res.json(notification);
+        }
+
+        case "sendProjectNotification": {
+          const { projectId, notificationType, customMessage } = req.body;
+          if (!projectId || !notificationType) {
+            return res.status(400).json({ error: "projectId and notificationType required" });
+          }
+          const project = await storage.getEntityById("projects", projectId);
+          if (!project) return res.status(404).json({ error: "Project not found" });
+
+          if (project.client_email) {
+            await storage.createEntity("notifications", {
+              user_email: project.client_email,
+              type: "info",
+              title: `Project Update: ${project.project_name}`,
+              message: customMessage || `There is an update for your project: ${notificationType}`,
+              link: `/portal/projects`,
+              priority: "normal",
+              created_by: req.user?.email || "system",
+            });
+            sendNotificationEmail({
+              to: project.client_email,
+              heading: `Project Update: ${project.project_name}`,
+              body: `<p style="font-size:15px;color:#4b5563;">${customMessage || `There is an update for your project: ${notificationType}`}</p>`,
+              cta_text: "View Project",
+              cta_url: `${process.env.APP_URL || ""}/portal/projects`,
+            }).catch((e) => console.error("[notification] project email failed:", e));
+          }
+          return res.json({ success: true });
+        }
+
+        default:
+          return res.json({ message: `Function '${functionName}' executed (stub)` });
+      }
+    } catch (error: any) {
+      console.error(`[functions] ${req.params.functionName} error:`, error);
+      return res.status(500).json({ error: `Function execution failed: ${error.message}` });
     }
   });
 

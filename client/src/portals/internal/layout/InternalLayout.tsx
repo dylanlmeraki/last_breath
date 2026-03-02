@@ -21,20 +21,34 @@ import {
   UserCog, UserPlus, Settings, Shield, Bell, ChevronLeft,
   ChevronRight as ChevronRightIcon, Menu, X, LogOut, User,
   ClipboardList, Calendar, Monitor, Bot, FileDown, Layers,
-  InboxIcon, HelpCircle, Building2, ListChecks
+  InboxIcon, HelpCircle, Building2, ListChecks, Sparkles
 } from "lucide-react";
 
-const NAV_SECTIONS = [
+interface NavItem {
+  label: string;
+  icon: any;
+  path: string;
+  adminOnly?: boolean;
+}
+
+interface NavSection {
+  title: string;
+  items: NavItem[];
+}
+
+const NAV_SECTIONS: NavSection[] = [
   {
     title: "Overview",
     items: [
       { label: "Dashboard", icon: LayoutDashboard, path: "/dashboard" },
+      { label: "Analytics", icon: BarChart3, path: "/analytics" },
     ],
   },
   {
     title: "Projects",
     items: [
       { label: "Project Manager", icon: FolderKanban, path: "/projects" },
+      { label: "Project Dashboard", icon: FolderKanban, path: "/project-dashboard" },
       { label: "Project Requests", icon: ClipboardList, path: "/project-requests" },
       { label: "RFIs", icon: HelpCircle, path: "/rfis" },
       { label: "Doc Approval", icon: ListChecks, path: "/doc-approval" },
@@ -45,10 +59,26 @@ const NAV_SECTIONS = [
     items: [
       { label: "Contact Manager", icon: Users, path: "/contacts" },
       { label: "Sales Dashboard", icon: TrendingUp, path: "/sales" },
+      { label: "CRM Search", icon: Search, path: "/crm-search" },
       { label: "Outreach Queue", icon: Send, path: "/outreach" },
       { label: "Email Sequences", icon: Mail, path: "/email-sequences" },
+      { label: "Sales Bot", icon: Bot, path: "/sales-bot", adminOnly: true },
+      { label: "AI Sales", icon: Sparkles, path: "/ai-sales" },
+    ],
+  },
+  {
+    title: "Proposals & Finance",
+    items: [
       { label: "Proposal Dashboard", icon: FileSignature, path: "/proposals" },
       { label: "Invoice Management", icon: DollarSign, path: "/invoices" },
+      { label: "PDF Generator", icon: FileDown, path: "/pdf-generator" },
+    ],
+  },
+  {
+    title: "Client Management",
+    items: [
+      { label: "Client Communications", icon: MessageSquare, path: "/client-communications" },
+      { label: "Client Invites", icon: UserPlus, path: "/client-invites" },
     ],
   },
   {
@@ -58,26 +88,27 @@ const NAV_SECTIONS = [
       { label: "Content Manager", icon: Layers, path: "/content" },
       { label: "Page Builder", icon: Palette, path: "/page-builder" },
       { label: "SEO Assistant", icon: Search, path: "/seo" },
+      { label: "Template Builder", icon: FileText, path: "/template-builder" },
     ],
   },
   {
     title: "Operations",
     items: [
       { label: "Workflow Builder", icon: Workflow, path: "/workflows" },
-      { label: "Analytics", icon: BarChart3, path: "/analytics" },
-      { label: "User Management", icon: UserCog, path: "/users" },
-      { label: "Client Invites", icon: UserPlus, path: "/client-invites" },
-      { label: "Admin Console", icon: Shield, path: "/admin" },
-      { label: "Form Submissions", icon: InboxIcon, path: "/form-submissions" },
+      { label: "Communications", icon: MessageSquare, path: "/communications" },
+      { label: "Email Templates", icon: Mail, path: "/email-templates" },
+      { label: "Monitoring", icon: Monitor, path: "/monitoring" },
     ],
   },
   {
-    title: "Settings",
+    title: "Admin",
     items: [
-      { label: "Email Settings", icon: Settings, path: "/email-settings" },
-      { label: "ICP Settings", icon: Building2, path: "/icp-settings" },
-      { label: "Calendar", icon: Calendar, path: "/calendar-settings" },
-      { label: "Monitoring", icon: Monitor, path: "/monitoring" },
+      { label: "User Management", icon: UserCog, path: "/users", adminOnly: true },
+      { label: "Admin Console", icon: Shield, path: "/admin", adminOnly: true },
+      { label: "Form Submissions", icon: InboxIcon, path: "/form-submissions" },
+      { label: "Email Settings", icon: Settings, path: "/email-settings", adminOnly: true },
+      { label: "ICP Settings", icon: Building2, path: "/icp-settings", adminOnly: true },
+      { label: "QA/QC", icon: ListChecks, path: "/qaqc", adminOnly: true },
     ],
   },
 ];
@@ -155,40 +186,46 @@ export default function InternalLayout({ children }: InternalLayoutProps) {
       </div>
 
       <nav className="flex-1 overflow-y-auto py-3 px-2 space-y-4">
-        {NAV_SECTIONS.map((section) => (
-          <div key={section.title}>
-            {!collapsed && (
-              <p className="px-3 mb-1 text-[10px] font-semibold text-gray-500 uppercase tracking-wider">
-                {section.title}
-              </p>
-            )}
-            <div className="space-y-0.5">
-              {section.items.map((item) => {
-                const active = isActive(item.path);
-                return (
-                  <Link
-                    key={item.path}
-                    to={basePath + item.path}
-                    className={cn(
-                      "flex items-center gap-3 rounded-lg transition-colors duration-150",
-                      collapsed ? "justify-center px-2 py-2.5" : "px-3 py-2",
-                      active
-                        ? "bg-primary/20 text-white"
-                        : "text-gray-400 hover:bg-gray-700/50 hover:text-white"
-                    )}
-                    title={collapsed ? item.label : undefined}
-                    data-testid={`nav-${item.path.slice(1)}`}
-                  >
-                    <item.icon className="h-4 w-4 flex-shrink-0" />
-                    {!collapsed && (
-                      <span className="text-sm truncate">{item.label}</span>
-                    )}
-                  </Link>
-                );
-              })}
+        {NAV_SECTIONS.map((section) => {
+          const visibleItems = section.items.filter(
+            (item) => !item.adminOnly || user?.role === "admin"
+          );
+          if (visibleItems.length === 0) return null;
+          return (
+            <div key={section.title}>
+              {!collapsed && (
+                <p className="px-3 mb-1 text-[10px] font-semibold text-gray-500 uppercase tracking-wider">
+                  {section.title}
+                </p>
+              )}
+              <div className="space-y-0.5">
+                {visibleItems.map((item) => {
+                  const active = isActive(item.path);
+                  return (
+                    <Link
+                      key={item.path}
+                      to={basePath + item.path}
+                      className={cn(
+                        "flex items-center gap-3 rounded-lg transition-colors duration-150",
+                        collapsed ? "justify-center px-2 py-2.5" : "px-3 py-2",
+                        active
+                          ? "bg-primary/20 text-white"
+                          : "text-gray-400 hover:bg-gray-700/50 hover:text-white"
+                      )}
+                      title={collapsed ? item.label : undefined}
+                      data-testid={`nav-${item.path.slice(1)}`}
+                    >
+                      <item.icon className="h-4 w-4 flex-shrink-0" />
+                      {!collapsed && (
+                        <span className="text-sm truncate">{item.label}</span>
+                      )}
+                    </Link>
+                  );
+                })}
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </nav>
 
       <div className="flex-shrink-0 border-t border-gray-700/50 p-3">

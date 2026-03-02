@@ -2,25 +2,35 @@ import { createContext, useContext, useCallback } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { apiRequest, queryClient, getQueryFn } from "@/lib/queryClient";
 
-interface AuthUser {
+export interface AuthUser {
   id: string;
   email: string;
   full_name: string;
   role: string;
+  account_type: string | null;
+  company_name: string | null;
   avatar_url: string | null;
   phone: string | null;
   department: string | null;
   title: string | null;
   email_verified: boolean | null;
+  twofa_enabled: boolean | null;
+  status: string | null;
+  permissions: any;
+  notification_preferences: any;
 }
 
-interface AuthContextType {
+export interface AuthContextType {
   user: AuthUser | null;
   isLoading: boolean;
   isAuthenticated: boolean;
+  isAdmin: boolean;
+  isInternalUser: boolean;
+  isClient: boolean;
   loginMutation: ReturnType<typeof useMutation>;
   registerMutation: ReturnType<typeof useMutation>;
   logoutMutation: ReturnType<typeof useMutation>;
+  verify2faMutation: ReturnType<typeof useMutation>;
 }
 
 export const AuthContext = createContext<AuthContextType | null>(null);
@@ -50,14 +60,17 @@ export function useAuthProvider() {
       const res = await apiRequest("POST", "/api/auth/login", credentials);
       return res.json();
     },
-    onSuccess: (userData: AuthUser) => {
-      queryClient.setQueryData(["/api/auth/me"], userData);
+    onSuccess: (data: any) => {
+      if (data.requires_2fa) {
+        return;
+      }
+      queryClient.setQueryData(["/api/auth/me"], data);
       queryClient.invalidateQueries();
     },
   });
 
   const registerMutation = useMutation({
-    mutationFn: async (data: { email: string; password: string; full_name: string; role?: string }) => {
+    mutationFn: async (data: { email: string; password: string; full_name: string; invite_token: string }) => {
       const res = await apiRequest("POST", "/api/auth/register", data);
       return res.json();
     },
@@ -77,12 +90,30 @@ export function useAuthProvider() {
     },
   });
 
+  const verify2faMutation = useMutation({
+    mutationFn: async (params: { code: string; type?: "totp" | "backup" }) => {
+      const endpoint = params.type === "backup" ? "/api/auth/verify-backup-code" : "/api/auth/verify-2fa";
+      const res = await apiRequest("POST", endpoint, { code: params.code });
+      return res.json();
+    },
+    onSuccess: (userData: AuthUser) => {
+      queryClient.setQueryData(["/api/auth/me"], userData);
+      queryClient.invalidateQueries();
+    },
+  });
+
+  const currentUser = user ?? null;
+
   return {
-    user: user ?? null,
+    user: currentUser,
     isLoading,
-    isAuthenticated: !!user,
+    isAuthenticated: !!currentUser,
+    isAdmin: currentUser?.role === "admin",
+    isInternalUser: currentUser?.account_type === "internal",
+    isClient: currentUser?.account_type === "client",
     loginMutation,
     registerMutation,
     logoutMutation,
+    verify2faMutation,
   };
 }

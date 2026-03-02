@@ -1,296 +1,362 @@
 import { useState } from "react";
-import { useQuery, useMutation } from "@tanstack/react-query";
-import { useNavigate } from "react-router-dom";
-import { apiRequest, queryClient } from "@/lib/queryClient";
-import { PageHeader } from "@/components/shared/PageHeader";
-import { SearchInput } from "@/components/shared/SearchInput";
-import { StatusBadge } from "@/components/shared/StatusBadge";
-import { EmptyState } from "@/components/shared/EmptyState";
-import { TableSkeleton } from "@/components/shared/LoadingSkeleton";
+import { listEntities, createEntity, updateEntity, deleteEntity } from "@/lib/apiClient";
+import { useMutation, useQueryClient, useQuery } from "@tanstack/react-query";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Card } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Progress } from "@/components/ui/progress";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
+import { Building2, FileText, Sparkles, Save, Edit, Trash2, Search, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import { Plus, FolderKanban, LayoutGrid, List, Loader2 } from "lucide-react";
-import { formatDate, generateProjectNumber, formatCurrency } from "@/lib/utils";
-
-const projectSchema = z.object({
-  project_name: z.string().min(1, "Project name is required"),
-  client_email: z.string().email("Valid email required"),
-  client_name: z.string().optional(),
-  project_type: z.string().min(1, "Project type is required"),
-  status: z.string().default("Planning"),
-  priority: z.string().default("Medium"),
-  location: z.string().optional(),
-  description: z.string().optional(),
-  budget: z.coerce.number().optional(),
-});
-
-const STATUS_OPTIONS = ["Planning", "In Progress", "On Hold", "Completed", "Cancelled"];
-const TYPE_OPTIONS = ["Commercial", "Residential", "Industrial", "Infrastructure", "Renovation"];
-const PRIORITY_OPTIONS = ["Low", "Medium", "High", "Urgent"];
+import { useAuth } from "@/hooks/use-auth";
+import { useNavigate } from "react-router-dom";
+import { formatDate, formatCurrency, generateProjectNumber } from "@/lib/utils";
 
 export default function ProjectManager() {
-  const [search, setSearch] = useState("");
-  const [statusFilter, setStatusFilter] = useState("all");
-  const [typeFilter, setTypeFilter] = useState("all");
-  const [viewMode, setViewMode] = useState<"grid" | "list">("list");
-  const [dialogOpen, setDialogOpen] = useState(false);
-  const navigate = useNavigate();
+  const [active, setActive] = useState('projects');
+  const [scope, setScope] = useState<{ clientEmail: string | null; projectId: string | null }>({ clientEmail: null, projectId: null });
   const { toast } = useToast();
+  const navigate = useNavigate();
 
-  const { data: projects, isLoading } = useQuery<any[]>({
-    queryKey: ["/api/projects"],
+  const qc = useQueryClient();
+
+  const [editingProject, setEditingProject] = useState<any>(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [statusFilter, setStatusFilter] = useState("all");
+  const [formData, setFormData] = useState({
+    project_name: "",
+    project_number: "",
+    client_email: "",
+    client_name: "",
+    project_type: "SWPPP",
+    status: "Planning",
+    priority: "Medium",
+    start_date: "",
+    estimated_completion: "",
+    location: "",
+    description: "",
+    budget: 0,
+    notes: ""
   });
 
-  const createMutation = useMutation({
+  const { data: projects = [], isLoading: projectsLoading } = useQuery({
+    queryKey: ['projects'],
+    queryFn: () => listEntities('Project', '-created_date', 200),
+  });
+
+  const { data: users = [] } = useQuery({
+    queryKey: ['users'],
+    queryFn: () => listEntities('User'),
+  });
+
+  const saveProjectMutation = useMutation({
     mutationFn: async (data: any) => {
-      const res = await apiRequest("POST", "/api/projects", {
-        ...data,
-        project_number: generateProjectNumber(),
-      });
-      return res.json();
+      if (editingProject?.id) {
+        return await updateEntity('Project', editingProject.id, data);
+      } else {
+        return await createEntity('Project', { ...data, project_number: generateProjectNumber() });
+      }
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["/api/projects"] });
-      setDialogOpen(false);
-      toast({ title: "Project created successfully" });
+      toast({ title: editingProject ? 'Project updated' : 'Project created' });
+      qc.invalidateQueries({ queryKey: ['projects'] });
+      resetForm();
     },
-    onError: (error: any) => {
-      toast({ variant: "destructive", title: "Failed to create project", description: error.message });
-    },
-  });
-
-  const form = useForm({
-    resolver: zodResolver(projectSchema),
-    defaultValues: {
-      project_name: "", client_email: "", client_name: "", project_type: "",
-      status: "Planning", priority: "Medium", location: "", description: "", budget: undefined,
-    },
-  });
-
-  const filtered = (projects || []).filter((p) => {
-    if (search) {
-      const s = search.toLowerCase();
-      if (
-        !p.project_name?.toLowerCase().includes(s) &&
-        !p.project_number?.toLowerCase().includes(s) &&
-        !p.client_name?.toLowerCase().includes(s) &&
-        !p.client_email?.toLowerCase().includes(s)
-      ) return false;
+    onError: (e: any) => {
+      toast({ variant: "destructive", title: "Failed to save project", description: e?.message || 'Unknown error' });
     }
-    if (statusFilter !== "all" && p.status !== statusFilter) return false;
-    if (typeFilter !== "all" && p.project_type !== typeFilter) return false;
-    return true;
+  });
+
+  const deleteProjectMutation = useMutation({
+    mutationFn: (id: string) => deleteEntity('Project', id),
+    onSuccess: () => {
+      toast({ title: 'Project deleted' });
+      qc.invalidateQueries({ queryKey: ['projects'] });
+    },
+    onError: (e: any) => {
+      toast({ variant: "destructive", title: "Failed to delete", description: e?.message || 'Unknown error' });
+    }
+  });
+
+  const resetForm = () => {
+    setEditingProject(null);
+    setFormData({
+      project_name: "",
+      project_number: "",
+      client_email: "",
+      client_name: "",
+      project_type: "SWPPP",
+      status: "Planning",
+      priority: "Medium",
+      start_date: "",
+      estimated_completion: "",
+      location: "",
+      description: "",
+      budget: 0,
+      notes: ""
+    });
+  };
+
+  const editProject = (project: any) => {
+    setEditingProject(project);
+    setFormData(project);
+  };
+
+  const filteredProjects = projects.filter((project: any) => {
+    const scopeClient = !scope.clientEmail || (project.client_email === scope.clientEmail);
+    const scopeProject = !scope.projectId || (project.id === scope.projectId);
+    if (!scopeClient || !scopeProject) return false;
+    const matchesSearch = project.project_name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                          project.client_name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                          project.project_number?.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesStatus = statusFilter === "all" || project.status === statusFilter;
+    return matchesSearch && matchesStatus;
   });
 
   const basePath = window.location.pathname.startsWith("/internal") ? "/internal" : "";
 
   return (
-    <div>
-      <PageHeader
-        title="Project Manager"
-        subtitle={`${filtered.length} project${filtered.length !== 1 ? "s" : ""}`}
-        actions={
-          <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-            <DialogTrigger asChild>
-              <Button data-testid="button-new-project">
-                <Plus className="h-4 w-4 mr-1" /> New Project
-              </Button>
-            </DialogTrigger>
-            <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto">
-              <DialogHeader>
-                <DialogTitle>Create New Project</DialogTitle>
-              </DialogHeader>
-              <Form {...form}>
-                <form onSubmit={form.handleSubmit((v) => createMutation.mutate(v))} className="space-y-4">
-                  <FormField control={form.control} name="project_name" render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Project Name</FormLabel>
-                      <FormControl><Input placeholder="e.g. Office Renovation" {...field} data-testid="input-project-name" /></FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )} />
-                  <div className="grid grid-cols-2 gap-4">
-                    <FormField control={form.control} name="client_email" render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Client Email</FormLabel>
-                        <FormControl><Input type="email" placeholder="client@company.com" {...field} data-testid="input-client-email" /></FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )} />
-                    <FormField control={form.control} name="client_name" render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Client Name</FormLabel>
-                        <FormControl><Input placeholder="John Smith" {...field} data-testid="input-client-name" /></FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )} />
-                  </div>
-                  <div className="grid grid-cols-2 gap-4">
-                    <FormField control={form.control} name="project_type" render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Type</FormLabel>
-                        <Select onValueChange={field.onChange} defaultValue={field.value}>
-                          <FormControl><SelectTrigger data-testid="select-project-type"><SelectValue placeholder="Select type" /></SelectTrigger></FormControl>
-                          <SelectContent>{TYPE_OPTIONS.map((t) => <SelectItem key={t} value={t}>{t}</SelectItem>)}</SelectContent>
-                        </Select>
-                        <FormMessage />
-                      </FormItem>
-                    )} />
-                    <FormField control={form.control} name="priority" render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Priority</FormLabel>
-                        <Select onValueChange={field.onChange} defaultValue={field.value}>
-                          <FormControl><SelectTrigger data-testid="select-priority"><SelectValue /></SelectTrigger></FormControl>
-                          <SelectContent>{PRIORITY_OPTIONS.map((p) => <SelectItem key={p} value={p}>{p}</SelectItem>)}</SelectContent>
-                        </Select>
-                        <FormMessage />
-                      </FormItem>
-                    )} />
-                  </div>
-                  <FormField control={form.control} name="location" render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Location</FormLabel>
-                      <FormControl><Input placeholder="San Francisco, CA" {...field} data-testid="input-location" /></FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )} />
-                  <FormField control={form.control} name="description" render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Description</FormLabel>
-                      <FormControl><Textarea placeholder="Project description..." {...field} data-testid="input-description" /></FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )} />
-                  <FormField control={form.control} name="budget" render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Budget ($)</FormLabel>
-                      <FormControl><Input type="number" placeholder="50000" {...field} data-testid="input-budget" /></FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )} />
-                  <Button type="submit" className="w-full" disabled={createMutation.isPending} data-testid="button-submit-project">
-                    {createMutation.isPending && <Loader2 className="h-4 w-4 mr-2 animate-spin" />}
-                    Create Project
-                  </Button>
-                </form>
-              </Form>
-            </DialogContent>
-          </Dialog>
-        }
-      />
-
-      <div className="flex flex-col sm:flex-row gap-3 mb-4">
-        <SearchInput value={search} onChange={setSearch} placeholder="Search projects..." className="flex-1" />
-        <Select value={statusFilter} onValueChange={setStatusFilter}>
-          <SelectTrigger className="w-full sm:w-[160px]" data-testid="filter-status"><SelectValue placeholder="Status" /></SelectTrigger>
-          <SelectContent>
-            <SelectItem value="all">All Status</SelectItem>
-            {STATUS_OPTIONS.map((s) => <SelectItem key={s} value={s}>{s}</SelectItem>)}
-          </SelectContent>
-        </Select>
-        <Select value={typeFilter} onValueChange={setTypeFilter}>
-          <SelectTrigger className="w-full sm:w-[160px]" data-testid="filter-type"><SelectValue placeholder="Type" /></SelectTrigger>
-          <SelectContent>
-            <SelectItem value="all">All Types</SelectItem>
-            {TYPE_OPTIONS.map((t) => <SelectItem key={t} value={t}>{t}</SelectItem>)}
-          </SelectContent>
-        </Select>
-        <div className="flex gap-1 border rounded-lg p-1">
-          <Button variant={viewMode === "list" ? "secondary" : "ghost"} size="icon" onClick={() => setViewMode("list")} data-testid="button-view-list">
-            <List className="h-4 w-4" />
-          </Button>
-          <Button variant={viewMode === "grid" ? "secondary" : "ghost"} size="icon" onClick={() => setViewMode("grid")} data-testid="button-view-grid">
-            <LayoutGrid className="h-4 w-4" />
-          </Button>
-        </div>
+    <div className="p-6 space-y-5">
+      <div className="flex items-center justify-between gap-4 flex-wrap">
+        <h1 className="text-2xl font-bold" data-testid="text-project-manager-title">Project Manager</h1>
       </div>
 
-      {isLoading ? (
-        <TableSkeleton rows={5} />
-      ) : filtered.length === 0 ? (
-        <EmptyState icon={FolderKanban} title="No projects found" description="Create your first project to get started" action={{ label: "New Project", onClick: () => setDialogOpen(true) }} />
-      ) : viewMode === "list" ? (
-        <div className="border rounded-lg overflow-hidden">
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="bg-muted/50 border-b">
-                  <th className="text-left p-3 font-medium">Project</th>
-                  <th className="text-left p-3 font-medium hidden md:table-cell">Client</th>
-                  <th className="text-left p-3 font-medium hidden lg:table-cell">Type</th>
-                  <th className="text-left p-3 font-medium">Status</th>
-                  <th className="text-left p-3 font-medium hidden lg:table-cell">Progress</th>
-                  <th className="text-left p-3 font-medium hidden xl:table-cell">Budget</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filtered.map((p: any) => (
-                  <tr
-                    key={p.id}
-                    className="border-b hover:bg-accent/50 cursor-pointer transition-colors"
-                    onClick={() => navigate(basePath + "/projects/" + p.id)}
-                    data-testid={`project-row-${p.id}`}
-                  >
-                    <td className="p-3">
-                      <p className="font-medium">{p.project_name}</p>
-                      <p className="text-xs text-muted-foreground">{p.project_number}</p>
-                    </td>
-                    <td className="p-3 hidden md:table-cell text-muted-foreground">{p.client_name || p.client_email}</td>
-                    <td className="p-3 hidden lg:table-cell text-muted-foreground">{p.project_type}</td>
-                    <td className="p-3"><StatusBadge status={p.status} /></td>
-                    <td className="p-3 hidden lg:table-cell">
-                      <div className="flex items-center gap-2">
-                        <Progress value={p.progress_percentage || 0} className="h-2 w-20" />
-                        <span className="text-xs text-muted-foreground">{p.progress_percentage || 0}%</span>
-                      </div>
-                    </td>
-                    <td className="p-3 hidden xl:table-cell text-muted-foreground">{formatCurrency(p.budget)}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {filtered.map((p: any) => (
-            <Card
-              key={p.id}
-              className="cursor-pointer hover-elevate transition-all"
-              onClick={() => navigate(basePath + "/projects/" + p.id)}
-              data-testid={`project-card-${p.id}`}
-            >
-              <CardContent className="p-4">
-                <div className="flex items-start justify-between mb-3">
-                  <div className="min-w-0 flex-1">
-                    <p className="font-medium truncate">{p.project_name}</p>
-                    <p className="text-xs text-muted-foreground">{p.project_number}</p>
+      <Tabs value={active} onValueChange={setActive}>
+        <TabsList className="flex flex-wrap gap-1 mb-6">
+          <TabsTrigger value="projects" data-testid="tab-projects"><Building2 className="w-4 h-4 mr-2" />Projects</TabsTrigger>
+          <TabsTrigger value="docs" data-testid="tab-docs">Documents</TabsTrigger>
+          <TabsTrigger value="reports" data-testid="tab-reports"><FileText className="w-4 h-4 mr-2" />Reports</TabsTrigger>
+        </TabsList>
+
+        <TabsContent value="projects">
+          <div className="grid lg:grid-cols-3 gap-8">
+            <div className="lg:col-span-2">
+              <Card className="p-8">
+                <h2 className="text-2xl font-bold mb-6">
+                  {editingProject ? "Edit Project" : "Create Project"}
+                </h2>
+
+                <div className="space-y-4">
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div>
+                      <Label>Project Name *</Label>
+                      <Input
+                        value={formData.project_name}
+                        onChange={(e) => setFormData({...formData, project_name: e.target.value})}
+                        placeholder="Downtown SWPPP Project"
+                        data-testid="input-project-name"
+                      />
+                    </div>
+                    <div>
+                      <Label>Project Number</Label>
+                      <Input
+                        value={formData.project_number}
+                        onChange={(e) => setFormData({...formData, project_number: e.target.value})}
+                        placeholder="PROJ-2024-001"
+                        data-testid="input-project-number"
+                      />
+                    </div>
                   </div>
-                  <StatusBadge status={p.status} />
+
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div>
+                      <Label>Client Name *</Label>
+                      <Input
+                        value={formData.client_name}
+                        onChange={(e) => setFormData({...formData, client_name: e.target.value})}
+                        placeholder="ABC Construction"
+                        data-testid="input-client-name"
+                      />
+                    </div>
+                    <div>
+                      <Label>Client Email *</Label>
+                      <Input
+                        type="email"
+                        value={formData.client_email}
+                        onChange={(e) => setFormData({...formData, client_email: e.target.value})}
+                        placeholder="client@example.com"
+                        data-testid="input-client-email"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid md:grid-cols-3 gap-4">
+                    <div>
+                      <Label>Project Type</Label>
+                      <Select value={formData.project_type} onValueChange={(value) => setFormData({...formData, project_type: value})}>
+                        <SelectTrigger data-testid="select-project-type"><SelectValue /></SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="SWPPP">SWPPP</SelectItem>
+                          <SelectItem value="Construction">Construction</SelectItem>
+                          <SelectItem value="Inspections">Inspections</SelectItem>
+                          <SelectItem value="Engineering">Engineering</SelectItem>
+                          <SelectItem value="Special Inspections">Special Inspections</SelectItem>
+                          <SelectItem value="Multiple Services">Multiple Services</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div>
+                      <Label>Status</Label>
+                      <Select value={formData.status} onValueChange={(value) => setFormData({...formData, status: value})}>
+                        <SelectTrigger data-testid="select-status"><SelectValue /></SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="Planning">Planning</SelectItem>
+                          <SelectItem value="In Progress">In Progress</SelectItem>
+                          <SelectItem value="On Hold">On Hold</SelectItem>
+                          <SelectItem value="Under Review">Under Review</SelectItem>
+                          <SelectItem value="Completed">Completed</SelectItem>
+                          <SelectItem value="Closed">Closed</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div>
+                      <Label>Priority</Label>
+                      <Select value={formData.priority} onValueChange={(value) => setFormData({...formData, priority: value})}>
+                        <SelectTrigger data-testid="select-priority"><SelectValue /></SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="Low">Low</SelectItem>
+                          <SelectItem value="Medium">Medium</SelectItem>
+                          <SelectItem value="High">High</SelectItem>
+                          <SelectItem value="Urgent">Urgent</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
+
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div>
+                      <Label>Start Date</Label>
+                      <Input type="date" value={formData.start_date} onChange={(e) => setFormData({...formData, start_date: e.target.value})} data-testid="input-start-date" />
+                    </div>
+                    <div>
+                      <Label>Estimated Completion</Label>
+                      <Input type="date" value={formData.estimated_completion} onChange={(e) => setFormData({...formData, estimated_completion: e.target.value})} data-testid="input-est-completion" />
+                    </div>
+                  </div>
+
+                  <div>
+                    <Label>Location</Label>
+                    <Input value={formData.location} onChange={(e) => setFormData({...formData, location: e.target.value})} placeholder="San Francisco, CA" data-testid="input-location" />
+                  </div>
+
+                  <div>
+                    <Label>Description</Label>
+                    <Textarea value={formData.description} onChange={(e) => setFormData({...formData, description: e.target.value})} rows={3} data-testid="input-description" />
+                  </div>
+
+                  <div>
+                    <Label>Budget ($)</Label>
+                    <Input type="number" value={formData.budget} onChange={(e) => setFormData({...formData, budget: parseFloat(e.target.value) || 0})} data-testid="input-budget" />
+                  </div>
+
+                  <div>
+                    <Label>Internal Notes</Label>
+                    <Textarea value={formData.notes} onChange={(e) => setFormData({...formData, notes: e.target.value})} rows={2} data-testid="input-notes" />
+                  </div>
+
+                  <div className="flex gap-3 pt-4 flex-wrap">
+                    {editingProject && <Button variant="outline" onClick={resetForm} data-testid="button-cancel-edit">Cancel</Button>}
+                    <Button
+                      onClick={() => saveProjectMutation.mutate(formData)}
+                      disabled={!formData.project_name || !formData.client_name || !formData.client_email || saveProjectMutation.isPending}
+                      className="flex-1"
+                      data-testid="button-save-project"
+                    >
+                      {saveProjectMutation.isPending && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
+                      <Save className="w-4 h-4 mr-2" />
+                      {editingProject ? "Update" : "Create"} Project
+                    </Button>
+                  </div>
                 </div>
-                <p className="text-sm text-muted-foreground mb-3">{p.client_name || p.client_email}</p>
-                <div className="flex items-center justify-between">
-                  <span className="text-xs text-muted-foreground">{p.project_type}</span>
-                  <span className="text-sm font-medium">{formatCurrency(p.budget)}</span>
+              </Card>
+            </div>
+
+            <div>
+              <Card className="p-6">
+                <div className="flex items-center justify-between gap-1 mb-4 flex-wrap">
+                  <h3 className="text-xl font-bold">Projects</h3>
+                  <Badge className="bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400">{filteredProjects.length}</Badge>
                 </div>
-                <div className="mt-3">
-                  <Progress value={p.progress_percentage || 0} className="h-1.5" />
+
+                <div className="space-y-3 mb-4">
+                  <div className="relative">
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                    <Input placeholder="Search..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} className="pl-9" data-testid="input-search-projects" />
+                  </div>
+                  <Select value={statusFilter} onValueChange={setStatusFilter}>
+                    <SelectTrigger data-testid="filter-project-status"><SelectValue /></SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">All Status</SelectItem>
+                      <SelectItem value="Planning">Planning</SelectItem>
+                      <SelectItem value="In Progress">In Progress</SelectItem>
+                      <SelectItem value="Completed">Completed</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      )}
+
+                <div className="space-y-2 max-h-[600px] overflow-y-auto">
+                  {projectsLoading && (
+                    <div className="flex items-center justify-center py-8">
+                      <Loader2 className="w-6 h-6 animate-spin" />
+                    </div>
+                  )}
+                  {!projectsLoading && filteredProjects.length === 0 && (
+                    <div className="p-6 text-center text-sm text-muted-foreground bg-muted/50 rounded-lg border">
+                      No projects match your filters. Create a new one on the left or clear filters above.
+                    </div>
+                  )}
+                  {filteredProjects.map((project: any) => (
+                    <div key={project.id} className="border rounded-lg p-3 hover:bg-accent/50 cursor-pointer transition-colors" onClick={() => editProject(project)} data-testid={`project-item-${project.id}`}>
+                      <div className="flex items-start justify-between gap-1 mb-2 flex-wrap">
+                        <div className="flex-1">
+                          <h4 className="font-semibold text-sm">{project.project_name}</h4>
+                          <p className="text-xs text-muted-foreground">{project.client_name}</p>
+                          <div className="flex gap-2 mt-2 flex-wrap">
+                            <Badge variant="outline" className="text-xs">{project.project_type}</Badge>
+                            <Badge className={project.status === 'Completed' ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400' : 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400'}>
+                              {project.status}
+                            </Badge>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex gap-2 flex-wrap">
+                        <Button size="sm" variant="outline" onClick={(e) => { e.stopPropagation(); editProject(project); }} data-testid={`button-edit-project-${project.id}`}>
+                          <Edit className="w-3 h-3 mr-1" />Edit
+                        </Button>
+                        <Button size="sm" variant="destructive" onClick={(e) => { e.stopPropagation(); if (confirm('Delete?')) deleteProjectMutation.mutate(project.id); }} data-testid={`button-delete-project-${project.id}`}>
+                          <Trash2 className="w-3 h-3" />
+                        </Button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </Card>
+            </div>
+          </div>
+        </TabsContent>
+
+        <TabsContent value="docs" className="mt-4">
+          <Card className="p-12 text-center">
+            <FileText className="w-16 h-16 text-muted-foreground/30 mx-auto mb-4" />
+            <h3 className="text-xl font-bold mb-2">Document Management</h3>
+            <p className="text-muted-foreground">Document management features are available through individual project detail pages.</p>
+            <Button className="mt-4" onClick={() => navigate(basePath + '/projects')} data-testid="button-go-to-projects">
+              View Projects
+            </Button>
+          </Card>
+        </TabsContent>
+
+        <TabsContent value="reports">
+          <Card className="p-12 text-center">
+            <FileText className="w-16 h-16 text-muted-foreground/30 mx-auto mb-4" />
+            <h3 className="text-xl font-bold mb-2">Project Reports</h3>
+            <p className="text-muted-foreground">Select a project from the Projects tab to generate reports.</p>
+          </Card>
+        </TabsContent>
+      </Tabs>
     </div>
   );
 }

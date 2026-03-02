@@ -75,12 +75,16 @@
 
 ## Auth System
 
-- Session-based with Argon2id password hashing
+- Invite-only registration (no open signups)
+- Session-based with Argon2id password hashing (memoryCost:19456, timeCost:2, outputLen:32, parallelism:1)
+- TOTP 2FA support via `otpauth` package
 - Cookie: `pe_session`, httpOnly, secure in production
 - Domain: `.pacificengineeringsf.com` in production (cross-subdomain)
 - Session duration: 30 days with sliding window renewal
 - Roles: admin, user, client
 - Middleware: `requireAuth`, `requireAdmin`, `requireClient`, `optionalAuth`
+- Admin-only routes enforced at both UI (nav hiding) and route level (AdminRoute wrapper)
+- 3-tier invite system: admin→internal, internal→client, client→team
 
 ## API Routes
 
@@ -123,6 +127,16 @@ The marketing site (separate Repl) calls these endpoints:
 - `POST /api/integrations/llm` — chatbot
 - `GET /api/health` — health check
 
+## Pages
+
+**Internal Portal (41 pages)**: Dashboard, ProjectManager, ProjectDetail, ProjectDashboard, ProjectsManager, ProjectRequests, ContactManager, SalesDashboard, CRMSearch, ProposalDashboard, InvoiceManagement, RFIs, ClientRFIs, DocApproval, BlogEditor, ContentManager, PageBuilder, SEOAssistant, TemplateBuilder, PDFGenerator, OutreachQueue, EmailSequences, SequenceOptimization, SalesBotControl, AISalesAssistant, WorkflowBuilder, AnalyticsDashboard, Communications, ClientCommunications, EmailTemplates, UserManagement, ClientInvites, AdminConsole, FormSubmissions, AdminEmailSettings, ICPSettings, WebsiteMonitoring, QAQC, UserProfile, Auth
+
+**Client Portal (10 pages)**: ClientDashboard, ClientProjects, ClientDocuments, ClientProposals, ClientInvoices, ClientMessages, ClientRFIs, ClientSettings, ClientAuth, PortalRegister
+
+## Shared Components
+
+ErrorBoundary, ProtectedRoute, LoadingSkeleton, PageHeader, EmptyState, StatCard, StatusBadge, ConfirmDialog, SearchInput
+
 ## Development
 
 Start: `npm run dev` (runs Express + Vite on port 5000)
@@ -133,3 +147,7 @@ DB Push: `npx drizzle-kit push`
 - `DATABASE_URL` — PostgreSQL connection string (auto-provisioned)
 - `SESSION_SECRET` — Session encryption secret
 - `NODE_ENV` — development | production
+
+## Key NPM Packages
+
+argon2, otpauth, qrcode, resend, cookie-parser, helmet, drizzle-orm, drizzle-zod, @tanstack/react-query, react-router-dom, react-hook-form, @hookform/resolvers, recharts, lucide-react

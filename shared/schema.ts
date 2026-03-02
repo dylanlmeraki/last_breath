@@ -25,12 +25,29 @@ export const users = pgTable("users", {
   department: varchar("department", { length: 100 }),
   title: varchar("title", { length: 100 }),
   email_verified: boolean("email_verified").default(false),
+  account_type: varchar("account_type", { length: 20 }).default("internal"),
+  company_name: varchar("company_name", { length: 255 }),
+  invited_by: uuid("invited_by"),
+  invite_token_used: text("invite_token_used"),
+  status: varchar("status", { length: 20 }).default("active"),
+  permissions: jsonb("permissions"),
+  last_login_at: timestamp("last_login_at", { withTimezone: true }),
+  login_count: integer("login_count").default(0),
+  twofa_enabled: boolean("twofa_enabled").default(false),
+  twofa_secret: text("twofa_secret"),
+  twofa_method: varchar("twofa_method", { length: 20 }),
+  twofa_backup_codes: text("twofa_backup_codes").array(),
+  twofa_verified_at: timestamp("twofa_verified_at", { withTimezone: true }),
+  notification_preferences: jsonb("notification_preferences"),
 });
 
 export const sessions = pgTable("sessions", {
   id: text("id").primaryKey(),
   userId: uuid("user_id").notNull().references(() => users.id, { onDelete: "cascade" }),
   expiresAt: timestamp("expires_at", { withTimezone: true }).notNull(),
+  twofaVerified: boolean("twofa_verified").default(false),
+  ipAddress: varchar("ip_address", { length: 45 }),
+  userAgent: text("user_agent"),
 });
 
 export const emailVerificationCodes = pgTable("email_verification_codes", {
@@ -339,19 +356,63 @@ export const notifications = pgTable("notifications", {
   message: text("message").notNull(),
   read: boolean("read").default(false),
   link: text("link"),
+  priority: varchar("priority", { length: 20 }).default("normal"),
   metadata: jsonb("metadata"),
+  email_sent: boolean("email_sent").default(false),
 });
 
 export const clientInvites = pgTable("client_invites", {
   ...baseColumns,
   invite_token: text("invite_token").notNull().unique(),
   email: varchar("email", { length: 255 }).notNull(),
+  name: varchar("name", { length: 255 }),
+  phone: varchar("phone", { length: 50 }),
   company_name: varchar("company_name", { length: 255 }),
+  invited_by_email: varchar("invited_by_email", { length: 255 }).notNull(),
+  invited_by_name: varchar("invited_by_name", { length: 255 }),
+  invited_by_role: varchar("invited_by_role", { length: 20 }),
+  expires_at: timestamp("expires_at", { withTimezone: true }).notNull(),
+  used: boolean("used").default(false),
+  used_at: timestamp("used_at", { withTimezone: true }),
+  status: varchar("status", { length: 20 }).default("pending"),
+});
+
+export const internalInvites = pgTable("internal_invites", {
+  ...baseColumns,
+  invite_token: text("invite_token").notNull().unique(),
+  email: varchar("email", { length: 255 }).notNull(),
+  full_name: varchar("full_name", { length: 255 }),
+  role: varchar("role", { length: 50 }).default("user"),
   invited_by_email: varchar("invited_by_email", { length: 255 }).notNull(),
   invited_by_name: varchar("invited_by_name", { length: 255 }),
   expires_at: timestamp("expires_at", { withTimezone: true }).notNull(),
   used: boolean("used").default(false),
   used_at: timestamp("used_at", { withTimezone: true }),
+  status: varchar("status", { length: 20 }).default("pending"),
+});
+
+export const emailTemplates = pgTable("email_templates", {
+  ...baseColumns,
+  template_name: varchar("template_name", { length: 255 }).notNull(),
+  template_type: varchar("template_type", { length: 50 }).notNull(),
+  subject_template: text("subject_template").notNull(),
+  body_template: text("body_template").notNull(),
+  html_template: text("html_template"),
+  variables: text("variables").array(),
+  trigger_event: varchar("trigger_event", { length: 50 }).default("manual"),
+  active: boolean("active").default(true),
+});
+
+export const communicationTemplates = pgTable("communication_templates", {
+  ...baseColumns,
+  template_name: varchar("template_name", { length: 255 }).notNull(),
+  template_type: varchar("template_type", { length: 50 }).notNull(),
+  subject_template: text("subject_template").notNull(),
+  body_template: text("body_template").notNull(),
+  trigger_event: varchar("trigger_event", { length: 50 }).default("manual"),
+  trigger_days_before: integer("trigger_days_before").default(3),
+  active: boolean("active").default(true),
+  variables: jsonb("variables"),
 });
 
 export const projectRequests = pgTable("project_requests", {
@@ -569,6 +630,9 @@ export const insertIcpSettingsSchema = createInsertSchema(icpSettings).omit(auto
 export const insertAuditLogSchema = createInsertSchema(auditLogs).omit(autoFields);
 export const insertNotificationSchema = createInsertSchema(notifications).omit(autoFields);
 export const insertClientInviteSchema = createInsertSchema(clientInvites).omit(autoFields);
+export const insertInternalInviteSchema = createInsertSchema(internalInvites).omit(autoFields);
+export const insertEmailTemplateSchema = createInsertSchema(emailTemplates).omit(autoFields);
+export const insertCommunicationTemplateSchema = createInsertSchema(communicationTemplates).omit(autoFields);
 export const insertProjectRequestSchema = createInsertSchema(projectRequests).omit(autoFields);
 export const insertRfiSchema = createInsertSchema(rfis).omit(autoFields);
 export const insertSalesOutreachSchema = createInsertSchema(salesOutreach).omit(autoFields);
@@ -618,6 +682,12 @@ export type InsertNotification = z.infer<typeof insertNotificationSchema>;
 export type Notification = typeof notifications.$inferSelect;
 export type InsertClientInvite = z.infer<typeof insertClientInviteSchema>;
 export type ClientInvite = typeof clientInvites.$inferSelect;
+export type InsertInternalInvite = z.infer<typeof insertInternalInviteSchema>;
+export type InternalInvite = typeof internalInvites.$inferSelect;
+export type InsertEmailTemplate = z.infer<typeof insertEmailTemplateSchema>;
+export type EmailTemplate = typeof emailTemplates.$inferSelect;
+export type InsertCommunicationTemplate = z.infer<typeof insertCommunicationTemplateSchema>;
+export type CommunicationTemplate = typeof communicationTemplates.$inferSelect;
 export type InsertProjectRequest = z.infer<typeof insertProjectRequestSchema>;
 export type ProjectRequest = typeof projectRequests.$inferSelect;
 export type InsertRfi = z.infer<typeof insertRfiSchema>;
@@ -655,6 +725,9 @@ export const entityTableMap: Record<string, any> = {
   "audit-logs": auditLogs,
   "notifications": notifications,
   "client-invites": clientInvites,
+  "internal-invites": internalInvites,
+  "email-templates": emailTemplates,
+  "communication-templates": communicationTemplates,
   "project-requests": projectRequests,
   "rfis": rfis,
   "sales-outreach": salesOutreach,
