@@ -11,7 +11,8 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2, AlertTriangle, Mail, Lock, User, Building2, CheckCircle2, XCircle, Minus } from "lucide-react";
-import logoPath from "/Logo.jpeg";
+
+const logoPath = "/Logo.jpeg";
 
 const registerSchema = z
   .object({

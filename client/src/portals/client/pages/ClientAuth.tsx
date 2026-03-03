@@ -11,7 +11,8 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { useToast } from "@/hooks/use-toast";
 import { Loader2, Mail, Lock, ArrowLeft, CheckCircle2 } from "lucide-react";
 import { apiRequest } from "@/lib/queryClient";
-import logoPath from "/Logo.jpeg";
+
+const logoPath = "/Logo.jpeg";
 
 const loginSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
