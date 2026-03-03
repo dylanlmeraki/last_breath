@@ -197,6 +197,7 @@ export async function registerRoutes(
   };
 
   app.use("/api/blog-posts", publicReadRouter("blog-posts"));
+  app.use("/api/gallery-projects", publicReadRouter("gallery-projects"));
 
   app.get("/api/blog-posts/slug/:slug", async (req: Request, res: Response) => {
     try {
@@ -205,6 +206,29 @@ export async function registerRoutes(
       return res.json(post);
     } catch (error) {
       return res.status(500).json({ error: "Failed to fetch blog post" });
+    }
+  });
+
+  app.get("/api/gallery-projects/slug/:slug", async (req: Request, res: Response) => {
+    try {
+      const records = await storage.filterEntity("gallery-projects", { slug: req.params.slug }, undefined, 1);
+      if (!records || records.length === 0) return res.status(404).json({ error: "Gallery project not found" });
+      return res.json(records[0]);
+    } catch (error) {
+      return res.status(500).json({ error: "Failed to fetch gallery project" });
+    }
+  });
+
+  app.post("/api/chatbot", async (req: Request, res: Response) => {
+    try {
+      const { message, context } = req.body;
+      if (!message) return res.status(400).json({ error: "Message is required" });
+      return res.json({
+        response: "Thank you for your interest in Pacific Engineering & Construction. Our team specializes in civil and structural engineering, SWPPP/stormwater planning, construction services, and special inspections across the Bay Area. For specific project inquiries, please visit our Contact page or call us directly. How can I help you today?",
+        source: "fallback"
+      });
+    } catch (error) {
+      return res.status(500).json({ error: "Chatbot error" });
     }
   });
 

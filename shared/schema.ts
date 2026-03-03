@@ -783,6 +783,34 @@ export type NotificationPreference = typeof notificationPreferences.$inferSelect
 export type InsertProposalMessage = z.infer<typeof insertProposalMessageSchema>;
 export type ProposalMessage = typeof proposalMessages.$inferSelect;
 
+export const galleryProjects = pgTable("gallery_projects", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  title: text("title").notNull(),
+  slug: text("slug").notNull().unique(),
+  location: text("location"),
+  county: text("county"),
+  category: text("category"),
+  date: text("date"),
+  budget: text("budget"),
+  client_name: text("client_name"),
+  contact_name: text("contact_name"),
+  description: text("description"),
+  scope: text("scope"),
+  services: text("services").array(),
+  agencies: text("agencies").array(),
+  image: text("image"),
+  images: text("images").array(),
+  featured: boolean("featured").default(false),
+  published: boolean("published").default(false),
+  sort_order: integer("sort_order").default(0),
+  created_date: timestamp("created_date").defaultNow(),
+  updated_date: timestamp("updated_date").defaultNow(),
+});
+
+export const insertGalleryProjectSchema = createInsertSchema(galleryProjects).omit({ id: true, created_date: true, updated_date: true });
+export type InsertGalleryProject = z.infer<typeof insertGalleryProjectSchema>;
+export type GalleryProject = typeof galleryProjects.$inferSelect;
+
 export const entityTableMap: Record<string, any> = {
   "prospects": prospects,
   "interactions": interactions,
@@ -819,4 +847,5 @@ export const entityTableMap: Record<string, any> = {
   "client-feedback": clientFeedback,
   "notification-preferences": notificationPreferences,
   "proposal-messages": proposalMessages,
+  "gallery-projects": galleryProjects,
 };

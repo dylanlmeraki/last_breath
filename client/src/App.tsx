@@ -10,6 +10,7 @@ import { Loader2 } from "lucide-react";
 
 const InternalApp = lazy(() => import("@/portals/internal/InternalApp"));
 const ClientApp = lazy(() => import("@/portals/client/ClientApp"));
+const MarketingApp = lazy(() => import("@/portals/marketing/MarketingApp"));
 
 function LoadingScreen() {
   return (
@@ -22,12 +23,15 @@ function LoadingScreen() {
   );
 }
 
-type PortalMode = "internal" | "client" | "route-prefix";
+type PortalMode = "internal" | "client" | "marketing" | "route-prefix";
 
 function detectPortal(): PortalMode {
   const hostname = window.location.hostname;
   if (hostname.startsWith("internal.")) return "internal";
   if (hostname.startsWith("portal.")) return "client";
+  if (!hostname.includes(".replit") && !hostname.includes("localhost") && !hostname.includes("127.0.0.1")) {
+    return "marketing";
+  }
   return "route-prefix";
 }
 
@@ -54,13 +58,22 @@ function AppRouter() {
     );
   }
 
+  if (portalMode === "marketing") {
+    return (
+      <Suspense fallback={<LoadingScreen />}>
+        <Routes>
+          <Route path="/*" element={<MarketingApp />} />
+        </Routes>
+      </Suspense>
+    );
+  }
+
   return (
     <Suspense fallback={<LoadingScreen />}>
       <Routes>
         <Route path="/internal/*" element={<InternalApp />} />
         <Route path="/portal/*" element={<ClientApp />} />
-        <Route path="/" element={<Navigate to="/internal" replace />} />
-        <Route path="*" element={<Navigate to="/internal" replace />} />
+        <Route path="/*" element={<MarketingApp />} />
       </Routes>
     </Suspense>
   );

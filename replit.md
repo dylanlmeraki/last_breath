@@ -6,7 +6,7 @@
 
 - **Internal Portal**: `internal.pacificengineeringsf.com` (dev: `/internal/*`)
 - **Client Portal**: `portal.pacificengineeringsf.com` (dev: `/portal/*`)
-- **Marketing Site**: `pacificengineeringsf.com` (separate Repl, calls this API)
+- **Marketing Site**: `pacificengineeringsf.com` (dev: `/` default route)
 
 ## Tech Stack
 
@@ -44,10 +44,17 @@
 │       │   ├── InternalApp.tsx     # Internal router (40+ routes)
 │       │   ├── layout/InternalLayout.tsx  # Dark sidebar layout
 │       │   └── pages/             # All internal portal pages (41 pages)
-│       └── client/
-│           ├── ClientApp.tsx       # Client router
-│           ├── layout/ClientLayout.tsx    # Sidebar layout
-│           └── pages/             # Client portal pages (10 pages)
+│       ├── client/
+│       │   ├── ClientApp.tsx       # Client router
+│       │   ├── layout/ClientLayout.tsx    # Sidebar layout
+│       │   └── pages/             # Client portal pages (10 pages)
+│       └── marketing/
+│           ├── MarketingApp.tsx    # Marketing router (16 routes)
+│           ├── marketing.css      # Marketing-specific styles
+│           ├── layout/MarketingLayout.tsx  # Nav + footer + ChatBot
+│           ├── lib/utils.ts       # createPageUrl utility
+│           ├── components/        # Marketing visual components (13)
+│           └── pages/             # Marketing pages (15 pages)
 ├── server/
 │   ├── index.ts                   # Express app + middleware (cors, helmet, cookie-parser, portal mode)
 │   ├── routes.ts                  # Entity CRUD factory + all API routes
@@ -80,7 +87,7 @@
 **Projects**: projects, project_documents, project_milestones, change_orders, project_messages
 **Financial**: proposals, proposal_templates, invoices
 **Operations**: workflows, email_sequences, sales_outreach
-**Content**: blog_posts, custom_pages
+**Content**: blog_posts, custom_pages, gallery_projects
 **Settings**: calendar_settings, email_settings, icp_settings, dashboard_configs
 **System**: audit_logs, notifications, scheduled_reports
 **Client Portal**: client_invites, project_requests, client_team_members, document_approvals, client_feedback, notification_preferences, proposal_messages
@@ -124,7 +131,9 @@ All entity routes follow the generic CRUD pattern:
 **Public endpoints** (no auth required):
 - `GET /api/health`
 - `GET /api/blog-posts` (and slug endpoint)
+- `GET /api/gallery-projects` (and slug endpoint)
 - `POST /api/form-submissions`
+- `POST /api/chatbot` — marketing chatbot (fallback responses)
 - `GET /api/client-invites/validate/:token`
 
 **Auth endpoints**:
@@ -142,26 +151,38 @@ All entity routes follow the generic CRUD pattern:
 In development (Replit), uses route prefix mode:
 - `/internal/*` → Internal Portal
 - `/portal/*` → Client Portal
-- `/` → redirects to `/internal`
+- `/*` → Marketing Site (default)
 
 In production, uses hostname detection:
 - `internal.*` → Internal Portal
 - `portal.*` → Client Portal
+- Root domain → Marketing Site
 
 Server-side portal mode middleware sets `req.portalMode` based on hostname.
 
-## Marketing Site Integration
+## Marketing Portal
 
-The marketing site (separate Repl) calls these endpoints:
-- `GET /api/blog-posts` — blog listing/detail
-- `POST /api/form-submissions` — contact/SWPPP forms
-- `GET /api/auth/session` — cross-domain auth validation
-- `POST /api/integrations/llm` — chatbot
-- `GET /api/health` — health check
+Third portal integrated into the monorepo at `client/src/portals/marketing/`.
+
+**Pages (15)**: Home, About, Contact, Services, ServicesOverview, InspectionsTesting, SpecialInspections, StructuralEngineering, Construction, ProjectGallery, ProjectDetail, PreviousWork, Blog, BlogPost, SWPPPChecker (Consultation)
+
+**Components (13)**: AnimatedGridBackground, AnimatedSection, BackToTop, BlueprintBackground, ChatBot, FloatingElements, FooterBackground, GlowingCard, ParticleField, ScrollFadeSection, SEO, ShinyButton
+
+**Data flows**:
+- Internal BlogEditor → blog_posts DB → Marketing Blog page
+- Internal Gallery Editor → gallery_projects DB → Marketing ProjectGallery page
+- Marketing Contact/SWPPP forms → form_submissions DB → Internal FormSubmissions page
+- Marketing ChatBot → /api/chatbot (fallback responses)
+
+**Gallery Editor**: Tab in ContentManager (internal portal) for creating/editing gallery projects with image management, tag inputs, publish/featured toggles
+
+**Dependencies**: framer-motion, react-helmet, react-markdown, embla-carousel-react
 
 ## Pages
 
 **Internal Portal (41 pages)**: Dashboard, ProjectManager, ProjectDetail, ProjectDashboard, ProjectsManager, ProjectRequests, ContactManager, SalesDashboard, CRMSearch, ProposalDashboard, InvoiceManagement, RFIs, ClientRFIs, DocApproval, BlogEditor, ContentManager, PageBuilder, SEOAssistant, TemplateBuilder, PDFGenerator, OutreachQueue, EmailSequences, SequenceOptimization, SalesBotControl, AISalesAssistant, WorkflowBuilder, AnalyticsDashboard, Communications, ClientCommunications, EmailTemplates, UserManagement, ClientInvites, AdminConsole, FormSubmissions, AdminEmailSettings, ICPSettings, WebsiteMonitoring, QAQC, UserProfile, Auth
+
+**Marketing Portal (15 pages)**: Home, About, Contact, Services, ServicesOverview, InspectionsTesting, SpecialInspections, StructuralEngineering, Construction, ProjectGallery, ProjectDetail, PreviousWork, Blog, BlogPost, SWPPPChecker
 
 **Client Portal (11 pages + 2 components)**: ClientDashboard (enhanced w/ analytics, onboarding wizard), ClientProjects (list + detail w/ milestones, change orders, messages), ClientDocuments (documents + approvals center), ClientProposals (proposals + contracts + discussion threads), ClientInvoices (invoices + payment tracking + overdue alerts), ClientMessages (communications hub w/ threading), ClientReports (analytics + charts + CSV export), ClientRFIs (RFIs + detail + create), ClientSettings (5 tabs: account, team, notifications, workflow, feedback), ClientAuth (branded login), PortalRegister (invite validation + password strength)
 
@@ -190,4 +211,4 @@ ErrorBoundary, ProtectedRoute, LoadingSkeleton, PageHeader, EmptyState, StatCard
 
 ## Key NPM Packages
 
-argon2, otpauth, qrcode, resend, @react-email/components, @react-email/render, cookie-parser, helmet, drizzle-orm, drizzle-zod, @tanstack/react-query, react-router-dom, react-hook-form, @hookform/resolvers, recharts, lucide-react
+argon2, otpauth, qrcode, resend, @react-email/components, @react-email/render, cookie-parser, helmet, drizzle-orm, drizzle-zod, @tanstack/react-query, react-router-dom, react-hook-form, @hookform/resolvers, recharts, lucide-react, framer-motion, react-helmet, react-markdown, embla-carousel-react
