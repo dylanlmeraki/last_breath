@@ -73,7 +73,7 @@
 └── drizzle.config.ts
 ```
 
-## Database Schema (31 Tables)
+## Database Schema (36 Tables)
 
 **Auth**: users, sessions, email_verification_codes, password_reset_tokens
 **CRM**: prospects, interactions, tasks
@@ -83,7 +83,7 @@
 **Content**: blog_posts, custom_pages
 **Settings**: calendar_settings, email_settings, icp_settings, dashboard_configs
 **System**: audit_logs, notifications, scheduled_reports
-**Client Portal**: client_invites, project_requests
+**Client Portal**: client_invites, project_requests, client_team_members, document_approvals, client_feedback, notification_preferences, proposal_messages
 **Marketing Integration**: form_submissions, rfis
 
 ## Auth System
@@ -163,7 +163,7 @@ The marketing site (separate Repl) calls these endpoints:
 
 **Internal Portal (41 pages)**: Dashboard, ProjectManager, ProjectDetail, ProjectDashboard, ProjectsManager, ProjectRequests, ContactManager, SalesDashboard, CRMSearch, ProposalDashboard, InvoiceManagement, RFIs, ClientRFIs, DocApproval, BlogEditor, ContentManager, PageBuilder, SEOAssistant, TemplateBuilder, PDFGenerator, OutreachQueue, EmailSequences, SequenceOptimization, SalesBotControl, AISalesAssistant, WorkflowBuilder, AnalyticsDashboard, Communications, ClientCommunications, EmailTemplates, UserManagement, ClientInvites, AdminConsole, FormSubmissions, AdminEmailSettings, ICPSettings, WebsiteMonitoring, QAQC, UserProfile, Auth
 
-**Client Portal (10 pages)**: ClientDashboard, ClientProjects, ClientDocuments, ClientProposals, ClientInvoices, ClientMessages, ClientRFIs, ClientSettings, ClientAuth, PortalRegister
+**Client Portal (11 pages + 2 components)**: ClientDashboard (enhanced w/ analytics, onboarding wizard), ClientProjects (list + detail w/ milestones, change orders, messages), ClientDocuments (documents + approvals center), ClientProposals (proposals + contracts + discussion threads), ClientInvoices (invoices + payment tracking + overdue alerts), ClientMessages (communications hub w/ threading), ClientReports (analytics + charts + CSV export), ClientRFIs (RFIs + detail + create), ClientSettings (5 tabs: account, team, notifications, workflow, feedback), ClientAuth (branded login), PortalRegister (invite validation + password strength)
 
 ## Shared Components
 

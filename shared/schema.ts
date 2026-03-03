@@ -39,6 +39,7 @@ export const users = pgTable("users", {
   twofa_backup_codes: text("twofa_backup_codes").array(),
   twofa_verified_at: timestamp("twofa_verified_at", { withTimezone: true }),
   notification_preferences: jsonb("notification_preferences"),
+  onboarding_complete: boolean("onboarding_complete").default(false),
 });
 
 export const sessions = pgTable("sessions", {
@@ -537,6 +538,56 @@ export const formSubmissions = pgTable("form_submissions", {
   prospect_id: uuid("prospect_id").references(() => prospects.id, { onDelete: "set null" }),
 });
 
+export const clientTeamMembers = pgTable("client_team_members", {
+  ...baseColumns,
+  email: varchar("email", { length: 255 }).notNull(),
+  full_name: varchar("full_name", { length: 255 }),
+  role: varchar("role", { length: 50 }).default("viewer").notNull(),
+  status: varchar("status", { length: 30 }).default("pending").notNull(),
+  invited_by: varchar("invited_by", { length: 255 }).notNull(),
+  client_company: varchar("client_company", { length: 255 }),
+  permissions: jsonb("permissions"),
+  accepted_at: timestamp("accepted_at", { withTimezone: true }),
+});
+
+export const documentApprovals = pgTable("document_approvals", {
+  ...baseColumns,
+  document_id: uuid("document_id").notNull().references(() => projectDocuments.id, { onDelete: "cascade" }),
+  reviewer_email: varchar("reviewer_email", { length: 255 }).notNull(),
+  reviewer_name: varchar("reviewer_name", { length: 255 }),
+  status: varchar("status", { length: 30 }).default("pending").notNull(),
+  comments: text("comments"),
+  reviewed_at: timestamp("reviewed_at", { withTimezone: true }),
+});
+
+export const clientFeedback = pgTable("client_feedback", {
+  ...baseColumns,
+  client_email: varchar("client_email", { length: 255 }).notNull(),
+  project_id: uuid("project_id").references(() => projects.id, { onDelete: "set null" }),
+  category: varchar("category", { length: 100 }),
+  rating: integer("rating"),
+  comments: text("comments"),
+  status: varchar("status", { length: 30 }).default("new").notNull(),
+});
+
+export const notificationPreferences = pgTable("notification_preferences", {
+  ...baseColumns,
+  user_email: varchar("user_email", { length: 255 }).notNull(),
+  event_type: varchar("event_type", { length: 100 }).notNull(),
+  channel_email: boolean("channel_email").default(true),
+  channel_in_app: boolean("channel_in_app").default(true),
+});
+
+export const proposalMessages = pgTable("proposal_messages", {
+  ...baseColumns,
+  proposal_id: uuid("proposal_id").notNull().references(() => proposals.id, { onDelete: "cascade" }),
+  sender_email: varchar("sender_email", { length: 255 }).notNull(),
+  sender_name: varchar("sender_name", { length: 255 }),
+  message: text("message").notNull(),
+  attachments: jsonb("attachments"),
+  is_internal: boolean("is_internal").default(false),
+});
+
 export const usersRelations = relations(users, ({ many }) => ({
   sessions: many(sessions),
   emailVerificationCodes: many(emailVerificationCodes),
@@ -608,6 +659,18 @@ export const formSubmissionsRelations = relations(formSubmissions, ({ one }) => 
   prospect: one(prospects, { fields: [formSubmissions.prospect_id], references: [prospects.id] }),
 }));
 
+export const documentApprovalsRelations = relations(documentApprovals, ({ one }) => ({
+  document: one(projectDocuments, { fields: [documentApprovals.document_id], references: [projectDocuments.id] }),
+}));
+
+export const clientFeedbackRelations = relations(clientFeedback, ({ one }) => ({
+  project: one(projects, { fields: [clientFeedback.project_id], references: [projects.id] }),
+}));
+
+export const proposalMessagesRelations = relations(proposalMessages, ({ one }) => ({
+  proposal: one(proposals, { fields: [proposalMessages.proposal_id], references: [proposals.id] }),
+}));
+
 const autoFields = { id: true, created_date: true, updated_date: true } as const;
 
 export const insertUserSchema = createInsertSchema(users).omit(autoFields);
@@ -641,6 +704,11 @@ export const insertScheduledReportSchema = createInsertSchema(scheduledReports).
 export const insertCustomPageSchema = createInsertSchema(customPages).omit(autoFields);
 export const insertDashboardConfigSchema = createInsertSchema(dashboardConfigs).omit(autoFields);
 export const insertFormSubmissionSchema = createInsertSchema(formSubmissions).omit(autoFields);
+export const insertClientTeamMemberSchema = createInsertSchema(clientTeamMembers).omit(autoFields);
+export const insertDocumentApprovalSchema = createInsertSchema(documentApprovals).omit(autoFields);
+export const insertClientFeedbackSchema = createInsertSchema(clientFeedback).omit(autoFields);
+export const insertNotificationPreferenceSchema = createInsertSchema(notificationPreferences).omit(autoFields);
+export const insertProposalMessageSchema = createInsertSchema(proposalMessages).omit(autoFields);
 
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
@@ -704,6 +772,16 @@ export type InsertDashboardConfig = z.infer<typeof insertDashboardConfigSchema>;
 export type DashboardConfig = typeof dashboardConfigs.$inferSelect;
 export type InsertFormSubmission = z.infer<typeof insertFormSubmissionSchema>;
 export type FormSubmission = typeof formSubmissions.$inferSelect;
+export type InsertClientTeamMember = z.infer<typeof insertClientTeamMemberSchema>;
+export type ClientTeamMember = typeof clientTeamMembers.$inferSelect;
+export type InsertDocumentApproval = z.infer<typeof insertDocumentApprovalSchema>;
+export type DocumentApproval = typeof documentApprovals.$inferSelect;
+export type InsertClientFeedback = z.infer<typeof insertClientFeedbackSchema>;
+export type ClientFeedback = typeof clientFeedback.$inferSelect;
+export type InsertNotificationPreference = z.infer<typeof insertNotificationPreferenceSchema>;
+export type NotificationPreference = typeof notificationPreferences.$inferSelect;
+export type InsertProposalMessage = z.infer<typeof insertProposalMessageSchema>;
+export type ProposalMessage = typeof proposalMessages.$inferSelect;
 
 export const entityTableMap: Record<string, any> = {
   "prospects": prospects,
@@ -736,4 +814,9 @@ export const entityTableMap: Record<string, any> = {
   "custom-pages": customPages,
   "dashboard-configs": dashboardConfigs,
   "form-submissions": formSubmissions,
+  "client-team-members": clientTeamMembers,
+  "document-approvals": documentApprovals,
+  "client-feedback": clientFeedback,
+  "notification-preferences": notificationPreferences,
+  "proposal-messages": proposalMessages,
 };

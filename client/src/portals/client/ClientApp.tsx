@@ -12,6 +12,7 @@ const ClientDocuments = lazy(() => import("./pages/ClientDocuments"));
 const ClientProposals = lazy(() => import("./pages/ClientProposals"));
 const ClientInvoices = lazy(() => import("./pages/ClientInvoices"));
 const ClientMessages = lazy(() => import("./pages/ClientMessages"));
+const ClientReports = lazy(() => import("./pages/ClientReports"));
 const ClientRFIs = lazy(() => import("./pages/ClientRFIs"));
 const ClientSettings = lazy(() => import("./pages/ClientSettings"));
 
@@ -39,6 +40,7 @@ export default function ClientApp() {
                     <Route path="proposals" element={<ClientProposals />} />
                     <Route path="invoices" element={<ClientInvoices />} />
                     <Route path="messages" element={<ClientMessages />} />
+                    <Route path="reports" element={<ClientReports />} />
                     <Route path="rfis" element={<ClientRFIs />} />
                     <Route path="settings" element={<ClientSettings />} />
                     <Route path="*" element={<Navigate to="dashboard" replace />} />

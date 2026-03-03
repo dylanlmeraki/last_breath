@@ -18,6 +18,7 @@ import {
   LayoutDashboard, FolderKanban, FileText, FileSignature,
   DollarSign, MessageSquare, Bell, Menu, X, LogOut, User,
   Building2, Settings, HelpCircle, ChevronLeft, ChevronRight as ChevronRightIcon,
+  BarChart3, CheckSquare, MessageCircle,
 } from "lucide-react";
 
 const NAV_ITEMS = [
@@ -27,6 +28,7 @@ const NAV_ITEMS = [
   { label: "Proposals", icon: FileSignature, path: "/proposals" },
   { label: "Invoices", icon: DollarSign, path: "/invoices" },
   { label: "Messages", icon: MessageSquare, path: "/messages" },
+  { label: "Reports", icon: BarChart3, path: "/reports" },
   { label: "RFIs", icon: HelpCircle, path: "/rfis" },
   { label: "Settings", icon: Settings, path: "/settings" },
 ];
@@ -234,6 +236,14 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
                 <DropdownMenuItem onClick={() => navigate(basePath + "/settings")} data-testid="menu-settings">
                   <Settings className="h-4 w-4 mr-2" />
                   Settings
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => navigate(basePath + "/settings?tab=feedback")} data-testid="menu-feedback">
+                  <MessageCircle className="h-4 w-4 mr-2" />
+                  Send Feedback
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => navigate(basePath + "/rfis")} data-testid="menu-help">
+                  <HelpCircle className="h-4 w-4 mr-2" />
+                  Help & Support
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={handleLogout} data-testid="menu-logout">
