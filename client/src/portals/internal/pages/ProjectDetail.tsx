@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import {
   Calendar,
   MapPin,
@@ -19,15 +20,102 @@ import {
   Loader2,
   Target,
   GitPullRequest,
-  CheckCircle2
+  CheckCircle2,
+  FileImage,
+  FileSpreadsheet,
+  FileCode,
+  File,
+  Eye,
+  FileBarChart,
+  ExternalLink
 } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 import { useAuth } from "@/hooks/use-auth";
 import { formatDate, formatCurrency } from "@/lib/utils";
 
+function getFileTypeIcon(docType: string | undefined, fileName?: string) {
+  if (!docType && !fileName) return File;
+  const t = (docType || "").toLowerCase();
+  const name = (fileName || "").toLowerCase();
+
+  if (t.includes("image") || t.includes("photo") || t.includes("drawing") || /\.(png|jpg|jpeg|gif|svg|webp)$/.test(name)) return FileImage;
+  if (t.includes("spreadsheet") || t.includes("excel") || t.includes("csv") || /\.(xlsx|xls|csv)$/.test(name)) return FileSpreadsheet;
+  if (t.includes("code") || /\.(js|ts|py|html|css|json)$/.test(name)) return FileCode;
+  if (t.includes("report") || t.includes("pdf") || /\.pdf$/.test(name)) return FileBarChart;
+  return FileText;
+}
+
+function getFileTypeColor(docType: string | undefined) {
+  if (!docType) return "bg-gray-100 dark:bg-gray-800 text-gray-600";
+  const t = docType.toLowerCase();
+  if (t.includes("image") || t.includes("photo") || t.includes("drawing")) return "bg-purple-100 dark:bg-purple-900/30 text-purple-600";
+  if (t.includes("spreadsheet") || t.includes("excel") || t.includes("csv")) return "bg-green-100 dark:bg-green-900/30 text-green-600";
+  if (t.includes("report") || t.includes("pdf")) return "bg-red-100 dark:bg-red-900/30 text-red-600";
+  if (t.includes("contract") || t.includes("legal")) return "bg-amber-100 dark:bg-amber-900/30 text-amber-600";
+  return "bg-blue-100 dark:bg-blue-900/30 text-blue-600";
+}
+
+function DocumentPreviewModal({ doc, onClose }: { doc: any; onClose: () => void }) {
+  const isImage = /\.(png|jpg|jpeg|gif|svg|webp)$/i.test(doc.file_url || "");
+  const isPdf = /\.pdf$/i.test(doc.file_url || "");
+
+  return (
+    <Dialog open={true} onOpenChange={() => onClose()}>
+      <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
+        <DialogHeader>
+          <DialogTitle>{doc.document_name}</DialogTitle>
+        </DialogHeader>
+        <div className="space-y-4">
+          <div className="flex items-center gap-3 flex-wrap">
+            <Badge variant="outline">{doc.document_type}</Badge>
+            {doc.version && <span className="text-sm text-muted-foreground">v{doc.version}</span>}
+            <span className="text-sm text-muted-foreground">Uploaded {formatDate(doc.created_date)}</span>
+            {doc.uploaded_by_name && <span className="text-sm text-muted-foreground">by {doc.uploaded_by_name}</span>}
+          </div>
+
+          {doc.file_url && (
+            <div className="border rounded-lg overflow-hidden bg-muted/30">
+              {isImage ? (
+                <img src={doc.file_url} alt={doc.document_name} className="max-w-full max-h-[60vh] mx-auto object-contain" data-testid="img-document-preview" />
+              ) : isPdf ? (
+                <iframe src={doc.file_url} className="w-full" style={{ minHeight: "60vh" }} title="Document Preview" data-testid="iframe-document-preview" />
+              ) : (
+                <div className="p-12 text-center">
+                  <FileText className="w-16 h-16 mx-auto mb-4 text-muted-foreground/30" />
+                  <p className="text-muted-foreground mb-4">Preview not available for this file type</p>
+                  <Button variant="outline" asChild data-testid="button-open-in-new-tab">
+                    <a href={doc.file_url} target="_blank" rel="noopener noreferrer">
+                      <ExternalLink className="w-4 h-4 mr-2" />
+                      Open in New Tab
+                    </a>
+                  </Button>
+                </div>
+              )}
+            </div>
+          )}
+
+          <div className="flex gap-2 justify-end flex-wrap">
+            {doc.file_url && (
+              <Button variant="outline" asChild data-testid="button-download-preview">
+                <a href={doc.file_url} target="_blank" rel="noopener noreferrer">
+                  <Download className="w-4 h-4 mr-2" />
+                  Download
+                </a>
+              </Button>
+            )}
+          </div>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
 export default function ProjectDetail() {
   const { user } = useAuth();
   const { id: projectId } = useParams<{ id: string }>();
+  const [previewDoc, setPreviewDoc] = useState<any>(null);
+
+  const basePath = window.location.pathname.startsWith("/internal") ? "/internal" : "";
 
   const { data: project, isLoading: projectLoading } = useQuery({
     queryKey: ['project', projectId],
@@ -61,8 +149,6 @@ export default function ProjectDetail() {
     queryFn: () => filterEntities('ProjectMessage', { project_id: projectId }, '-created_date', 100),
     enabled: !!projectId
   });
-
-  const basePath = window.location.pathname.startsWith("/internal") ? "/internal" : "";
 
   const statusColors: Record<string, string> = {
     "Planning": "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300",
@@ -107,15 +193,23 @@ export default function ProjectDetail() {
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Projects
           </Link>
-          
+
           <div className="flex items-start justify-between flex-wrap gap-4">
             <div>
               <h1 className="text-4xl font-bold mb-2" data-testid="text-project-name">{project.project_name}</h1>
               <p className="text-cyan-100 text-lg">Project #{project.project_number}</p>
             </div>
-            <Badge className={`${statusColors[project.status] || statusColors["Planning"]} text-base px-4 py-2`}>
-              {project.status}
-            </Badge>
+            <div className="flex items-center gap-3 flex-wrap">
+              <Badge className={`${statusColors[project.status] || statusColors["Planning"]} text-base px-4 py-2`}>
+                {project.status}
+              </Badge>
+              <Link to={`${basePath}/pdf-generator?project=${projectId}`}>
+                <Button variant="outline" className="bg-white/10 border-white/30 text-white" data-testid="button-generate-report">
+                  <FileBarChart className="w-4 h-4 mr-2" />
+                  Generate Report
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -212,8 +306,16 @@ export default function ProjectDetail() {
 
             <TabsContent value="documents" className="space-y-6">
               <Card className="p-6">
-                <h3 className="text-lg font-bold mb-4">Project Documents</h3>
-                
+                <div className="flex items-center justify-between gap-4 mb-4 flex-wrap">
+                  <h3 className="text-lg font-bold">Project Documents</h3>
+                  <Link to={`${basePath}/pdf-generator?project=${projectId}`}>
+                    <Button variant="outline" size="sm" data-testid="button-generate-report-tab">
+                      <FileBarChart className="w-4 h-4 mr-2" />
+                      Generate Report
+                    </Button>
+                  </Link>
+                </div>
+
                 {docsLoading ? (
                   <div className="flex items-center justify-center py-12">
                     <Loader2 className="w-6 h-6 animate-spin text-blue-600" />
@@ -225,34 +327,49 @@ export default function ProjectDetail() {
                   </div>
                 ) : (
                   <div className="space-y-3">
-                    {documents.map((doc: any) => (
-                      <Card key={doc.id} className="p-4 border hover-elevate transition-colors" data-testid={`document-${doc.id}`}>
-                        <div className="flex items-center justify-between gap-1 flex-wrap">
-                          <div className="flex items-center gap-3 flex-1">
-                            <div className="w-10 h-10 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center">
-                              <FileText className="w-5 h-5 text-blue-600" />
-                            </div>
-                            <div className="flex-1">
-                              <h4 className="font-semibold">{doc.document_name}</h4>
-                              <div className="flex items-center gap-3 text-xs text-muted-foreground mt-1 flex-wrap">
-                                <Badge variant="outline" className="text-xs">{doc.document_type}</Badge>
-                                {doc.version && <span>v{doc.version}</span>}
-                                <span>Uploaded {formatDate(doc.created_date)}</span>
-                                {doc.uploaded_by_name && <span>by {doc.uploaded_by_name}</span>}
+                    {documents.map((doc: any) => {
+                      const DocIcon = getFileTypeIcon(doc.document_type, doc.file_url);
+                      const iconColor = getFileTypeColor(doc.document_type);
+                      return (
+                        <Card key={doc.id} className="p-4 border hover-elevate transition-colors" data-testid={`document-${doc.id}`}>
+                          <div className="flex items-center justify-between gap-1 flex-wrap">
+                            <div className="flex items-center gap-3 flex-1">
+                              <div className={`w-10 h-10 ${iconColor} rounded-lg flex items-center justify-center`}>
+                                <DocIcon className="w-5 h-5" />
+                              </div>
+                              <div className="flex-1">
+                                <h4 className="font-semibold">{doc.document_name}</h4>
+                                <div className="flex items-center gap-3 text-xs text-muted-foreground mt-1 flex-wrap">
+                                  <Badge variant="outline" className="text-xs">{doc.document_type}</Badge>
+                                  {doc.version && <span>v{doc.version}</span>}
+                                  <span>Uploaded {formatDate(doc.created_date)}</span>
+                                  {doc.uploaded_by_name && <span>by {doc.uploaded_by_name}</span>}
+                                </div>
                               </div>
                             </div>
-                          </div>
-                          {doc.file_url && (
-                            <a href={doc.file_url} target="_blank" rel="noopener noreferrer">
-                              <Button variant="outline" size="sm" data-testid={`button-download-${doc.id}`}>
-                                <Download className="w-4 h-4 mr-2" />
-                                Download
+                            <div className="flex gap-2">
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => setPreviewDoc(doc)}
+                                data-testid={`button-preview-${doc.id}`}
+                              >
+                                <Eye className="w-4 h-4 mr-2" />
+                                Preview
                               </Button>
-                            </a>
-                          )}
-                        </div>
-                      </Card>
-                    ))}
+                              {doc.file_url && (
+                                <a href={doc.file_url} target="_blank" rel="noopener noreferrer">
+                                  <Button variant="outline" size="sm" data-testid={`button-download-${doc.id}`}>
+                                    <Download className="w-4 h-4 mr-2" />
+                                    Download
+                                  </Button>
+                                </a>
+                              )}
+                            </div>
+                          </div>
+                        </Card>
+                      );
+                    })}
                   </div>
                 )}
               </Card>
@@ -375,6 +492,10 @@ export default function ProjectDetail() {
           </Tabs>
         </div>
       </section>
+
+      {previewDoc && (
+        <DocumentPreviewModal doc={previewDoc} onClose={() => setPreviewDoc(null)} />
+      )}
     </div>
   );
 }

@@ -1,10 +1,28 @@
 import { Resend } from "resend";
+import { render } from "@react-email/render";
 import { storage } from "./storage";
+import { InviteEmail } from "./emails/InviteEmail";
+import { WelcomeEmail } from "./emails/WelcomeEmail";
+import { PasswordResetEmail } from "./emails/PasswordResetEmail";
+import { NotificationEmail } from "./emails/NotificationEmail";
+import { ProposalEmail } from "./emails/ProposalEmail";
+import { InvoiceEmail } from "./emails/InvoiceEmail";
+import { ProjectUpdateEmail } from "./emails/ProjectUpdateEmail";
+import { DocumentApprovalEmail } from "./emails/DocumentApprovalEmail";
+import { BaseLayout } from "./emails/BaseLayout";
+import * as React from "react";
 
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
 const DEFAULT_FROM_EMAIL = process.env.FROM_EMAIL || "notifications@pacificengineeringsf.com";
 const DEFAULT_FROM_NAME = process.env.FROM_NAME || "Pacific Engineering";
+
+const INTERNAL_URL = process.env.INTERNAL_URL || "https://internal.pacificengineeringsf.com";
+const PORTAL_URL = process.env.PORTAL_URL || "https://portal.pacificengineeringsf.com";
+
+export function getPortalUrl(portal: "internal" | "client"): string {
+  return portal === "internal" ? INTERNAL_URL : PORTAL_URL;
+}
 
 function getFromAddress(fromName?: string): string {
   return `${fromName || DEFAULT_FROM_NAME} <${DEFAULT_FROM_EMAIL}>`;
@@ -56,6 +74,10 @@ export async function sendEmail(params: {
   return { success: false, error: lastError };
 }
 
+async function renderReactEmail(element: React.ReactElement): Promise<string> {
+  return await render(element);
+}
+
 function wrapInBrandedTemplate(heading: string, bodyHtml: string, ctaText?: string, ctaUrl?: string): string {
   const ctaBlock = ctaText && ctaUrl
     ? `<div style="text-align:center;margin:30px 0;"><a href="${ctaUrl}" style="display:inline-block;background:linear-gradient(135deg,#0B67A6 0%,#0EA5A4 100%);color:#ffffff;padding:14px 32px;text-decoration:none;border-radius:8px;font-weight:600;font-size:16px;">${ctaText}</a></div>`
@@ -90,13 +112,32 @@ export async function sendNotificationEmail(params: {
   cta_text?: string;
   cta_url?: string;
   subject?: string;
+  name?: string;
 }): Promise<{ success: boolean; error?: string }> {
-  const html = wrapInBrandedTemplate(params.heading, params.body, params.cta_text, params.cta_url);
-  return sendEmail({
-    to: params.to,
-    subject: params.subject || params.heading,
-    body: html,
-  });
+  try {
+    const html = await renderReactEmail(
+      React.createElement(NotificationEmail, {
+        name: params.name,
+        heading: params.heading,
+        body: params.body,
+        cta_text: params.cta_text,
+        cta_url: params.cta_url,
+      })
+    );
+    return sendEmail({
+      to: params.to,
+      subject: params.subject || params.heading,
+      body: html,
+    });
+  } catch (e) {
+    console.error("[email] renderReactEmail fallback for notification:", e);
+    const html = wrapInBrandedTemplate(params.heading, params.body, params.cta_text, params.cta_url);
+    return sendEmail({
+      to: params.to,
+      subject: params.subject || params.heading,
+      body: html,
+    });
+  }
 }
 
 export function interpolateTemplate(template: string, variables: Record<string, any>): string {
@@ -148,30 +189,41 @@ export async function sendInviteEmail(params: {
   invite_url: string;
   invite_type: "internal" | "client" | "team";
 }): Promise<{ success: boolean; error?: string }> {
-  const typeLabels = {
-    internal: "Internal Portal",
-    client: "Client Portal",
-    team: "Team",
-  };
+  try {
+    const html = await renderReactEmail(
+      React.createElement(InviteEmail, {
+        invitee_name: params.invitee_name,
+        inviter_name: params.inviter_name,
+        company_name: params.company_name,
+        invite_url: params.invite_url,
+        invite_type: params.invite_type,
+      })
+    );
 
-  const heading = `You're Invited to Pacific Engineering ${typeLabels[params.invite_type]}`;
-  const body = `
-<p style="font-size:16px;color:#374151;">Hi ${params.invitee_name || "there"},</p>
-<p style="font-size:15px;color:#4b5563;line-height:1.6;">
-${params.inviter_name} has invited you to join the Pacific Engineering ${typeLabels[params.invite_type]}${params.company_name ? ` for <strong>${params.company_name}</strong>` : ""}.
-</p>
-<p style="font-size:15px;color:#4b5563;line-height:1.6;">
-Click the button below to create your account and get started.
-</p>
-<p style="font-size:13px;color:#9ca3af;margin-top:20px;">This invitation expires in 7 days.</p>`;
+    const typeLabels: Record<string, string> = {
+      internal: "Internal Portal",
+      client: "Client Portal",
+      team: "Team",
+    };
 
-  const html = wrapInBrandedTemplate(heading, body, "Accept Invitation", params.invite_url);
-  return sendEmail({
-    to: params.to,
-    subject: `You're invited to Pacific Engineering ${typeLabels[params.invite_type]}`,
-    body: html,
-    from_name: "Pacific Engineering",
-  });
+    return sendEmail({
+      to: params.to,
+      subject: `You're invited to Pacific Engineering ${typeLabels[params.invite_type]}`,
+      body: html,
+      from_name: "Pacific Engineering",
+    });
+  } catch (e) {
+    console.error("[email] renderReactEmail fallback for invite:", e);
+    const typeLabels: Record<string, string> = {
+      internal: "Internal Portal",
+      client: "Client Portal",
+      team: "Team",
+    };
+    const heading = `You're Invited to Pacific Engineering ${typeLabels[params.invite_type]}`;
+    const body = `<p>Hi ${params.invitee_name || "there"},</p><p>${params.inviter_name} has invited you to join the Pacific Engineering ${typeLabels[params.invite_type]}.</p>`;
+    const html = wrapInBrandedTemplate(heading, body, "Accept Invitation", params.invite_url);
+    return sendEmail({ to: params.to, subject: heading, body: html, from_name: "Pacific Engineering" });
+  }
 }
 
 export async function sendPasswordResetEmail(params: {
@@ -179,20 +231,24 @@ export async function sendPasswordResetEmail(params: {
   name: string;
   reset_url: string;
 }): Promise<{ success: boolean; error?: string }> {
-  const heading = "Reset Your Password";
-  const body = `
-<p style="font-size:16px;color:#374151;">Hi ${params.name},</p>
-<p style="font-size:15px;color:#4b5563;line-height:1.6;">
-We received a request to reset your password. Click the button below to choose a new password.
-</p>
-<p style="font-size:13px;color:#9ca3af;margin-top:20px;">This link expires in 1 hour. If you didn't request a password reset, you can safely ignore this email.</p>`;
-
-  const html = wrapInBrandedTemplate(heading, body, "Reset Password", params.reset_url);
-  return sendEmail({
-    to: params.to,
-    subject: "Reset Your Password - Pacific Engineering",
-    body: html,
-  });
+  try {
+    const html = await renderReactEmail(
+      React.createElement(PasswordResetEmail, {
+        name: params.name,
+        reset_url: params.reset_url,
+      })
+    );
+    return sendEmail({
+      to: params.to,
+      subject: "Reset Your Password - Pacific Engineering",
+      body: html,
+    });
+  } catch (e) {
+    console.error("[email] renderReactEmail fallback for password reset:", e);
+    const body = `<p>Hi ${params.name},</p><p>Click the button below to reset your password.</p>`;
+    const html = wrapInBrandedTemplate("Reset Your Password", body, "Reset Password", params.reset_url);
+    return sendEmail({ to: params.to, subject: "Reset Your Password - Pacific Engineering", body: html });
+  }
 }
 
 export async function sendWelcomeEmail(params: {
@@ -201,21 +257,169 @@ export async function sendWelcomeEmail(params: {
   account_type: "internal" | "client";
   portal_url: string;
 }): Promise<{ success: boolean; error?: string }> {
-  const heading = "Welcome to Pacific Engineering!";
-  const portalLabel = params.account_type === "internal" ? "Internal Portal" : "Client Portal";
-  const body = `
-<p style="font-size:16px;color:#374151;">Hi ${params.name},</p>
-<p style="font-size:15px;color:#4b5563;line-height:1.6;">
-Your account has been successfully created. You now have access to the Pacific Engineering ${portalLabel}.
-</p>
-<p style="font-size:15px;color:#4b5563;line-height:1.6;">
-Click the button below to get started.
-</p>`;
+  try {
+    const html = await renderReactEmail(
+      React.createElement(WelcomeEmail, {
+        name: params.name,
+        account_type: params.account_type,
+        portal_url: params.portal_url,
+      })
+    );
+    const portalLabel = params.account_type === "internal" ? "Internal Portal" : "Client Portal";
+    return sendEmail({
+      to: params.to,
+      subject: `Welcome to Pacific Engineering ${portalLabel}`,
+      body: html,
+    });
+  } catch (e) {
+    console.error("[email] renderReactEmail fallback for welcome:", e);
+    const portalLabel = params.account_type === "internal" ? "Internal Portal" : "Client Portal";
+    const body = `<p>Hi ${params.name},</p><p>Your account has been created. You now have access to the Pacific Engineering ${portalLabel}.</p>`;
+    const html = wrapInBrandedTemplate("Welcome to Pacific Engineering!", body, `Go to ${portalLabel}`, params.portal_url);
+    return sendEmail({ to: params.to, subject: `Welcome to Pacific Engineering ${portalLabel}`, body: html });
+  }
+}
 
-  const html = wrapInBrandedTemplate(heading, body, `Go to ${portalLabel}`, params.portal_url);
-  return sendEmail({
-    to: params.to,
-    subject: `Welcome to Pacific Engineering ${portalLabel}`,
-    body: html,
-  });
+export async function sendProposalEmail(params: {
+  to: string;
+  client_name: string;
+  project_name: string;
+  proposal_number?: string;
+  amount?: number;
+  expiration_date?: string;
+  proposal_url: string;
+}): Promise<{ success: boolean; error?: string }> {
+  try {
+    const html = await renderReactEmail(
+      React.createElement(ProposalEmail, {
+        client_name: params.client_name,
+        project_name: params.project_name,
+        proposal_number: params.proposal_number,
+        amount: params.amount,
+        expiration_date: params.expiration_date,
+        proposal_url: params.proposal_url,
+      })
+    );
+    return sendEmail({
+      to: params.to,
+      subject: `Proposal for ${params.project_name} - Pacific Engineering`,
+      body: html,
+    });
+  } catch (e) {
+    console.error("[email] renderReactEmail fallback for proposal:", e);
+    const body = `<p>Hi ${params.client_name},</p><p>A proposal has been prepared for ${params.project_name}.</p>`;
+    const html = wrapInBrandedTemplate("Your Proposal is Ready", body, "View Proposal", params.proposal_url);
+    return sendEmail({ to: params.to, subject: `Proposal for ${params.project_name}`, body: html });
+  }
+}
+
+export async function sendInvoiceEmail(params: {
+  to: string;
+  client_name: string;
+  project_name: string;
+  invoice_number: string;
+  amount: number;
+  due_date: string;
+  invoice_url: string;
+}): Promise<{ success: boolean; error?: string }> {
+  try {
+    const html = await renderReactEmail(
+      React.createElement(InvoiceEmail, {
+        client_name: params.client_name,
+        project_name: params.project_name,
+        invoice_number: params.invoice_number,
+        amount: params.amount,
+        due_date: params.due_date,
+        invoice_url: params.invoice_url,
+      })
+    );
+    return sendEmail({
+      to: params.to,
+      subject: `Invoice ${params.invoice_number} - Pacific Engineering`,
+      body: html,
+    });
+  } catch (e) {
+    console.error("[email] renderReactEmail fallback for invoice:", e);
+    const body = `<p>Hi ${params.client_name},</p><p>Invoice ${params.invoice_number} for $${params.amount.toLocaleString()} is due ${params.due_date}.</p>`;
+    const html = wrapInBrandedTemplate("Invoice Notification", body, "View Invoice", params.invoice_url);
+    return sendEmail({ to: params.to, subject: `Invoice ${params.invoice_number}`, body: html });
+  }
+}
+
+export async function sendProjectUpdateEmail(params: {
+  to: string;
+  client_name: string;
+  project_name: string;
+  update_type: string;
+  milestone_name?: string;
+  progress_percentage?: number;
+  message: string;
+  project_url: string;
+}): Promise<{ success: boolean; error?: string }> {
+  try {
+    const html = await renderReactEmail(
+      React.createElement(ProjectUpdateEmail, {
+        client_name: params.client_name,
+        project_name: params.project_name,
+        update_type: params.update_type,
+        milestone_name: params.milestone_name,
+        progress_percentage: params.progress_percentage,
+        message: params.message,
+        project_url: params.project_url,
+      })
+    );
+    return sendEmail({
+      to: params.to,
+      subject: `Project Update: ${params.project_name} - Pacific Engineering`,
+      body: html,
+    });
+  } catch (e) {
+    console.error("[email] renderReactEmail fallback for project update:", e);
+    const body = `<p>Hi ${params.client_name},</p><p>${params.message}</p>`;
+    const html = wrapInBrandedTemplate("Project Update", body, "View Project", params.project_url);
+    return sendEmail({ to: params.to, subject: `Project Update: ${params.project_name}`, body: html });
+  }
+}
+
+export async function sendDocumentApprovalEmail(params: {
+  to: string;
+  reviewer_name: string;
+  document_name: string;
+  project_name: string;
+  uploaded_by: string;
+  description?: string;
+  review_url: string;
+}): Promise<{ success: boolean; error?: string }> {
+  try {
+    const html = await renderReactEmail(
+      React.createElement(DocumentApprovalEmail, {
+        reviewer_name: params.reviewer_name,
+        document_name: params.document_name,
+        project_name: params.project_name,
+        uploaded_by: params.uploaded_by,
+        description: params.description,
+        review_url: params.review_url,
+      })
+    );
+    return sendEmail({
+      to: params.to,
+      subject: `Document Review: ${params.document_name} - Pacific Engineering`,
+      body: html,
+    });
+  } catch (e) {
+    console.error("[email] renderReactEmail fallback for document approval:", e);
+    const body = `<p>Hi ${params.reviewer_name},</p><p>Please review the document "${params.document_name}" for ${params.project_name}.</p>`;
+    const html = wrapInBrandedTemplate("Document Review Request", body, "Review Document", params.review_url);
+    return sendEmail({ to: params.to, subject: `Document Review: ${params.document_name}`, body: html });
+  }
+}
+
+export async function renderTemplatePreview(
+  subject_template: string,
+  body_template: string,
+  variables: Record<string, any>
+): Promise<string> {
+  const subject = interpolateTemplate(subject_template, variables);
+  const bodyContent = interpolateTemplate(body_template, variables);
+  return wrapInBrandedTemplate(subject, bodyContent, variables.cta_text, variables.cta_url);
 }

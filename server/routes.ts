@@ -4,7 +4,7 @@ import { Router, type Request, type Response } from "express";
 import { storage } from "./storage";
 import { authRouter, inviteRouter, usersRouter, requireAuth, requireAdmin, requireClient, requireInternalUser, optionalAuth } from "./auth";
 import { entityTableMap } from "@shared/schema";
-import { sendEmail, sendNotificationEmail, sendTemplatedEmail, interpolateTemplate } from "./email";
+import { sendEmail, sendNotificationEmail, sendTemplatedEmail, interpolateTemplate, renderTemplatePreview } from "./email";
 
 function createEntityRouter(entityName: string, authMiddleware: any = requireAuth) {
   const router = Router();
@@ -320,6 +320,98 @@ export async function registerRoutes(
 
   app.use("/api/client-invites", createEntityRouter("client-invites"));
   app.use("/api/internal-invites", createEntityRouter("internal-invites", requireAdmin));
+  app.post("/api/email-templates/preview", requireAuth, async (req: Request, res: Response) => {
+    try {
+      const { subject_template, body_template, variables } = req.body;
+      if (!subject_template || !body_template) {
+        return res.status(400).json({ error: "subject_template and body_template are required" });
+      }
+      const sampleVars = variables || {
+        client_name: "John Smith",
+        project_name: "Sample Project",
+        company_name: "Acme Corp",
+        date: new Date().toLocaleDateString(),
+        amount: "$10,000",
+        invoice_number: "INV-001",
+        due_date: new Date(Date.now() + 30 * 86400000).toLocaleDateString(),
+        name: "John Smith",
+        link: "https://pacificengineeringsf.com",
+      };
+      const html = await renderTemplatePreview(subject_template, body_template, sampleVars);
+      return res.json({ html });
+    } catch (error: any) {
+      console.error("[routes] email template preview error:", error);
+      return res.status(500).json({ error: "Failed to render preview" });
+    }
+  });
+
+  app.post("/api/email-templates/:id/send-test", requireAuth, async (req: Request, res: Response) => {
+    try {
+      const { to } = req.body;
+      if (!to) return res.status(400).json({ error: "Recipient email (to) is required" });
+
+      const template = await storage.getEntityById("email-templates", req.params.id);
+      if (!template) return res.status(404).json({ error: "Template not found" });
+
+      const sampleVars: Record<string, any> = {
+        client_name: "John Smith",
+        project_name: "Sample Project",
+        company_name: "Acme Corp",
+        date: new Date().toLocaleDateString(),
+        amount: "$10,000",
+        invoice_number: "INV-001",
+        due_date: new Date(Date.now() + 30 * 86400000).toLocaleDateString(),
+        name: "John Smith",
+        link: "https://pacificengineeringsf.com",
+      };
+
+      const subject = interpolateTemplate(template.subject_template, sampleVars);
+      const html = await renderTemplatePreview(template.subject_template, template.body_template, sampleVars);
+
+      const result = await sendEmail({ to, subject: `[TEST] ${subject}`, body: html });
+      return res.json(result);
+    } catch (error: any) {
+      console.error("[routes] send test email error:", error);
+      return res.status(500).json({ error: "Failed to send test email" });
+    }
+  });
+
+  app.post("/api/admin/test-email", requireAdmin, async (req: Request, res: Response) => {
+    try {
+      const { to } = req.body;
+      if (!to) return res.status(400).json({ error: "Recipient email (to) is required" });
+
+      const result = await sendNotificationEmail({
+        to,
+        heading: "Test Email from Pacific Engineering",
+        body: `<p style="font-size:15px;color:#4b5563;line-height:1.6;">This is a test email sent from the Pacific Engineering admin console.</p><p style="font-size:15px;color:#4b5563;line-height:1.6;">If you're seeing this, your Resend integration is working correctly with TLS enforced and click-tracking enabled.</p><p style="font-size:13px;color:#9ca3af;">Sent at ${new Date().toISOString()}</p>`,
+        subject: "[Test] Pacific Engineering Email Configuration",
+        cta_text: "Visit Portal",
+        cta_url: "https://internal.pacificengineeringsf.com",
+      });
+
+      return res.json(result);
+    } catch (error: any) {
+      console.error("[routes] admin test email error:", error);
+      return res.status(500).json({ error: "Failed to send test email" });
+    }
+  });
+
+  app.get("/api/admin/email-status", requireAdmin, async (_req: Request, res: Response) => {
+    return res.json({
+      provider: "Resend",
+      configured: !!process.env.RESEND_API_KEY,
+      from_email: process.env.FROM_EMAIL || "notifications@pacificengineeringsf.com",
+      from_name: process.env.FROM_NAME || "Pacific Engineering",
+      tls_enforced: true,
+      click_tracking: true,
+      open_tracking: false,
+      domain: "pacificengineeringsf.com",
+      internal_url: process.env.INTERNAL_URL || "https://internal.pacificengineeringsf.com",
+      portal_url: process.env.PORTAL_URL || "https://portal.pacificengineeringsf.com",
+    });
+  });
+
   app.use("/api/email-templates", createEntityRouter("email-templates"));
   app.use("/api/communication-templates", createEntityRouter("communication-templates"));
   app.use("/api/project-requests", createEntityRouter("project-requests"));

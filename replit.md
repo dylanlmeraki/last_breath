@@ -18,6 +18,7 @@
 | Database | PostgreSQL (Drizzle ORM) |
 | State | TanStack Query v5 |
 | Auth | Session-based (Argon2id + custom sessions) |
+| Email | Resend API + React Email templates |
 | UI | shadcn/ui + Tailwind CSS + Radix primitives |
 | Forms | react-hook-form + zod validation |
 
@@ -42,15 +43,27 @@
 │       ├── internal/
 │       │   ├── InternalApp.tsx     # Internal router (40+ routes)
 │       │   ├── layout/InternalLayout.tsx  # Dark sidebar layout
-│       │   └── pages/             # All internal portal pages
+│       │   └── pages/             # All internal portal pages (41 pages)
 │       └── client/
 │           ├── ClientApp.tsx       # Client router
-│           ├── layout/ClientLayout.tsx    # Top-nav layout
-│           └── pages/             # Client portal pages
+│           ├── layout/ClientLayout.tsx    # Sidebar layout
+│           └── pages/             # Client portal pages (10 pages)
 ├── server/
-│   ├── index.ts                   # Express app + middleware (cors, helmet, cookie-parser)
+│   ├── index.ts                   # Express app + middleware (cors, helmet, cookie-parser, portal mode)
 │   ├── routes.ts                  # Entity CRUD factory + all API routes
 │   ├── auth.ts                    # Session auth (Argon2id, cookie-based)
+│   ├── email.ts                   # Resend email + React Email rendering
+│   ├── emails/                    # React Email templates (9 components)
+│   │   ├── BaseLayout.tsx         # Branded wrapper (gradient header, footer)
+│   │   ├── InviteEmail.tsx        # Invite template
+│   │   ├── WelcomeEmail.tsx       # Welcome/onboarding
+│   │   ├── PasswordResetEmail.tsx # Password reset
+│   │   ├── NotificationEmail.tsx  # Generic notifications
+│   │   ├── ProposalEmail.tsx      # Proposal delivery
+│   │   ├── InvoiceEmail.tsx       # Invoice notification
+│   │   ├── ProjectUpdateEmail.tsx # Project updates
+│   │   └── DocumentApprovalEmail.tsx # Document review requests
+│   ├── seed-admin.ts             # CLI: create initial admin account
 │   ├── storage.ts                 # IStorage interface + DatabaseStorage
 │   ├── db.ts                      # Drizzle + PostgreSQL Pool
 │   ├── vite.ts                    # Vite dev server integration
@@ -86,6 +99,17 @@
 - Admin-only routes enforced at both UI (nav hiding) and route level (AdminRoute wrapper)
 - 3-tier invite system: admin→internal, internal→client, client→team
 
+## Email System
+
+- **Provider**: Resend (API-based, no SMTP needed in app)
+- **Templates**: React Email components in `server/emails/`
+- **DNS**: SPF, DKIM, DMARC configured in Resend dashboard + Namecheap
+- **TLS**: Enforced
+- **Click Tracking**: Enabled
+- **Open Tracking**: Available (not yet enabled)
+- **MX Record**: Host `internal` → Resend feedback SMTP
+- **Portal URLs**: Internal invites link to `internal.pacificengineeringsf.com`, client invites to `portal.pacificengineeringsf.com`
+
 ## API Routes
 
 All entity routes follow the generic CRUD pattern:
@@ -107,6 +131,12 @@ All entity routes follow the generic CRUD pattern:
 - `POST /api/auth/register`, `POST /api/auth/login`, `POST /api/auth/logout`
 - `GET /api/auth/me`, `PUT /api/auth/me`, `GET /api/auth/session`
 
+**Admin endpoints**:
+- `POST /api/admin/test-email` — send branded test email
+- `GET /api/admin/email-status` — email provider configuration status
+- `POST /api/email-templates/preview` — render template with sample data
+- `POST /api/email-templates/:id/send-test` — send test email for specific template
+
 ## Portal Detection
 
 In development (Replit), uses route prefix mode:
@@ -117,6 +147,8 @@ In development (Replit), uses route prefix mode:
 In production, uses hostname detection:
 - `internal.*` → Internal Portal
 - `portal.*` → Client Portal
+
+Server-side portal mode middleware sets `req.portalMode` based on hostname.
 
 ## Marketing Site Integration
 
@@ -137,17 +169,25 @@ The marketing site (separate Repl) calls these endpoints:
 
 ErrorBoundary, ProtectedRoute, LoadingSkeleton, PageHeader, EmptyState, StatCard, StatusBadge, ConfirmDialog, SearchInput
 
-## Development
+## Initial Setup
 
-Start: `npm run dev` (runs Express + Vite on port 5000)
-DB Push: `npx drizzle-kit push`
+1. Ensure DATABASE_URL is set (auto-provisioned)
+2. Push schema: `npx drizzle-kit push`
+3. Create admin: `npx tsx server/seed-admin.ts --email <email> --name "<name>" --password "<password>"`
+4. Start app: `npm run dev`
+5. Login at `/internal/auth`
 
 ## Environment Variables
 
 - `DATABASE_URL` — PostgreSQL connection string (auto-provisioned)
 - `SESSION_SECRET` — Session encryption secret
+- `RESEND_API_KEY` — Resend email API key (production secret)
 - `NODE_ENV` — development | production
+- `INTERNAL_URL` — Internal portal base URL (default: https://internal.pacificengineeringsf.com)
+- `PORTAL_URL` — Client portal base URL (default: https://portal.pacificengineeringsf.com)
+- `FROM_EMAIL` — Sender email (default: notifications@pacificengineeringsf.com)
+- `FROM_NAME` — Sender name (default: Pacific Engineering)
 
 ## Key NPM Packages
 
-argon2, otpauth, qrcode, resend, cookie-parser, helmet, drizzle-orm, drizzle-zod, @tanstack/react-query, react-router-dom, react-hook-form, @hookform/resolvers, recharts, lucide-react
+argon2, otpauth, qrcode, resend, @react-email/components, @react-email/render, cookie-parser, helmet, drizzle-orm, drizzle-zod, @tanstack/react-query, react-router-dom, react-hook-form, @hookform/resolvers, recharts, lucide-react

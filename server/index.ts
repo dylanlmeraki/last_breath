@@ -58,6 +58,18 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(authMiddleware);
 
+app.use((req, _res, next) => {
+  const hostname = req.hostname || req.headers.host || "";
+  if (hostname.startsWith("internal.")) {
+    (req as any).portalMode = "internal";
+  } else if (hostname.startsWith("portal.")) {
+    (req as any).portalMode = "client";
+  } else {
+    (req as any).portalMode = "unknown";
+  }
+  next();
+});
+
 export function log(message: string, source = "express") {
   const formattedTime = new Date().toLocaleTimeString("en-US", {
     hour: "numeric",
