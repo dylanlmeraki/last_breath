@@ -7,6 +7,11 @@ import {
   ArrowRight,
   Phone,
   Mail,
+  Clock,
+  MessageSquare,
+  Zap,
+  HardHat,
+  PhoneCall,
 } from "lucide-react";
 
 export default function GroundedAuthority() {
@@ -48,16 +53,18 @@ export default function GroundedAuthority() {
                   </p>
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mb-16">
-                  <button className="group inline-flex items-center justify-center gap-2 whitespace-nowrap text-white font-bold tracking-tight text-lg px-8 py-4 rounded-lg bg-orange-600 hover:bg-orange-500 shadow-lg hover:shadow-xl transition-all duration-300" data-testid="btn-hero-services">
-                    Our Services
+                <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mb-10">
+                  <button className="group inline-flex items-center justify-center gap-3 whitespace-nowrap text-white font-bold tracking-tight text-lg px-10 py-5 rounded-lg bg-orange-600 hover:bg-orange-500 shadow-lg hover:shadow-xl transition-all duration-300" data-testid="btn-hero-quote">
+                    <PhoneCall className="w-5 h-5" />
+                    Request a Quote
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
                   </button>
-                  <button className="group inline-flex items-center justify-center gap-2 whitespace-nowrap text-white font-bold tracking-tight text-lg px-8 py-4 rounded-lg bg-slate-700 hover:bg-slate-600 shadow-lg hover:shadow-xl transition-all duration-300" data-testid="btn-hero-consultation">
-                    Free Consultation
-                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                  <button className="group inline-flex items-center justify-center gap-3 whitespace-nowrap text-white font-bold tracking-tight text-lg px-10 py-5 rounded-lg bg-slate-700 hover:bg-slate-600 shadow-lg hover:shadow-xl transition-all duration-300" data-testid="btn-hero-consultation">
+                    <Clock className="w-5 h-5" />
+                    Schedule a Consult
                   </button>
                 </div>
+                <p className="text-slate-500 text-sm tracking-wide mb-16">Same-day response · No obligations · 40+ years of Bay Area expertise</p>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
                   {/* Stat 1 */}
@@ -287,9 +294,14 @@ export default function GroundedAuthority() {
                 </div>
               </div>
 
-              <div>
-                <button className="inline-flex items-center justify-center gap-2 text-white font-bold tracking-tight text-lg px-8 py-4 rounded-lg bg-slate-900 hover:bg-slate-800 shadow-lg hover:shadow-xl transition-all duration-300 group" data-testid="btn-about-us">
-                  About Us
+              <div className="flex flex-col sm:flex-row gap-4">
+                <button className="inline-flex items-center justify-center gap-2 text-white font-bold tracking-tight text-lg px-8 py-4 rounded-lg bg-orange-600 hover:bg-orange-500 shadow-lg hover:shadow-xl transition-all duration-300 group" data-testid="btn-why-quote">
+                  <MessageSquare className="w-5 h-5" />
+                  Discuss Your Project
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                </button>
+                <button className="inline-flex items-center justify-center gap-2 text-slate-700 font-bold tracking-tight text-lg px-8 py-4 rounded-lg bg-transparent border-2 border-slate-300 hover:border-slate-400 hover:bg-slate-50 transition-all duration-300 group" data-testid="btn-about-us">
+                  About Our Team
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
                 </button>
               </div>
@@ -319,29 +331,35 @@ export default function GroundedAuthority() {
         </div>
       </section>
 
-      {/* 4. CTA SECTION - Clean, authoritative, no bg image */}
+      {/* 4. CTA SECTION - Direct, urgent, professional */}
       <section className="py-20 px-6 bg-slate-900 relative border-t-8 border-orange-500 overflow-hidden" data-testid="section-cta">
         <div className="relative z-10 max-w-4xl mx-auto text-center">
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white mb-8 tracking-tighter leading-[1.1]" data-testid="text-cta-title">
-            How Can We Help?
+          <p className="text-orange-400 font-bold uppercase tracking-widest text-sm mb-4">Ready to move?</p>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 tracking-tighter leading-[1.1]" data-testid="text-cta-title">
+            Get Your Project on Track
           </h2>
-          <div className="w-48 h-2 bg-gradient-to-r from-orange-500 via-orange-400 to-amber-500 mx-auto mb-10 rounded-full"></div>
+          <div className="w-32 h-1.5 bg-gradient-to-r from-orange-500 to-amber-500 mx-auto mb-8 rounded-full"></div>
           
-          <p className="text-xl md:text-2xl text-slate-300 mb-14 leading-relaxed font-light px-4">
-            Let's discuss your Projects' unique needs and develop a
-            comprehensive solution to keep your ideas on schedule, under
-            budget, allowing you to maximize your capabilities.
+          <p className="text-lg md:text-xl text-slate-400 mb-6 leading-relaxed max-w-2xl mx-auto">
+            Engineering, inspections, construction, and stormwater — one team, one call. We respond same-day to keep your timeline intact.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-            <button className="w-full sm:w-auto inline-flex items-center justify-center gap-3 text-white font-bold tracking-tight text-xl px-10 py-5 rounded-xl bg-orange-600 hover:bg-orange-500 shadow-lg hover:shadow-xl transition-all duration-300 group" data-testid="btn-cta-contact">
+          <div className="flex flex-col gap-4 sm:flex-row sm:gap-6 justify-center items-center mb-8">
+            <button className="w-full sm:w-auto inline-flex items-center justify-center gap-3 text-white font-bold tracking-tight text-xl px-12 py-5 rounded-xl bg-orange-600 hover:bg-orange-500 shadow-lg hover:shadow-xl transition-all duration-300 group" data-testid="btn-cta-quote">
+              <PhoneCall className="w-6 h-6" />
+              Request a Quote
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+            </button>
+            <button className="w-full sm:w-auto inline-flex items-center justify-center gap-3 text-white font-bold tracking-tight text-xl px-12 py-5 rounded-xl bg-slate-800 hover:bg-slate-700 shadow-lg hover:shadow-xl transition-all duration-300 group" data-testid="btn-cta-call">
               <Phone className="w-6 h-6" />
-              Get In Touch
+              (415) 555-0100
             </button>
-            <button className="w-full sm:w-auto inline-flex items-center justify-center gap-3 text-white font-bold tracking-tight text-xl px-10 py-5 rounded-xl bg-slate-800 hover:bg-slate-700 shadow-lg hover:shadow-xl transition-all duration-300 group" data-testid="btn-cta-services">
-              <Mail className="w-6 h-6" />
-              Our Services
-            </button>
+          </div>
+
+          <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-slate-500 text-sm">
+            <span className="inline-flex items-center gap-1.5"><CheckCircle className="w-4 h-4 text-orange-500" /> Licensed PE/QSD/QSP</span>
+            <span className="inline-flex items-center gap-1.5"><CheckCircle className="w-4 h-4 text-orange-500" /> Class A & B Contractor</span>
+            <span className="inline-flex items-center gap-1.5"><CheckCircle className="w-4 h-4 text-orange-500" /> 2,500+ Projects Delivered</span>
           </div>
         </div>
       </section>

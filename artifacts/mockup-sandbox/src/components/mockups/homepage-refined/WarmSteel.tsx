@@ -7,6 +7,12 @@ import {
   ArrowRight,
   Phone,
   Mail,
+  Clock,
+  MessageSquare,
+  Zap,
+  HardHat,
+  PhoneCall,
+  CalendarCheck,
 } from "lucide-react";
 
 export default function WarmSteel() {
@@ -52,16 +58,18 @@ export default function WarmSteel() {
                   </p>
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mb-16">
-                  <button className="group inline-flex items-center justify-center gap-2 whitespace-nowrap text-white font-bold tracking-tight text-lg px-8 py-4 rounded-lg bg-orange-600 hover:bg-orange-500 shadow-lg transition-all duration-300" data-testid="btn-hero-services">
-                    Our Services
+                <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mb-10">
+                  <button className="group inline-flex items-center justify-center gap-3 whitespace-nowrap text-white font-bold tracking-tight text-lg px-10 py-5 rounded-lg bg-orange-600 hover:bg-orange-500 shadow-lg hover:shadow-xl transition-all duration-300" data-testid="btn-hero-quote">
+                    <Zap className="w-5 h-5" />
+                    Get a Quote Today
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
                   </button>
-                  <button className="group inline-flex items-center justify-center gap-2 whitespace-nowrap text-white font-bold tracking-tight text-lg px-8 py-4 rounded-lg bg-stone-600 hover:bg-stone-500 shadow-lg transition-all duration-300" data-testid="btn-hero-consultation">
-                    Free Consultation
-                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                  <button className="group inline-flex items-center justify-center gap-3 whitespace-nowrap text-white font-bold tracking-tight text-lg px-10 py-5 rounded-lg bg-stone-600 hover:bg-stone-500 shadow-lg hover:shadow-xl transition-all duration-300" data-testid="btn-hero-consultation">
+                    <CalendarCheck className="w-5 h-5" />
+                    Talk to an Engineer
                   </button>
                 </div>
+                <p className="text-stone-500 text-sm tracking-wide mb-16">Rapid response · Bay Area based · Licensed PE/QSD/QSP on every project</p>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
                   {/* Stat 1 */}
@@ -293,9 +301,14 @@ export default function WarmSteel() {
                 </div>
               </div>
 
-              <div>
-                <button className="inline-flex items-center justify-center gap-2 text-white font-bold tracking-tight text-lg px-8 py-4 rounded-lg bg-slate-900 hover:bg-slate-800 shadow-lg hover:shadow-xl transition-all duration-300 group" data-testid="btn-about-us">
-                  About Us
+              <div className="flex flex-col sm:flex-row gap-4">
+                <button className="inline-flex items-center justify-center gap-2 text-white font-bold tracking-tight text-lg px-8 py-4 rounded-lg bg-orange-600 hover:bg-orange-500 shadow-lg hover:shadow-xl transition-all duration-300 group" data-testid="btn-why-scope">
+                  <HardHat className="w-5 h-5" />
+                  Scope Your Project
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                </button>
+                <button className="inline-flex items-center justify-center gap-2 text-slate-700 font-bold tracking-tight text-lg px-8 py-4 rounded-lg bg-transparent border-2 border-stone-300 hover:border-stone-400 hover:bg-stone-50 transition-all duration-300 group" data-testid="btn-about-us">
+                  Meet the Team
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
                 </button>
               </div>
@@ -324,32 +337,38 @@ export default function WarmSteel() {
         </div>
       </section>
 
-      {/* 4. CTA SECTION */}
+      {/* 4. CTA SECTION - Urgency + authority for field professionals */}
       <section className="py-20 px-6 bg-slate-900 relative border-t-8 border-orange-500 overflow-hidden" data-testid="section-cta">
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1541888082416-a711bc141c2c?w=1600')] bg-cover bg-center opacity-10 mix-blend-luminosity"></div>
         <div className="absolute inset-0 bg-gradient-to-b from-slate-900/90 to-slate-950/95"></div>
 
         <div className="relative z-10 max-w-4xl mx-auto text-center">
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white mb-8 tracking-tighter leading-[1.1]" data-testid="text-cta-title">
-            How Can We Help?
+          <p className="text-amber-400 font-bold uppercase tracking-widest text-sm mb-4">Your project won't wait — neither will we</p>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 tracking-tighter leading-[1.1]" data-testid="text-cta-title">
+            Need an Engineer on Your Project?
           </h2>
-          <div className="w-48 h-2 bg-gradient-to-r from-orange-500 via-amber-500 to-stone-400 mx-auto mb-10 rounded-full shadow-[0_0_15px_rgba(249,115,22,0.5)]"></div>
+          <div className="w-32 h-1.5 bg-gradient-to-r from-orange-500 to-stone-400 mx-auto mb-8 rounded-full"></div>
           
-          <p className="text-xl md:text-2xl text-slate-300 mb-14 leading-relaxed font-light px-4">
-            Let's discuss your Projects' unique needs and develop a
-            comprehensive solution to keep your ideas on schedule, under
-            budget, allowing you to maximize your capabilities.
+          <p className="text-lg md:text-xl text-slate-400 mb-6 leading-relaxed max-w-2xl mx-auto">
+            Structural, civil, inspections, stormwater — full-service engineering and construction support. Tell us what you need and we'll have a licensed engineer respond within hours.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-            <button className="w-full sm:w-auto inline-flex items-center justify-center gap-3 text-white font-bold tracking-tight text-xl px-10 py-5 rounded-xl bg-gradient-to-r from-orange-500 to-amber-600 hover:from-orange-600 hover:to-orange-700 shadow-lg transition-all duration-300 group" data-testid="btn-cta-contact">
+          <div className="flex flex-col gap-4 sm:flex-row sm:gap-6 justify-center items-center mb-8">
+            <button className="w-full sm:w-auto inline-flex items-center justify-center gap-3 text-white font-bold tracking-tight text-xl px-12 py-5 rounded-xl bg-gradient-to-r from-orange-500 to-amber-600 hover:from-orange-600 hover:to-amber-700 shadow-lg hover:shadow-xl transition-all duration-300 group" data-testid="btn-cta-quote">
+              <Zap className="w-6 h-6" />
+              Get a Quote Now
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+            </button>
+            <button className="w-full sm:w-auto inline-flex items-center justify-center gap-3 text-white font-bold tracking-tight text-xl px-12 py-5 rounded-xl border-2 border-stone-500 hover:border-stone-400 hover:bg-stone-800/50 transition-all duration-300 group" data-testid="btn-cta-call">
               <Phone className="w-6 h-6" />
-              Get In Touch
+              (415) 555-0100
             </button>
-            <button className="w-full sm:w-auto inline-flex items-center justify-center gap-3 text-white font-bold tracking-tight text-xl px-10 py-5 rounded-xl bg-transparent border-2 border-stone-400 hover:border-stone-300 hover:bg-slate-800 transition-all duration-300 group" data-testid="btn-cta-services">
-              <Mail className="w-6 h-6" />
-              Our Services
-            </button>
+          </div>
+
+          <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-stone-500 text-sm">
+            <span className="inline-flex items-center gap-1.5"><CheckCircle className="w-4 h-4 text-amber-500" /> Same-Day Response</span>
+            <span className="inline-flex items-center gap-1.5"><CheckCircle className="w-4 h-4 text-amber-500" /> Bay Area Based</span>
+            <span className="inline-flex items-center gap-1.5"><CheckCircle className="w-4 h-4 text-amber-500" /> 2,500+ Projects Completed</span>
           </div>
         </div>
       </section>
