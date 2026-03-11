@@ -95,7 +95,7 @@ export default function PolishedAuthority() {
                   </div>
                 </div>
               </div>
-              </div>
+            </div>
             </div>
           </div>
         </div>
