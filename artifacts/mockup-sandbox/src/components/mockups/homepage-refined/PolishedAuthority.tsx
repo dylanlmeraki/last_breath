@@ -19,18 +19,21 @@ export default function PolishedAuthority() {
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-slate-950 py-12 sm:py-16 md:py-20 lg:py-24" data-testid="section-hero">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-slate-950" />
+          <div className="absolute inset-0 bg-gradient-to-r from-cyan-950/30 via-transparent to-orange-950/20 opacity-50" />
           <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px]" />
         </div>
         
-        {/* Glow effects - Warm tones only */}
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-orange-500/5 rounded-full blur-[100px] pointer-events-none z-0" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-amber-500/5 rounded-full blur-[100px] pointer-events-none z-0" />
+        {/* Glow effects - Cyan + Orange pairing */}
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/8 rounded-full blur-[120px] pointer-events-none z-0" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-orange-500/8 rounded-full blur-[120px] pointer-events-none z-0" />
 
         <div className="relative z-10 w-full px-4 sm:px-10">
           <div className="mx-auto w-full max-w-5xl text-center">
             
-            <div className="relative bg-slate-900/40 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl overflow-hidden mt-10">
-              <div className="h-2 bg-gradient-to-r from-orange-500 to-amber-500" />
+            <div className="relative mt-10">
+              <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 via-cyan-500 to-blue-500 rounded-2xl opacity-5 blur-sm" />
+              <div className="relative bg-slate-900/80 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl overflow-hidden">
+              <div className="h-2 bg-gradient-to-r from-blue-600 via-cyan-500 to-cyan-400" />
               
               <div className="p-6 sm:p-10 md:p-12 lg:p-16">
                 <h1 className="text-white font-bold tracking-tighter leading-[1.1] text-4xl sm:text-5xl md:text-7xl lg:text-8xl mb-6" data-testid="text-hero-title">
@@ -38,15 +41,15 @@ export default function PolishedAuthority() {
                     Pacific Engineering
                   </span>{" "}
                   <br />
-                  <span className="text-amber-400">
+                  <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent">
                     & Construction Inc.
                   </span>
                 </h1>
 
                 <div className="flex items-center justify-center gap-4 my-8">
-                  <div className="h-px w-16 sm:w-24 bg-gradient-to-r from-transparent to-slate-600" />
-                  <div className="w-3 h-3 rotate-45 bg-orange-500" />
-                  <div className="h-px w-16 sm:w-24 bg-gradient-to-l from-transparent to-slate-600" />
+                  <div className="h-px w-16 sm:w-24 bg-gradient-to-r from-transparent to-cyan-500" />
+                  <div className="w-3 h-3 rotate-45 bg-orange-400" />
+                  <div className="h-px w-16 sm:w-24 bg-gradient-to-l from-transparent to-cyan-500" />
                 </div>
 
                 <div className="mb-12">
@@ -80,9 +83,9 @@ export default function PolishedAuthority() {
                   </div>
 
                   {/* Stat 2 - Center (Most Visual Weight) */}
-                  <div className="group relative rounded-xl bg-slate-800/80 border-2 border-amber-500/40 shadow-xl p-6 md:scale-105 flex flex-col items-center justify-center z-10" data-testid="stat-full-service">
+                  <div className="group relative rounded-xl bg-slate-800/80 border-2 border-cyan-500/40 shadow-xl p-6 md:scale-105 flex flex-col items-center justify-center z-10" data-testid="stat-full-service">
                     <div className="text-white font-bold mb-2 text-3xl sm:text-4xl">Full-Service</div>
-                    <div className="text-amber-400 tracking-tight font-medium text-sm sm:text-base">Vertically Integrated</div>
+                    <div className="text-cyan-400 tracking-tight font-medium text-sm sm:text-base">Vertically Integrated</div>
                   </div>
 
                   {/* Stat 3 */}
@@ -92,12 +95,13 @@ export default function PolishedAuthority() {
                   </div>
                 </div>
               </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <div className="h-0.5 bg-gradient-to-r from-orange-500 to-amber-500" />
+      <div className="h-0.5 bg-gradient-to-r from-cyan-500/90 to-orange-400/90" />
 
       {/* 2. SERVICES GRID - White background, Z-Pattern */}
       <section className="py-32 px-6 bg-white border-b border-slate-200" data-testid="section-services">
@@ -106,7 +110,7 @@ export default function PolishedAuthority() {
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 mb-6 tracking-tight" data-testid="text-services-title">
               Consulting Engineers & Contractors
             </h2>
-            <div className="w-32 h-1.5 bg-gradient-to-r from-orange-500 to-amber-400 mx-auto mb-8 rounded-full"></div>
+            <div className="w-32 h-1.5 bg-gradient-to-r from-cyan-500 to-orange-400 mx-auto mb-8 rounded-full"></div>
             <p className="text-xl md:text-2xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
               Full-scale civil and structural engineering and construction plans
               developed and implemented by our teams of in-house Engineers,
@@ -175,10 +179,10 @@ export default function PolishedAuthority() {
 
             {/* Bottom-Left Card (Flatter) */}
             <div className="group h-full bg-slate-50/50 rounded-2xl shadow-md border border-slate-100 transition-all duration-300 overflow-hidden" data-testid="card-inspections">
-              <div className="h-1 bg-gradient-to-r from-teal-700 to-slate-600 opacity-80" />
+              <div className="h-1 bg-gradient-to-r from-cyan-600 to-blue-500 opacity-80" />
               <div className="p-10 flex flex-col items-center text-center">
-                <div className="bg-stone-100 rounded-2xl w-24 h-24 flex items-center justify-center mb-8">
-                  <ClipboardCheck className="w-12 h-12 text-teal-700" />
+                <div className="bg-cyan-50 rounded-2xl w-24 h-24 flex items-center justify-center mb-8">
+                  <ClipboardCheck className="w-12 h-12 text-cyan-700" />
                 </div>
                 <h3 className="text-slate-900 text-2xl font-bold mb-4 uppercase tracking-wider">
                   Inspections & Testing
@@ -194,7 +198,7 @@ export default function PolishedAuthority() {
                     "Environmental Compliance"
                   ].map((item, i) => (
                     <li key={i} className="flex items-center justify-center gap-3 text-slate-600 w-full">
-                      <CheckCircle className="w-6 h-6 text-teal-700 flex-shrink-0" />
+                      <CheckCircle className="w-6 h-6 text-cyan-600 flex-shrink-0" />
                       <span className="font-medium text-lg">{item}</span>
                     </li>
                   ))}
@@ -242,7 +246,7 @@ export default function PolishedAuthority() {
               <h2 className="text-slate-900 mb-6 text-4xl font-extrabold tracking-tight md:text-5xl lg:text-6xl" data-testid="text-why-title">
                 Why Pacific Engineering?
               </h2>
-              <div className="bg-gradient-to-r from-orange-500 to-amber-500 my-8 w-24 h-1.5 rounded-full"></div>
+              <div className="bg-gradient-to-r from-cyan-500 to-orange-400 my-8 w-24 h-1.5 rounded-full"></div>
 
               <p className="text-slate-700 mb-10 text-xl leading-relaxed">
                 With over 40 years of experience in private, commercial, and
@@ -340,16 +344,16 @@ export default function PolishedAuthority() {
       </section>
 
       {/* 4. CTA SECTION - Action oriented */}
-      <section className="py-20 px-6 bg-slate-900 relative border-t-8 border-orange-500 overflow-hidden" data-testid="section-cta">
+      <section className="py-20 px-6 bg-slate-900 relative border-t-4 border-cyan-500 overflow-hidden" data-testid="section-cta">
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1541888082416-a711bc141c2c?w=1600')] bg-cover bg-center opacity-10 mix-blend-luminosity"></div>
         <div className="absolute inset-0 bg-gradient-to-b from-slate-900/80 to-slate-950/90"></div>
 
         <div className="relative z-10 max-w-4xl mx-auto text-center">
-          <p className="text-amber-400 font-bold uppercase tracking-widest text-sm sm:text-base mb-4">Ready to move?</p>
+          <p className="text-cyan-400 font-bold uppercase tracking-widest text-sm sm:text-base mb-4">Ready to move?</p>
           <h2 className="text-4xl md:text-5xl lg:text-7xl font-extrabold text-white mb-8 tracking-tighter leading-[1.1]" data-testid="text-cta-title">
             Get Your Project on Track
           </h2>
-          <div className="w-48 h-1.5 bg-gradient-to-r from-orange-500 to-amber-500 mx-auto mb-10 rounded-full"></div>
+          <div className="w-48 h-1.5 bg-gradient-to-r from-cyan-500 to-orange-400 mx-auto mb-10 rounded-full"></div>
           
           <p className="text-xl md:text-2xl text-slate-300 mb-12 leading-relaxed font-light px-4 max-w-3xl mx-auto">
             Engineering, inspections, construction, and stormwater — one team, one call. We respond same-day to keep your timeline intact.
