@@ -47,7 +47,7 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <div className="marketing-portal min-h-screen bg-white">
+    <div className="marketing-portal min-h-screen bg-white overflow-x-hidden">
       <header className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${isScrolled ? "bg-slate-900/95 backdrop-blur-sm shadow-xl" : "bg-slate-900 shadow-xl"}`}>
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center justify-between h-20">
@@ -106,17 +106,17 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
 
         {isMobileMenuOpen && (
           <div className="lg:hidden bg-slate-800 border-t border-slate-700 px-6 py-4 space-y-2" data-testid="mobile-menu">
-            <Link to={createPageUrl("Home")} className="block py-2 text-gray-300 hover:text-white">Home</Link>
-            <Link to={createPageUrl("ServicesOverview")} className="block py-2 text-gray-300 hover:text-white">Services</Link>
+            <Link to={createPageUrl("Home")} className="block py-3 text-gray-300 hover:text-white">Home</Link>
+            <Link to={createPageUrl("ServicesOverview")} className="block py-3 text-gray-300 hover:text-white">Services</Link>
             {servicesItems.map((item) => (
-              <Link key={item.path} to={item.path} className="block py-1.5 pl-4 text-sm text-gray-400 hover:text-white">{item.name}</Link>
+              <Link key={item.path} to={item.path} className="block py-2.5 pl-4 text-sm text-gray-400 hover:text-white">{item.name}</Link>
             ))}
-            <Link to={createPageUrl("About")} className="block py-2 text-gray-300 hover:text-white">About</Link>
+            <Link to={createPageUrl("About")} className="block py-3 text-gray-300 hover:text-white">About</Link>
             {aboutItems.map((item) => (
-              <Link key={item.path} to={item.path} className="block py-1.5 pl-4 text-sm text-gray-400 hover:text-white">{item.name}</Link>
+              <Link key={item.path} to={item.path} className="block py-2.5 pl-4 text-sm text-gray-400 hover:text-white">{item.name}</Link>
             ))}
-            <Link to={createPageUrl("Contact")} className="block py-2 text-gray-300 hover:text-white">Contact</Link>
-            <Link to={createPageUrl("SWPPPChecker")} className="block py-2 text-orange-400 font-semibold">Free Consultation</Link>
+            <Link to={createPageUrl("Contact")} className="block py-3 text-gray-300 hover:text-white">Contact</Link>
+            <Link to={createPageUrl("SWPPPChecker")} className="block py-3 text-orange-400 font-semibold">Free Consultation</Link>
           </div>
         )}
       </header>

@@ -221,7 +221,7 @@ export default function SalesDashboard() {
 
         <div className="flex items-center justify-between gap-1 mb-6 flex-wrap">
           <div>
-            <h1 className="text-4xl font-bold mb-2" data-testid="text-sales-title">Sales CRM</h1>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2" data-testid="text-sales-title">Sales CRM</h1>
             <p className="text-lg text-muted-foreground">AI-powered pipeline management and automation</p>
           </div>
           
@@ -263,7 +263,7 @@ export default function SalesDashboard() {
           </Card>
         )}
 
-        <div className="grid md:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mb-8">
           <Card className="p-6 bg-gradient-to-br from-blue-500 to-cyan-500 text-white" data-testid="stat-total-prospects">
             <div className="flex items-center justify-between gap-1 mb-3">
               <Users className="w-8 h-8 opacity-80" />
@@ -351,7 +351,7 @@ export default function SalesDashboard() {
             </div>
 
             <Select value={filterSegment} onValueChange={setFilterSegment}>
-              <SelectTrigger className="w-[180px]" data-testid="filter-segment">
+              <SelectTrigger className="w-full sm:w-[180px]" data-testid="filter-segment">
                 <SelectValue placeholder="All Segments" />
               </SelectTrigger>
               <SelectContent>
@@ -366,7 +366,7 @@ export default function SalesDashboard() {
             </Select>
 
             <Select value={filterStatus} onValueChange={setFilterStatus}>
-              <SelectTrigger className="w-[180px]" data-testid="filter-status">
+              <SelectTrigger className="w-full sm:w-[180px]" data-testid="filter-status">
                 <SelectValue placeholder="All Status" />
               </SelectTrigger>
               <SelectContent>
@@ -382,7 +382,7 @@ export default function SalesDashboard() {
             </Select>
 
             <Select value={filterOwner} onValueChange={setFilterOwner}>
-              <SelectTrigger className="w-[180px]" data-testid="filter-owner">
+              <SelectTrigger className="w-full sm:w-[180px]" data-testid="filter-owner">
                 <SelectValue placeholder="Owner" />
               </SelectTrigger>
               <SelectContent>
@@ -392,7 +392,7 @@ export default function SalesDashboard() {
             </Select>
 
             <Select value={sortField} onValueChange={setSortField}>
-              <SelectTrigger className="w-[200px]" data-testid="sort-field">
+              <SelectTrigger className="w-full sm:w-[200px]" data-testid="sort-field">
                 <SelectValue placeholder="Sort by" />
               </SelectTrigger>
               <SelectContent>

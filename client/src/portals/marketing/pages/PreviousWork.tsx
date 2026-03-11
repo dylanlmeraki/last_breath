@@ -196,7 +196,7 @@ export default function PreviousWork() {
 
   return (
     <div className="min-h-screen bg-slate-50" data-testid="page-previous-work">
-      <section className="relative py-32 px-6 bg-slate-900 border-b-4 border-blue-600 overflow-hidden">
+      <section className="relative py-16 sm:py-24 md:py-32 px-4 sm:px-6 bg-slate-900 border-b-4 border-blue-600 overflow-hidden">
         <div className="absolute inset-0 opacity-50">
           <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1600')] bg-cover bg-center" />
           <div className="absolute inset-0 bg-slate-900/60 mix-blend-multiply"></div>
@@ -213,7 +213,7 @@ export default function PreviousWork() {
               <Award className="w-4 h-4 text-blue-400" />
               <span className="text-blue-100 text-sm font-bold tracking-wider">Excellence Since 2001</span>
             </div>
-            <h1 className="text-white mb-6 text-5xl font-bold md:text-7xl tracking-tight" data-testid="text-previous-work-title">Previous Work</h1>
+            <h1 className="text-white mb-6 text-3xl font-bold sm:text-5xl md:text-7xl tracking-tight" data-testid="text-previous-work-title">Previous Work</h1>
             <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-cyan-500 mx-auto mb-8"></div>
             <p className="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed font-light">
               Over two decades of excellence in civil engineering, construction management, and infrastructure development across California and Nevada.
@@ -226,7 +226,7 @@ export default function PreviousWork() {
         <div className="max-w-6xl mx-auto">
           <AnimatedSection direction="up" delay={0.1}>
             <div className="mb-16">
-              <h2 className="text-4xl font-bold text-slate-900 mb-8 text-center tracking-tight">Company Profile</h2>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-8 text-center tracking-tight">Company Profile</h2>
               <Card className="p-10 border-0 shadow-2xl bg-gradient-to-br from-white to-blue-50 border-t-4 border-blue-600 rounded-lg transform hover:scale-[1.01] transition-transform duration-500" data-testid="card-company-profile">
                 <p className="text-lg text-slate-700 leading-relaxed font-light">
                   Founded in 2001, Pacific Engineering & Construction, Inc. (PECI) has applied its civil, environmental, construction management, surveying, and infrastructure engineering capabilities to sites across California and Nevada. PECI provides complete site civil and environmental engineering design and surveying services for airports, municipal buildings, marinas, prisons, hospitals, schools, condominiums, casinos and new residential land developments.
@@ -544,7 +544,7 @@ export default function PreviousWork() {
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/grid-me.png')] opacity-10 pointer-events-none"></div>
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <AnimatedSection direction="up">
-            <h2 className="text-4xl font-bold text-white mb-6 tracking-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-6 tracking-tight">
               Let's Build Your Next Project Together
             </h2>
             <p className="text-xl text-blue-100 mb-12 leading-relaxed font-light">

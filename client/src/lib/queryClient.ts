@@ -1,1 +1,1 @@
-export { apiRequest, getQueryFn, queryClient } from "@/portals/lib/queryClient";
+../portals/lib/queryClient.ts

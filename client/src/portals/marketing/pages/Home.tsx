@@ -516,8 +516,8 @@ export default function Home() {
                 />
               </div>
 
-              <div className="absolute -bottom-6 -right-2 sm:-right-6 bg-gradient-to-br from-orange-500 to-amber-600 p-8 rounded-2xl shadow-xl border-4 border-white flex flex-col items-center justify-center z-20">
-                <div className="text-white mb-1 text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tighter" data-testid="text-projects-count">
+              <div className="hidden sm:flex absolute -bottom-6 -right-2 sm:-right-6 bg-gradient-to-br from-orange-500 to-amber-600 p-8 rounded-2xl shadow-xl border-4 border-white flex-col items-center justify-center z-20">
+                <div className="text-white mb-1 text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tighter" data-testid="text-projects-count">
                   2.5K+
                 </div>
                 <div className="text-orange-50 font-bold uppercase tracking-widest text-xs sm:text-sm">
@@ -539,7 +539,7 @@ export default function Home() {
         <div className="relative z-10 max-w-4xl mx-auto text-center">
           <AnimatedSection direction="up">
             <p className="text-cyan-400 font-bold uppercase tracking-widest text-sm sm:text-base mb-4">Ready to move?</p>
-            <h2 className="text-4xl md:text-5xl lg:text-7xl font-extrabold text-white mb-8 tracking-tighter leading-[1.1]" data-testid="text-cta-title">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-7xl font-extrabold text-white mb-8 tracking-tighter leading-[1.1]" data-testid="text-cta-title">
               Get Your Project on Track
             </h2>
             <div className="w-48 h-1.5 bg-gradient-to-r from-cyan-500 to-orange-400 mx-auto mb-10 rounded-full"></div>

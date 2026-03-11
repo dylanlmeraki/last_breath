@@ -156,7 +156,7 @@ export default function BlogPost() {
               {post.category}
             </Badge>
 
-            <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6 leading-tight" data-testid="text-blog-post-title">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-6 leading-tight" data-testid="text-blog-post-title">
               {post.title}
             </h1>
 

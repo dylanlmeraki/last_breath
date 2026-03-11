@@ -59,7 +59,7 @@ export default function InvoiceManagement() {
       {isLoading ? <TableSkeleton /> : filtered.length === 0 ? (
         <EmptyState icon={DollarSign} title="No invoices" description="Invoices will appear here when created" />
       ) : (
-        <div className="border rounded-lg overflow-hidden">
+        <div className="border rounded-lg overflow-hidden overflow-x-auto">
           <table className="w-full text-sm">
             <thead><tr className="bg-muted/50 border-b">
               <th className="text-left p-3 font-medium">Invoice #</th>

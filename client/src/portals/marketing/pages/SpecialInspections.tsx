@@ -16,7 +16,7 @@ export default function SpecialInspections() {
         keywords="special inspections, PE certified inspections, structural inspections, welding inspections, concrete inspections, building code compliance, sealed reports"
         url="/special-inspections"
       />
-      <section className="relative py-32 px-6 bg-slate-900 border-b-4 border-blue-600 overflow-hidden">
+      <section className="relative py-16 sm:py-24 md:py-32 px-4 sm:px-6 bg-slate-900 border-b-4 border-blue-600 overflow-hidden">
         <div className="absolute inset-0 opacity-50">
           <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1600')] bg-cover bg-center" />
           <div className="absolute inset-0 bg-slate-900/60 mix-blend-multiply"></div>
@@ -29,7 +29,7 @@ export default function SpecialInspections() {
 
         <div className="relative z-10 max-w-5xl mx-auto text-center">
           <AnimatedSection direction="up">
-            <h1 className="text-white mb-6 text-5xl font-bold md:text-6xl tracking-tight" data-testid="text-special-inspections-title">Special Inspections</h1>
+            <h1 className="text-white mb-6 text-3xl font-bold sm:text-5xl md:text-6xl tracking-tight" data-testid="text-special-inspections-title">Special Inspections</h1>
             <div className="w-24 h-1 bg-blue-500 mx-auto mb-8"></div>
             <p className="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed font-light">
              Our Team of in-house Professional Engineers, and certified professionals with decades worth of combined experience are ready to perform any and all special inspections ensuring structural integrity and code compliance for critical building systems.
@@ -54,7 +54,7 @@ export default function SpecialInspections() {
 
             <AnimatedSection direction="right" delay={0.2}>
               <div>
-                <h2 className="text-4xl font-bold text-slate-900 mb-6 tracking-tight">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-6 tracking-tight">
                   Engineer-Backed Verification
                 </h2>
                 <div className="space-y-4 text-lg text-slate-600 leading-relaxed font-light">
@@ -77,7 +77,7 @@ export default function SpecialInspections() {
       <section className="py-20 px-6 bg-slate-50">
         <div className="max-w-7xl mx-auto">
           <AnimatedSection direction="up" className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6 tracking-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-6 tracking-tight">
               Comprehensive Special Inspections
             </h2>
             <div className="w-16 h-1 bg-blue-600 mx-auto mb-6"></div>
@@ -344,7 +344,7 @@ export default function SpecialInspections() {
       <AnimatedSection direction="up">
         <section className="py-20 px-6 bg-gradient-to-b from-gray-50 to-white">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-12 text-center">
               Inspection Levels
             </h2>
 
@@ -397,7 +397,7 @@ export default function SpecialInspections() {
       <AnimatedSection direction="up">
         <section className="py-20 px-6 bg-white">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-12 text-center">
               What Sets Us Apart
             </h2>
 
@@ -440,7 +440,7 @@ export default function SpecialInspections() {
         <section className="py-20 px-6 bg-gradient-to-b from-gray-50 to-white">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
                 Inspection Case Studies
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -609,7 +609,7 @@ export default function SpecialInspections() {
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 pointer-events-none"></div>
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <AnimatedSection direction="up">
-            <h2 className="text-4xl font-bold text-white mb-6 tracking-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-6 tracking-tight">
               Get Your PE-Certified Special Inspections Started
             </h2>
             <p className="text-xl text-blue-100 mb-12 leading-relaxed font-light">

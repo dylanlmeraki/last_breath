@@ -209,7 +209,7 @@ export default function Contact() {
         image="/Logo.jpeg"
         url="/contact"
       />
-      <section className="relative py-32 px-6 bg-slate-900 border-b-4 border-blue-600 overflow-hidden">
+      <section className="relative py-16 sm:py-24 md:py-32 px-4 sm:px-6 bg-slate-900 border-b-4 border-blue-600 overflow-hidden">
         <div className="absolute inset-0 opacity-50">
           <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600')] bg-cover bg-center" />
           <div className="absolute inset-0 bg-slate-900/60 mix-blend-multiply"></div>
@@ -222,7 +222,7 @@ export default function Contact() {
         
         <div className="relative z-10 max-w-5xl mx-auto text-center">
           <AnimatedSection direction="up">
-            <h1 className="text-white mb-6 text-5xl font-bold md:text-6xl tracking-tight" data-testid="text-contact-title">Get in Touch</h1>
+            <h1 className="text-white mb-6 text-3xl font-bold sm:text-5xl md:text-6xl tracking-tight" data-testid="text-contact-title">Get in Touch</h1>
             <div className="w-24 h-1 bg-blue-500 mx-auto mb-8"></div>
             <p className="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed font-light">
               Ready to discuss your project needs? Our team of Professional Engineers and construction experts is here to help.

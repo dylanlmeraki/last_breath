@@ -205,7 +205,7 @@ export default function ProjectDetail() {
                   </span>
                 </div>
                 
-                <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6 tracking-tight leading-tight" data-testid="text-project-title">
+                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-6 tracking-tight leading-tight" data-testid="text-project-title">
                   {project.title}
                 </h1>
                 
@@ -422,7 +422,7 @@ export default function ProjectDetail() {
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 pointer-events-none"></div>
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <AnimatedSection direction="up">
-            <h2 className="text-4xl font-bold text-white mb-6 tracking-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-6 tracking-tight">
               Ready to Start Your Project?
             </h2>
             <p className="text-xl text-blue-100 mb-10 leading-relaxed font-light">

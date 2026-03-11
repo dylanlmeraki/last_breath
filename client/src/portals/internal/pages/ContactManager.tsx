@@ -292,7 +292,7 @@ export default function ContactManager() {
         </div>
 
         {formSubmissions.length > 0 && (
-          <div className="grid md:grid-cols-3 gap-4 mb-6">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 mb-6">
             <Card className="p-4">
               <div className="flex items-center justify-between gap-1">
                 <div>
@@ -323,7 +323,7 @@ export default function ContactManager() {
           </div>
         )}
 
-        <div className="grid md:grid-cols-4 gap-4 mb-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
           <Card className="p-4" data-testid="stat-total-contacts">
             <div className="flex items-center justify-between gap-1">
               <div>
@@ -403,14 +403,14 @@ export default function ContactManager() {
       </div>
 
       <Tabs defaultValue="contacts" className="w-full">
-        <TabsList className="mb-6">
+        <TabsList className="mb-6 flex-wrap h-auto">
           <TabsTrigger value="contacts" data-testid="tab-contacts">
             <Users className="w-4 h-4 mr-2" />
-            All Contacts ({contacts.length})
+            <span className="hidden sm:inline">All </span>Contacts<span className="hidden sm:inline"> ({contacts.length})</span>
           </TabsTrigger>
           <TabsTrigger value="submissions" data-testid="tab-submissions">
             <FileText className="w-4 h-4 mr-2" />
-            Form Submissions ({formSubmissions.length})
+            <span className="hidden sm:inline">Form </span>Submissions<span className="hidden sm:inline"> ({formSubmissions.length})</span>
           </TabsTrigger>
           <TabsTrigger value="opportunities" data-testid="tab-opportunities">
             <TrendingUp className="w-4 h-4 mr-2" />

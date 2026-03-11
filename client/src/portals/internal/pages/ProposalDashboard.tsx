@@ -322,7 +322,7 @@ function CreateFromTemplateModal({ onClose, projects, onCreated }: { onClose: ()
                   </SelectContent>
                 </Select>
               </div>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label>Amount</Label>
                   <Input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="0" data-testid="input-proposal-amount" />
@@ -418,7 +418,7 @@ export default function ProposalDashboard() {
       <div className="max-w-7xl mx-auto">
         <div className="flex items-start justify-between gap-4 mb-8 flex-wrap">
           <div>
-            <h1 className="text-4xl font-bold mb-2" data-testid="text-proposals-title">Proposals</h1>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2" data-testid="text-proposals-title">Proposals</h1>
             <p className="text-lg text-muted-foreground">Manage, track, and send all client proposals</p>
           </div>
           <Button onClick={() => setShowCreateFromTemplate(true)} data-testid="button-create-from-template">
@@ -427,7 +427,7 @@ export default function ProposalDashboard() {
           </Button>
         </div>
 
-        <div className="grid md:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mb-8">
           <Card className="p-6 bg-gradient-to-br from-blue-500 to-cyan-500 text-white" data-testid="stat-total-proposals">
             <div className="flex items-center justify-between gap-1 mb-3">
               <FileText className="w-8 h-8 opacity-80" />

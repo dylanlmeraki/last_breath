@@ -16,7 +16,7 @@ export default function About() {
         keywords="about pacific engineering, civil engineering company, construction firm bay area, PE certified engineers, engineering company history, PECI team"
         url="/about"
       />
-      <section className="relative py-32 px-6 bg-slate-900 border-b-4 border-blue-600 overflow-hidden" data-testid="section-about-hero">
+      <section className="relative py-16 sm:py-24 md:py-32 px-4 sm:px-6 bg-slate-900 border-b-4 border-blue-600 overflow-hidden" data-testid="section-about-hero">
         <div className="absolute inset-0 opacity-50">
           <div className="absolute inset-0 bg-[url('/images/bay-area-cityscape.jpg')] bg-cover bg-center" />
           <div className="absolute inset-0 bg-slate-900/60 mix-blend-multiply"></div>
@@ -29,7 +29,7 @@ export default function About() {
         
         <div className="relative z-10 max-w-5xl mx-auto text-center">
           <AnimatedSection direction="up">
-            <h1 className="text-white mb-6 text-5xl font-bold md:text-6xl tracking-tight" data-testid="text-about-title">About Pacific Engineering</h1>
+            <h1 className="text-white mb-6 text-3xl font-bold sm:text-5xl md:text-6xl tracking-tight" data-testid="text-about-title">About Pacific Engineering</h1>
             <div className="w-24 h-1 bg-blue-500 mx-auto mb-8"></div>
             <p className="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed font-light">
               Engineering, consulting, and construction services backed by decades of experience and a commitment to getting projects done right
@@ -42,7 +42,7 @@ export default function About() {
         <div className="max-w-6xl mx-auto">
           <div className="mb-20">
             <AnimatedSection direction="up" className="text-center mb-12">
-              <h2 className="text-4xl font-bold text-slate-900 mb-6 tracking-tight" data-testid="text-who-we-are">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-6 tracking-tight" data-testid="text-who-we-are">
                 Who We Are
               </h2>
               <div className="w-16 h-1.5 bg-gradient-to-r from-blue-600 to-cyan-500 mx-auto mb-8 rounded-full"></div>
@@ -90,7 +90,7 @@ in a timely manner.
                     data-testid="img-team"
                   />
                 </div>
-                <div className="absolute -bottom-8 -right-8 bg-gradient-to-br from-blue-600 to-cyan-600 p-8 rounded-xl shadow-2xl max-w-xs border-4 border-white">
+                <div className="hidden sm:block absolute -bottom-8 -right-8 bg-gradient-to-br from-blue-600 to-cyan-600 p-8 rounded-xl shadow-2xl max-w-xs border-4 border-white">
                   <div className="text-white font-bold text-xl tracking-tight mb-2">Committed to Excellence</div>
                   <div className="text-blue-100 text-sm">Since 2001</div>
                 </div>
@@ -100,7 +100,7 @@ in a timely manner.
 
             <div className="mb-20">
               <AnimatedSection direction="up" className="text-center mb-12">
-                <h2 className="text-4xl font-bold text-slate-900 mb-4 tracking-tight" data-testid="text-what-we-do">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-4 tracking-tight" data-testid="text-what-we-do">
                   What We Do
                 </h2>
                 <div className="w-16 h-1.5 bg-gradient-to-r from-blue-600 to-cyan-500 mx-auto rounded-full"></div>
@@ -260,7 +260,7 @@ in a timely manner.
               </AnimatedSection>
               
               <AnimatedSection direction="right" className="order-1 lg:order-2">
-                <h2 className="text-4xl font-bold text-slate-900 mb-6 tracking-tight" data-testid="text-how-we-work">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-6 tracking-tight" data-testid="text-how-we-work">
                   How We Work
                 </h2>
                 <div className="space-y-4 text-lg text-slate-700 leading-relaxed font-light">
@@ -283,13 +283,13 @@ in a timely manner.
       <section className="py-20 px-6 bg-slate-50 border-b border-slate-200" data-testid="section-values">
         <div className="max-w-6xl mx-auto">
           <AnimatedSection direction="up" className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-slate-900 mb-6 tracking-tight" data-testid="text-values-title">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-6 tracking-tight" data-testid="text-values-title">
               What Drives Us
             </h2>
             <div className="w-16 h-1.5 bg-gradient-to-r from-blue-600 to-cyan-500 mx-auto rounded-full"></div>
           </AnimatedSection>
           
-          <div className="grid grid-cols-4 gap-0">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-0">
             <AnimatedSection direction="up" delay={0.1}>
               <Card className="p-8 text-center border-r border-slate-200 shadow-md bg-white hover:shadow-xl hover:-translate-y-1 transition-all h-full rounded-none first:rounded-l-xl last:rounded-r-xl">
                 <div className="bg-blue-600 w-16 h-16 rounded-md flex items-center justify-center mx-auto mb-6">
@@ -345,7 +345,7 @@ in a timely manner.
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 pointer-events-none"></div>
         <div className="max-w-6xl mx-auto relative z-10">
           <AnimatedSection direction="up" className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-6 tracking-tight" data-testid="text-stats-title">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 tracking-tight" data-testid="text-stats-title">
               By the Numbers
             </h2>
             <div className="w-16 h-1.5 bg-gradient-to-r from-blue-600 to-cyan-500 mx-auto rounded-full"></div>
@@ -358,7 +358,7 @@ in a timely manner.
               { val: "$5B+", label: "Project Value", sub: "Total construction value" }
             ].map((stat, i) => (
               <AnimatedSection direction="up" delay={i * 0.1} key={i} className="pt-8 md:pt-0">
-                <div className="text-5xl font-bold text-blue-500 mb-2" data-testid={`text-stat-value-${i}`}>{stat.val}</div>
+                <div className="text-3xl sm:text-5xl font-bold text-blue-500 mb-2" data-testid={`text-stat-value-${i}`}>{stat.val}</div>
                 <div className="text-xl text-white font-bold tracking-tight">{stat.label}</div>
                 <p className="text-gray-400 mt-2 text-sm">{stat.sub}</p>
               </AnimatedSection>
@@ -370,7 +370,7 @@ in a timely manner.
       <section className="py-20 px-6 bg-white" data-testid="section-service-areas">
         <div className="max-w-4xl mx-auto text-center">
           <AnimatedSection direction="up">
-            <h2 className="text-4xl font-bold text-slate-900 mb-6 tracking-tight" data-testid="text-service-areas-title">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-6 tracking-tight" data-testid="text-service-areas-title">
               Serving the Bay Area
             </h2>
             <p className="text-xl text-slate-600 leading-relaxed mb-8 font-light">
@@ -388,7 +388,7 @@ in a timely manner.
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/grid-me.png')] opacity-10 pointer-events-none"></div>
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <AnimatedSection direction="up">
-            <h2 className="text-4xl font-bold text-white mb-6 tracking-tight" data-testid="text-about-cta-title">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-6 tracking-tight" data-testid="text-about-cta-title">
               We'd Love to Hear From You
             </h2>
             <p className="text-xl text-blue-100 mb-10 leading-relaxed font-light">

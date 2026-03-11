@@ -204,7 +204,7 @@ Files Attached: ${uploadedFiles.length}`;
         url="/consultation"
       />
       
-      <section className="relative py-32 px-6 bg-slate-900 border-b-4 border-blue-600 overflow-hidden">
+      <section className="relative py-16 sm:py-24 md:py-32 px-4 sm:px-6 bg-slate-900 border-b-4 border-blue-600 overflow-hidden">
         <div className="absolute inset-0 opacity-50">
           <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=1600')] bg-cover bg-center" />
           <div className="absolute inset-0 bg-slate-900/60 mix-blend-multiply"></div>
@@ -217,7 +217,7 @@ Files Attached: ${uploadedFiles.length}`;
         
         <div className="relative z-10 max-w-5xl mx-auto text-center">
           <AnimatedSection direction="up">
-            <h1 className="text-white mb-6 text-5xl font-bold md:text-6xl tracking-tight" data-testid="text-consultation-title">
+            <h1 className="text-white mb-6 text-3xl font-bold sm:text-5xl md:text-6xl tracking-tight" data-testid="text-consultation-title">
               Free Project Consultation
             </h1>
             <div className="w-24 h-1 bg-blue-500 mx-auto mb-8"></div>

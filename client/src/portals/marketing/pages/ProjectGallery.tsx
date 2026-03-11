@@ -83,7 +83,7 @@ export default function ProjectGallery() {
         url="/project-gallery"
       />
 
-      <section className="relative py-32 px-6 bg-slate-900 border-b-4 border-blue-600 overflow-hidden">
+      <section className="relative py-16 sm:py-24 md:py-32 px-4 sm:px-6 bg-slate-900 border-b-4 border-blue-600 overflow-hidden">
         <div className="absolute inset-0 opacity-50">
           <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600')] bg-cover bg-center" />
           <div className="absolute inset-0 bg-slate-900/60 mix-blend-multiply"></div>
@@ -96,7 +96,7 @@ export default function ProjectGallery() {
         
         <div className="relative z-10 max-w-5xl mx-auto text-center">
           <AnimatedSection direction="up">
-            <h1 className="text-white mb-6 text-5xl font-bold md:text-6xl tracking-tight" data-testid="text-gallery-title">
+            <h1 className="text-white mb-6 text-3xl font-bold sm:text-5xl md:text-6xl tracking-tight" data-testid="text-gallery-title">
               Project Gallery
             </h1>
             <div className="w-24 h-1 bg-blue-500 mx-auto mb-8"></div>
@@ -293,7 +293,7 @@ export default function ProjectGallery() {
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 pointer-events-none"></div>
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <AnimatedSection direction="up">
-            <h2 className="text-4xl font-bold text-white mb-6 tracking-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-6 tracking-tight">
               Ready to Start Your Project?
             </h2>
             <p className="text-xl text-blue-100 mb-10 leading-relaxed font-light">

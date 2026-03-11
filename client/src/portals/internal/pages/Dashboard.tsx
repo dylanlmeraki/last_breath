@@ -133,7 +133,7 @@ export default function Dashboard() {
   return (
     <div className="py-6 lg:py-8">
       <div className="mb-8">
-        <h1 className="text-4xl font-bold mb-2" data-testid="text-welcome">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2" data-testid="text-welcome">
           Welcome back{user ? `, ${user.full_name?.split(' ')[0]}` : ''}
         </h1>
         <p className="text-muted-foreground text-lg">

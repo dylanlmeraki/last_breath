@@ -29,7 +29,7 @@ export default function Services() {
         url="/services"
       />
       
-      <section className="relative py-32 px-6 bg-slate-900 border-b-4 border-blue-600 overflow-hidden">
+      <section className="relative py-16 sm:py-24 md:py-32 px-4 sm:px-6 bg-slate-900 border-b-4 border-blue-600 overflow-hidden">
         <div className="absolute inset-0 opacity-50">
           <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=1600')] bg-cover bg-center" />
           <div className="absolute inset-0 bg-slate-900/60 mix-blend-multiply"></div>
@@ -42,7 +42,7 @@ export default function Services() {
         
         <div className="relative z-10 max-w-5xl mx-auto text-center">
           <AnimatedSection direction="up">
-            <h1 className="text-white mb-6 text-5xl font-bold md:text-6xl tracking-tight" data-testid="text-services-title">
+            <h1 className="text-white mb-6 text-3xl font-bold sm:text-5xl md:text-6xl tracking-tight" data-testid="text-services-title">
               Stormwater Pollution Planning Services
             </h1>
             <div className="w-24 h-1 bg-blue-500 mx-auto mb-8"></div>
@@ -302,7 +302,7 @@ export default function Services() {
       <section className="py-20 px-6 bg-white border-t border-slate-200">
         <div className="max-w-6xl mx-auto">
           <AnimatedSection direction="up" className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-slate-900 mb-6 tracking-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-6 tracking-tight">
               Why Choose Pacific Engineering
             </h2>
             <div className="w-16 h-1 bg-blue-600 mx-auto mb-6"></div>
@@ -355,7 +355,7 @@ export default function Services() {
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 pointer-events-none"></div>
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <AnimatedSection direction="up">
-            <h2 className="text-4xl font-bold text-white mb-6 tracking-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-6 tracking-tight">
               Need Stormwater Planning?
             </h2>
             <p className="text-xl text-blue-100 mb-12 leading-relaxed font-light">

@@ -196,7 +196,7 @@ export default function ProjectDetail() {
 
           <div className="flex items-start justify-between flex-wrap gap-4">
             <div>
-              <h1 className="text-4xl font-bold mb-2" data-testid="text-project-name">{project.project_name}</h1>
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2" data-testid="text-project-name">{project.project_name}</h1>
               <p className="text-cyan-100 text-lg">Project #{project.project_number}</p>
             </div>
             <div className="flex items-center gap-3 flex-wrap">
