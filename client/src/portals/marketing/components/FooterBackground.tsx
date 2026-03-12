@@ -116,6 +116,7 @@ const FooterBackground: React.FC<FooterBackgroundProps> = ({ className = "" }) =
       ref={canvasRef}
       className={`absolute inset-0 w-full h-full ${className}`}
       style={{ mixBlendMode: "screen" }}
+      data-testid="footer-background-canvas"
     />
   );
 };

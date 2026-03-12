@@ -4,6 +4,7 @@ import { createPageUrl } from "../lib/utils";
 import { Menu, X, Phone, Mail, MapPin, ChevronDown, PhoneCall } from "lucide-react";
 import ChatBot from "../components/ChatBot";
 import BackToTop from "../components/BackToTop";
+import FooterBackground from "../components/FooterBackground";
 
 interface MarketingLayoutProps {
   children: ReactNode;
@@ -203,18 +204,26 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
         {children}
       </main>
 
-      <footer className="relative bg-slate-900 text-white overflow-hidden">
-        <div className="absolute inset-0 opacity-30 pointer-events-none">
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900 to-slate-800" />
-        </div>
+      <footer className="relative bg-slate-900 text-white overflow-hidden border-t-4 border-cyan-500">
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900" />
+        <div className="absolute inset-0 bg-gradient-to-tr from-cyan-900/20 via-transparent to-orange-900/15" />
+        <FooterBackground />
         <div className="relative z-10 max-w-7xl mx-auto px-6 py-16">
           <div className="grid md:grid-cols-4 gap-12 mb-12">
             <div className="md:col-span-1">
-              <div className="flex items-center gap-3 mb-4">
-                <img src="/images/pe-logo.png" alt="Pacific Engineering" className="h-10 w-10 rounded object-contain" />
-                <div className="font-bold text-lg">Pacific Engineering</div>
+              <div className="flex items-center gap-4 mb-6">
+                <div className="relative">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-orange-500 rounded-lg opacity-50 blur-sm" />
+                  <div className="relative bg-slate-900 p-1.5 rounded-lg">
+                    <img src="/images/pe-logo.png" alt="Pacific Engineering" className="h-10 w-10 rounded object-contain" />
+                  </div>
+                </div>
+                <div>
+                  <div className="font-bold text-lg text-white">Pacific Engineering</div>
+                  <div className="text-xs text-cyan-400 tracking-wide font-medium">Consulting Engineers & Contractors</div>
+                </div>
               </div>
-              <p className="text-sm text-gray-400 leading-relaxed">
+              <p className="text-sm text-gray-300/90 leading-relaxed border-l-4 border-cyan-500 pl-4">
                 Full-scale civil and structural engineering and construction services across the San Francisco Bay Area.
               </p>
             </div>
