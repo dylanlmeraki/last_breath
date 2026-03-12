@@ -77,7 +77,7 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
             </Link>
 
             <nav className="hidden lg:flex items-center gap-1" data-testid="nav-main">
-              <Link to={createPageUrl("Home")} className="px-3 py-2 rounded-md text-sm transition-colors text-cyan-400 font-bold text-center" data-testid="nav-home">Home</Link>
+              <Link to={createPageUrl("Home")} className="px-3 py-2 rounded-md text-sm transition-colors text-cyan-400 font-bold text-left" data-testid="nav-home">Home</Link>
 
               <div className="relative" onMouseEnter={() => setServicesDropdownOpen(true)} onMouseLeave={() => setServicesDropdownOpen(false)}>
                 <Link to={createPageUrl("ServicesOverview")} className="px-3 py-2 rounded-md text-sm transition-colors flex items-center gap-1 text-gray-300 hover:text-white font-bold text-right" data-testid="nav-services">
