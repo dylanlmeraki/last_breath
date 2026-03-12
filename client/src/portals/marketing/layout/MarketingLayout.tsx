@@ -1,7 +1,7 @@
 import { useState, useEffect, ReactNode } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { createPageUrl } from "../lib/utils";
-import { Menu, X, Phone, Mail, MapPin, ChevronDown } from "lucide-react";
+import { Menu, X, Phone, Mail, MapPin, ChevronDown, PhoneCall } from "lucide-react";
 import ChatBot from "../components/ChatBot";
 import BackToTop from "../components/BackToTop";
 
@@ -14,6 +14,8 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
   const [aboutDropdownOpen, setAboutDropdownOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [mobileAboutOpen, setMobileAboutOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -26,8 +28,19 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
     setIsMobileMenuOpen(false);
     setServicesDropdownOpen(false);
     setAboutDropdownOpen(false);
+    setMobileServicesOpen(false);
+    setMobileAboutOpen(false);
     window.scrollTo(0, 0);
   }, [location.pathname]);
+
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => { document.body.style.overflow = ""; };
+  }, [isMobileMenuOpen]);
 
   const servicesItems = [
     { name: "Stormwater Planning", path: createPageUrl("Services") },
@@ -49,7 +62,7 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
   return (
     <div className="marketing-portal min-h-screen bg-white overflow-x-hidden">
       <header className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${isScrolled ? "bg-slate-900/95 backdrop-blur-sm shadow-xl" : "bg-slate-900 shadow-xl"}`}>
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="flex items-center justify-between h-20">
             <Link to={createPageUrl("Home")} className="flex items-center gap-3 group" data-testid="link-logo">
               <div className="relative">
@@ -67,7 +80,7 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
 
               <div className="relative" onMouseEnter={() => setServicesDropdownOpen(true)} onMouseLeave={() => setServicesDropdownOpen(false)}>
                 <Link to={createPageUrl("ServicesOverview")} className={`px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-1 ${isActive(createPageUrl("ServicesOverview")) ? "text-cyan-400" : "text-gray-300 hover:text-white"}`} data-testid="nav-services">
-                  Services <ChevronDown className="w-3 h-3" />
+                  Services <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${servicesDropdownOpen ? "rotate-180" : ""}`} />
                 </Link>
                 {servicesDropdownOpen && (
                   <div className="absolute top-full left-0 mt-1 w-56 bg-slate-800 rounded-lg shadow-xl border border-slate-700 py-2 z-50">
@@ -80,7 +93,7 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
 
               <div className="relative" onMouseEnter={() => setAboutDropdownOpen(true)} onMouseLeave={() => setAboutDropdownOpen(false)}>
                 <Link to={createPageUrl("About")} className={`px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-1 ${isActive(createPageUrl("About")) ? "text-cyan-400" : "text-gray-300 hover:text-white"}`} data-testid="nav-about">
-                  About <ChevronDown className="w-3 h-3" />
+                  About <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${aboutDropdownOpen ? "rotate-180" : ""}`} />
                 </Link>
                 {aboutDropdownOpen && (
                   <div className="absolute top-full left-0 mt-1 w-48 bg-slate-800 rounded-lg shadow-xl border border-slate-700 py-2 z-50">
@@ -98,28 +111,93 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
               </Link>
             </nav>
 
-            <button className="lg:hidden text-white p-2" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} data-testid="button-mobile-menu">
-              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
+            <div className="flex items-center gap-2 lg:hidden">
+              <a
+                href="tel:+14156894428"
+                className="w-10 h-10 flex items-center justify-center rounded-full bg-cyan-600 hover:bg-cyan-500 text-white transition-colors shadow-md"
+                data-testid="btn-header-call"
+                aria-label="Call us"
+              >
+                <Phone className="w-4 h-4" />
+              </a>
+              <button
+                className="text-white p-2"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                data-testid="button-mobile-menu"
+                aria-label="Toggle menu"
+              >
+                {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              </button>
+            </div>
           </div>
         </div>
-
-        {isMobileMenuOpen && (
-          <div className="lg:hidden bg-slate-800 border-t border-slate-700 px-6 py-4 space-y-2" data-testid="mobile-menu">
-            <Link to={createPageUrl("Home")} className="block py-3 text-gray-300 hover:text-white">Home</Link>
-            <Link to={createPageUrl("ServicesOverview")} className="block py-3 text-gray-300 hover:text-white">Services</Link>
-            {servicesItems.map((item) => (
-              <Link key={item.path} to={item.path} className="block py-2.5 pl-4 text-sm text-gray-400 hover:text-white">{item.name}</Link>
-            ))}
-            <Link to={createPageUrl("About")} className="block py-3 text-gray-300 hover:text-white">About</Link>
-            {aboutItems.map((item) => (
-              <Link key={item.path} to={item.path} className="block py-2.5 pl-4 text-sm text-gray-400 hover:text-white">{item.name}</Link>
-            ))}
-            <Link to={createPageUrl("Contact")} className="block py-3 text-gray-300 hover:text-white">Contact</Link>
-            <Link to={createPageUrl("SWPPPChecker")} className="block py-3 text-orange-400 font-semibold">Free Consultation</Link>
-          </div>
-        )}
       </header>
+
+      {isMobileMenuOpen && (
+        <div className="fixed inset-0 z-50 bg-slate-950/95 backdrop-blur-md lg:hidden" data-testid="mobile-menu">
+          <div className="flex items-center justify-between px-6 h-20 border-b border-slate-800/50">
+            <div className="flex items-center gap-3">
+              <img src="/images/pe-logo.png" alt="Pacific Engineering Logo" className="h-12 w-12 rounded-md object-contain" />
+              <span className="text-white font-bold text-lg">Pacific Engineering</span>
+            </div>
+            <button onClick={() => setIsMobileMenuOpen(false)} className="text-white p-2" data-testid="btn-close-menu">
+              <X className="w-6 h-6" />
+            </button>
+          </div>
+
+          <nav className="flex flex-col px-6 py-4 space-y-0 overflow-y-auto" style={{ maxHeight: "calc(100vh - 5rem)" }}>
+            <Link to={createPageUrl("Home")} className="text-lg text-slate-200 hover:text-cyan-400 py-3.5 border-b border-slate-800 transition-colors font-medium" data-testid="mobile-nav-home">Home</Link>
+
+            <div className="border-b border-slate-800">
+              <button
+                onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+                className="w-full flex items-center justify-between text-lg text-slate-200 hover:text-cyan-400 py-3.5 transition-colors font-medium"
+                data-testid="mobile-nav-services-toggle"
+              >
+                <span>Services</span>
+                <ChevronDown className={`w-5 h-5 transition-transform duration-200 ${mobileServicesOpen ? "rotate-180" : ""}`} />
+              </button>
+              {mobileServicesOpen && (
+                <div className="pb-2 space-y-0">
+                  <Link to={createPageUrl("ServicesOverview")} className="block py-2.5 pl-4 text-base text-cyan-400 font-medium" data-testid="mobile-nav-services-overview">All Services</Link>
+                  {servicesItems.map((item) => (
+                    <Link key={item.path} to={item.path} className="block py-2.5 pl-4 text-base text-slate-400 hover:text-white transition-colors" data-testid={`mobile-nav-service-${item.name.toLowerCase().replace(/\s+/g, "-")}`}>{item.name}</Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <div className="border-b border-slate-800">
+              <button
+                onClick={() => setMobileAboutOpen(!mobileAboutOpen)}
+                className="w-full flex items-center justify-between text-lg text-slate-200 hover:text-cyan-400 py-3.5 transition-colors font-medium"
+                data-testid="mobile-nav-about-toggle"
+              >
+                <span>About</span>
+                <ChevronDown className={`w-5 h-5 transition-transform duration-200 ${mobileAboutOpen ? "rotate-180" : ""}`} />
+              </button>
+              {mobileAboutOpen && (
+                <div className="pb-2 space-y-0">
+                  {aboutItems.map((item) => (
+                    <Link key={item.path} to={item.path} className="block py-2.5 pl-4 text-base text-slate-400 hover:text-white transition-colors" data-testid={`mobile-nav-about-${item.name.toLowerCase().replace(/\s+/g, "-")}`}>{item.name}</Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <Link to={createPageUrl("Contact")} className="text-lg text-slate-200 hover:text-cyan-400 py-3.5 border-b border-slate-800 transition-colors font-medium" data-testid="mobile-nav-contact">Contact</Link>
+
+            <div className="pt-6 space-y-3">
+              <Link to={createPageUrl("SWPPPChecker")} className="w-full py-4 rounded-lg bg-orange-600 text-white font-bold text-lg flex items-center justify-center gap-2 hover:bg-orange-500 transition-colors" data-testid="mobile-nav-consultation">
+                <PhoneCall className="w-5 h-5" /> Request a Quote
+              </Link>
+              <a href="tel:+14156894428" className="w-full py-4 rounded-lg bg-slate-700 text-white font-bold text-lg flex items-center justify-center gap-2 hover:bg-slate-600 transition-colors" data-testid="mobile-nav-call">
+                <Phone className="w-5 h-5" /> (415) 689-4428
+              </a>
+            </div>
+          </nav>
+        </div>
+      )}
 
       <main className="pt-20">
         {children}
@@ -193,7 +271,7 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
 
           <div className="pt-8 border-t border-white/10">
             <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-400">
-              <p>© {new Date().getFullYear()} Pacific Engineering. All rights reserved.</p>
+              <p>&copy; {new Date().getFullYear()} Pacific Engineering. All rights reserved.</p>
               <div className="flex gap-6">
                 <a href="#" className="hover:text-cyan-400 transition-colors">Privacy Policy</a>
                 <a href="#" className="hover:text-cyan-400 transition-colors">Terms of Service</a>

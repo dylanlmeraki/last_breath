@@ -116,7 +116,7 @@ const SERVICES = [
     title: "Construction Service",
     desc: "Fully licensed for any project from residential additions to public and governmental infrastructure.",
     items: ["Class A License", "Class B License", "Infrastructure & Public Works", "Residential, Commercial & Municipal"],
-    color: "orange" as const,
+    color: "blue" as const,
     page: "Construction",
   },
   {
@@ -132,7 +132,7 @@ const SERVICES = [
     title: "Inspections & Testing",
     desc: "Thorough inspections ensuring ongoing compliance with actionable improvement recommendations.",
     items: ["Structural Systems Inspections", "Stormwater Testing", "Materials Sampling & Testing", "Environmental Compliance"],
-    color: "blue" as const,
+    color: "teal" as const,
     page: "InspectionsTesting",
   },
   {
@@ -140,31 +140,31 @@ const SERVICES = [
     title: "Stormwater Planning",
     desc: "Custom plans from initial assessments, tailored BMP designs, and full regulatory compliance.",
     items: ["PE/QSD/QSP site assessment", "BMP design & maintenance", "Clear documentation", "Federal/state/local compliance"],
-    color: "teal" as const,
+    color: "emerald" as const,
     page: "Services",
   },
 ];
 
 const colorMap = {
-  orange: {
-    bg: "bg-orange-100", hoverBg: "group-hover:from-orange-400 group-hover:to-orange-600",
-    icon: "text-orange-600", check: "text-orange-500", border: "from-orange-500 to-amber-500",
-    titleHover: "group-hover:text-orange-600", h: "h-2",
+  blue: {
+    bg: "bg-blue-50", hoverBg: "group-hover:from-blue-500 group-hover:to-blue-700",
+    icon: "text-blue-600", check: "text-blue-500", border: "from-blue-600 to-blue-500",
+    titleHover: "group-hover:text-blue-600", h: "h-2",
   },
   cyan: {
-    bg: "bg-cyan-50", hoverBg: "group-hover:from-cyan-400 group-hover:to-blue-600",
-    icon: "text-cyan-700", check: "text-cyan-600", border: "from-cyan-500 to-blue-500",
-    titleHover: "group-hover:text-cyan-600", h: "h-1",
-  },
-  blue: {
-    bg: "bg-blue-50", hoverBg: "group-hover:from-blue-400 group-hover:to-cyan-600",
-    icon: "text-blue-600", check: "text-blue-500", border: "from-blue-600 to-cyan-500",
-    titleHover: "group-hover:text-blue-600", h: "h-1",
+    bg: "bg-cyan-50", hoverBg: "group-hover:from-cyan-500 group-hover:to-blue-600",
+    icon: "text-cyan-600", check: "text-cyan-500", border: "from-cyan-500 to-blue-500",
+    titleHover: "group-hover:text-cyan-600", h: "h-1.5",
   },
   teal: {
-    bg: "bg-cyan-50", hoverBg: "group-hover:from-cyan-500 group-hover:to-blue-700",
-    icon: "text-cyan-700", check: "text-cyan-600", border: "from-cyan-600 to-cyan-500",
-    titleHover: "group-hover:text-cyan-700", h: "h-2",
+    bg: "bg-teal-50", hoverBg: "group-hover:from-teal-500 group-hover:to-cyan-600",
+    icon: "text-teal-600", check: "text-teal-500", border: "from-teal-500 to-cyan-500",
+    titleHover: "group-hover:text-teal-600", h: "h-1.5",
+  },
+  emerald: {
+    bg: "bg-emerald-50", hoverBg: "group-hover:from-emerald-500 group-hover:to-teal-600",
+    icon: "text-emerald-600", check: "text-emerald-500", border: "from-emerald-500 to-teal-500",
+    titleHover: "group-hover:text-emerald-600", h: "h-2",
   },
 };
 
@@ -269,8 +269,8 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-br from-cyan-950/40 via-transparent to-orange-950/15 opacity-50" />
         </div>
 
-        <ParticleField className="z-[1] opacity-30" particleCount={60} />
-        <FloatingElements className="z-[3] opacity-30" />
+        <ParticleField className="z-[1] opacity-15 hidden md:block" particleCount={35} />
+        <FloatingElements className="z-[3] opacity-50" />
         <FloatingParticles />
 
         <div className="absolute top-1/3 left-1/5 w-64 md:w-96 h-64 md:h-96 bg-cyan-500/8 rounded-full blur-[100px] md:blur-[140px] pointer-events-none z-[1]" />
@@ -280,10 +280,10 @@ export default function Home() {
           <div className="mx-auto w-full max-w-5xl">
             <AnimatedSection direction="up" duration={1.1} className="text-center">
               <div className="relative">
-                <div className="absolute -inset-px bg-gradient-to-r from-cyan-500/10 via-blue-500/5 to-cyan-500/10 rounded-2xl sm:rounded-3xl blur-sm hidden sm:block" />
+                <div className="absolute -inset-px bg-gradient-to-r from-cyan-500/5 via-blue-500/3 to-cyan-500/5 rounded-2xl sm:rounded-3xl blur-sm hidden sm:block" />
 
-                <div className="relative bg-slate-900/70 sm:bg-slate-900/80 backdrop-blur-md rounded-2xl sm:rounded-3xl border border-white/[0.08] shadow-2xl overflow-hidden">
-                  <div className="h-1 sm:h-1.5 bg-gradient-to-r from-blue-600 via-cyan-500 to-cyan-400" />
+                <div className="relative bg-slate-950/30 sm:bg-slate-950/40 lg:bg-slate-950/35 backdrop-blur-[6px] rounded-2xl sm:rounded-3xl border border-white/[0.06] shadow-2xl overflow-hidden">
+                  <div className="h-0.5 sm:h-1 bg-gradient-to-r from-blue-600/80 via-cyan-500/80 to-cyan-400/80" />
 
                   <div className="px-5 py-8 sm:p-10 md:p-12 lg:p-16">
                     <div className="flex justify-center mb-5 sm:mb-8">
@@ -586,23 +586,6 @@ export default function Home() {
               </AnimatedSection>
             ))}
           </div>
-        </div>
-      </section>
-
-      <section className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 bg-white relative overflow-hidden" data-testid="section-testimonial">
-        <div className="max-w-4xl mx-auto text-center">
-          <AnimatedSection direction="up">
-            <div className="flex justify-center gap-1 mb-4 sm:mb-6">
-              {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 sm:w-6 sm:h-6 text-amber-400 fill-amber-400" />)}
-            </div>
-            <blockquote className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-slate-800 font-medium leading-relaxed mb-6 sm:mb-8 italic" data-testid="text-testimonial">
-              "Pacific Engineering's team was incredibly responsive and thorough. They handled our structural assessment, inspections, and stormwater planning — all under one roof. Saved us weeks of coordination."
-            </blockquote>
-            <div>
-              <div className="text-slate-900 font-bold text-base sm:text-lg">Mike Torres</div>
-              <div className="text-slate-500 text-sm sm:text-base">Senior PM · Bay Area Commercial Development</div>
-            </div>
-          </AnimatedSection>
         </div>
       </section>
 

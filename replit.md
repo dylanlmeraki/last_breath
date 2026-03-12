@@ -166,7 +166,9 @@ Third portal integrated into the monorepo at `client/src/portals/marketing/`.
 
 **Pages (15)**: Home, About, Contact, Services, ServicesOverview, InspectionsTesting, SpecialInspections, StructuralEngineering, Construction, ProjectGallery, ProjectDetail, PreviousWork, Blog, BlogPost, SWPPPChecker (Consultation)
 
-**Components (13)**: AnimatedGridBackground, AnimatedSection, BackToTop, BlueprintBackground, ChatBot, FloatingElements, FooterBackground, GlowingCard, ParticleField, ScrollFadeSection, SEO, ShinyButton
+**Components (13)**: AnimatedGridBackground, AnimatedSection, BackToTop, BlueprintBackground, ChatBot (draggable, scroll-aware, auto-prompt), FloatingElements (architectural blueprint SVGs), FooterBackground, GlowingCard, ParticleField, ScrollFadeSection, SEO, ShinyButton
+
+**Design System**: Cyan = precision engineering brand color; Orange = action/CTA only ("Request a Quote" always orange). Service cards use blue→cyan→teal→emerald gradient progression. Mobile nav uses fullscreen overlay with dropdown arrows for Services/About + phone call button next to hamburger.
 
 **Data flows**:
 - Internal BlogEditor → blog_posts DB → Marketing Blog page

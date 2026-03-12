@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { MessageSquare, X, Send, Phone, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -128,6 +128,16 @@ export default function ChatBot() {
     return saved?.memory || { projectType: null, location: null, timeline: null, agency: null };
   });
 
+  const [bottomOffset, setBottomOffset] = useState(24);
+  const [showPromptBubble, setShowPromptBubble] = useState(false);
+  const hasClickedRef = useRef(false);
+  const promptDismissedRef = useRef(false);
+
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragPos, setDragPos] = useState<{ x: number; y: number } | null>(null);
+  const dragStartRef = useRef<{ x: number; y: number; startX: number; startY: number } | null>(null);
+  const hasDraggedRef = useRef(false);
+
   useEffect(() => {
     saveState({ messages, memory });
   }, [messages, memory]);
@@ -135,6 +145,65 @@ export default function ChatBot() {
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
+
+  useEffect(() => {
+    const handler = () => {
+      if (isOpen) return;
+      const scrollY = window.scrollY;
+      const docH = document.documentElement.scrollHeight;
+      const winH = window.innerHeight;
+      const scrollPct = scrollY / Math.max(1, docH - winH);
+
+      if (scrollPct > 0.15) {
+        const raisePx = Math.min(scrollPct * 0.3, 0.25) * winH;
+        setBottomOffset(24 + raisePx);
+      } else {
+        setBottomOffset(24);
+      }
+
+      if (scrollPct > 0.92 && !hasClickedRef.current && !promptDismissedRef.current && !isOpen) {
+        setShowPromptBubble(true);
+      }
+    };
+    window.addEventListener("scroll", handler, { passive: true });
+    return () => window.removeEventListener("scroll", handler);
+  }, [isOpen]);
+
+  const handlePointerDown = useCallback((e: React.PointerEvent) => {
+    if (isOpen) return;
+    const el = e.currentTarget as HTMLElement;
+    el.setPointerCapture(e.pointerId);
+    const rect = el.getBoundingClientRect();
+    dragStartRef.current = { x: e.clientX, y: e.clientY, startX: rect.left, startY: rect.top };
+    hasDraggedRef.current = false;
+  }, [isOpen]);
+
+  const handlePointerMove = useCallback((e: React.PointerEvent) => {
+    if (!dragStartRef.current) return;
+    const dx = e.clientX - dragStartRef.current.x;
+    const dy = e.clientY - dragStartRef.current.y;
+    if (Math.abs(dx) > 5 || Math.abs(dy) > 5) {
+      hasDraggedRef.current = true;
+      setIsDragging(true);
+      const newX = dragStartRef.current.startX + dx;
+      const newY = dragStartRef.current.startY + dy;
+      const clampX = Math.max(0, Math.min(window.innerWidth - 56, newX));
+      const clampY = Math.max(0, Math.min(window.innerHeight - 56, newY));
+      setDragPos({ x: clampX, y: clampY });
+    }
+  }, []);
+
+  const handlePointerUp = useCallback((e: React.PointerEvent) => {
+    const el = e.currentTarget as HTMLElement;
+    el.releasePointerCapture(e.pointerId);
+    dragStartRef.current = null;
+    setIsDragging(false);
+    if (!hasDraggedRef.current) {
+      hasClickedRef.current = true;
+      setShowPromptBubble(false);
+      setIsOpen(true);
+    }
+  }, []);
 
   const handleAction = (action: string) => {
     if (action === "Schedule Consultation") {
@@ -208,21 +277,46 @@ export default function ChatBot() {
     setMemory({ projectType: null, location: null, timeline: null, agency: null });
   };
 
+  const iconStyle: React.CSSProperties = dragPos
+    ? { position: "fixed", left: dragPos.x, top: dragPos.y, bottom: "auto", right: "auto", zIndex: 60 }
+    : { position: "fixed", bottom: bottomOffset, right: 24, zIndex: 60, transition: isDragging ? "none" : "bottom 0.4s ease-out" };
+
   return (
     <>
       {!isOpen && (
-        <button
-          onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 flex items-center justify-center hover:-translate-y-1"
-          data-testid="button-chatbot-open"
-          aria-label="Open chat"
-        >
-          <MessageSquare className="w-6 h-6" />
-        </button>
+        <div style={iconStyle}>
+          {showPromptBubble && (
+            <div className="absolute -top-16 right-0 whitespace-nowrap bg-white text-slate-800 text-sm font-medium px-4 py-2.5 rounded-xl shadow-lg border border-slate-200 animate-bounce-gentle" data-testid="chatbot-prompt-bubble">
+              What are we building?
+              <button
+                onClick={(e) => { e.stopPropagation(); setShowPromptBubble(false); promptDismissedRef.current = true; }}
+                className="ml-2 text-slate-400 hover:text-slate-600"
+                data-testid="btn-dismiss-prompt"
+              >
+                <X className="w-3 h-3 inline" />
+              </button>
+              <div className="absolute -bottom-1 right-6 w-2.5 h-2.5 bg-white border-r border-b border-slate-200 rotate-45" />
+            </div>
+          )}
+          <button
+            onPointerDown={handlePointerDown}
+            onPointerMove={handlePointerMove}
+            onPointerUp={handlePointerUp}
+            className={cn(
+              "w-14 h-14 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-xl hover:shadow-2xl flex items-center justify-center touch-none select-none",
+              isDragging ? "scale-110 cursor-grabbing" : "cursor-pointer hover:-translate-y-1 transition-all duration-300"
+            )}
+            data-testid="button-chatbot-open"
+            aria-label="Open chat"
+          >
+            <MessageSquare className="w-6 h-6" />
+          </button>
+          <style>{`@keyframes bounce-gentle { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } } .animate-bounce-gentle { animation: bounce-gentle 2s ease-in-out infinite; }`}</style>
+        </div>
       )}
 
       {isOpen && (
-        <div className="fixed bottom-6 right-6 z-50 w-96 max-h-[600px] flex flex-col" data-testid="chatbot-panel">
+        <div className="fixed bottom-6 right-6 z-[60] w-[calc(100vw-3rem)] sm:w-96 max-h-[600px] flex flex-col" data-testid="chatbot-panel">
           <div className="rounded-xl shadow-2xl border border-gray-200 bg-white flex flex-col overflow-hidden max-h-[550px]">
             <div className="bg-slate-900 text-white px-4 py-3 flex items-center justify-between rounded-t-xl">
               <div className="flex items-center gap-2">
