@@ -71,7 +71,7 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
                 <img src="/images/pe-logo.png" alt="Pacific Engineering Logo" className="rounded-md h-14 w-14 object-contain relative z-10" />
               </div>
               <div>
-                <div className="font-bold text-white text-xl tracking-tight">Pacific Engineering</div>
+                <div className="font-bold text-white tracking-tight text-[24px]">Pacific Engineering</div>
                 <div className="text-xs font-medium text-blue-200 tracking-wide">Consulting Engineers & Contractors</div>
               </div>
             </Link>
@@ -133,7 +133,6 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
           </div>
         </div>
       </header>
-
       {isMobileMenuOpen && (
         <div className="fixed inset-0 z-50 bg-slate-950/95 backdrop-blur-md lg:hidden" data-testid="mobile-menu">
           <div className="flex items-center justify-between px-6 h-20 border-b border-slate-800/50">
@@ -199,11 +198,9 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
           </nav>
         </div>
       )}
-
       <main className="pt-20">
         {children}
       </main>
-
       <footer className="relative bg-slate-900 text-white overflow-hidden border-t-4 border-cyan-500">
         <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900" />
         <div className="absolute inset-0 bg-gradient-to-tr from-cyan-900/20 via-transparent to-orange-900/15" />
@@ -289,7 +286,6 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
           </div>
         </div>
       </footer>
-
       <ChatBot />
       <BackToTop />
     </div>
