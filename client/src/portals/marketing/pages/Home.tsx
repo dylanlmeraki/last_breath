@@ -116,7 +116,7 @@ const SERVICES = [
     title: "Construction Service",
     desc: "Fully licensed for any project from residential additions to public and governmental infrastructure.",
     items: ["Class A License", "Class B License", "Infrastructure & Public Works", "Residential, Commercial & Municipal"],
-    color: "blue" as const,
+    color: "orange" as const,
     page: "Construction",
   },
   {
@@ -132,7 +132,7 @@ const SERVICES = [
     title: "Inspections & Testing",
     desc: "Thorough inspections ensuring ongoing compliance with actionable improvement recommendations.",
     items: ["Structural Systems Inspections", "Stormwater Testing", "Materials Sampling & Testing", "Environmental Compliance"],
-    color: "teal" as const,
+    color: "blue" as const,
     page: "InspectionsTesting",
   },
   {
@@ -140,31 +140,31 @@ const SERVICES = [
     title: "Stormwater Planning",
     desc: "Custom plans from initial assessments, tailored BMP designs, and full regulatory compliance.",
     items: ["PE/QSD/QSP site assessment", "BMP design & maintenance", "Clear documentation", "Federal/state/local compliance"],
-    color: "emerald" as const,
+    color: "teal" as const,
     page: "Services",
   },
 ];
 
 const colorMap = {
-  blue: {
-    bg: "bg-blue-50", hoverBg: "group-hover:from-blue-500 group-hover:to-blue-700",
-    icon: "text-blue-600", check: "text-blue-500", border: "from-blue-600 to-blue-500",
-    titleHover: "group-hover:text-blue-600", h: "h-2",
+  orange: {
+    bg: "bg-orange-100", hoverBg: "group-hover:from-orange-400 group-hover:to-orange-600",
+    icon: "text-orange-600", check: "text-orange-500", border: "from-orange-500 to-amber-500",
+    titleHover: "group-hover:text-orange-600", h: "h-2",
   },
   cyan: {
-    bg: "bg-cyan-50", hoverBg: "group-hover:from-cyan-500 group-hover:to-blue-600",
-    icon: "text-cyan-600", check: "text-cyan-500", border: "from-cyan-500 to-blue-500",
-    titleHover: "group-hover:text-cyan-600", h: "h-1.5",
+    bg: "bg-cyan-50", hoverBg: "group-hover:from-cyan-400 group-hover:to-blue-600",
+    icon: "text-cyan-700", check: "text-cyan-600", border: "from-cyan-500 to-blue-500",
+    titleHover: "group-hover:text-cyan-600", h: "h-1",
+  },
+  blue: {
+    bg: "bg-blue-50", hoverBg: "group-hover:from-blue-400 group-hover:to-cyan-600",
+    icon: "text-blue-600", check: "text-blue-500", border: "from-blue-600 to-cyan-500",
+    titleHover: "group-hover:text-blue-600", h: "h-1",
   },
   teal: {
-    bg: "bg-teal-50", hoverBg: "group-hover:from-teal-500 group-hover:to-cyan-600",
-    icon: "text-teal-600", check: "text-teal-500", border: "from-teal-500 to-cyan-500",
-    titleHover: "group-hover:text-teal-600", h: "h-1.5",
-  },
-  emerald: {
-    bg: "bg-emerald-50", hoverBg: "group-hover:from-emerald-500 group-hover:to-teal-600",
-    icon: "text-emerald-600", check: "text-emerald-500", border: "from-emerald-500 to-teal-500",
-    titleHover: "group-hover:text-emerald-600", h: "h-2",
+    bg: "bg-cyan-50", hoverBg: "group-hover:from-cyan-500 group-hover:to-blue-700",
+    icon: "text-cyan-700", check: "text-cyan-600", border: "from-cyan-600 to-cyan-500",
+    titleHover: "group-hover:text-cyan-700", h: "h-2",
   },
 };
 
@@ -369,7 +369,7 @@ export default function Home() {
       <section className="py-12 sm:py-16 md:py-20 lg:py-28 px-4 sm:px-6 bg-white" data-testid="section-services">
         <div className="max-w-7xl mx-auto">
           <AnimatedSection direction="up" className="text-center mb-10 sm:mb-14 lg:mb-20">
-            <p className="uppercase tracking-widest sm:text-sm mb-3 sm:mb-4 text-[28px] font-black text-[#2563eb]">What We Do</p>
+            <p className="text-cyan-600 font-bold uppercase tracking-widest text-xs sm:text-sm mb-3 sm:mb-4">What We Do</p>
             <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 mb-4 sm:mb-6 tracking-tight" data-testid="text-services-title">
               Consulting Engineers & Contractors
             </h2>
@@ -553,6 +553,24 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <SectionDivider variant="gradient" from="dark" to="light" />
+      <section className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 bg-white relative overflow-hidden" data-testid="section-testimonial">
+        <div className="max-w-4xl mx-auto text-center">
+          <AnimatedSection direction="up">
+            <div className="flex justify-center gap-1 mb-4 sm:mb-6">
+              {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 sm:w-6 sm:h-6 text-amber-400 fill-amber-400" />)}
+            </div>
+            <blockquote className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-slate-800 font-medium leading-relaxed mb-6 sm:mb-8 italic" data-testid="text-testimonial">
+              "Pacific Engineering's team was incredibly responsive and thorough. They handled our structural assessment, inspections, and stormwater planning — all under one roof. Saved us weeks of coordination."
+            </blockquote>
+            <div>
+              <div className="text-slate-900 font-bold text-base sm:text-lg">Mike Torres</div>
+              <div className="text-slate-500 text-sm sm:text-base">Senior PM · Bay Area Commercial Development</div>
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+      <SectionDivider variant="angled" from="light" to="dark" />
       <section className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 bg-slate-900 relative overflow-hidden" data-testid="section-cta">
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1541888082416-a711bc141c2c?w=1600')] bg-cover bg-center opacity-[0.06]" />
         <div className="absolute inset-0 bg-gradient-to-b from-slate-900/70 to-slate-950/90" />
