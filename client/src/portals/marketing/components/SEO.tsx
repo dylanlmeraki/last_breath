@@ -20,7 +20,7 @@ export default function SEO({
   const siteName = "Pacific Engineering & Construction Inc.";
   const baseUrl = typeof window !== "undefined" ? window.location.origin : "";
   const fullUrl = url ? `${baseUrl}${url}` : typeof window !== "undefined" ? window.location.href : "";
-  const ogImage = image || "/Logo.jpeg";
+  const ogImage = image || "/images/pe-logo.png";
 
   const seoTitle = title || "Pacific Engineering & Construction Inc.";
   const seoDescription = description || "Professional civil engineering, construction management, and SWPPP services in the San Francisco Bay Area.";

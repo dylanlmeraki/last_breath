@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { createPageUrl } from "../lib/utils";
 import {
@@ -11,13 +11,169 @@ import {
   PhoneCall,
   Clock,
   Users,
+  Star,
+  Award,
+  Building2,
+  HardHat,
+  Ruler,
+  Droplets,
+  MapPin,
+  Zap,
+  Target,
+  TrendingUp,
 } from "lucide-react";
 import { ShinyButton } from "../components/ShinyButton";
 import AnimatedSection from "../components/AnimatedSection";
 import SEO from "../components/SEO";
-import BlueprintBackground from "../components/BlueprintBackground";
 import ParticleField from "../components/ParticleField";
 import FloatingElements from "../components/FloatingElements";
+
+function useInView(threshold = 0.15) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [inView, setInView] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) { setInView(true); obs.disconnect(); } },
+      { threshold }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [threshold]);
+  return { ref, inView };
+}
+
+function AnimatedCounter({ target, suffix = "", duration = 2000 }: { target: number; suffix?: string; duration?: number }) {
+  const { ref, inView } = useInView(0.3);
+  const [count, setCount] = useState(0);
+  useEffect(() => {
+    if (!inView) return;
+    let start = 0;
+    const step = Math.max(1, Math.floor(target / 60));
+    const interval = setInterval(() => {
+      start += step;
+      if (start >= target) { setCount(target); clearInterval(interval); }
+      else setCount(start);
+    }, duration / 60);
+    return () => clearInterval(interval);
+  }, [inView, target, duration]);
+  return <span ref={ref}>{inView ? `${count.toLocaleString()}${suffix}` : `0${suffix}`}</span>;
+}
+
+function BlueprintGrid() {
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(6,182,212,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.03)_1px,transparent_1px)] bg-[size:60px_60px]" />
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(6,182,212,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.015)_1px,transparent_1px)] bg-[size:12px_12px]" />
+    </div>
+  );
+}
+
+function FloatingParticles() {
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none hidden md:block">
+      {[...Array(8)].map((_, i) => (
+        <div
+          key={i}
+          className="absolute w-1 h-1 bg-cyan-400/20 rounded-full"
+          style={{
+            left: `${15 + i * 10}%`,
+            top: `${20 + (i % 3) * 25}%`,
+            animation: `pe-float ${4 + i * 0.5}s ease-in-out infinite alternate`,
+            animationDelay: `${i * 0.3}s`,
+          }}
+        />
+      ))}
+      <style>{`@keyframes pe-float { 0% { transform: translateY(0px) scale(1); opacity: 0.3; } 100% { transform: translateY(-30px) scale(1.5); opacity: 0.6; } }`}</style>
+    </div>
+  );
+}
+
+function MobileStickyBar() {
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const handler = () => setVisible(window.scrollY > 600);
+    window.addEventListener("scroll", handler, { passive: true });
+    return () => window.removeEventListener("scroll", handler);
+  }, []);
+  if (!visible) return null;
+  return (
+    <div className="fixed bottom-0 left-0 right-0 z-30 bg-slate-900/95 backdrop-blur-md border-t border-white/10 px-4 py-3 flex gap-3 sm:hidden" data-testid="mobile-sticky-bar">
+      <a href="tel:+14156894428" className="flex-1 py-3 rounded-lg bg-white/10 text-white font-bold text-sm flex items-center justify-center gap-2 active:bg-white/20 transition-colors" data-testid="btn-sticky-call">
+        <Phone className="w-4 h-4 text-cyan-400" /> Call Now
+      </a>
+      <Link to={createPageUrl("Consultation")} className="flex-1 py-3 rounded-lg bg-orange-600 text-white font-bold text-sm flex items-center justify-center gap-2 active:bg-orange-500 transition-colors shadow-md" data-testid="btn-sticky-quote">
+        <PhoneCall className="w-4 h-4" /> Get Quote
+      </Link>
+    </div>
+  );
+}
+
+const SERVICES = [
+  {
+    icon: Shield,
+    title: "Construction Service",
+    desc: "Fully licensed for any project from residential additions to public and governmental infrastructure.",
+    items: ["Class A License", "Class B License", "Infrastructure & Public Works", "Residential, Commercial & Municipal"],
+    color: "orange" as const,
+    page: "Construction",
+  },
+  {
+    icon: Ruler,
+    title: "Engineering Consulting",
+    desc: "Professional expertise across civil and structural disciplines with innovative project solutions.",
+    items: ["Civil Engineering Consulting", "Structural Consulting", "Site Assessment & Design", "Development Management"],
+    color: "cyan" as const,
+    page: "StructuralEngineering",
+  },
+  {
+    icon: ClipboardCheck,
+    title: "Inspections & Testing",
+    desc: "Thorough inspections ensuring ongoing compliance with actionable improvement recommendations.",
+    items: ["Structural Systems Inspections", "Stormwater Testing", "Materials Sampling & Testing", "Environmental Compliance"],
+    color: "blue" as const,
+    page: "InspectionsTesting",
+  },
+  {
+    icon: Droplets,
+    title: "Stormwater Planning",
+    desc: "Custom plans from initial assessments, tailored BMP designs, and full regulatory compliance.",
+    items: ["PE/QSD/QSP site assessment", "BMP design & maintenance", "Clear documentation", "Federal/state/local compliance"],
+    color: "teal" as const,
+    page: "Services",
+  },
+];
+
+const colorMap = {
+  orange: {
+    bg: "bg-orange-100", hoverBg: "group-hover:from-orange-400 group-hover:to-orange-600",
+    icon: "text-orange-600", check: "text-orange-500", border: "from-orange-500 to-amber-500",
+    titleHover: "group-hover:text-orange-600", h: "h-2",
+  },
+  cyan: {
+    bg: "bg-cyan-50", hoverBg: "group-hover:from-cyan-400 group-hover:to-blue-600",
+    icon: "text-cyan-700", check: "text-cyan-600", border: "from-cyan-500 to-blue-500",
+    titleHover: "group-hover:text-cyan-600", h: "h-1",
+  },
+  blue: {
+    bg: "bg-blue-50", hoverBg: "group-hover:from-blue-400 group-hover:to-cyan-600",
+    icon: "text-blue-600", check: "text-blue-500", border: "from-blue-600 to-cyan-500",
+    titleHover: "group-hover:text-blue-600", h: "h-1",
+  },
+  teal: {
+    bg: "bg-cyan-50", hoverBg: "group-hover:from-cyan-500 group-hover:to-blue-700",
+    icon: "text-cyan-700", check: "text-cyan-600", border: "from-cyan-600 to-cyan-500",
+    titleHover: "group-hover:text-cyan-700", h: "h-2",
+  },
+};
+
+const PROCESS_STEPS = [
+  { icon: Phone, title: "Initial Contact", desc: "Call or request a quote — we respond same-day to discuss your project needs." },
+  { icon: Target, title: "Site Assessment", desc: "Our licensed engineers evaluate your site conditions and project requirements." },
+  { icon: FileText, title: "Proposal & Plans", desc: "Detailed scope, timeline, and engineering plans tailored to your project." },
+  { icon: HardHat, title: "Execution", desc: "Our integrated team handles engineering, inspections, and construction." },
+];
 
 export default function Home() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -88,15 +244,16 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white" data-testid="page-home">
+    <div className="min-h-screen bg-white antialiased" data-testid="page-home">
       <SEO
         title="Pacific Engineering & Construction Inc. - Consulting Engineers and Contractors"
         description="SF Bay structural engineering, special inspections, materials testing & SWPPP stormwater compliance—supporting permit-ready construction with fast, reliable service."
         keywords="SF Bay structural engineering, structural engineer San Francisco, special inspections Bay Area, special inspections SF, construction materials testing Bay Area, materials testing San Francisco, SWPPP Bay Area, SWPPP San Francisco, stormwater compliance Bay Area, QSD QSP Bay Area, consulting engineers Bay Area, Pacific Engineering & Construction"
         url="/"
       />
+      <MobileStickyBar />
 
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-slate-950 py-12 sm:py-16 md:py-20 lg:py-24" data-testid="section-hero">
+      <section className="relative min-h-[calc(100svh-5rem)] flex items-center justify-center overflow-hidden bg-slate-950 py-8 sm:py-12 md:py-16 lg:py-20" data-testid="section-hero">
         <div className="absolute inset-0">
           <video
             ref={videoRef}
@@ -104,57 +261,61 @@ export default function Home() {
             muted
             preload="auto"
             playsInline
-            className="absolute inset-0 w-full h-full object-cover opacity-72"
+            className="absolute inset-0 w-full h-full object-cover opacity-[0.72]"
           >
             <source src="/images/hero-video.mp4" type="video/mp4" />
           </video>
           <div className="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-slate-900/60 to-slate-950/90 opacity-30" />
-          <div className="absolute inset-0 bg-gradient-to-r from-cyan-950/30 via-transparent to-orange-950/20 opacity-50" />
+          <div className="absolute inset-0 bg-gradient-to-br from-cyan-950/40 via-transparent to-orange-950/15 opacity-50" />
         </div>
 
         <ParticleField className="z-[1] opacity-30" particleCount={60} />
-        <BlueprintBackground className="z-[2]" />
         <FloatingElements className="z-[3] opacity-30" />
+        <FloatingParticles />
 
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none z-[1]" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-orange-500/10 rounded-full blur-[120px] pointer-events-none z-[1]" />
+        <div className="absolute top-1/3 left-1/5 w-64 md:w-96 h-64 md:h-96 bg-cyan-500/8 rounded-full blur-[100px] md:blur-[140px] pointer-events-none z-[1]" />
+        <div className="absolute bottom-1/4 right-1/5 w-48 md:w-80 h-48 md:h-80 bg-orange-500/5 rounded-full blur-[80px] md:blur-[120px] pointer-events-none z-[1]" />
 
-        <div className="relative z-10 w-full px-4 sm:px-10">
-          <div className="mx-auto w-full max-w-5xl text-center">
-            <AnimatedSection direction="up" duration={1.1} className="relative">
+        <div className="relative z-10 w-full px-4 sm:px-6 lg:px-10">
+          <div className="mx-auto w-full max-w-5xl">
+            <AnimatedSection direction="up" duration={1.1} className="text-center">
               <div className="relative">
-                <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 via-cyan-500 to-blue-500 rounded-2xl opacity-5 blur-sm" />
+                <div className="absolute -inset-px bg-gradient-to-r from-cyan-500/10 via-blue-500/5 to-cyan-500/10 rounded-2xl sm:rounded-3xl blur-sm hidden sm:block" />
 
-                <div className="relative bg-slate-900/80 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl overflow-hidden">
-                  <div className="h-2 bg-gradient-to-r from-blue-600 via-cyan-500 to-cyan-400" />
+                <div className="relative bg-slate-900/70 sm:bg-slate-900/80 backdrop-blur-md rounded-2xl sm:rounded-3xl border border-white/[0.08] shadow-2xl overflow-hidden">
+                  <div className="h-1 sm:h-1.5 bg-gradient-to-r from-blue-600 via-cyan-500 to-cyan-400" />
 
-                  <div className="p-6 sm:p-10 md:p-12 lg:p-16">
-                    <h1 className="text-white font-bold tracking-tighter leading-[1.1] text-4xl sm:text-5xl md:text-7xl lg:text-8xl mb-6" data-testid="text-hero-title">
-                      <span className="text-white">
-                        Pacific Engineering
-                      </span>{" "}
+                  <div className="px-5 py-8 sm:p-10 md:p-12 lg:p-16">
+                    <div className="flex justify-center mb-5 sm:mb-8">
+                      <img
+                        src="/images/pe-logo.png"
+                        alt="Pacific Engineering Logo"
+                        className="h-16 w-16 sm:h-20 sm:w-20 lg:h-24 lg:w-24 rounded-xl lg:rounded-2xl object-contain shadow-lg border border-cyan-500/15"
+                      />
+                    </div>
+
+                    <h1 className="text-white font-bold tracking-tight leading-[1.08] text-[1.75rem] sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl mb-3 sm:mb-5" data-testid="text-hero-title">
+                      <span className="text-white">Pacific Engineering</span>
                       <br />
                       <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent">
                         & Construction Inc.
                       </span>
                     </h1>
 
-                    <div className="flex items-center justify-center gap-4 my-6 sm:my-8 md:my-10">
-                      <div className="h-px w-16 sm:w-24 bg-gradient-to-r from-transparent to-cyan-500" />
-                      <div className="w-3 h-3 rotate-45 bg-orange-400" />
-                      <div className="h-px w-16 sm:w-24 bg-gradient-to-l from-transparent to-cyan-500" />
+                    <div className="flex items-center justify-center gap-3 sm:gap-4 my-4 sm:my-6">
+                      <div className="h-px w-10 sm:w-20 bg-gradient-to-r from-transparent to-cyan-500/60" />
+                      <div className="w-2 h-2 sm:w-3 sm:h-3 rotate-45 bg-orange-400" />
+                      <div className="h-px w-10 sm:w-20 bg-gradient-to-l from-transparent to-cyan-500/60" />
                     </div>
 
-                    <div className="mb-8 sm:mb-10 md:mb-14">
-                      <p className="text-slate-300 mx-auto font-light tracking-wide text-base sm:text-lg md:text-2xl" data-testid="text-hero-subtitle">
-                        Consulting Engineers & Contractors
-                      </p>
-                    </div>
+                    <p className="text-slate-300/90 mx-auto font-light tracking-wide text-sm sm:text-lg md:text-xl lg:text-2xl mb-6 sm:mb-8 max-w-2xl" data-testid="text-hero-subtitle">
+                      Bay Area Consulting Engineers & Contractors
+                    </p>
 
-                    <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mb-6">
-                      <Link to={createPageUrl("Consultation")} data-testid="link-hero-quote">
+                    <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-5 sm:mb-6">
+                      <Link to={createPageUrl("Consultation")} className="w-full sm:w-auto" data-testid="link-hero-quote">
                         <ShinyButton
-                          className="group inline-flex items-center justify-center gap-2 whitespace-nowrap text-white font-bold tracking-tight text-lg px-8 py-5 rounded-lg shadow-xl shadow-orange-600/30 hover:shadow-orange-500/50 hover:-translate-y-1 active:scale-95 transition-all duration-300"
+                          className="group w-full inline-flex items-center justify-center gap-2 whitespace-nowrap text-white font-bold tracking-tight text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-5 rounded-xl shadow-xl shadow-orange-600/25 hover:shadow-orange-500/40 hover:-translate-y-0.5 active:scale-[0.97] transition-all duration-200"
                           style={{
                             "--shiny-cta-bg": "#ea580c",
                             "--shiny-cta-bg-subtle": "rgba(234, 88, 12, 0.2)",
@@ -166,53 +327,46 @@ export default function Home() {
                         >
                           <PhoneCall className="w-5 h-5" />
                           Request a Quote
-                          <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                          <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
                         </ShinyButton>
                       </Link>
-
-                      <Link to={createPageUrl("Consultation")} data-testid="link-hero-consultation">
+                      <Link to={createPageUrl("Consultation")} className="w-full sm:w-auto" data-testid="link-hero-consultation">
                         <ShinyButton
-                          className="group inline-flex items-center justify-center gap-2 whitespace-nowrap text-white font-bold tracking-tight text-lg px-8 py-5 rounded-lg shadow-xl hover:-translate-y-1 active:scale-95 transition-all duration-300"
+                          className="group w-full inline-flex items-center justify-center gap-2 whitespace-nowrap text-white font-bold tracking-tight text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-5 rounded-xl shadow-xl shadow-cyan-600/15 hover:shadow-cyan-500/30 hover:-translate-y-0.5 active:scale-[0.97] transition-all duration-200"
                           style={{
-                            "--shiny-cta-bg": "#334155",
-                            "--shiny-cta-bg-subtle": "rgba(51, 65, 85, 0.2)",
-                            "--shiny-cta-highlight": "#475569",
-                            "--shiny-cta-highlight-subtle": "#64748b",
-                            "--shiny-cta-shadow": "rgba(71, 85, 105, 0.4)",
-                            "--shiny-cta-glow": "rgba(100, 116, 139, 0.55)",
+                            "--shiny-cta-bg": "#0891b2",
+                            "--shiny-cta-bg-subtle": "rgba(8, 145, 178, 0.2)",
+                            "--shiny-cta-highlight": "#06b6d4",
+                            "--shiny-cta-highlight-subtle": "#22d3ee",
+                            "--shiny-cta-shadow": "rgba(6, 182, 212, 0.4)",
+                            "--shiny-cta-glow": "rgba(34, 211, 238, 0.55)",
                           }}
                         >
                           <Clock className="w-5 h-5" />
                           Schedule a Consult
-                          <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                          <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
                         </ShinyButton>
                       </Link>
                     </div>
 
-                    <p className="text-slate-400 text-sm md:text-base tracking-wide mb-12 sm:mb-16" data-testid="text-hero-trust">
+                    <p className="text-slate-400/80 text-xs sm:text-sm md:text-base tracking-wide mb-8 sm:mb-12" data-testid="text-hero-trust">
                       Same-day response · No obligations · 40+ years Bay Area expertise
                     </p>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
-                      <div className="group relative rounded-xl bg-white/5 border border-white/10 hover:border-cyan-500/40 transition-all duration-300 hover:bg-white/10 p-6 flex flex-col items-center justify-center" data-testid="stat-experience">
-                        <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity" />
-                        <div className="relative">
-                          <div className="text-white font-bold mb-2 text-3xl sm:text-4xl">40+</div>
-                          <div className="text-slate-400 tracking-tight font-medium text-sm sm:text-base">Years Experience</div>
+                    <div className="grid grid-cols-3 gap-2 sm:gap-4 md:gap-6">
+                      <div className="group relative rounded-lg sm:rounded-xl bg-white/[0.04] border border-white/[0.08] hover:border-cyan-500/30 transition-all duration-300 hover:bg-white/[0.07] p-3 sm:p-5 md:p-6 flex flex-col items-center justify-center" data-testid="stat-experience">
+                        <div className="text-white font-bold mb-0.5 sm:mb-2 text-2xl sm:text-3xl md:text-4xl">
+                          <AnimatedCounter target={40} suffix="+" />
                         </div>
+                        <div className="text-cyan-400/90 tracking-tight font-medium text-[10px] sm:text-sm">Years Experience</div>
                       </div>
-
-                      <div className="group relative rounded-xl bg-slate-800/80 border-2 border-cyan-500/40 shadow-xl p-6 md:scale-105 flex flex-col items-center justify-center z-10" data-testid="stat-full-service">
-                        <div className="text-white font-bold mb-2 text-3xl sm:text-4xl">Full-Service</div>
-                        <div className="text-cyan-400 tracking-tight font-medium text-sm sm:text-base">Vertically Integrated</div>
+                      <div className="group relative rounded-lg sm:rounded-xl bg-slate-800/60 border-2 border-cyan-500/30 shadow-lg sm:shadow-xl p-3 sm:p-5 md:p-6 sm:scale-105 flex flex-col items-center justify-center z-10" data-testid="stat-full-service">
+                        <div className="text-white font-bold mb-0.5 sm:mb-2 text-lg sm:text-2xl md:text-3xl lg:text-4xl">Full-Service</div>
+                        <div className="text-cyan-400/90 tracking-tight font-medium text-[10px] sm:text-sm">Vertically Integrated</div>
                       </div>
-
-                      <div className="group relative rounded-xl bg-white/5 border border-white/10 hover:border-cyan-500/40 transition-all duration-300 hover:bg-white/10 p-6 flex flex-col items-center justify-center" data-testid="stat-full-scale">
-                        <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity" />
-                        <div className="relative">
-                          <div className="text-white font-bold mb-2 text-3xl sm:text-4xl">Full-Scale</div>
-                          <div className="text-slate-400 tracking-tight font-medium text-sm sm:text-base">Res, Comm & Infrastructure</div>
-                        </div>
+                      <div className="group relative rounded-lg sm:rounded-xl bg-white/[0.04] border border-white/[0.08] hover:border-cyan-500/30 transition-all duration-300 hover:bg-white/[0.07] p-3 sm:p-5 md:p-6 flex flex-col items-center justify-center" data-testid="stat-full-scale">
+                        <div className="text-white font-bold mb-0.5 sm:mb-2 text-lg sm:text-2xl md:text-3xl lg:text-4xl">Full-Scale</div>
+                        <div className="text-cyan-400/90 tracking-tight font-medium text-[10px] sm:text-sm leading-tight text-center">Res, Comm & Infra</div>
                       </div>
                     </div>
                   </div>
@@ -222,306 +376,191 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
-          <div className="w-6 h-10 rounded-full border-2 border-white/20 flex items-start justify-center p-2">
-            <div className="w-1 h-3 bg-white/50 rounded-full animate-bounce" />
+        <div className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-10 hidden sm:block">
+          <div className="w-6 h-10 rounded-full border-2 border-white/15 flex items-start justify-center p-2">
+            <div className="w-1 h-3 bg-white/40 rounded-full animate-bounce" />
           </div>
         </div>
       </section>
 
-      <div className="h-1 bg-gradient-to-r from-cyan-500/90 to-orange-400/90" />
+      <div className="h-0.5 sm:h-1 bg-gradient-to-r from-cyan-500 via-blue-500 to-orange-400" />
 
-      <section className="py-24 sm:py-32 px-6 bg-white border-b border-slate-200" data-testid="section-services">
+      <section className="py-12 sm:py-16 md:py-20 lg:py-28 px-4 sm:px-6 bg-white" data-testid="section-services">
         <div className="max-w-7xl mx-auto">
-          <AnimatedSection direction="up" className="text-center mb-16 sm:mb-20">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 mb-6 tracking-tight" data-testid="text-services-title">
+          <AnimatedSection direction="up" className="text-center mb-10 sm:mb-14 lg:mb-20">
+            <p className="text-cyan-600 font-bold uppercase tracking-widest text-xs sm:text-sm mb-3 sm:mb-4">What We Do</p>
+            <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 mb-4 sm:mb-6 tracking-tight" data-testid="text-services-title">
               Consulting Engineers & Contractors
             </h2>
-            <div className="w-32 h-1.5 bg-gradient-to-r from-cyan-500 to-orange-400 mx-auto mb-8 rounded-full"></div>
-            <p className="text-xl md:text-2xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
-              Full-scale civil and structural engineering and construction plans
-              developed and implemented by our teams of in-house Engineers,
-              QSD/QSPs, and construction experts.
+            <div className="w-20 sm:w-32 h-1 sm:h-1.5 bg-gradient-to-r from-cyan-500 to-orange-400 mx-auto mb-4 sm:mb-8 rounded-full" />
+            <p className="text-base sm:text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+              Full-scale engineering and construction by our in-house teams of Engineers, QSD/QSPs, and construction experts.
             </p>
           </AnimatedSection>
 
-          <div className="grid md:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
-            <Link
-              to={createPageUrl("Construction")}
-              className="block group h-full"
-              data-testid="link-construction-service"
-            >
-              <AnimatedSection direction="right" delay={0.2} className="h-full">
-                <div className="h-full bg-white rounded-2xl shadow-xl hover:shadow-2xl border border-slate-200 transition-all duration-300 overflow-hidden relative z-10 cursor-pointer group-hover:-translate-y-2">
-                  <div className="h-2 bg-gradient-to-r from-orange-500 to-amber-500" />
-                  <div className="p-10 flex flex-col items-center text-center">
-                    <div className="bg-orange-100 rounded-2xl w-24 h-24 flex items-center justify-center mb-8 group-hover:bg-gradient-to-br group-hover:from-orange-400 group-hover:to-orange-600 group-hover:shadow-lg group-hover:shadow-orange-500/40 transition-all duration-300">
-                      <Shield className="w-12 h-12 text-orange-600 group-hover:text-white transition-colors" />
+          <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 max-w-6xl mx-auto">
+            {SERVICES.map((svc, idx) => {
+              const c = colorMap[svc.color];
+              const Icon = svc.icon;
+              return (
+                <AnimatedSection key={svc.title} direction={idx % 2 === 0 ? "right" : "left"} delay={0.1 + idx * 0.1} className="h-full">
+                  <Link to={createPageUrl(svc.page)} className="block group h-full" data-testid={`link-${svc.title.toLowerCase().replace(/\s+/g, "-")}`}>
+                    <div className={`h-full bg-white rounded-xl sm:rounded-2xl shadow-md sm:shadow-lg hover:shadow-xl border border-slate-100 transition-all duration-300 overflow-hidden cursor-pointer hover:-translate-y-1 sm:hover:-translate-y-2`}>
+                      <div className={`${c.h} bg-gradient-to-r ${c.border}`} />
+                      <div className="p-5 sm:p-8 lg:p-10 flex flex-col items-center text-center">
+                        <div className={`${c.bg} rounded-xl sm:rounded-2xl w-14 h-14 sm:w-20 sm:h-20 lg:w-24 lg:h-24 flex items-center justify-center mb-4 sm:mb-6 lg:mb-8 group-hover:bg-gradient-to-br ${c.hoverBg} group-hover:shadow-lg transition-all duration-300`}>
+                          <Icon className={`w-7 h-7 sm:w-10 sm:h-10 lg:w-12 lg:h-12 ${c.icon} group-hover:text-white transition-colors`} />
+                        </div>
+                        <h3 className={`text-slate-900 text-lg sm:text-xl lg:text-2xl font-bold mb-2 sm:mb-4 uppercase tracking-wider ${c.titleHover} transition-colors`}>
+                          {svc.title}
+                        </h3>
+                        <p className="text-slate-600 mb-4 sm:mb-6 lg:mb-8 leading-relaxed text-sm sm:text-base lg:text-lg">{svc.desc}</p>
+                        <ul className="space-y-2 sm:space-y-3 w-full">
+                          {svc.items.map((item, i) => (
+                            <li key={i} className="flex items-center gap-2 sm:gap-3 text-slate-600 text-left">
+                              <CheckCircle className={`w-4 h-4 sm:w-5 sm:h-5 ${c.check} flex-shrink-0`} />
+                              <span className="font-medium text-sm sm:text-base">{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
-                    <h3 className="text-slate-900 text-2xl font-bold mb-4 uppercase tracking-wider group-hover:text-orange-600 transition-colors">
-                      Construction Service
-                    </h3>
-                    <p className="text-slate-600 mb-8 leading-relaxed text-lg">
-                      We are fully licensed and ready to take on any and all work from residential additions, multi-unit residential, commercial mixed-use, up to public and governmental infrastructure.
-                    </p>
-                    <ul className="space-y-4 w-full flex flex-col items-center">
-                      {[
-                        "Class A License",
-                        "Class B License",
-                        "Infrastructure & Public Works",
-                        "Residential, Commercial, and Municipal Infrastructure"
-                      ].map((item, i) => (
-                        <li key={i} className="flex items-center justify-center gap-3 text-slate-700 w-full">
-                          <CheckCircle className="w-6 h-6 text-orange-500 flex-shrink-0" />
-                          <span className="font-medium text-lg">{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </AnimatedSection>
-            </Link>
-
-            <Link
-              to={createPageUrl("StructuralEngineering")}
-              className="block group h-full"
-              data-testid="link-engineering-consulting"
-            >
-              <AnimatedSection direction="right" delay={0.4} className="h-full">
-                <div className="h-full bg-slate-50/50 rounded-2xl shadow-md hover:shadow-xl border border-slate-100 transition-all duration-300 overflow-hidden cursor-pointer group-hover:-translate-y-2">
-                  <div className="h-1 bg-gradient-to-r from-amber-500 to-stone-400 opacity-80" />
-                  <div className="p-10 flex flex-col items-center text-center">
-                    <div className="bg-amber-100 rounded-2xl w-24 h-24 flex items-center justify-center mb-8 group-hover:bg-gradient-to-br group-hover:from-amber-400 group-hover:to-amber-600 group-hover:shadow-lg group-hover:shadow-amber-500/40 transition-all duration-300">
-                      <ClipboardCheck className="w-12 h-12 text-amber-600 group-hover:text-white transition-colors" />
-                    </div>
-                    <h3 className="text-slate-900 text-2xl font-bold mb-4 uppercase tracking-wider group-hover:text-amber-600 transition-colors">
-                      Engineering Consulting
-                    </h3>
-                    <p className="text-slate-600 mb-8 leading-relaxed text-lg">
-                      Professional engineering expertise across civil and structural disciplines, providing innovative solutions and implementation to meet the unique needs of your project.
-                    </p>
-                    <ul className="space-y-4 w-full flex flex-col items-center">
-                      {[
-                        "Civil Engineering Consulting",
-                        "Structural Consulting",
-                        "Site Assessment & Design",
-                        "Development Management & Support"
-                      ].map((item, i) => (
-                        <li key={i} className="flex items-center justify-center gap-3 text-slate-600 w-full">
-                          <CheckCircle className="w-6 h-6 text-amber-500 flex-shrink-0" />
-                          <span className="font-medium text-lg">{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </AnimatedSection>
-            </Link>
-
-            <Link
-              to={createPageUrl("InspectionsTesting")}
-              className="block group h-full"
-              data-testid="link-inspections-testing"
-            >
-              <AnimatedSection direction="left" delay={0.3} className="h-full">
-                <div className="h-full bg-slate-50/50 rounded-2xl shadow-md hover:shadow-xl border border-slate-100 transition-all duration-300 overflow-hidden cursor-pointer group-hover:-translate-y-2">
-                  <div className="h-1 bg-gradient-to-r from-cyan-600 to-blue-500 opacity-80" />
-                  <div className="p-10 flex flex-col items-center text-center">
-                    <div className="bg-cyan-50 rounded-2xl w-24 h-24 flex items-center justify-center mb-8 group-hover:bg-gradient-to-br group-hover:from-cyan-400 group-hover:to-cyan-600 group-hover:shadow-lg group-hover:shadow-cyan-500/40 transition-all duration-300">
-                      <ClipboardCheck className="w-12 h-12 text-cyan-700 group-hover:text-white transition-colors" />
-                    </div>
-                    <h3 className="text-slate-900 text-2xl font-bold mb-4 uppercase tracking-wider group-hover:text-cyan-600 transition-colors">
-                      Inspections & Testing
-                    </h3>
-                    <p className="text-slate-600 mb-8 leading-relaxed text-lg">
-                      Thorough inspections to ensure ongoing compliance with recommendation and implementation of areas for improvement.
-                    </p>
-                    <ul className="space-y-4 w-full flex flex-col items-center">
-                      {[
-                        "Structural Systems Inspections",
-                        "Stormwater Testing and Inspections",
-                        "Materials Sampling & Testing",
-                        "Environmental Compliance"
-                      ].map((item, i) => (
-                        <li key={i} className="flex items-center justify-center gap-3 text-slate-600 w-full">
-                          <CheckCircle className="w-6 h-6 text-cyan-600 flex-shrink-0" />
-                          <span className="font-medium text-lg">{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </AnimatedSection>
-            </Link>
-
-            <Link
-              to={createPageUrl("Services")}
-              className="block group h-full"
-              data-testid="link-stormwater-planning"
-            >
-              <AnimatedSection direction="left" delay={0.1} className="h-full">
-                <div className="h-full bg-white rounded-2xl shadow-xl hover:shadow-2xl border border-slate-200 transition-all duration-300 overflow-hidden relative z-10 cursor-pointer group-hover:-translate-y-2">
-                  <div className="h-2 bg-gradient-to-r from-slate-600 to-slate-500" />
-                  <div className="p-10 flex flex-col items-center text-center">
-                    <div className="bg-slate-100 rounded-2xl w-24 h-24 flex items-center justify-center mb-8 group-hover:bg-gradient-to-br group-hover:from-slate-500 group-hover:to-slate-700 group-hover:shadow-lg group-hover:shadow-slate-500/40 transition-all duration-300">
-                      <FileText className="w-12 h-12 text-slate-700 group-hover:text-white transition-colors" />
-                    </div>
-                    <h3 className="text-slate-900 text-2xl font-bold mb-4 uppercase tracking-wider group-hover:text-slate-600 transition-colors">
-                      Stormwater Planning
-                    </h3>
-                    <p className="text-slate-600 mb-8 leading-relaxed text-lg">
-                      Custom plans from initial assessments, tailored practical BMP designs, and full local, state, and federal regulatory compliance assurance and permitting walkthroughs.
-                    </p>
-                    <ul className="space-y-4 w-full flex flex-col items-center">
-                      {[
-                        "In-house PE/QSD/QSP site assessment",
-                        "BMP design and maintenance",
-                        "Clear documentation with action items",
-                        "Full local, state, and Federal compliance assurance"
-                      ].map((item, i) => (
-                        <li key={i} className="flex items-center justify-center gap-3 text-slate-700 w-full">
-                          <CheckCircle className="w-6 h-6 text-slate-600 flex-shrink-0" />
-                          <span className="font-medium text-lg">{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </AnimatedSection>
-            </Link>
+                  </Link>
+                </AnimatedSection>
+              );
+            })}
           </div>
 
-          <AnimatedSection direction="up" delay={0.5} className="text-center mt-16">
+          <AnimatedSection direction="up" delay={0.5} className="text-center mt-8 sm:mt-12 lg:mt-16">
             <Link to={createPageUrl("ServicesOverview")} data-testid="link-view-all-services">
               <ShinyButton
-                className="group inline-flex items-center justify-center gap-2 whitespace-nowrap text-white font-bold tracking-tight text-lg px-8 sm:px-12 py-7 rounded-lg shadow-lg hover:-translate-y-1 active:scale-95 transition-all duration-300"
+                className="group inline-flex items-center justify-center gap-2 whitespace-nowrap text-white font-bold tracking-tight text-base sm:text-lg px-8 sm:px-12 py-4 sm:py-5 rounded-xl shadow-lg hover:-translate-y-0.5 active:scale-[0.97] transition-all duration-200"
                 style={{
-                  "--shiny-cta-bg": "#0ea5e9",
-                  "--shiny-cta-bg-subtle": "rgba(14, 165, 233, 0.2)",
-                  "--shiny-cta-highlight": "#2563eb",
-                  "--shiny-cta-highlight-subtle": "#38bdf8",
-                  "--shiny-cta-shadow": "rgba(59, 130, 246, 0.4)",
-                  "--shiny-cta-glow": "rgba(56, 189, 248, 0.55)",
+                  "--shiny-cta-bg": "#0891b2",
+                  "--shiny-cta-bg-subtle": "rgba(8, 145, 178, 0.2)",
+                  "--shiny-cta-highlight": "#06b6d4",
+                  "--shiny-cta-highlight-subtle": "#22d3ee",
+                  "--shiny-cta-shadow": "rgba(6, 182, 212, 0.4)",
+                  "--shiny-cta-glow": "rgba(34, 211, 238, 0.55)",
                 }}
               >
                 View All Services
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
               </ShinyButton>
             </Link>
           </AnimatedSection>
         </div>
       </section>
 
-      <section className="py-16 sm:py-20 px-6 bg-amber-50/40 relative overflow-hidden" data-testid="section-why-choose">
+      <section className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 bg-slate-50 relative overflow-hidden" data-testid="section-process">
+        <BlueprintGrid />
+        <div className="max-w-6xl mx-auto relative z-10">
+          <AnimatedSection direction="up" className="text-center mb-10 sm:mb-14 lg:mb-16">
+            <p className="text-cyan-600 font-bold uppercase tracking-widest text-xs sm:text-sm mb-3">How It Works</p>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight">
+              From First Call to Final Inspection
+            </h2>
+            <div className="w-20 sm:w-24 h-1 sm:h-1.5 bg-gradient-to-r from-cyan-500 to-blue-500 mx-auto rounded-full" />
+          </AnimatedSection>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 relative">
+            <div className="hidden lg:block absolute top-16 left-[12.5%] right-[12.5%] h-px bg-gradient-to-r from-cyan-200 via-cyan-300 to-cyan-200" />
+
+            {PROCESS_STEPS.map((step, idx) => {
+              const Icon = step.icon;
+              return (
+                <AnimatedSection key={step.title} direction="up" delay={0.1 + idx * 0.15} className="h-full">
+                  <div className="relative bg-white rounded-xl sm:rounded-2xl p-5 sm:p-6 lg:p-8 shadow-sm sm:shadow-md border border-slate-100 hover:shadow-lg hover:border-cyan-200 transition-all duration-300 text-center group h-full" data-testid={`step-${idx + 1}`}>
+                    <div className="relative z-10 mx-auto w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white font-bold text-lg sm:text-xl mb-4 sm:mb-5 shadow-md group-hover:scale-110 transition-transform duration-300">
+                      {idx + 1}
+                    </div>
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 mx-auto mb-3 sm:mb-4 text-cyan-600 group-hover:text-cyan-500 transition-colors">
+                      <Icon className="w-full h-full" />
+                    </div>
+                    <h3 className="text-slate-900 font-bold text-base sm:text-lg mb-2">{step.title}</h3>
+                    <p className="text-slate-500 text-sm sm:text-base leading-relaxed">{step.desc}</p>
+                  </div>
+                </AnimatedSection>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 bg-cyan-50/40 relative overflow-hidden" data-testid="section-why-choose">
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
             <AnimatedSection direction="left">
-              <h2 className="text-slate-900 mb-6 text-4xl font-extrabold tracking-tight md:text-5xl lg:text-6xl" data-testid="text-why-title">
+              <p className="text-cyan-600 font-bold uppercase tracking-widest text-xs sm:text-sm mb-3">Why Choose Us</p>
+              <h2 className="text-slate-900 mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight leading-tight" data-testid="text-why-title">
                 Why Pacific Engineering?
               </h2>
-              <div className="bg-gradient-to-r from-cyan-500 to-orange-400 my-8 w-24 h-1.5 rounded-full"></div>
+              <div className="bg-gradient-to-r from-cyan-500 to-orange-400 my-5 sm:my-8 w-16 sm:w-24 h-1 sm:h-1.5 rounded-full" />
 
-              <p className="text-slate-700 mb-10 text-xl leading-relaxed">
-                With over 40 years of experience in private, commercial, and
-                institutional full-scale civil engineering and construction
-                contracting, we deliver comprehensive solutions and
-                deliverables keeping projects on track with the utmost
-                professional efficiency.
+              <p className="text-slate-700 mb-6 sm:mb-10 text-base sm:text-lg lg:text-xl leading-relaxed">
+                With over 40 years of experience in full-scale civil engineering and construction contracting, we deliver comprehensive solutions keeping projects on track with professional efficiency.
               </p>
 
-              <div className="space-y-8 mb-12">
-                <div className="flex gap-6 items-start">
-                  <div className="flex-shrink-0 mt-1">
-                    <div className="w-14 h-14 bg-white rounded-xl flex items-center justify-center shadow-md border border-orange-100">
-                      <CheckCircle className="w-8 h-8 text-orange-500" />
+              <div className="space-y-4 sm:space-y-6 lg:space-y-8 mb-8 sm:mb-12">
+                {[
+                  { icon: Award, title: "EXPERT KNOWLEDGE", desc: "Complete understanding of federal, state, and local stormwater regulations." },
+                  { icon: TrendingUp, title: "PROVEN TRACK RECORD", desc: "100% client satisfaction across 2.5K+ successful projects." },
+                  { icon: Zap, title: "RESPONSIVE SERVICE", desc: "Quick turnaround times and dedicated project support to keep you moving." },
+                ].map((item) => (
+                  <div key={item.title} className="flex gap-4 sm:gap-6 items-start">
+                    <div className="flex-shrink-0 mt-0.5">
+                      <div className="w-11 h-11 sm:w-14 sm:h-14 bg-white rounded-lg sm:rounded-xl flex items-center justify-center shadow-sm sm:shadow-md border border-cyan-100">
+                        <item.icon className="w-5 h-5 sm:w-7 sm:h-7 text-cyan-600" />
+                      </div>
+                    </div>
+                    <div>
+                      <h3 className="text-slate-900 mb-1 sm:mb-2 text-base sm:text-lg lg:text-xl font-bold tracking-wide">{item.title}</h3>
+                      <p className="text-slate-600 text-sm sm:text-base lg:text-lg">{item.desc}</p>
                     </div>
                   </div>
-                  <div>
-                    <h3 className="text-slate-900 mb-2 text-xl font-bold tracking-wide">
-                      EXPERT KNOWLEDGE
-                    </h3>
-                    <p className="text-slate-600 text-lg">
-                      Complete understanding of federal, state, and local stormwater regulations.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex gap-6 items-start">
-                  <div className="flex-shrink-0 mt-1">
-                    <div className="w-14 h-14 bg-white rounded-xl flex items-center justify-center shadow-md border border-orange-100">
-                      <CheckCircle className="w-8 h-8 text-orange-500" />
-                    </div>
-                  </div>
-                  <div>
-                    <h3 className="text-slate-900 mb-2 text-xl font-bold tracking-wide">
-                      PROVEN TRACK RECORD
-                    </h3>
-                    <p className="text-slate-600 text-lg">
-                      100% client satisfaction across 2.5K+ successful projects.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex gap-6 items-start">
-                  <div className="flex-shrink-0 mt-1">
-                    <div className="w-14 h-14 bg-white rounded-xl flex items-center justify-center shadow-md border border-orange-100">
-                      <CheckCircle className="w-8 h-8 text-orange-500" />
-                    </div>
-                  </div>
-                  <div>
-                    <h3 className="text-slate-900 mb-2 text-xl font-bold tracking-wide">
-                      RESPONSIVE SERVICE
-                    </h3>
-                    <p className="text-slate-600 text-lg">
-                      Quick turnaround times and dedicated project support to keep you moving.
-                    </p>
-                  </div>
-                </div>
+                ))}
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row gap-3">
                 <Link to={createPageUrl("ServicesOverview")} data-testid="link-scope-project">
                   <ShinyButton
-                    className="group inline-flex items-center justify-center gap-2 whitespace-nowrap text-white font-bold tracking-tight text-lg px-8 py-4 rounded-lg shadow-lg hover:-translate-y-1 active:scale-95 transition-all duration-300"
+                    className="group inline-flex items-center justify-center gap-2 text-white font-bold tracking-tight text-base px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl shadow-lg hover:-translate-y-0.5 active:scale-[0.97] transition-all duration-200"
                     style={{
-                      "--shiny-cta-bg": "#ea580c",
-                      "--shiny-cta-bg-subtle": "rgba(234, 88, 12, 0.2)",
-                      "--shiny-cta-highlight": "#f97316",
-                      "--shiny-cta-highlight-subtle": "#fb923c",
-                      "--shiny-cta-shadow": "rgba(249, 115, 22, 0.4)",
-                      "--shiny-cta-glow": "rgba(251, 146, 60, 0.55)",
+                      "--shiny-cta-bg": "#0891b2",
+                      "--shiny-cta-bg-subtle": "rgba(8, 145, 178, 0.2)",
+                      "--shiny-cta-highlight": "#06b6d4",
+                      "--shiny-cta-highlight-subtle": "#22d3ee",
+                      "--shiny-cta-shadow": "rgba(6, 182, 212, 0.4)",
+                      "--shiny-cta-glow": "rgba(34, 211, 238, 0.55)",
                     }}
                   >
                     <FileText className="w-5 h-5" />
                     Scope Your Project
-                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
                   </ShinyButton>
                 </Link>
-                <Link to={createPageUrl("About")} data-testid="link-about-team">
-                  <button className="inline-flex items-center justify-center gap-2 text-slate-700 font-bold tracking-tight text-lg px-8 py-4 rounded-lg bg-transparent border-2 border-slate-300 hover:border-slate-400 hover:bg-white transition-all duration-300 group">
-                    <Users className="w-5 h-5" />
-                    About Our Team
-                  </button>
+                <Link to={createPageUrl("About")} className="inline-flex items-center justify-center gap-2 text-slate-700 font-bold tracking-tight text-base px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl bg-transparent border-2 border-slate-200 hover:border-cyan-300 hover:bg-white transition-all duration-200 group active:scale-[0.97]" data-testid="link-about-team">
+                    <Users className="w-5 h-5" /> About Our Team
                 </Link>
               </div>
             </AnimatedSection>
 
-            <AnimatedSection direction="right" delay={0.2} className="relative mt-12 lg:mt-0 px-4 sm:px-8">
-              <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl border-4 border-white bg-slate-200">
-                <img
-                  src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800"
-                  alt="San Francisco construction projects"
-                  className="w-full h-full object-cover"
-                  data-testid="img-sf-projects"
-                />
-              </div>
-
-              <div className="hidden sm:flex absolute -bottom-6 -right-2 sm:-right-6 bg-gradient-to-br from-orange-500 to-amber-600 p-8 rounded-2xl shadow-xl border-4 border-white flex-col items-center justify-center z-20">
-                <div className="text-white mb-1 text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tighter" data-testid="text-projects-count">
-                  2.5K+
+            <AnimatedSection direction="right" delay={0.2} className="mt-4 lg:mt-0">
+              <div className="relative px-0 sm:px-4 lg:px-8">
+                <div className="aspect-[4/3] rounded-xl sm:rounded-2xl overflow-hidden shadow-lg sm:shadow-2xl border-2 sm:border-4 border-white bg-slate-200">
+                  <img
+                    src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&q=80"
+                    alt="San Francisco Bay Area construction projects"
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                    data-testid="img-sf-projects"
+                  />
                 </div>
-                <div className="text-orange-50 font-bold uppercase tracking-widest text-xs sm:text-sm">
-                  Successful Projects
+                <div className="absolute -bottom-4 sm:-bottom-6 right-0 sm:-right-2 lg:-right-6 bg-gradient-to-br from-cyan-500 to-blue-600 p-4 sm:p-6 lg:p-8 rounded-xl sm:rounded-2xl shadow-xl border-2 sm:border-4 border-white flex flex-col items-center justify-center z-20">
+                  <div className="text-white mb-0.5 sm:mb-1 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tighter" data-testid="text-projects-count">
+                    <AnimatedCounter target={2500} suffix="+" />
+                  </div>
+                  <div className="text-cyan-50 font-bold uppercase tracking-widest text-[9px] sm:text-xs">Successful Projects</div>
                 </div>
               </div>
             </AnimatedSection>
@@ -529,29 +568,64 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-20 px-6 bg-slate-900 relative border-t-4 border-cyan-500 overflow-hidden" data-testid="section-cta">
-        <div className="absolute inset-0 opacity-30">
-          <div className="absolute inset-0 bg-[url('/images/bay-bridge-sunrise.jpg')] bg-cover bg-center" />
-          <div className="absolute inset-0 bg-slate-900/50 mix-blend-multiply"></div>
+      <section className="py-8 sm:py-12 md:py-16 px-4 sm:px-6 bg-slate-900 overflow-hidden" data-testid="section-trust-badges">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6">
+            {[
+              { icon: Shield, label: "Licensed PE/QSD/QSP", value: "Certified" },
+              { icon: Building2, label: "Class A & B", value: "Contractor" },
+              { icon: MapPin, label: "Bay Area", value: "40+ Years" },
+              { icon: Star, label: "Client Rating", value: "5-Star" },
+            ].map((badge, idx) => (
+              <AnimatedSection key={badge.label} direction="up" delay={idx * 0.1}>
+                <div className="text-center p-3 sm:p-6 rounded-xl border border-white/[0.06] bg-white/[0.03] hover:bg-white/[0.06] transition-colors" data-testid={`trust-${badge.label.toLowerCase().replace(/\s+/g, "-")}`}>
+                  <badge.icon className="w-6 h-6 sm:w-8 sm:h-8 text-cyan-400 mx-auto mb-2 sm:mb-3" />
+                  <div className="text-white font-bold text-lg sm:text-xl lg:text-2xl mb-0.5">{badge.value}</div>
+                  <div className="text-slate-400 text-xs sm:text-sm font-medium">{badge.label}</div>
+                </div>
+              </AnimatedSection>
+            ))}
+          </div>
         </div>
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-900/80 to-slate-950/90"></div>
+      </section>
+
+      <section className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 bg-white relative overflow-hidden" data-testid="section-testimonial">
+        <div className="max-w-4xl mx-auto text-center">
+          <AnimatedSection direction="up">
+            <div className="flex justify-center gap-1 mb-4 sm:mb-6">
+              {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 sm:w-6 sm:h-6 text-amber-400 fill-amber-400" />)}
+            </div>
+            <blockquote className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-slate-800 font-medium leading-relaxed mb-6 sm:mb-8 italic" data-testid="text-testimonial">
+              "Pacific Engineering's team was incredibly responsive and thorough. They handled our structural assessment, inspections, and stormwater planning — all under one roof. Saved us weeks of coordination."
+            </blockquote>
+            <div>
+              <div className="text-slate-900 font-bold text-base sm:text-lg">Mike Torres</div>
+              <div className="text-slate-500 text-sm sm:text-base">Senior PM · Bay Area Commercial Development</div>
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      <section className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 bg-slate-900 relative overflow-hidden" data-testid="section-cta">
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1541888082416-a711bc141c2c?w=1600')] bg-cover bg-center opacity-[0.06]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-900/70 to-slate-950/90" />
+        <BlueprintGrid />
 
         <div className="relative z-10 max-w-4xl mx-auto text-center">
           <AnimatedSection direction="up">
-            <p className="text-cyan-400 font-bold uppercase tracking-widest text-sm sm:text-base mb-4">Ready to move?</p>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-7xl font-extrabold text-white mb-8 tracking-tighter leading-[1.1]" data-testid="text-cta-title">
-              Get Your Project on Track
+            <p className="text-cyan-400 font-bold uppercase tracking-widest text-xs sm:text-sm mb-3 sm:mb-4">Ready to move?</p>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-white mb-5 sm:mb-8 tracking-tight leading-[1.08]" data-testid="text-cta-title">
+              Get Your Project<br className="sm:hidden" /> on Track
             </h2>
-            <div className="w-48 h-1.5 bg-gradient-to-r from-cyan-500 to-orange-400 mx-auto mb-10 rounded-full"></div>
-
-            <p className="text-xl md:text-2xl text-slate-300 mb-12 leading-relaxed font-light px-4 max-w-3xl mx-auto">
+            <div className="w-32 sm:w-48 h-1 sm:h-1.5 bg-gradient-to-r from-cyan-500 to-orange-400 mx-auto mb-6 sm:mb-10 rounded-full" />
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-300 mb-8 sm:mb-12 leading-relaxed font-light max-w-3xl mx-auto">
               Engineering, inspections, construction, and stormwater — one team, one call. We respond same-day to keep your timeline intact.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mb-12">
-              <Link to={createPageUrl("Consultation")} data-testid="link-cta-quote">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-8 sm:mb-12">
+              <Link to={createPageUrl("Consultation")} className="w-full sm:w-auto" data-testid="link-cta-quote">
                 <ShinyButton
-                  className="w-full sm:w-auto group inline-flex items-center justify-center gap-3 text-white font-bold tracking-tight text-xl px-10 py-5 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-1 active:scale-95 transition-all duration-300"
+                  className="group w-full inline-flex items-center justify-center gap-2 sm:gap-3 text-white font-bold tracking-tight text-base sm:text-lg lg:text-xl px-8 sm:px-10 py-4 sm:py-5 rounded-xl shadow-lg hover:-translate-y-0.5 active:scale-[0.97] transition-all duration-200"
                   style={{
                     "--shiny-cta-bg": "#ea580c",
                     "--shiny-cta-bg-subtle": "rgba(234, 88, 12, 0.2)",
@@ -561,27 +635,26 @@ export default function Home() {
                     "--shiny-cta-glow": "rgba(251, 146, 60, 0.55)",
                   }}
                 >
-                  <PhoneCall className="w-6 h-6" />
+                  <PhoneCall className="w-5 h-5 sm:w-6 sm:h-6" />
                   Request a Quote
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
                 </ShinyButton>
               </Link>
-              <Link to={createPageUrl("Contact")} data-testid="link-cta-contact">
-                <button className="w-full sm:w-auto inline-flex items-center justify-center gap-3 text-white font-bold tracking-tight text-xl px-10 py-5 rounded-xl bg-slate-800 hover:bg-slate-700 shadow-lg hover:shadow-xl border border-slate-700 transition-all duration-300 group">
-                  <Phone className="w-6 h-6" />
-                  (415) 555-0100
-                </button>
-              </Link>
+              <a href="tel:+14156894428" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 sm:gap-3 text-white font-bold tracking-tight text-base sm:text-lg lg:text-xl px-8 sm:px-10 py-4 sm:py-5 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 shadow-lg hover:shadow-xl transition-all duration-200 group active:scale-[0.97]" data-testid="link-cta-call">
+                <Phone className="w-5 h-5 sm:w-6 sm:h-6" /> (415) 689-4428
+              </a>
             </div>
 
-            <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 text-slate-400 text-sm sm:text-base font-medium">
-              <span className="inline-flex items-center gap-2"><CheckCircle className="w-5 h-5 text-orange-500" /> Licensed PE/QSD/QSP</span>
-              <span className="inline-flex items-center gap-2"><CheckCircle className="w-5 h-5 text-orange-500" /> Class A & B Contractor</span>
-              <span className="inline-flex items-center gap-2"><CheckCircle className="w-5 h-5 text-orange-500" /> 2,500+ Projects Delivered</span>
+            <div className="flex flex-wrap justify-center gap-x-4 sm:gap-x-8 gap-y-2 sm:gap-y-3 text-slate-400 text-xs sm:text-sm font-medium">
+              <span className="inline-flex items-center gap-1.5 sm:gap-2"><CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-500" /> Licensed PE/QSD/QSP</span>
+              <span className="inline-flex items-center gap-1.5 sm:gap-2"><CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-500" /> Class A & B Contractor</span>
+              <span className="inline-flex items-center gap-1.5 sm:gap-2"><CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-500" /> 2,500+ Projects</span>
             </div>
           </AnimatedSection>
         </div>
       </section>
+
+      <div className="h-0.5 bg-gradient-to-r from-cyan-500 via-blue-500 to-orange-400 sm:hidden" />
     </div>
   );
 }

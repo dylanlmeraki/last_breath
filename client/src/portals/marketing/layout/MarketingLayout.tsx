@@ -54,7 +54,7 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
             <Link to={createPageUrl("Home")} className="flex items-center gap-3 group" data-testid="link-logo">
               <div className="relative">
                 <div className="absolute inset-0 bg-white rounded-md opacity-10 group-hover:opacity-20 transition-opacity" />
-                <img src="/Logo.jpeg" alt="Pacific Engineering Logo" className="rounded-md h-14 w-14 object-contain relative z-10" />
+                <img src="/images/pe-logo.png" alt="Pacific Engineering Logo" className="rounded-md h-14 w-14 object-contain relative z-10" />
               </div>
               <div>
                 <div className="font-bold text-white text-xl tracking-tight">Pacific Engineering</div>
@@ -133,7 +133,7 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
           <div className="grid md:grid-cols-4 gap-12 mb-12">
             <div className="md:col-span-1">
               <div className="flex items-center gap-3 mb-4">
-                <img src="/Logo.jpeg" alt="Pacific Engineering" className="h-10 w-10 rounded object-contain" />
+                <img src="/images/pe-logo.png" alt="Pacific Engineering" className="h-10 w-10 rounded object-contain" />
                 <div className="font-bold text-lg">Pacific Engineering</div>
               </div>
               <p className="text-sm text-gray-400 leading-relaxed">

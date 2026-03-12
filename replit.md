@@ -53,7 +53,7 @@
 │           ├── marketing.css      # Marketing-specific styles
 │           ├── layout/MarketingLayout.tsx  # Nav + footer + ChatBot
 │           ├── lib/utils.ts       # createPageUrl utility
-│           ├── components/        # Marketing visual components (13)
+│           ├── components/        # Marketing visual components (17: AnimatedSection, ShinyButton, SEO, ChatBot, ParticleField, BlueprintBackground, FloatingElements, BackToTop, etc.)
 │           └── pages/             # Marketing pages (15 pages)
 ├── server/
 │   ├── index.ts                   # Express app + middleware (cors, helmet, cookie-parser, portal mode)
