@@ -252,7 +252,6 @@ export default function Home() {
         url="/"
       />
       <MobileStickyBar />
-
       <section className="relative min-h-[calc(100svh-5rem)] flex items-center justify-center overflow-hidden bg-slate-950 py-8 sm:py-12 md:py-16 lg:py-20" data-testid="section-hero">
         <div className="absolute inset-0">
           <video
@@ -366,13 +365,11 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       <SectionDivider variant="gradient" from="dark" to="light" />
-
       <section className="py-12 sm:py-16 md:py-20 lg:py-28 px-4 sm:px-6 bg-white" data-testid="section-services">
         <div className="max-w-7xl mx-auto">
           <AnimatedSection direction="up" className="text-center mb-10 sm:mb-14 lg:mb-20">
-            <p className="text-cyan-600 font-bold uppercase tracking-widest text-xs sm:text-sm mb-3 sm:mb-4">What We Do</p>
+            <p className="uppercase tracking-widest sm:text-sm mb-3 sm:mb-4 text-[28px] font-black text-[#2563eb]">What We Do</p>
             <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 mb-4 sm:mb-6 tracking-tight" data-testid="text-services-title">
               Consulting Engineers & Contractors
             </h2>
@@ -427,9 +424,7 @@ export default function Home() {
           </AnimatedSection>
         </div>
       </section>
-
       <SectionDivider variant="wave" from="light" to="light" />
-
       <section className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 bg-slate-50 relative overflow-hidden" data-testid="section-process">
         <BlueprintGrid />
         <div className="max-w-6xl mx-auto relative z-10">
@@ -464,9 +459,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       <SectionDivider variant="blueprint" />
-
       <section className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 bg-cyan-50/40 relative overflow-hidden" data-testid="section-why-choose">
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
@@ -539,9 +532,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       <SectionDivider variant="angled" from="light" to="dark" />
-
       <section className="py-8 sm:py-12 md:py-16 px-4 sm:px-6 bg-slate-900 overflow-hidden" data-testid="section-trust-badges">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6">
@@ -562,7 +553,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       <section className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 bg-slate-900 relative overflow-hidden" data-testid="section-cta">
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1541888082416-a711bc141c2c?w=1600')] bg-cover bg-center opacity-[0.06]" />
         <div className="absolute inset-0 bg-gradient-to-b from-slate-900/70 to-slate-950/90" />
@@ -602,7 +592,6 @@ export default function Home() {
           </AnimatedSection>
         </div>
       </section>
-
       <SectionDivider variant="gradient" from="dark" to="dark" />
     </div>
   );
