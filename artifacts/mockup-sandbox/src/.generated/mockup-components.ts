@@ -75,5 +75,10 @@ export const modules: ModuleMap = {
   "./components/mockups/homepage-refined-copy-hRCnS4Q7/RefinedRhythm.tsx": () => import("../components/mockups/homepage-refined-copy-hRCnS4Q7/RefinedRhythm.tsx"),
   "./components/mockups/homepage-refined-copy-hRCnS4Q7/SplitCommand.tsx": () => import("../components/mockups/homepage-refined-copy-hRCnS4Q7/SplitCommand.tsx"),
   "./components/mockups/homepage-refined-copy-hRCnS4Q7/TightenedHierarchy.tsx": () => import("../components/mockups/homepage-refined-copy-hRCnS4Q7/TightenedHierarchy.tsx"),
-  "./components/mockups/homepage-refined-copy-hRCnS4Q7/WarmSteel.tsx": () => import("../components/mockups/homepage-refined-copy-hRCnS4Q7/WarmSteel.tsx")
+  "./components/mockups/homepage-refined-copy-hRCnS4Q7/WarmSteel.tsx": () => import("../components/mockups/homepage-refined-copy-hRCnS4Q7/WarmSteel.tsx"),
+  "./components/mockups/homepage-refined-v2/RefinedEngineering.tsx": () => import("../components/mockups/homepage-refined-v2/RefinedEngineering.tsx"),
+  "./components/mockups/homepage-refined-v2/RefinedEngineeringAlt.tsx": () => import("../components/mockups/homepage-refined-v2/RefinedEngineeringAlt.tsx"),
+  "./components/mockups/homepage-usability/AffordanceForward.tsx": () => import("../components/mockups/homepage-usability/AffordanceForward.tsx"),
+  "./components/mockups/homepage-usability/HierarchyFirst.tsx": () => import("../components/mockups/homepage-usability/HierarchyFirst.tsx"),
+  "./components/mockups/homepage-usability/ReadabilityMax.tsx": () => import("../components/mockups/homepage-usability/ReadabilityMax.tsx")
 };
