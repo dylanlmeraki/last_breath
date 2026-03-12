@@ -93,7 +93,7 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
               </div>
 
               <div className="relative" onMouseEnter={() => setAboutDropdownOpen(true)} onMouseLeave={() => setAboutDropdownOpen(false)}>
-                <Link to={createPageUrl("About")} className={`px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-1 ${isActive(createPageUrl("About")) ? "text-cyan-400" : "text-gray-300 hover:text-white"}`} data-testid="nav-about">
+                <Link to={createPageUrl("About")} className="px-3 py-2 rounded-md text-sm transition-colors flex items-center gap-1 text-gray-300 hover:text-white text-center font-bold" data-testid="nav-about">
                   About <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${aboutDropdownOpen ? "rotate-180" : ""}`} />
                 </Link>
                 {aboutDropdownOpen && (
