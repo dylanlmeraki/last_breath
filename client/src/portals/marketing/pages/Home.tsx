@@ -465,7 +465,7 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
             <AnimatedSection direction="left">
               <p className="text-cyan-600 font-bold uppercase tracking-widest text-xs sm:text-sm mb-3">Why Choose Us</p>
-              <h2 className="text-slate-900 mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight leading-tight" data-testid="text-why-title">
+              <h2 className="text-slate-900 mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight leading-tight text-center" data-testid="text-why-title">
                 Why Pacific Engineering?
               </h2>
               <div className="bg-gradient-to-r from-cyan-500 to-orange-400 my-5 sm:my-8 w-16 sm:w-24 h-1 sm:h-1.5 rounded-full" />
