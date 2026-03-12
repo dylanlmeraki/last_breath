@@ -80,7 +80,7 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
               <Link to={createPageUrl("Home")} className="px-3 py-2 rounded-md text-sm transition-colors text-cyan-400 font-bold text-center" data-testid="nav-home">Home</Link>
 
               <div className="relative" onMouseEnter={() => setServicesDropdownOpen(true)} onMouseLeave={() => setServicesDropdownOpen(false)}>
-                <Link to={createPageUrl("ServicesOverview")} className="px-3 py-2 rounded-md text-sm transition-colors flex items-center gap-1 text-gray-300 hover:text-white text-center font-bold" data-testid="nav-services">
+                <Link to={createPageUrl("ServicesOverview")} className="px-3 py-2 rounded-md text-sm transition-colors flex items-center gap-1 text-gray-300 hover:text-white font-bold text-right" data-testid="nav-services">
                   Services <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${servicesDropdownOpen ? "rotate-180" : ""}`} />
                 </Link>
                 {servicesDropdownOpen && (
