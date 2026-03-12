@@ -105,7 +105,7 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
                 )}
               </div>
 
-              <Link to={createPageUrl("Contact")} className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${isActive(createPageUrl("Contact")) ? "text-cyan-400" : "text-gray-300 hover:text-white"}`} data-testid="nav-contact">Contact</Link>
+              <Link to={createPageUrl("Contact")} className="px-3 py-2 rounded-md text-sm transition-colors text-gray-300 hover:text-white text-center font-bold" data-testid="nav-contact">Contact</Link>
 
               <Link to={createPageUrl("SWPPPChecker")} className="ml-2 px-5 py-2.5 bg-orange-500 hover:bg-orange-600 text-white rounded-full text-sm font-semibold transition-all shadow-lg hover:shadow-orange-500/25" data-testid="nav-consultation">
                 Free Consultation
