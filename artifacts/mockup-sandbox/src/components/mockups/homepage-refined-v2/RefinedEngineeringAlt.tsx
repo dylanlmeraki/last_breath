@@ -22,7 +22,8 @@ import {
   Zap,
   Building2,
   Users,
-  Compass
+  Compass,
+  Award
 } from "lucide-react";
 
 // --- HOOKS ---
