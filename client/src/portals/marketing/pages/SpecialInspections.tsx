@@ -151,10 +151,10 @@ export default function SpecialInspections() {
 
             <AnimatedSection direction="up" delay={0.3}>
               <Card className="overflow-hidden border border-slate-200 shadow-xl hover:shadow-2xl transition-all duration-300 rounded-md bg-white" data-testid="card-welding-bolting">
-                <div className="h-2 bg-gradient-to-r from-green-500 to-emerald-500" />
+                <div className="h-2 bg-gradient-to-r from-teal-500 to-cyan-500" />
                 <div className="p-8">
                   <div className="flex flex-col md:flex-row items-center md:items-start gap-6 mb-8 text-center md:text-left">
-                    <div className="bg-green-600 rounded-md w-16 h-16 flex items-center justify-center flex-shrink-0 shadow-md">
+                    <div className="bg-teal-600 rounded-md w-16 h-16 flex items-center justify-center flex-shrink-0 shadow-md">
                       <Hammer className="w-8 h-8 text-white" />
                     </div>
                     <div>
@@ -168,8 +168,8 @@ export default function SpecialInspections() {
                       { title: "Bolting Strength Inspection", desc: "Verify bolt type, installation torque/tension, and connection compliance." },
                       { title: "Structural Fastening Systems", desc: "Check anchors, adhesives, and proprietary fastening systems per ICC-ES reports." }
                     ].map((item, idx) => (
-                      <div key={idx} className="bg-slate-50 p-4 rounded-md border border-slate-100 hover:border-green-300 transition-colors text-center group">
-                        <h4 className="font-bold text-slate-900 mb-2 text-sm tracking-tight group-hover:text-green-600 transition-colors">{item.title}</h4>
+                      <div key={idx} className="bg-slate-50 p-4 rounded-md border border-slate-100 hover:border-teal-300 transition-colors text-center group">
+                        <h4 className="font-bold text-slate-900 mb-2 text-sm tracking-tight group-hover:text-teal-600 transition-colors">{item.title}</h4>
                         <p className="text-sm text-slate-600">{item.desc}</p>
                       </div>
                     ))}
@@ -180,10 +180,10 @@ export default function SpecialInspections() {
 
             <AnimatedSection direction="up" delay={0.4}>
               <Card className="overflow-hidden border border-slate-200 shadow-xl hover:shadow-2xl transition-all duration-300 rounded-md bg-white" data-testid="card-building-envelope">
-                <div className="h-2 bg-gradient-to-r from-emerald-500 to-blue-500" />
+                <div className="h-2 bg-gradient-to-r from-cyan-500 to-blue-500" />
                 <div className="p-8">
                   <div className="flex flex-col md:flex-row items-center md:items-start gap-6 mb-8 text-center md:text-left">
-                    <div className="bg-emerald-600 rounded-md w-16 h-16 flex items-center justify-center flex-shrink-0 shadow-md">
+                    <div className="bg-cyan-600 rounded-md w-16 h-16 flex items-center justify-center flex-shrink-0 shadow-md">
                       <Shield className="w-8 h-8 text-white" />
                     </div>
                     <div>
@@ -198,8 +198,8 @@ export default function SpecialInspections() {
                       { title: "Firestopping Systems", desc: "Confirm firestop materials and installation details rated to assemblies." },
                       { title: "Smoke Control Testing", desc: "Verify airflows, pressures, and control sequences under testing conditions." }
                     ].map((item, idx) => (
-                      <div key={idx} className="bg-slate-50 p-4 rounded-md border border-slate-100 hover:border-emerald-300 transition-colors text-center group">
-                        <h4 className="font-bold text-slate-900 mb-2 text-sm tracking-tight group-hover:text-emerald-600 transition-colors">{item.title}</h4>
+                      <div key={idx} className="bg-slate-50 p-4 rounded-md border border-slate-100 hover:border-cyan-300 transition-colors text-center group">
+                        <h4 className="font-bold text-slate-900 mb-2 text-sm tracking-tight group-hover:text-cyan-600 transition-colors">{item.title}</h4>
                         <p className="text-sm text-slate-600">{item.desc}</p>
                       </div>
                     ))}
@@ -210,10 +210,10 @@ export default function SpecialInspections() {
 
             <AnimatedSection direction="up" delay={0.5}>
               <Card className="overflow-hidden border border-slate-200 shadow-xl hover:shadow-2xl transition-all duration-300 rounded-md bg-white" data-testid="card-seismic-wind">
-                <div className="h-2 bg-gradient-to-r from-amber-500 to-orange-500" />
+                <div className="h-2 bg-gradient-to-r from-blue-500 to-sky-500" />
                 <div className="p-8">
                   <div className="flex flex-col md:flex-row items-center md:items-start gap-6 mb-8 text-center md:text-left">
-                    <div className="bg-amber-600 rounded-md w-16 h-16 flex items-center justify-center flex-shrink-0 shadow-md">
+                    <div className="bg-blue-600 rounded-md w-16 h-16 flex items-center justify-center flex-shrink-0 shadow-md">
                       <Target className="w-8 h-8 text-white" />
                     </div>
                     <div>
@@ -228,8 +228,8 @@ export default function SpecialInspections() {
                       { title: "Seismic Anchorage", desc: "Confirm anchors, bracing, and details for mechanical/electrical/plumbing systems." },
                       { title: "Structural Integrity Inspections", desc: "As-built confirmation after critical load events or retrofit projects" }
                     ].map((item, idx) => (
-                      <div key={idx} className="bg-slate-50 p-4 rounded-md border border-slate-100 hover:border-amber-300 transition-colors text-center group">
-                        <h4 className="font-bold text-slate-900 mb-2 text-sm tracking-tight group-hover:text-amber-600 transition-colors">{item.title}</h4>
+                      <div key={idx} className="bg-slate-50 p-4 rounded-md border border-slate-100 hover:border-blue-300 transition-colors text-center group">
+                        <h4 className="font-bold text-slate-900 mb-2 text-sm tracking-tight group-hover:text-blue-600 transition-colors">{item.title}</h4>
                         <p className="text-sm text-slate-600">{item.desc}</p>
                       </div>
                     ))}
@@ -240,10 +240,10 @@ export default function SpecialInspections() {
 
             <AnimatedSection direction="up" delay={0.6}>
               <Card className="overflow-hidden border border-slate-200 shadow-xl hover:shadow-2xl transition-all duration-300 rounded-md bg-white" data-testid="card-deep-foundations">
-                <div className="h-2 bg-gradient-to-r from-purple-500 to-pink-500" />
+                <div className="h-2 bg-gradient-to-r from-sky-500 to-cyan-500" />
                 <div className="p-8">
                   <div className="flex flex-col md:flex-row items-center md:items-start gap-6 mb-8 text-center md:text-left">
-                    <div className="bg-purple-600 rounded-md w-16 h-16 flex items-center justify-center flex-shrink-0 shadow-md">
+                    <div className="bg-sky-600 rounded-md w-16 h-16 flex items-center justify-center flex-shrink-0 shadow-md">
                       <HardHat className="w-8 h-8 text-white" />
                     </div>
                     <div>
@@ -257,7 +257,7 @@ export default function SpecialInspections() {
                       { title: "Ground Anchors / Tiebacks", desc: "Testing, load verification, and lock-off tension" },
                       { title: "Soil Nail Walls", desc: "Nail installation, grouting, testing, and facing inspection" }
                     ].map((item, idx) => (
-                      <div key={idx} className="bg-slate-50 p-4 rounded-md border border-slate-100 hover:border-purple-300 transition-colors">
+                      <div key={idx} className="bg-slate-50 p-4 rounded-md border border-slate-100 hover:border-sky-300 transition-colors">
                         <h4 className="font-bold text-slate-900 mb-2 text-sm tracking-tight">{item.title}</h4>
                         <p className="text-sm text-slate-600">{item.desc}</p>
                       </div>
@@ -269,10 +269,10 @@ export default function SpecialInspections() {
 
             <AnimatedSection direction="up" delay={0.7}>
               <Card className="overflow-hidden border border-slate-200 shadow-xl hover:shadow-2xl transition-all duration-300 rounded-md bg-white" data-testid="card-specialized-inspections">
-                <div className="h-2 bg-gradient-to-r from-indigo-500 to-violet-500" />
+                <div className="h-2 bg-gradient-to-r from-blue-500 to-cyan-600" />
                 <div className="p-8">
                   <div className="flex flex-col md:flex-row items-center md:items-start gap-6 mb-8 text-center md:text-left">
-                    <div className="bg-indigo-600 rounded-md w-16 h-16 flex items-center justify-center flex-shrink-0 shadow-md">
+                    <div className="bg-blue-600 rounded-md w-16 h-16 flex items-center justify-center flex-shrink-0 shadow-md">
                       <ClipboardCheck className="w-8 h-8 text-white" />
                     </div>
                     <div>
@@ -287,8 +287,8 @@ export default function SpecialInspections() {
                       { title: "Precast Concrete Erection", desc: "Connections, grouting, bearing pads, and lateral stability" },
                       { title: "Modular or Prefabricated Assemblies", desc: "Verification of critical welds, joints, and anchorage during installation" }
                     ].map((item, idx) => (
-                      <div key={idx} className="bg-slate-50 p-4 rounded-md border border-slate-100 hover:border-indigo-300 transition-colors text-center group">
-                        <h4 className="font-bold text-slate-900 mb-2 text-sm tracking-tight group-hover:text-indigo-600 transition-colors">{item.title}</h4>
+                      <div key={idx} className="bg-slate-50 p-4 rounded-md border border-slate-100 hover:border-blue-300 transition-colors text-center group">
+                        <h4 className="font-bold text-slate-900 mb-2 text-sm tracking-tight group-hover:text-blue-600 transition-colors">{item.title}</h4>
                         <p className="text-sm text-slate-600">{item.desc}</p>
                       </div>
                     ))}

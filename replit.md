@@ -168,7 +168,7 @@ Third portal integrated into the monorepo at `client/src/portals/marketing/`.
 
 **Components (13)**: AnimatedGridBackground, AnimatedSection, BackToTop, BlueprintBackground, ChatBot (draggable, scroll-aware, auto-prompt), FloatingElements (architectural blueprint SVGs), FooterBackground, GlowingCard, ParticleField, ScrollFadeSection, SEO, ShinyButton
 
-**Design System**: Cyan = precision engineering brand color; Orange = action/CTA only ("Request a Quote" always orange). Service cards use orange→cyan→blue→teal color scheme (graduated from CyanDominant mockup variant H). Homepage includes testimonial section with star rating between trust badges and CTA. Mobile nav uses fullscreen overlay with dropdown arrows for Services/About + phone call button next to hamburger.
+**Design System**: Cyan = precision engineering brand color; Orange = action/CTA only ("Free Consultation" always orange). Service cards use darkblue→bluecyan→cyan→cyanteal color scheme (blue→teal family, no orange/emerald). Homepage includes mid-page CTA with slanted clip-path edge after services, testimonial section with star rating, and bottom CTA. ChatBot uses gradient MessageCircle icon (cyan→blue). Mobile nav uses fullscreen overlay with dropdown arrows for Services/About + phone call button next to hamburger. Nav items uppercase with tracking.
 
 **Data flows**:
 - Internal BlogEditor → blog_posts DB → Marketing Blog page

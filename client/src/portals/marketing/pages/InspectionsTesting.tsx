@@ -161,7 +161,7 @@ export default function InspectionsTesting() {
 
             <AnimatedSection direction="left" delay={0.3}>
               <Card className="group hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 overflow-hidden border border-slate-200 bg-white rounded-md h-full" data-testid="card-structural-inspections">
-                <div className="h-2 bg-gradient-to-r from-teal-500 to-green-500" />
+                <div className="h-2 bg-gradient-to-r from-teal-500 to-cyan-500" />
                 <div className="p-8 flex flex-col items-center">
                   <div className="bg-gradient-to-br from-teal-300 to-teal-600 mx-auto my-6 rounded-md w-16 h-16 flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg shadow-teal-500/40">
                     <Beaker className="w-8 h-8 text-white" />
@@ -189,9 +189,9 @@ export default function InspectionsTesting() {
 
             <AnimatedSection direction="right" delay={0.4}>
               <Card className="group hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 overflow-hidden border border-slate-200 bg-white rounded-md h-full" data-testid="card-environmental-compliance">
-                <div className="h-2 bg-gradient-to-r from-green-500 to-emerald-500" />
+                <div className="h-2 bg-gradient-to-r from-blue-500 to-cyan-500" />
                 <div className="p-8 flex flex-col items-center">
-                  <div className="bg-gradient-to-br from-emerald-300 to-emerald-600 mx-auto my-6 rounded-md w-16 h-16 flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg shadow-emerald-500/40">
+                  <div className="bg-gradient-to-br from-blue-400 to-cyan-600 mx-auto my-6 rounded-md w-16 h-16 flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg shadow-cyan-500/40">
                     <CheckCircle className="w-8 h-8 text-white" />
                   </div>
                   <h3 className="text-slate-900 mx-auto my-4 text-2xl font-bold text-center tracking-tight">Environmental Compliance</h3>
@@ -206,8 +206,8 @@ export default function InspectionsTesting() {
                       "Air and water quality testing"
                     ].map((item, idx) => (
                       <li key={idx} className="flex items-start gap-3 text-slate-700 max-w-md w-full group">
-                        <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                        <span className="font-medium group-hover:text-green-600 transition-colors">{item}</span>
+                        <CheckCircle className="w-5 h-5 text-cyan-600 mt-0.5 flex-shrink-0" />
+                        <span className="font-medium group-hover:text-cyan-600 transition-colors">{item}</span>
                       </li>
                     ))}
                   </ul>

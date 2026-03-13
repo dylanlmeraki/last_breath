@@ -67,8 +67,8 @@ export default function ServicesOverview() {
     title: "Inspections & Testing",
     description: "Certified testing and sampling services ensuring code compliance and project quality across all phases.",
     icon: ClipboardCheck,
-    gradient: "from-teal-500 to-green-500",
-    bgGradient: "from-teal-50 to-green-50",
+    gradient: "from-teal-500 to-cyan-500",
+    bgGradient: "from-teal-50 to-cyan-50",
     link: "InspectionsTesting",
     features: [
     "Stormwater Testing",
@@ -81,8 +81,8 @@ export default function ServicesOverview() {
     title: "Structural Engineering",
     description: "Licensed PE-certified structural design, analysis, and seismic retrofit services for all project types.",
     icon: Building2,
-    gradient: "from-green-500 to-emerald-500",
-    bgGradient: "from-green-50 to-emerald-50",
+    gradient: "from-sky-500 to-blue-500",
+    bgGradient: "from-sky-50 to-blue-50",
     link: "StructuralEngineering",
     features: [
     "Seismic Retrofits",
@@ -95,8 +95,8 @@ export default function ServicesOverview() {
     title: "Special Inspections",
     description: "PE-backed verification services for structural materials, welding, seismic systems, and building envelope.",
     icon: Shield,
-    gradient: "from-emerald-500 to-indigo-500",
-    bgGradient: "from-emerald-50 to-indigo-50",
+    gradient: "from-blue-500 to-cyan-600",
+    bgGradient: "from-blue-50 to-cyan-50",
     link: "SpecialInspections",
     features: [
     "Structural Materials",
@@ -223,7 +223,7 @@ export default function ServicesOverview() {
             <Link to={createPageUrl("InspectionsTesting")} className="block group h-full" data-testid="link-services-inspections">
               <AnimatedSection direction="left" delay={0.3} className="h-full">
                 <Card className="h-full hover:shadow-2xl transition-all duration-300 overflow-hidden border border-slate-200 bg-white cursor-pointer group-hover:-translate-y-2 rounded-md">
-                  <div className="h-1.5 bg-gradient-to-r from-teal-500 to-emerald-500" />
+                  <div className="h-1.5 bg-gradient-to-r from-teal-500 to-cyan-500" />
                   <div className="p-8 flex flex-col items-center text-center">
                     <div className="bg-slate-100 rounded-md w-20 h-20 flex items-center justify-center mb-6 group-hover:bg-gradient-to-br group-hover:from-teal-300 group-hover:to-teal-600 group-hover:shadow-lg group-hover:shadow-teal-500/40 transition-all duration-300">
                       <ClipboardCheck className="w-10 h-10 text-slate-700 group-hover:text-white transition-colors" />
@@ -258,9 +258,9 @@ export default function ServicesOverview() {
             <Link to={createPageUrl("StructuralEngineering")} className="block group h-full" data-testid="link-services-engineering">
               <AnimatedSection direction="right" delay={0.4} className="h-full">
                 <Card className="h-full hover:shadow-2xl transition-all duration-300 overflow-hidden border border-slate-200 bg-white cursor-pointer group-hover:-translate-y-2 rounded-md">
-                  <div className="h-1.5 bg-gradient-to-r from-emerald-500 to-green-600" />
+                  <div className="h-1.5 bg-gradient-to-r from-sky-500 to-blue-600" />
                   <div className="p-8 flex flex-col items-center text-center">
-                    <div className="bg-slate-100 rounded-md w-20 h-20 flex items-center justify-center mb-6 group-hover:bg-gradient-to-br group-hover:from-emerald-300 group-hover:to-emerald-600 group-hover:shadow-lg group-hover:shadow-emerald-500/40 transition-all duration-300">
+                    <div className="bg-slate-100 rounded-md w-20 h-20 flex items-center justify-center mb-6 group-hover:bg-gradient-to-br group-hover:from-sky-300 group-hover:to-blue-600 group-hover:shadow-lg group-hover:shadow-blue-500/40 transition-all duration-300">
                       <ClipboardCheck className="w-10 h-10 text-slate-700 group-hover:text-white transition-colors" />
                     </div>
                     <h3 className="text-slate-900 text-2xl font-bold mb-4 uppercase tracking-wide">Engineering Consulting</h3>
@@ -269,20 +269,20 @@ export default function ServicesOverview() {
                     </p>
                     <ul className="space-y-4 w-full flex flex-col items-center">
                       <li className="flex items-center justify-center gap-3 text-slate-700 max-w-md">
-                        <CheckCircle className="w-5 h-5 text-emerald-600 flex-shrink-0" />
-                        <span className="font-medium text-center group-hover:text-emerald-600 transition-colors">Civil Engineering Consulting</span>
+                        <CheckCircle className="w-5 h-5 text-blue-600 flex-shrink-0" />
+                        <span className="font-medium text-center group-hover:text-blue-600 transition-colors">Civil Engineering Consulting</span>
                       </li>
                       <li className="flex items-center justify-center gap-3 text-slate-700 max-w-md">
-                        <CheckCircle className="w-5 h-5 text-emerald-600 flex-shrink-0" />
-                        <span className="font-medium text-center group-hover:text-emerald-600 transition-colors">Structural Consulting</span>
+                        <CheckCircle className="w-5 h-5 text-blue-600 flex-shrink-0" />
+                        <span className="font-medium text-center group-hover:text-blue-600 transition-colors">Structural Consulting</span>
                       </li>
                       <li className="flex items-center justify-center gap-3 text-slate-700 max-w-md">
-                        <CheckCircle className="w-5 h-5 text-emerald-600 flex-shrink-0" />
-                        <span className="font-medium text-center group-hover:text-emerald-600 transition-colors">Site Assessment & Design</span>
+                        <CheckCircle className="w-5 h-5 text-blue-600 flex-shrink-0" />
+                        <span className="font-medium text-center group-hover:text-blue-600 transition-colors">Site Assessment & Design</span>
                       </li>
                       <li className="flex items-center justify-center gap-3 text-slate-700 max-w-md">
-                        <CheckCircle className="w-5 h-5 text-emerald-600 flex-shrink-0" />
-                        <span className="font-medium text-center group-hover:text-emerald-600 transition-colors">Development Management & Support</span>
+                        <CheckCircle className="w-5 h-5 text-blue-600 flex-shrink-0" />
+                        <span className="font-medium text-center group-hover:text-blue-600 transition-colors">Development Management & Support</span>
                       </li>
                     </ul>
                   </div>

@@ -178,7 +178,7 @@ in a timely manner.
               <Link to={createPageUrl("InspectionsTesting")} className="block group" data-testid="link-inspections-testing">
                 <AnimatedSection direction="left" delay={0.3}>
                   <Card className="h-full hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 overflow-hidden border border-slate-200 bg-white cursor-pointer rounded-md">
-                    <div className="h-1.5 bg-gradient-to-r from-teal-500 to-emerald-500" />
+                    <div className="h-1.5 bg-gradient-to-r from-teal-500 to-cyan-500" />
                     <div className="p-8 flex flex-col items-center text-center">
                       <div className="bg-gradient-to-br from-teal-300 to-teal-600 rounded-md w-20 h-20 flex items-center justify-center mb-6 shadow-lg shadow-teal-500/40 group-hover:scale-110 transition-transform">
                         <ClipboardCheck className="w-10 h-10 text-white" />
@@ -213,9 +213,9 @@ in a timely manner.
               <Link to={createPageUrl("StructuralEngineering")} className="block group" data-testid="link-engineering-consulting">
                 <AnimatedSection direction="right" delay={0.4}>
                   <Card className="h-full hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 overflow-hidden border border-slate-200 bg-white cursor-pointer rounded-md">
-                    <div className="h-1.5 bg-gradient-to-r from-emerald-500 to-green-600" />
+                    <div className="h-1.5 bg-gradient-to-r from-sky-500 to-blue-600" />
                     <div className="p-8 flex flex-col items-center text-center">
-                      <div className="bg-gradient-to-br from-emerald-300 to-emerald-600 rounded-md w-20 h-20 flex items-center justify-center mb-6 shadow-lg shadow-emerald-500/40 group-hover:scale-110 transition-transform">
+                      <div className="bg-gradient-to-br from-sky-300 to-blue-600 rounded-md w-20 h-20 flex items-center justify-center mb-6 shadow-lg shadow-blue-500/40 group-hover:scale-110 transition-transform">
                         <ClipboardCheck className="w-10 h-10 text-white" />
                       </div>
                       <h3 className="text-slate-900 text-2xl font-bold mb-4 uppercase tracking-wide">Engineering Consulting</h3>
@@ -224,19 +224,19 @@ in a timely manner.
                       </p>
                       <ul className="space-y-4 w-full flex flex-col items-center">
                         <li className="flex items-center justify-center gap-3 text-slate-700 max-w-md">
-                          <CheckCircle className="w-5 h-5 text-emerald-600 flex-shrink-0" />
+                          <CheckCircle className="w-5 h-5 text-blue-600 flex-shrink-0" />
                           <span className="font-medium text-center">Civil Engineering Consulting</span>
                         </li>
                         <li className="flex items-center justify-center gap-3 text-slate-700 max-w-md">
-                          <CheckCircle className="w-5 h-5 text-emerald-600 flex-shrink-0" />
+                          <CheckCircle className="w-5 h-5 text-blue-600 flex-shrink-0" />
                           <span className="font-medium text-center">Structural Consulting</span>
                         </li>
                         <li className="flex items-center justify-center gap-3 text-slate-700 max-w-md">
-                          <CheckCircle className="w-5 h-5 text-emerald-600 flex-shrink-0" />
+                          <CheckCircle className="w-5 h-5 text-blue-600 flex-shrink-0" />
                           <span className="font-medium text-center">Site Assessment & Design</span>
                         </li>
                         <li className="flex items-center justify-center gap-3 text-slate-700 max-w-md">
-                          <CheckCircle className="w-5 h-5 text-emerald-600 flex-shrink-0" />
+                          <CheckCircle className="w-5 h-5 text-blue-600 flex-shrink-0" />
                           <span className="font-medium text-center">Development Management & Support</span>
                         </li>
                       </ul>
@@ -328,7 +328,7 @@ in a timely manner.
 
             <AnimatedSection direction="up" delay={0.4}>
               <Card className="p-8 text-center shadow-md bg-white hover:shadow-xl hover:-translate-y-1 transition-all h-full rounded-none first:rounded-l-xl last:rounded-r-xl">
-                <div className="bg-emerald-600 w-16 h-16 rounded-md flex items-center justify-center mx-auto mb-6">
+                <div className="bg-blue-600 w-16 h-16 rounded-md flex items-center justify-center mx-auto mb-6">
                   <Shield className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-lg font-bold text-slate-900 mb-3 tracking-tight uppercase">Accountable</h3>

@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import { MessageSquare, X, Send, Phone, Loader2 } from "lucide-react";
+import { MessageCircle, X, Send, Phone, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
@@ -303,13 +303,13 @@ export default function ChatBot() {
             onPointerMove={handlePointerMove}
             onPointerUp={handlePointerUp}
             className={cn(
-              "w-14 h-14 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-xl hover:shadow-2xl flex items-center justify-center touch-none select-none",
+              "w-14 h-14 bg-gradient-to-br from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white rounded-full shadow-xl shadow-cyan-500/30 hover:shadow-2xl flex items-center justify-center touch-none select-none",
               isDragging ? "scale-110 cursor-grabbing" : "cursor-pointer hover:-translate-y-1 transition-all duration-300"
             )}
             data-testid="button-chatbot-open"
             aria-label="Open chat"
           >
-            <MessageSquare className="w-6 h-6" />
+            <MessageCircle className="w-6 h-6" />
           </button>
           <style>{`@keyframes bounce-gentle { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } } .animate-bounce-gentle { animation: bounce-gentle 2s ease-in-out infinite; }`}</style>
         </div>
@@ -320,8 +320,8 @@ export default function ChatBot() {
           <div className="rounded-xl shadow-2xl border border-gray-200 bg-white flex flex-col overflow-hidden max-h-[550px]">
             <div className="bg-slate-900 text-white px-4 py-3 flex items-center justify-between rounded-t-xl">
               <div className="flex items-center gap-2">
-                <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
-                  <MessageSquare className="w-4 h-4" />
+                <div className="w-8 h-8 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-full flex items-center justify-center">
+                  <MessageCircle className="w-4 h-4" />
                 </div>
                 <div>
                   <div className="font-semibold text-sm">Pacific Engineering</div>

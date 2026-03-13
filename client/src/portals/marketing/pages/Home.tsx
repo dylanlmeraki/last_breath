@@ -13,12 +13,10 @@ import {
   Star,
   Award,
   Building2,
-  HardHat,
   Ruler,
   Droplets,
   MapPin,
   Zap,
-  Target,
   TrendingUp,
 } from "lucide-react";
 import AnimatedSection from "../components/AnimatedSection";
@@ -115,7 +113,7 @@ const SERVICES = [
     title: "Construction Service",
     desc: "Fully licensed for any project from residential additions to public and governmental infrastructure.",
     items: ["Class A License", "Class B License", "Infrastructure & Public Works", "Residential, Commercial & Municipal"],
-    color: "orange" as const,
+    color: "darkblue" as const,
     page: "Construction",
   },
   {
@@ -123,7 +121,7 @@ const SERVICES = [
     title: "Engineering Consulting",
     desc: "Professional expertise across civil and structural disciplines with innovative project solutions.",
     items: ["Civil Engineering Consulting", "Structural Consulting", "Site Assessment & Design", "Development Management"],
-    color: "cyan" as const,
+    color: "bluecyan" as const,
     page: "StructuralEngineering",
   },
   {
@@ -131,7 +129,7 @@ const SERVICES = [
     title: "Inspections & Testing",
     desc: "Thorough inspections ensuring ongoing compliance with actionable improvement recommendations.",
     items: ["Structural Systems Inspections", "Stormwater Testing", "Materials Sampling & Testing", "Environmental Compliance"],
-    color: "blue" as const,
+    color: "cyan" as const,
     page: "InspectionsTesting",
   },
   {
@@ -139,40 +137,34 @@ const SERVICES = [
     title: "Stormwater Planning",
     desc: "Custom plans from initial assessments, tailored BMP designs, and full regulatory compliance.",
     items: ["PE/QSD/QSP site assessment", "BMP design & maintenance", "Clear documentation", "Federal/state/local compliance"],
-    color: "teal" as const,
+    color: "cyanteal" as const,
     page: "Services",
   },
 ];
 
 const colorMap = {
-  orange: {
-    bg: "bg-orange-100", hoverBg: "group-hover:from-orange-400 group-hover:to-orange-600",
-    icon: "text-orange-600", check: "text-orange-500", border: "from-orange-500 to-amber-500",
-    titleHover: "group-hover:text-orange-600", h: "h-2",
+  darkblue: {
+    bg: "bg-blue-100", hoverBg: "group-hover:from-blue-500 group-hover:to-blue-700",
+    icon: "text-blue-700", check: "text-blue-600", border: "from-blue-700 to-blue-500",
+    titleHover: "group-hover:text-blue-600", h: "h-2",
+  },
+  bluecyan: {
+    bg: "bg-sky-50", hoverBg: "group-hover:from-sky-400 group-hover:to-cyan-500",
+    icon: "text-sky-700", check: "text-sky-600", border: "from-sky-500 to-cyan-500",
+    titleHover: "group-hover:text-sky-600", h: "h-1.5",
   },
   cyan: {
-    bg: "bg-cyan-50", hoverBg: "group-hover:from-cyan-400 group-hover:to-blue-600",
-    icon: "text-cyan-700", check: "text-cyan-600", border: "from-cyan-500 to-blue-500",
-    titleHover: "group-hover:text-cyan-600", h: "h-1",
+    bg: "bg-cyan-50", hoverBg: "group-hover:from-cyan-400 group-hover:to-teal-500",
+    icon: "text-cyan-700", check: "text-cyan-600", border: "from-cyan-500 to-teal-500",
+    titleHover: "group-hover:text-cyan-600", h: "h-1.5",
   },
-  blue: {
-    bg: "bg-blue-50", hoverBg: "group-hover:from-blue-400 group-hover:to-cyan-600",
-    icon: "text-blue-600", check: "text-blue-500", border: "from-blue-600 to-cyan-500",
-    titleHover: "group-hover:text-blue-600", h: "h-1",
-  },
-  teal: {
-    bg: "bg-cyan-50", hoverBg: "group-hover:from-cyan-500 group-hover:to-blue-700",
-    icon: "text-cyan-700", check: "text-cyan-600", border: "from-cyan-600 to-cyan-500",
-    titleHover: "group-hover:text-cyan-700", h: "h-2",
+  cyanteal: {
+    bg: "bg-teal-50", hoverBg: "group-hover:from-teal-400 group-hover:to-cyan-500",
+    icon: "text-teal-700", check: "text-teal-600", border: "from-teal-500 to-cyan-600",
+    titleHover: "group-hover:text-teal-600", h: "h-2",
   },
 };
 
-const PROCESS_STEPS = [
-  { icon: Phone, title: "Initial Contact", desc: "Call or request a quote — we respond same-day to discuss your project needs." },
-  { icon: Target, title: "Site Assessment", desc: "Our licensed engineers evaluate your site conditions and project requirements." },
-  { icon: FileText, title: "Proposal & Plans", desc: "Detailed scope, timeline, and engineering plans tailored to your project." },
-  { icon: HardHat, title: "Execution", desc: "Our integrated team handles engineering, inspections, and construction." },
-];
 
 export default function Home() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -413,42 +405,46 @@ export default function Home() {
           </AnimatedSection>
         </div>
       </section>
-      <SectionDivider variant="wave" from="light" to="light" />
-      <section className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 bg-slate-50 relative overflow-hidden" data-testid="section-process">
+      <SectionDivider variant="angled" from="light" to="dark" />
+      <section
+        className="relative px-4 sm:px-6 bg-slate-900 overflow-hidden"
+        style={{ clipPath: "polygon(0 8%, 100% 0, 100% 100%, 0 100%)" }}
+        data-testid="section-midpage-cta"
+      >
         <BlueprintGrid />
-        <div className="max-w-6xl mx-auto relative z-10">
-          <AnimatedSection direction="up" className="text-center mb-10 sm:mb-14 lg:mb-16">
-            <p className="text-cyan-600 font-bold uppercase tracking-widest text-xs sm:text-sm mb-3">How It Works</p>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight">
-              From First Call to Final Inspection
+        <div className="relative z-10 max-w-4xl mx-auto text-center pt-20 sm:pt-24 md:pt-28 pb-12 sm:pb-16 md:pb-20">
+          <AnimatedSection direction="up">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white mb-8 sm:mb-10 tracking-tight" data-testid="text-midcta-title">
+              Ready to Start?
             </h2>
-            <div className="w-20 sm:w-24 h-1 sm:h-1.5 bg-gradient-to-r from-cyan-500 to-blue-500 mx-auto rounded-full" />
+
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-8 sm:mb-10">
+              <Link
+                to={createPageUrl("Consultation")}
+                className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 text-white font-bold tracking-tight text-base sm:text-lg px-8 sm:px-10 py-4 sm:py-5 rounded-xl bg-orange-600 hover:bg-orange-500 shadow-lg shadow-orange-600/25 hover:shadow-xl hover:shadow-orange-500/40 hover:-translate-y-0.5 active:scale-[0.97] transition-all duration-200"
+                data-testid="link-midcta-consultation"
+              >
+                Free Consultation
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
+              </Link>
+              <a
+                href="tel:+14156894428"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 text-white font-bold tracking-tight text-base sm:text-lg px-8 sm:px-10 py-4 sm:py-5 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 shadow-lg hover:shadow-xl transition-all duration-200 active:scale-[0.97]"
+                data-testid="link-midcta-call"
+              >
+                <Phone className="w-5 h-5" /> (415) 689-4428
+              </a>
+            </div>
+
+            <div className="flex flex-wrap justify-center gap-x-4 sm:gap-x-8 gap-y-2 sm:gap-y-3 text-slate-400 text-xs sm:text-sm font-medium">
+              <span className="inline-flex items-center gap-1.5 sm:gap-2"><CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-500" /> Licensed PE/QSD/QSP</span>
+              <span className="inline-flex items-center gap-1.5 sm:gap-2"><CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-500" /> Class A & B Contractor</span>
+              <span className="inline-flex items-center gap-1.5 sm:gap-2"><CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-500" /> 2,500+ Projects</span>
+            </div>
           </AnimatedSection>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 relative">
-            <div className="hidden lg:block absolute top-16 left-[12.5%] right-[12.5%] h-px bg-gradient-to-r from-cyan-200 via-cyan-300 to-cyan-200" />
-
-            {PROCESS_STEPS.map((step, idx) => {
-              const Icon = step.icon;
-              return (
-                <AnimatedSection key={step.title} direction="up" delay={0.1 + idx * 0.15} className="h-full">
-                  <div className="relative bg-white rounded-xl sm:rounded-2xl p-5 sm:p-6 lg:p-8 shadow-sm sm:shadow-md border border-slate-100 hover:shadow-lg hover:border-cyan-200 transition-all duration-300 text-center group h-full" data-testid={`step-${idx + 1}`}>
-                    <div className="relative z-10 mx-auto w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white font-bold text-lg sm:text-xl mb-4 sm:mb-5 shadow-md group-hover:scale-110 transition-transform duration-300">
-                      {idx + 1}
-                    </div>
-                    <div className="w-8 h-8 sm:w-10 sm:h-10 mx-auto mb-3 sm:mb-4 text-cyan-600 group-hover:text-cyan-500 transition-colors">
-                      <Icon className="w-full h-full" />
-                    </div>
-                    <h3 className="text-slate-900 font-bold text-base sm:text-lg mb-2">{step.title}</h3>
-                    <p className="text-slate-500 text-sm sm:text-base leading-relaxed">{step.desc}</p>
-                  </div>
-                </AnimatedSection>
-              );
-            })}
-          </div>
         </div>
       </section>
-      <SectionDivider variant="blueprint" />
+      <SectionDivider variant="gradient" from="dark" to="light" />
       <section className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 bg-cyan-50/40 relative overflow-hidden" data-testid="section-why-choose">
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
