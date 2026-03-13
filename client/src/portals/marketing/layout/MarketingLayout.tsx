@@ -71,20 +71,21 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
                 <img src="/images/pe-logo.png" alt="Pacific Engineering Logo" className="rounded-md h-14 w-14 object-contain relative z-10" />
               </div>
               <div>
-                <div className="font-bold text-white tracking-tight text-[24px]">Pacific Engineering</div>
+                <div className="font-bold text-white tracking-tight text-lg lg:text-xl xl:text-[24px]">Pacific Engineering & Construction Inc.</div>
                 <div className="text-xs font-medium text-blue-200 tracking-wide">Consulting Engineers & Contractors</div>
               </div>
             </Link>
 
             <nav className="hidden lg:flex items-center gap-1" data-testid="nav-main">
-              <Link to={createPageUrl("Home")} className="px-3 py-2 rounded-md text-sm transition-colors text-cyan-400 font-bold text-left" data-testid="nav-home">Home</Link>
+              <Link to={createPageUrl("Home")} className="px-3 py-2 rounded-md text-sm transition-colors text-cyan-400 font-bold text-left uppercase tracking-wide" data-testid="nav-home">Home</Link>
 
               <div className="relative" onMouseEnter={() => setServicesDropdownOpen(true)} onMouseLeave={() => setServicesDropdownOpen(false)}>
-                <Link to={createPageUrl("ServicesOverview")} className="px-3 py-2 rounded-md text-sm transition-colors flex items-center gap-1 text-gray-300 hover:text-white font-bold text-right" data-testid="nav-services">
+                <Link to={createPageUrl("ServicesOverview")} className="px-3 py-2 rounded-md text-sm transition-colors flex items-center gap-1 text-gray-300 hover:text-white font-bold uppercase tracking-wide" data-testid="nav-services">
                   Services <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${servicesDropdownOpen ? "rotate-180" : ""}`} />
                 </Link>
                 {servicesDropdownOpen && (
-                  <div className="absolute top-full left-0 mt-1 w-56 bg-slate-800 rounded-lg shadow-xl border border-slate-700 py-2 z-50">
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1 w-56 bg-slate-800 rounded-lg shadow-xl border border-slate-700 py-2 z-50 text-center">
+                    <div className="px-4 py-2 text-[11px] font-bold tracking-widest text-cyan-400/70 uppercase">Our Services</div>
                     {servicesItems.map((item) => (
                       <Link key={item.path} to={item.path} className="block px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-slate-700 transition-colors" data-testid={`nav-service-${item.name.toLowerCase().replace(/\s+/g, "-")}`}>{item.name}</Link>
                     ))}
@@ -93,11 +94,12 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
               </div>
 
               <div className="relative" onMouseEnter={() => setAboutDropdownOpen(true)} onMouseLeave={() => setAboutDropdownOpen(false)}>
-                <Link to={createPageUrl("About")} className="px-3 py-2 rounded-md text-sm transition-colors flex items-center gap-1 text-gray-300 hover:text-white text-center font-bold" data-testid="nav-about">
+                <Link to={createPageUrl("About")} className="px-3 py-2 rounded-md text-sm transition-colors flex items-center gap-1 text-gray-300 hover:text-white font-bold uppercase tracking-wide" data-testid="nav-about">
                   About <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${aboutDropdownOpen ? "rotate-180" : ""}`} />
                 </Link>
                 {aboutDropdownOpen && (
-                  <div className="absolute top-full left-0 mt-1 w-48 bg-slate-800 rounded-lg shadow-xl border border-slate-700 py-2 z-50">
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1 w-48 bg-slate-800 rounded-lg shadow-xl border border-slate-700 py-2 z-50 text-center">
+                    <div className="px-4 py-2 text-[11px] font-bold tracking-widest text-cyan-400/70 uppercase">About</div>
                     {aboutItems.map((item) => (
                       <Link key={item.path} to={item.path} className="block px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-slate-700 transition-colors" data-testid={`nav-about-${item.name.toLowerCase().replace(/\s+/g, "-")}`}>{item.name}</Link>
                     ))}
@@ -105,9 +107,9 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
                 )}
               </div>
 
-              <Link to={createPageUrl("Contact")} className="px-3 py-2 rounded-md text-sm transition-colors text-gray-300 hover:text-white font-bold text-left" data-testid="nav-contact">Contact</Link>
+              <Link to={createPageUrl("Contact")} className="px-3 py-2 rounded-md text-sm transition-colors text-gray-300 hover:text-white font-bold uppercase tracking-wide" data-testid="nav-contact">Contact</Link>
 
-              <Link to={createPageUrl("SWPPPChecker")} className="ml-2 px-5 py-2.5 bg-orange-500 hover:bg-orange-600 text-white rounded-full text-sm transition-all shadow-lg hover:shadow-orange-500/25 text-center font-bold" data-testid="nav-consultation">Get Consultation</Link>
+              <Link to={createPageUrl("SWPPPChecker")} className="ml-2 px-5 py-2.5 bg-orange-500 hover:bg-orange-600 text-white rounded-full text-sm transition-all shadow-lg hover:shadow-orange-500/25 text-center font-bold" data-testid="nav-consultation">Free Consultation</Link>
             </nav>
 
             <div className="flex items-center gap-2 lg:hidden">

@@ -9,7 +9,6 @@ import {
   ArrowRight,
   Phone,
   PhoneCall,
-  Clock,
   Users,
   Star,
   Award,
@@ -104,7 +103,7 @@ function MobileStickyBar() {
         <Phone className="w-4 h-4 text-cyan-400" /> Call Now
       </a>
       <Link to={createPageUrl("Consultation")} className="flex-1 py-3 rounded-lg bg-orange-600 text-white font-bold text-sm flex items-center justify-center gap-2 active:bg-orange-500 transition-colors shadow-md" data-testid="btn-sticky-quote">
-        <PhoneCall className="w-4 h-4" /> Get Quote
+        Free Consultation <ArrowRight className="w-4 h-4" />
       </Link>
     </div>
   );
@@ -262,7 +261,7 @@ export default function Home() {
             playsInline
             className="absolute inset-0 w-full h-full object-cover opacity-[0.72]"
           >
-            <source src="/images/hero-video.mp4" type="video/mp4" />
+            <source src="/images/hero-ggbridge.mp4" type="video/mp4" />
           </video>
           <div className="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-slate-900/60 to-slate-950/90 opacity-30" />
           <div className="absolute inset-0 bg-gradient-to-br from-cyan-950/40 via-transparent to-orange-950/15 opacity-50" />
@@ -285,14 +284,6 @@ export default function Home() {
                   <div className="h-0.5 sm:h-1 bg-gradient-to-r from-blue-600/80 via-cyan-500/80 to-cyan-400/80" />
 
                   <div className="px-5 py-8 sm:p-10 md:p-12 lg:p-16">
-                    <div className="flex justify-center mb-5 sm:mb-8">
-                      <img
-                        src="/images/pe-logo.png"
-                        alt="Pacific Engineering Logo"
-                        className="h-16 w-16 sm:h-20 sm:w-20 lg:h-24 lg:w-24 rounded-xl lg:rounded-2xl object-contain shadow-lg border border-cyan-500/15"
-                      />
-                    </div>
-
                     <h1 className="text-white font-bold tracking-tight leading-[1.08] text-[1.75rem] sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl mb-3 sm:mb-5" data-testid="text-hero-title">
                       <span className="text-white">Pacific Engineering</span>
                       <br />
@@ -308,17 +299,16 @@ export default function Home() {
                     </div>
 
                     <p className="text-slate-300/90 mx-auto font-light tracking-wide text-sm sm:text-lg md:text-xl lg:text-2xl mb-6 sm:mb-8 max-w-2xl" data-testid="text-hero-subtitle">
-                      Bay Area Consulting Engineers & Contractors
+                      Consulting Engineers & Contractors
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-5 sm:mb-6">
                       <Link
-                        to={createPageUrl("Consultation")}
+                        to={createPageUrl("ServicesOverview")}
                         className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-white font-bold tracking-tight text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-5 rounded-xl bg-orange-600 hover:bg-orange-500 shadow-xl shadow-orange-600/25 hover:shadow-orange-500/40 hover:-translate-y-0.5 active:scale-[0.97] transition-all duration-200 pe-glow-orange"
                         data-testid="link-hero-quote"
                       >
-                        <PhoneCall className="w-5 h-5" />
-                        Request a Quote
+                        Our Services
                         <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
                       </Link>
                       <Link
@@ -326,8 +316,7 @@ export default function Home() {
                         className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-white font-bold tracking-tight text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-5 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 shadow-xl shadow-cyan-600/15 hover:shadow-cyan-500/30 hover:-translate-y-0.5 active:scale-[0.97] transition-all duration-200 pe-glow-cyan"
                         data-testid="link-hero-consultation"
                       >
-                        <Clock className="w-5 h-5" />
-                        Schedule a Consult
+                        Free Consultation
                         <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
                       </Link>
                     </div>
@@ -343,13 +332,13 @@ export default function Home() {
                         </div>
                         <div className="text-cyan-400/90 tracking-tight font-medium text-[10px] sm:text-sm">Years Experience</div>
                       </div>
-                      <div className="group relative rounded-lg sm:rounded-xl bg-slate-800/60 border-2 border-cyan-500/30 shadow-lg sm:shadow-xl p-3 sm:p-5 md:p-6 sm:scale-105 flex flex-col items-center justify-center z-10" data-testid="stat-full-service">
+                      <div className="group relative rounded-lg sm:rounded-xl bg-white/[0.04] border border-white/[0.08] hover:border-cyan-500/30 transition-all duration-300 hover:bg-white/[0.07] p-3 sm:p-5 md:p-6 flex flex-col items-center justify-center" data-testid="stat-full-service">
                         <div className="text-white font-bold mb-0.5 sm:mb-2 text-lg sm:text-2xl md:text-3xl lg:text-4xl">Full-Service</div>
                         <div className="text-cyan-400/90 tracking-tight font-medium text-[10px] sm:text-sm">Vertically Integrated</div>
                       </div>
                       <div className="group relative rounded-lg sm:rounded-xl bg-white/[0.04] border border-white/[0.08] hover:border-cyan-500/30 transition-all duration-300 hover:bg-white/[0.07] p-3 sm:p-5 md:p-6 flex flex-col items-center justify-center" data-testid="stat-full-scale">
                         <div className="text-white font-bold mb-0.5 sm:mb-2 text-lg sm:text-2xl md:text-3xl lg:text-4xl">Full-Scale</div>
-                        <div className="text-cyan-400/90 tracking-tight font-medium text-[10px] sm:text-sm leading-tight text-center">Res, Comm & Infra</div>
+                        <div className="text-cyan-400/90 tracking-tight font-medium text-[10px] sm:text-sm leading-tight text-center">Res, Comm & Infrastructure</div>
                       </div>
                     </div>
                   </div>
