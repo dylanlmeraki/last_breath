@@ -24,6 +24,7 @@ import SectionDivider from "../components/SectionDivider";
 import SEO from "../components/SEO";
 import ParticleField from "../components/ParticleField";
 import FloatingElements from "../components/FloatingElements";
+import BlueprintBackground from "../components/BlueprintBackground";
 
 function useInView(threshold = 0.15) {
   const ref = useRef<HTMLDivElement>(null);
@@ -253,20 +254,21 @@ export default function Home() {
             playsInline
             className="absolute inset-0 w-full h-full object-cover opacity-[0.72]"
           >
-            <source src="/images/hero-ggbridge.mp4" type="video/mp4" />
+            <source src="/images/hero-ggb-draft.mp4" type="video/mp4" />
           </video>
           <div className="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-slate-900/60 to-slate-950/90 opacity-30" />
           <div className="absolute inset-0 bg-gradient-to-br from-cyan-950/40 via-transparent to-orange-950/15 opacity-50" />
         </div>
 
-        <ParticleField className="z-[1] opacity-15 hidden md:block" particleCount={35} />
-        <FloatingElements className="z-[3] opacity-50" />
+        <BlueprintBackground className="z-[2] opacity-60" />
+        <ParticleField className="z-[3] opacity-15 hidden md:block" particleCount={35} />
+        <FloatingElements className="z-[4] opacity-50" />
         <FloatingParticles />
 
         <div className="absolute top-1/3 left-1/5 w-64 md:w-96 h-64 md:h-96 bg-cyan-500/8 rounded-full blur-[100px] md:blur-[140px] pointer-events-none z-[1]" />
         <div className="absolute bottom-1/4 right-1/5 w-48 md:w-80 h-48 md:h-80 bg-orange-500/5 rounded-full blur-[80px] md:blur-[120px] pointer-events-none z-[1]" />
 
-        <div className="relative z-10 w-full px-4 sm:px-6 lg:px-10">
+        <div className="relative z-[5] w-full px-4 sm:px-6 lg:px-10">
           <div className="mx-auto w-full max-w-5xl">
             <AnimatedSection direction="up" duration={1.1} className="text-center">
               <div className="relative">

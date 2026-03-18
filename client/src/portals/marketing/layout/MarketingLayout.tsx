@@ -5,6 +5,17 @@ import { Menu, X, Phone, Mail, MapPin, ChevronDown, PhoneCall } from "lucide-rea
 import ChatBot from "../components/ChatBot";
 import BackToTop from "../components/BackToTop";
 import FooterBackground from "../components/FooterBackground";
+import { ShinyButton } from "../components/ShinyButton";
+
+const consultationShinyVars: Record<string, string> = {
+  "--shiny-cta-bg": "#f97316",
+  "--shiny-cta-bg-subtle": "rgba(249, 115, 22, 0.2)",
+  "--shiny-cta-fg": "#ffffff",
+  "--shiny-cta-highlight": "#ea580c",
+  "--shiny-cta-highlight-subtle": "#fb923c",
+  "--shiny-cta-shadow": "rgba(249, 115, 22, 0.4)",
+  "--shiny-cta-glow": "rgba(251, 146, 60, 0.55)",
+};
 
 interface MarketingLayoutProps {
   children: ReactNode;
@@ -70,59 +81,73 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
                 <div className="absolute inset-0 bg-white rounded-md opacity-10 group-hover:opacity-20 transition-opacity" />
                 <img src="/images/pe-logo.png" alt="Pacific Engineering Logo" className="rounded-md h-14 w-14 object-contain relative z-10" />
               </div>
-              <div>
-                <div className="font-bold text-white tracking-tight text-lg lg:text-xl xl:text-[24px]">Pacific Engineering & Construction Inc.</div>
-                <div className="text-xs font-medium text-blue-200 tracking-wide">Consulting Engineers & Contractors</div>
+              <div className="min-w-0">
+                <div className="font-bold text-white tracking-tight text-base sm:text-lg lg:text-xl xl:text-[24px] truncate">Pacific Engineering & Construction Inc.</div>
+                <div className="text-xs font-medium text-blue-200 tracking-wide hidden sm:block">Consulting Engineers & Contractors</div>
               </div>
             </Link>
 
-            <nav className="hidden lg:flex items-center gap-1" data-testid="nav-main">
-              <Link to={createPageUrl("Home")} className="px-3 py-2 rounded-md text-sm transition-colors text-cyan-400 font-bold text-left uppercase tracking-wide" data-testid="nav-home">Home</Link>
+            <nav className="hidden lg:flex items-center gap-1 h-full" data-testid="nav-main">
+              <Link to={createPageUrl("Home")} className="font-bold text-sm uppercase tracking-wide text-white transition-all flex items-center h-full px-4 hover:bg-white/10 hover:text-blue-200 border-b-2 border-transparent hover:border-blue-400" data-testid="nav-home">Home</Link>
 
-              <div className="relative" onMouseEnter={() => setServicesDropdownOpen(true)} onMouseLeave={() => setServicesDropdownOpen(false)}>
-                <Link to={createPageUrl("ServicesOverview")} className="px-3 py-2 rounded-md text-sm transition-colors flex items-center gap-1 text-gray-300 hover:text-white font-bold uppercase tracking-wide" data-testid="nav-services">
-                  Services <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${servicesDropdownOpen ? "rotate-180" : ""}`} />
+              <div className="relative group h-full flex items-center" onMouseEnter={() => setServicesDropdownOpen(true)} onMouseLeave={() => setServicesDropdownOpen(false)}>
+                <Link to={createPageUrl("ServicesOverview")} className="font-bold text-sm uppercase tracking-wide text-white transition-all flex items-center gap-1 h-full px-4 hover:bg-white/10 hover:text-blue-200 border-b-2 border-transparent hover:border-blue-400" data-testid="nav-services">
+                  Services
+                  <ChevronDown className={`w-4 h-4 transition-transform ${servicesDropdownOpen ? "rotate-180" : ""}`} />
                 </Link>
                 {servicesDropdownOpen && (
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1 w-56 bg-slate-800 rounded-lg shadow-xl border border-slate-700 py-2 z-50 text-center">
-                    <div className="px-4 py-2 text-[11px] font-bold tracking-widest text-cyan-400/70 uppercase">Our Services</div>
-                    {servicesItems.map((item) => (
-                      <Link key={item.path} to={item.path} className="block px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-slate-700 transition-colors" data-testid={`nav-service-${item.name.toLowerCase().replace(/\s+/g, "-")}`}>{item.name}</Link>
-                    ))}
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 pt-0">
+                    <div className="w-64 bg-slate-900 shadow-2xl border-t-4 border-blue-600 py-0 overflow-hidden rounded-b-sm">
+                      <Link to={createPageUrl("ServicesOverview")} className="block px-6 py-4 text-white hover:bg-white/10 font-bold text-sm uppercase tracking-wide text-center border-b border-white/10" data-testid="nav-services-overview">Our Services</Link>
+                      {servicesItems.map((item) => (
+                        <Link key={item.path} to={item.path} className="block px-6 py-3 text-gray-300 hover:bg-blue-600 hover:text-white transition-all text-sm font-medium text-center" data-testid={`nav-service-${item.name.toLowerCase().replace(/\s+/g, "-")}`}>{item.name}</Link>
+                      ))}
+                    </div>
                   </div>
                 )}
               </div>
 
-              <div className="relative" onMouseEnter={() => setAboutDropdownOpen(true)} onMouseLeave={() => setAboutDropdownOpen(false)}>
-                <Link to={createPageUrl("About")} className="px-3 py-2 rounded-md text-sm transition-colors flex items-center gap-1 text-gray-300 hover:text-white font-bold uppercase tracking-wide" data-testid="nav-about">
-                  About <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${aboutDropdownOpen ? "rotate-180" : ""}`} />
+              <div className="relative group h-full flex items-center" onMouseEnter={() => setAboutDropdownOpen(true)} onMouseLeave={() => setAboutDropdownOpen(false)}>
+                <Link to={createPageUrl("About")} className="font-bold text-sm uppercase tracking-wide text-white transition-all flex items-center gap-1 h-full px-4 hover:bg-white/10 hover:text-blue-200 border-b-2 border-transparent hover:border-blue-400" data-testid="nav-about">
+                  About
+                  <ChevronDown className={`w-4 h-4 transition-transform ${aboutDropdownOpen ? "rotate-180" : ""}`} />
                 </Link>
                 {aboutDropdownOpen && (
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1 w-48 bg-slate-800 rounded-lg shadow-xl border border-slate-700 py-2 z-50 text-center">
-                    <div className="px-4 py-2 text-[11px] font-bold tracking-widest text-cyan-400/70 uppercase">About</div>
-                    {aboutItems.map((item) => (
-                      <Link key={item.path} to={item.path} className="block px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-slate-700 transition-colors" data-testid={`nav-about-${item.name.toLowerCase().replace(/\s+/g, "-")}`}>{item.name}</Link>
-                    ))}
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 pt-0">
+                    <div className="w-56 bg-slate-900 shadow-2xl border-t-4 border-blue-600 py-0 overflow-hidden rounded-b-sm">
+                      {aboutItems.map((item) => (
+                        <Link key={item.path} to={item.path} className="block px-6 py-3 text-gray-300 hover:bg-blue-600 hover:text-white transition-all font-medium text-sm text-center" data-testid={`nav-about-${item.name.toLowerCase().replace(/\s+/g, "-")}`}>{item.name}</Link>
+                      ))}
+                    </div>
                   </div>
                 )}
               </div>
 
-              <Link to={createPageUrl("Contact")} className="px-3 py-2 rounded-md text-sm transition-colors text-gray-300 hover:text-white font-bold uppercase tracking-wide" data-testid="nav-contact">Contact</Link>
+              <Link to={createPageUrl("Contact")} className="font-bold text-sm uppercase tracking-wide text-white transition-all flex items-center h-full px-4 hover:bg-white/10 hover:text-blue-200 border-b-2 border-transparent hover:border-blue-400" data-testid="nav-contact">Contact</Link>
 
-              <Link to={createPageUrl("SWPPPChecker")} className="ml-2 px-5 py-2.5 bg-orange-500 hover:bg-orange-600 text-white rounded-full text-sm transition-all shadow-lg hover:shadow-orange-500/25 text-center font-bold" data-testid="nav-consultation">Free Consultation</Link>
+              <div className="flex items-center gap-3 ml-4 h-full">
+                <Link to={createPageUrl("SWPPPChecker")} data-testid="nav-consultation">
+                  <ShinyButton
+                    className="group inline-flex items-center justify-center gap-2 whitespace-nowrap text-white font-bold tracking-tight text-xs h-9 px-4 rounded-md shadow-lg shadow-orange-900/20 hover:shadow-orange-500/50 active:scale-95 transition-all duration-300"
+                    style={consultationShinyVars as React.CSSProperties}
+                  >
+                    Free Consultation
+                  </ShinyButton>
+                </Link>
+              </div>
             </nav>
 
             <div className="flex items-center gap-2 lg:hidden">
               <a
                 href="tel:+14156894428"
-                className="w-10 h-10 flex items-center justify-center rounded-full bg-cyan-600 hover:bg-cyan-500 text-white transition-colors shadow-md"
+                className="flex items-center gap-1.5 px-3 py-2 bg-orange-500 hover:bg-orange-400 active:bg-orange-600 text-white text-sm font-bold rounded-full transition-colors shadow-lg shadow-orange-500/30"
                 data-testid="btn-header-call"
-                aria-label="Call us"
               >
                 <Phone className="w-4 h-4" />
+                <span>Call</span>
               </a>
               <button
-                className="text-white p-2"
+                className="p-2 text-white hover:bg-white/10 rounded-lg transition-colors"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 data-testid="button-mobile-menu"
                 aria-label="Toggle menu"
