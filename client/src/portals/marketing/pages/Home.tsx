@@ -554,7 +554,7 @@ export default function Home() {
                       </Link>
                       <Link
                         to={createPageUrl("ServicesOverview")}
-                        className="w-full sm:w-auto px-10 sm:px-12 py-4 sm:py-[18px] bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold tracking-tight text-base sm:text-lg rounded-sm sm:rounded-full flex items-center justify-center gap-3 shadow-[0_8px_25px_rgba(6,182,212,0.3)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_35px_rgba(6,182,212,0.45)] active:scale-[0.97]"
+                        className="w-full sm:w-auto px-10 sm:px-12 py-4 sm:py-[18px] text-white font-bold tracking-tight text-base sm:text-lg rounded-sm sm:rounded-full flex items-center justify-center gap-3 shadow-[0_8px_25px_rgba(6,182,212,0.3)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_35px_rgba(6,182,212,0.45)] active:scale-[0.97] [background:radial-gradient(ellipse_at_center,#0891b2,#3b82f6)] hover:[background:radial-gradient(ellipse_at_center,#06b6d4,#2563eb)]"
                         data-testid="link-hero-consultation"
                       >
                         Our Services
@@ -606,7 +606,7 @@ export default function Home() {
         </div>
       </motion.section>
       {/* ── HERO → SERVICES DIVIDER ── */}
-      <div className="w-full h-px bg-gradient-to-r from-cyan-50 via-orange-300 to-cyan-50" style={{ backgroundImage: "linear-gradient(to right, #ecfeff, #fdba74 25%, #3b82f6 50%, #fdba74 75%, #ecfeff)" }} />
+      <div className="w-full h-3 bg-gradient-to-r from-cyan-100 via-blue-600 to-cyan-100" />
       {/* ── SERVICES ── */}
       <section className="py-12 sm:py-16 md:py-20 lg:py-28 px-4 sm:px-6 bg-white relative" data-testid="section-services">
         <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-slate-900/[0.06] to-transparent pointer-events-none z-[1]" aria-hidden="true" />
@@ -630,7 +630,7 @@ export default function Home() {
           <AnimatedSection direction="up" delay={0.5} className="text-center mt-8 sm:mt-12 lg:mt-16" ease="tween">
             <Link
               to={createPageUrl("ServicesOverview")}
-              className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-white font-bold tracking-tight text-base sm:text-lg px-10 sm:px-14 py-4 sm:py-[18px] rounded-sm sm:rounded-full bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 shadow-[0_8px_25px_rgba(6,182,212,0.3)] hover:shadow-[0_12px_35px_rgba(6,182,212,0.45)] hover:-translate-y-1 active:scale-[0.97] transition-all duration-300 focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:outline-none"
+              className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-white font-bold tracking-tight text-base sm:text-lg px-10 sm:px-14 py-4 sm:py-[18px] rounded-sm sm:rounded-full shadow-[0_8px_25px_rgba(6,182,212,0.3)] hover:shadow-[0_12px_35px_rgba(6,182,212,0.45)] hover:-translate-y-1 active:scale-[0.97] transition-all duration-300 focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:outline-none [background:radial-gradient(ellipse_at_center,#0891b2,#3b82f6)] hover:[background:radial-gradient(ellipse_at_center,#06b6d4,#2563eb)]"
               data-testid="link-view-all-services"
             >
               View All Services
@@ -811,7 +811,7 @@ export default function Home() {
               <PhoneCall className="w-5 h-5 sm:w-6 sm:h-6" />
               Free Consultation
             </Link>
-            <a href="tel:+14156894428" className="w-full sm:w-auto px-10 sm:px-14 py-4 sm:py-[18px] bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold tracking-tight text-base sm:text-lg rounded-sm sm:rounded-full flex items-center justify-center gap-3 shadow-[0_8px_25px_rgba(6,182,212,0.3)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_35px_rgba(6,182,212,0.45)] active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:outline-none" data-testid="link-cta-call">
+            <a href="tel:+14156894428" className="w-full sm:w-auto px-10 sm:px-14 py-4 sm:py-[18px] text-white font-bold tracking-tight text-base sm:text-lg rounded-sm sm:rounded-full flex items-center justify-center gap-3 shadow-[0_8px_25px_rgba(6,182,212,0.3)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_35px_rgba(6,182,212,0.45)] active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:outline-none [background:radial-gradient(ellipse_at_center,#0891b2,#3b82f6)] hover:[background:radial-gradient(ellipse_at_center,#06b6d4,#2563eb)]" data-testid="link-cta-call">
               <Phone className="w-5 h-5 sm:w-6 sm:h-6" /> (415) 689-4428
             </a>
           </motion.div>

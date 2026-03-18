@@ -325,7 +325,7 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
               />
               <button
                 type="submit"
-                className="px-5 py-3 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white transition-all flex items-center gap-2 text-sm font-bold"
+                className="px-5 py-3 text-white transition-all flex items-center gap-2 text-sm font-bold [background:radial-gradient(ellipse_at_center,#0891b2,#3b82f6)] hover:[background:radial-gradient(ellipse_at_center,#06b6d4,#2563eb)]"
                 data-testid="button-newsletter-subscribe"
               >
                 Subscribe
