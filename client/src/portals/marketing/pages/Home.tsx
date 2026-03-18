@@ -866,10 +866,9 @@ export default function Home() {
       </section>
       {/* ── WHY CHOOSE → CTA TRANSITION ── */}
       <div className="relative w-full" style={{ marginTop: "-1px" }} data-testid="divider-whychoose-cta">
-        <div className="h-px bg-gradient-to-r from-slate-200 via-slate-500 to-slate-200" />
-        <div className="h-2 opacity-[0.72]" style={{ background: "linear-gradient(to right, #475569, #1e40af 20%, #0891b2 40%, #06b6d4 50%, #0891b2 60%, #1e40af 80%, #475569)" }} />
-        <div className="h-2 bg-gradient-to-r from-slate-700 via-blue-900 to-slate-700" />
-        <div className="h-px bg-gradient-to-r from-slate-800 via-slate-900 to-slate-800" />
+        <div className="h-px bg-gradient-to-r from-slate-300 via-cyan-200 to-slate-300" />
+        <div className="h-[3px]" style={{ background: "linear-gradient(to right, #475569, #0e7490 20%, #06b6d4 35%, #22d3ee 50%, #06b6d4 65%, #0e7490 80%, #475569)" }} />
+        <div className="h-2 bg-gradient-to-r from-slate-800 via-blue-900 to-slate-800" />
       </div>
       {/* ── CTA ── */}
       <section
@@ -912,7 +911,7 @@ export default function Home() {
             <br className="sm:hidden" /> on Track
           </motion.h2>
           <motion.p
-            className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-300 mb-8 sm:mb-12 leading-relaxed font-light max-w-3xl mx-auto"
+            className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-200 mb-8 sm:mb-12 leading-relaxed font-light max-w-3xl mx-auto"
             initial={rm ? { opacity: 1 } : { opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
@@ -927,7 +926,7 @@ export default function Home() {
           </motion.p>
 
           <motion.div
-            className="flex flex-col sm:flex-row gap-3 sm:gap-8 justify-center items-center mb-8 sm:mb-12"
+            className="inline-flex flex-col sm:flex-row gap-3 sm:gap-5 md:gap-8 justify-center items-center mb-8 sm:mb-12 bg-white/[0.04] backdrop-blur-sm border border-white/[0.08] rounded-lg sm:rounded-full px-4 sm:px-6 py-4 sm:py-3"
             initial={rm ? { opacity: 1 } : { opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
@@ -955,7 +954,7 @@ export default function Home() {
           </motion.div>
 
           <motion.div
-            className="flex flex-wrap justify-center gap-x-4 sm:gap-x-8 gap-y-2 sm:gap-y-3 text-slate-400 text-xs sm:text-sm font-medium"
+            className="flex flex-wrap justify-center gap-x-4 sm:gap-x-8 gap-y-2 sm:gap-y-3 text-slate-300 text-xs sm:text-sm font-medium"
             initial={rm ? { opacity: 1 } : { opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true, amount: 0.3 }}
