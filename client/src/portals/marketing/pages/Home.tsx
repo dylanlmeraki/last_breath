@@ -164,7 +164,7 @@ const colorMap = {
     titleHover: "group-hover:text-blue-500", textHover: "group-hover:text-blue-500/80",
     checkHover: "group-hover:text-blue-400", cardBgHover: "group-hover:bg-blue-50/60", h: "h-2",
     glowColor: "rgba(59,130,246,0.15)",
-    gradient: "linear-gradient(to right, #e86008, #f59e0b, #fbbf24, #fcd34d)",
+    gradient: "linear-gradient(to right, #e86008, #f59e0b, #fbbf24, #fde68a)",
   },
   bluecyan: {
     bg: "bg-sky-50", hoverBg: "group-hover:from-sky-400 group-hover:to-cyan-500",
@@ -172,7 +172,7 @@ const colorMap = {
     titleHover: "group-hover:text-cyan-500", textHover: "group-hover:text-cyan-600/80",
     checkHover: "group-hover:text-cyan-400", cardBgHover: "group-hover:bg-sky-50/60", h: "h-2",
     glowColor: "rgba(14,165,233,0.15)",
-    gradient: "linear-gradient(to right, #fbbf24, #fde68a, #d9f99d, #bbf7d0)",
+    gradient: "linear-gradient(to right, #fde68a, #d9f99d, #bbf7d0, #a7f3d0)",
   },
   cyan: {
     bg: "bg-cyan-50", hoverBg: "group-hover:from-cyan-400 group-hover:to-teal-500",
@@ -180,7 +180,7 @@ const colorMap = {
     titleHover: "group-hover:text-teal-500", textHover: "group-hover:text-teal-600/80",
     checkHover: "group-hover:text-teal-400", cardBgHover: "group-hover:bg-cyan-50/60", h: "h-2",
     glowColor: "rgba(6,182,212,0.15)",
-    gradient: "linear-gradient(to right, #bbf7d0, #99f6e4, #5eead4, #22d3ee)",
+    gradient: "linear-gradient(to right, #a7f3d0, #5eead4, #2dd4bf, #22d3ee)",
   },
   cyanteal: {
     bg: "bg-teal-50", hoverBg: "group-hover:from-teal-400 group-hover:to-cyan-500",
@@ -188,7 +188,7 @@ const colorMap = {
     titleHover: "group-hover:text-cyan-500", textHover: "group-hover:text-cyan-600/80",
     checkHover: "group-hover:text-cyan-400", cardBgHover: "group-hover:bg-teal-50/60", h: "h-2",
     glowColor: "rgba(20,184,166,0.15)",
-    gradient: "linear-gradient(to right, #2dd4bf, #0d9488, #0891b2, #1e40af)",
+    gradient: "linear-gradient(to right, #22d3ee, #0891b2, #0369a1, #1e40af)",
   },
 };
 
