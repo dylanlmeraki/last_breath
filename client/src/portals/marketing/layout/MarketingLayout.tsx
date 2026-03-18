@@ -262,7 +262,7 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
             </div>
 
             <div>
-              <h4 className="font-semibold text-sm uppercase tracking-wider text-cyan-400 mb-4">Company</h4>
+              <h4 className="font-semibold text-sm uppercase tracking-wider text-cyan-400 mb-4 text-center">Company</h4>
               <ul className="space-y-2 text-center">
                 {aboutItems.map((item) => (
                   <li key={item.path}>
