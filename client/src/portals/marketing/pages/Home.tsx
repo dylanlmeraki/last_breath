@@ -140,22 +140,26 @@ const colorMap = {
   darkblue: {
     bg: "bg-blue-100", hoverBg: "group-hover:from-blue-500 group-hover:to-blue-700",
     icon: "text-blue-700", check: "text-blue-600", border: "from-blue-700 to-blue-500",
-    titleHover: "group-hover:text-blue-600", h: "h-2",
+    titleHover: "group-hover:text-blue-500", textHover: "group-hover:text-blue-500/80",
+    checkHover: "group-hover:text-blue-400", cardBgHover: "group-hover:bg-blue-50/60", h: "h-2",
   },
   bluecyan: {
     bg: "bg-sky-50", hoverBg: "group-hover:from-sky-400 group-hover:to-cyan-500",
     icon: "text-sky-700", check: "text-sky-600", border: "from-sky-500 to-cyan-500",
-    titleHover: "group-hover:text-sky-600", h: "h-1.5",
+    titleHover: "group-hover:text-cyan-500", textHover: "group-hover:text-cyan-600/80",
+    checkHover: "group-hover:text-cyan-400", cardBgHover: "group-hover:bg-sky-50/60", h: "h-1.5",
   },
   cyan: {
     bg: "bg-cyan-50", hoverBg: "group-hover:from-cyan-400 group-hover:to-teal-500",
     icon: "text-cyan-700", check: "text-cyan-600", border: "from-cyan-500 to-teal-500",
-    titleHover: "group-hover:text-cyan-600", h: "h-1.5",
+    titleHover: "group-hover:text-teal-500", textHover: "group-hover:text-teal-600/80",
+    checkHover: "group-hover:text-teal-400", cardBgHover: "group-hover:bg-cyan-50/60", h: "h-1.5",
   },
   cyanteal: {
     bg: "bg-teal-50", hoverBg: "group-hover:from-teal-400 group-hover:to-cyan-500",
     icon: "text-teal-700", check: "text-teal-600", border: "from-teal-500 to-cyan-600",
-    titleHover: "group-hover:text-teal-600", h: "h-2",
+    titleHover: "group-hover:text-cyan-500", textHover: "group-hover:text-cyan-600/80",
+    checkHover: "group-hover:text-cyan-400", cardBgHover: "group-hover:bg-teal-50/60", h: "h-2",
   },
 };
 
@@ -362,20 +366,20 @@ export default function Home() {
               return (
                 <AnimatedSection key={svc.title} direction={idx % 2 === 0 ? "right" : "left"} delay={0.1 + idx * 0.1} className="h-full">
                   <Link to={createPageUrl(svc.page)} className="block group h-full" data-testid={`link-${svc.title.toLowerCase().replace(/\s+/g, "-")}`}>
-                    <div className="h-full bg-white group-hover:bg-slate-900 group-active:bg-slate-900 rounded-xl sm:rounded-2xl shadow-md sm:shadow-lg group-hover:shadow-2xl border border-slate-100 group-hover:border-transparent transition-all duration-300 overflow-hidden cursor-pointer hover:-translate-y-1 sm:hover:-translate-y-2">
+                    <div className={`h-full bg-white ${c.cardBgHover} rounded-xl sm:rounded-2xl shadow-md sm:shadow-lg group-hover:shadow-xl border border-slate-100 transition-all duration-300 overflow-hidden cursor-pointer hover:-translate-y-1 sm:hover:-translate-y-2`}>
                       <div className={`${c.h} bg-gradient-to-r ${c.border}`} />
                       <div className="p-5 sm:p-8 lg:p-10 flex flex-col items-center text-center">
                         <div className={`${c.bg} rounded-xl sm:rounded-2xl w-14 h-14 sm:w-20 sm:h-20 lg:w-24 lg:h-24 flex items-center justify-center mb-4 sm:mb-6 lg:mb-8 group-hover:bg-gradient-to-br ${c.hoverBg} group-hover:shadow-lg transition-all duration-300`}>
                           <Icon className={`w-7 h-7 sm:w-10 sm:h-10 lg:w-12 lg:h-12 ${c.icon} group-hover:text-white transition-colors`} />
                         </div>
-                        <h3 className="text-slate-900 group-hover:text-white group-active:text-white text-lg sm:text-xl lg:text-2xl font-bold mb-2 sm:mb-4 uppercase tracking-wider transition-colors">
+                        <h3 className={`text-slate-900 ${c.titleHover} text-lg sm:text-xl lg:text-2xl font-bold mb-2 sm:mb-4 uppercase tracking-wider transition-colors`}>
                           {svc.title}
                         </h3>
-                        <p className="text-slate-600 group-hover:text-white/80 group-active:text-white/80 mb-4 sm:mb-6 lg:mb-8 leading-relaxed text-sm sm:text-base lg:text-lg transition-colors">{svc.desc}</p>
+                        <p className={`text-slate-600 ${c.textHover} mb-4 sm:mb-6 lg:mb-8 leading-relaxed text-sm sm:text-base lg:text-lg transition-colors`}>{svc.desc}</p>
                         <ul className="space-y-2 sm:space-y-3 w-full">
                           {svc.items.map((item, i) => (
-                            <li key={i} className="flex items-center justify-center gap-2 sm:gap-3 text-slate-600 group-hover:text-white/85 group-active:text-white/85 transition-colors">
-                              <CheckCircle className={`w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0 ${c.check} group-hover:text-white/70 group-active:text-white/70 transition-colors`} />
+                            <li key={i} className={`flex items-center justify-center gap-2 sm:gap-3 text-slate-600 ${c.textHover} transition-colors`}>
+                              <CheckCircle className={`w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0 ${c.check} ${c.checkHover} transition-colors`} />
                               <span className="font-medium text-sm sm:text-base">{item}</span>
                             </li>
                           ))}
@@ -391,7 +395,7 @@ export default function Home() {
           <AnimatedSection direction="up" delay={0.5} className="text-center mt-8 sm:mt-12 lg:mt-16">
             <Link
               to={createPageUrl("ServicesOverview")}
-              className="group inline-flex items-center justify-center gap-2 whitespace-nowrap text-white font-bold tracking-tight text-base sm:text-lg px-8 sm:px-12 py-4 sm:py-5 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 shadow-lg hover:shadow-xl hover:-translate-y-0.5 active:scale-[0.97] transition-all duration-200"
+              className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-white font-bold tracking-tight text-base sm:text-lg px-8 sm:px-12 py-4 sm:py-5 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 shadow-lg hover:shadow-xl hover:-translate-y-0.5 active:scale-[0.97] transition-all duration-200"
               data-testid="link-view-all-services"
             >
               View All Services
@@ -507,7 +511,6 @@ export default function Home() {
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-white mb-5 sm:mb-8 tracking-tight leading-[1.08]" data-testid="text-cta-title">
               Get Your Project<br className="sm:hidden" /> on Track
             </h2>
-            <div className="w-32 sm:w-48 h-1 sm:h-1.5 bg-gradient-to-r from-cyan-500 to-orange-400 mx-auto mb-6 sm:mb-10 rounded-full" />
             <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-300 mb-8 sm:mb-12 leading-relaxed font-light max-w-3xl mx-auto">
               Engineering, inspections, construction, and stormwater — one team, one call. We respond same-day to keep your timeline intact.
             </p>
@@ -534,7 +537,6 @@ export default function Home() {
           </AnimatedSection>
         </div>
       </section>
-      <SectionDivider variant="gradient" from="dark" to="dark" />
     </div>
   );
 }

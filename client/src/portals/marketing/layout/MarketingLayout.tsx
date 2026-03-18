@@ -235,7 +235,6 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
             <div className="md:col-span-1">
               <div className="flex items-center gap-4 mb-6">
                 <div className="relative">
-                  <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-orange-500 rounded-lg opacity-50 blur-sm" />
                   <div className="relative bg-slate-900 p-1.5 rounded-lg">
                     <img src="/images/pe-logo.png" alt="Pacific Engineering" className="h-10 w-10 rounded object-contain" />
                   </div>

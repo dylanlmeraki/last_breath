@@ -128,7 +128,8 @@ export default function ChatBot() {
     return saved?.memory || { projectType: null, location: null, timeline: null, agency: null };
   });
 
-  const [bottomOffset, setBottomOffset] = useState(24);
+  const getBaseBottom = () => typeof window !== "undefined" && window.innerWidth < 640 ? 80 : 24;
+  const [bottomOffset, setBottomOffset] = useState(getBaseBottom);
   const [showPromptBubble, setShowPromptBubble] = useState(false);
   const hasClickedRef = useRef(false);
   const promptDismissedRef = useRef(false);
@@ -154,11 +155,12 @@ export default function ChatBot() {
       const winH = window.innerHeight;
       const scrollPct = scrollY / Math.max(1, docH - winH);
 
+      const base = getBaseBottom();
       if (scrollPct > 0.15) {
         const raisePx = Math.min(scrollPct * 0.3, 0.25) * winH;
-        setBottomOffset(24 + raisePx);
+        setBottomOffset(base + raisePx);
       } else {
-        setBottomOffset(24);
+        setBottomOffset(base);
       }
 
       if (scrollPct > 0.92 && !hasClickedRef.current && !promptDismissedRef.current && !isOpen) {
@@ -316,7 +318,7 @@ export default function ChatBot() {
       )}
 
       {isOpen && (
-        <div className="fixed bottom-6 right-6 z-[60] w-[calc(100vw-3rem)] sm:w-96 max-h-[600px] flex flex-col" data-testid="chatbot-panel">
+        <div className="fixed bottom-[5.5rem] sm:bottom-6 right-6 z-[60] w-[calc(100vw-3rem)] sm:w-96 max-h-[min(500px,calc(100vh-7rem))] sm:max-h-[600px] flex flex-col" data-testid="chatbot-panel">
           <div className="rounded-xl shadow-2xl border border-gray-200 bg-white flex flex-col overflow-hidden max-h-[550px]">
             <div className="bg-slate-900 text-white px-4 py-3 flex items-center justify-between rounded-t-xl">
               <div className="flex items-center gap-2">
