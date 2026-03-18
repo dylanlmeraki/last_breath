@@ -598,7 +598,7 @@ export default function Home() {
             className="w-6 h-10 rounded-full border-2 border-white/15 flex items-start justify-center p-2"
             {...entrance({ y: -10 }, 0.6, 1.5)}
           >
-            <div className="w-1 h-3 bg-white/40 rounded-full animate-bounce" />
+            <div className={`w-1 h-3 bg-white/40 rounded-full ${rm ? '' : 'animate-bounce'}`} />
           </motion.div>
         </div>
       </motion.section>
