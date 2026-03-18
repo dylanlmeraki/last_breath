@@ -888,7 +888,7 @@ export default function Home() {
       </section>
       {/* ── WHY → CTA DIAGONAL GRADIENT BAR ── */}
       <div className="relative w-full bg-slate-100" style={{ height: "clamp(30px,4vw,60px)", marginBottom: "-1px" }}>
-        <svg className="absolute inset-0 w-full h-full pointer-events-none" preserveAspectRatio="none" viewBox="0 0 1440 60" fill="none">
+        <svg className="absolute inset-0 w-full h-1 pointer-events-none" preserveAspectRatio="none" viewBox="0 0 1440 60" fill="none">
           <line x1="1440" y1="0" x2="0" y2="60" stroke="url(#why-cta-bar)" strokeWidth="3" />
           <defs>
             <linearGradient id="why-cta-bar" x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
@@ -958,7 +958,6 @@ export default function Home() {
           />
         </motion.div>
         <div className="absolute inset-0 bg-slate-900/50 hidden sm:block mix-blend-multiply" />
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-900/60 to-slate-950/95 sm:from-slate-900/20 sm:to-slate-950/60" />
         <BlueprintGrid />
         <div
           className="absolute inset-0 opacity-[0.12] pointer-events-none z-[2]"
