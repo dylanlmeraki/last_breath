@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-type DividerVariant = "gradient" | "wave" | "blueprint" | "angled";
+type DividerVariant = "gradient" | "angled" | "blueprint";
 
 interface SectionDividerProps {
   variant?: DividerVariant;
@@ -35,82 +35,47 @@ export default function SectionDivider({
 }: SectionDividerProps) {
   const { ref, inView } = useInView(0.1);
 
-  if (variant === "wave") {
-    const topColor = from === "dark" ? "#0f172a" : "#ffffff";
-    const bottomColor = to === "dark" ? "#0f172a" : "#f8fafc";
-    return (
-      <div
-        ref={ref}
-        className={`relative w-full overflow-hidden ${className}`}
-        style={{ height: "clamp(40px, 5vw, 80px)", marginTop: "-1px", marginBottom: "-1px" }}
-        data-testid="section-divider-wave"
-      >
-        <svg
-          viewBox="0 0 1440 120"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          preserveAspectRatio="none"
-          className={`absolute inset-0 w-full h-full ${flip ? "rotate-180" : ""}`}
-          style={{
-            opacity: inView ? 1 : 0,
-            transition: "opacity 0.8s ease-out",
-          }}
-        >
-          <rect width="1440" height="120" fill={topColor} />
-          <path
-            d="M0 60C240 20 480 100 720 60C960 20 1200 100 1440 60V120H0V60Z"
-            fill={bottomColor}
-          />
-        </svg>
-      </div>
-    );
-  }
-
   if (variant === "angled") {
     const topColor = from === "dark" ? "#0f172a" : "#ffffff";
-    const bottomColor = to === "dark" ? "#0f172a" : "#f8fafc";
+    const bottomColor = to === "dark" ? "#0f172a" : to === "light" ? "#ffffff" : "#f8fafc";
     return (
       <div
         ref={ref}
         className={`relative w-full overflow-hidden ${className}`}
-        style={{ height: "clamp(40px, 5vw, 80px)", marginTop: "-1px", marginBottom: "-1px" }}
+        style={{ height: "clamp(30px, 4vw, 60px)", marginTop: "-1px", marginBottom: "-1px" }}
         data-testid="section-divider-angled"
       >
         <svg
-          viewBox="0 0 1440 80"
+          viewBox="0 0 1440 60"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
           preserveAspectRatio="none"
           className={`absolute inset-0 w-full h-full ${flip ? "rotate-180" : ""}`}
           style={{
             opacity: inView ? 1 : 0,
-            transition: "opacity 0.8s ease-out",
+            transition: "opacity 0.6s ease-out",
           }}
         >
-          <rect width="1440" height="80" fill={topColor} />
-          <path
-            d={`M0,32 C360,8 720,56 1080,24 C1260,12 1380,16 1440,20 L1440,80 L0,80 Z`}
-            fill={bottomColor}
-          />
-          <path
-            d={`M0,32 C360,8 720,56 1080,24 C1260,12 1380,16 1440,20`}
-            stroke="url(#angled-grad-smooth)"
+          <rect width="1440" height="60" fill={topColor} />
+          <polygon points="0,28 1440,0 1440,60 0,60" fill={bottomColor} />
+          <line
+            x1="0" y1="28" x2="1440" y2="0"
+            stroke="url(#angled-line-grad)"
             strokeWidth="1.5"
-            strokeOpacity="0.4"
-            fill="none"
+            strokeOpacity="0.5"
             style={{
-              strokeDasharray: 2000,
-              strokeDashoffset: inView ? 0 : 2000,
-              transition: "stroke-dashoffset 2s ease-out 0.3s",
+              strokeDasharray: 1500,
+              strokeDashoffset: inView ? 0 : 1500,
+              transition: "stroke-dashoffset 1.2s ease-out 0.2s",
             }}
           />
           <defs>
-            <linearGradient id="angled-grad-smooth" x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
-              <stop stopColor="#06b6d4" stopOpacity="0" />
-              <stop offset="0.15" stopColor="#06b6d4" stopOpacity="0.6" />
-              <stop offset="0.5" stopColor="#3b82f6" stopOpacity="0.5" />
-              <stop offset="0.85" stopColor="#06b6d4" stopOpacity="0.6" />
-              <stop offset="1" stopColor="#06b6d4" stopOpacity="0" />
+            <linearGradient id="angled-line-grad" x1="0" y1="28" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
+              <stop stopColor="#3b82f6" stopOpacity="0.1" />
+              <stop offset="0.2" stopColor="#3b82f6" stopOpacity="0.8" />
+              <stop offset="0.5" stopColor="#06b6d4" stopOpacity="0.9" />
+              <stop offset="0.8" stopColor="#3b82f6" stopOpacity="0.8" />
+              <stop offset="1" stopColor="#3b82f6" stopOpacity="0.1" />
             </linearGradient>
           </defs>
         </svg>
@@ -137,16 +102,16 @@ export default function SectionDivider({
             }}
           />
         </div>
-        <div className="absolute inset-0 flex items-center justify-center gap-3">
+        <div className="absolute inset-0 flex items-center justify-center gap-4">
           {[0, 1, 2].map((i) => (
             <div
               key={i}
-              className="w-1.5 h-1.5 rounded-full"
+              className="w-1.5 h-1.5"
               style={{
                 background: i === 1 ? "#3b82f6" : "#06b6d4",
-                opacity: inView ? 0.7 : 0,
-                transform: inView ? "scale(1) rotate(45deg)" : "scale(0) rotate(0deg)",
-                transition: `all 0.5s cubic-bezier(0.22, 1, 0.36, 1) ${0.6 + i * 0.15}s`,
+                opacity: inView ? 0.6 : 0,
+                transform: inView ? "rotate(45deg) scale(1)" : "rotate(45deg) scale(0)",
+                transition: `all 0.4s ease-out ${0.6 + i * 0.12}s`,
               }}
             />
           ))}
@@ -165,21 +130,12 @@ export default function SectionDivider({
       <div
         className="absolute inset-0"
         style={{
-          background: "linear-gradient(90deg, transparent, #06b6d4 20%, #3b82f6 50%, #06b6d4 80%, transparent)",
+          background: "linear-gradient(90deg, #3b82f6, #06b6d4 50%, #3b82f6)",
           transform: inView ? "scaleX(1)" : "scaleX(0)",
           transition: "transform 1s cubic-bezier(0.22, 1, 0.36, 1)",
           transformOrigin: "left center",
         }}
       />
-      <div
-        className="absolute inset-0"
-        style={{
-          backgroundImage: "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%)",
-          backgroundSize: "200% 100%",
-          animation: inView ? "pe-divider-shimmer 3s ease-in-out infinite" : "none",
-        }}
-      />
-      <style>{`@keyframes pe-divider-shimmer { 0%, 100% { background-position: -200% 0; } 50% { background-position: 200% 0; } }`}</style>
     </div>
   );
 }

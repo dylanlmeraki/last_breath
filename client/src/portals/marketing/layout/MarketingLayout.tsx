@@ -228,8 +228,8 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
       <main className="pt-20">
         {children}
       </main>
+      <div className="h-1 bg-gradient-to-r from-blue-600 via-cyan-600 to-blue-600" />
       <footer className="relative bg-slate-900 text-white overflow-hidden">
-        <div className="h-1 bg-gradient-to-r from-blue-600 via-cyan-600 to-blue-600" />
         <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900" />
         <div className="absolute inset-0 bg-gradient-to-tr from-cyan-900/20 via-transparent to-orange-900/15" />
         <FooterBackground />
