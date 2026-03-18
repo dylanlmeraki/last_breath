@@ -405,7 +405,11 @@ export default function Home() {
           </AnimatedSection>
         </div>
       </section>
-      <SectionDivider variant="angled" from="light" to="light" flip />
+      <div className="relative" style={{ height: "clamp(24px, 3vw, 44px)", marginTop: "-1px", marginBottom: "-1px" }}>
+        <div className="absolute inset-0 bg-white" />
+        <div className="absolute inset-0 bg-slate-800" style={{ clipPath: "polygon(0 40%, 100% 0, 100% 60%, 0 100%)" }} />
+        <div className="absolute inset-0" style={{ clipPath: "polygon(0 40%, 100% 0, 100% 60%, 0 100%)", background: "linear-gradient(90deg, transparent 5%, rgba(59,130,246,0.3) 30%, rgba(6,182,212,0.5) 50%, rgba(59,130,246,0.3) 70%, transparent 95%)", mixBlendMode: "screen" }} />
+      </div>
       <section className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 bg-cyan-50/40 relative overflow-hidden" data-testid="section-why-choose">
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
@@ -451,7 +455,7 @@ export default function Home() {
                   <FileText className="w-5 h-5" />
                   Scope Your Project
                 </Link>
-                <Link to={createPageUrl("About")} className="group flex-1 inline-flex items-center justify-center gap-2 text-slate-700 font-bold tracking-tight text-base px-6 py-3.5 sm:py-4 rounded-sm sm:rounded-lg bg-transparent border-2 border-slate-200 hover:border-cyan-300 hover:bg-white transition-all duration-200 active:scale-[0.97]" data-testid="link-about-team">
+                <Link to={createPageUrl("About")} className="group flex-1 inline-flex items-center justify-center gap-2 text-slate-800 font-bold tracking-tight text-base px-6 py-3.5 sm:py-4 rounded-sm sm:rounded-lg bg-white border-2 border-slate-300 hover:border-cyan-400 shadow-md hover:shadow-lg transition-all duration-200 active:scale-[0.97]" data-testid="link-about-team">
                   <Users className="w-5 h-5" /> About Our Team
                 </Link>
               </div>
@@ -479,19 +483,19 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="relative bg-slate-900 overflow-hidden" data-testid="section-cta">
-        <div className="absolute inset-0 hidden sm:block opacity-30">
+      <section
+        className="relative bg-slate-900 overflow-hidden -mt-[clamp(30px,4vw,60px)]"
+        style={{ clipPath: "polygon(0 clamp(30px,4vw,60px), 100% 0, 100% 100%, 0 100%)" }}
+        data-testid="section-cta"
+      >
+        <div className="absolute inset-0 hidden sm:block opacity-72">
           <img src={bayBridgeImg} alt="" className="w-full h-full object-cover object-top" />
         </div>
         <div className="absolute inset-0 bg-slate-900/50 hidden sm:block mix-blend-multiply" />
         <div className="absolute inset-0 bg-gradient-to-b from-slate-900/60 to-slate-950/95 sm:from-slate-900/20 sm:to-slate-950/60" />
-        <div className="absolute top-0 left-0 right-0 h-16 sm:h-24 bg-gradient-to-b from-slate-900 to-transparent" />
         <BlueprintGrid />
-        <div className="relative z-10">
-          <SectionDivider variant="angled" from="light" to="dark" />
-        </div>
 
-        <div className="relative z-10 max-w-4xl mx-auto text-center px-4 sm:px-6 py-8 sm:py-12 md:py-16 lg:py-20">
+        <div className="relative z-10 max-w-4xl mx-auto text-center px-4 sm:px-6 pt-[calc(clamp(30px,4vw,60px)+2rem)] sm:pt-[calc(clamp(30px,4vw,60px)+3rem)] pb-8 sm:pb-12 md:pb-16 lg:pb-20">
           <AnimatedSection direction="up">
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-white mb-5 sm:mb-8 tracking-tight leading-[1.08]" data-testid="text-cta-title">
               Get Your Project<br className="sm:hidden" /> on Track

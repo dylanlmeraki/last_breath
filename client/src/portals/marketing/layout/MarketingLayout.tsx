@@ -234,8 +234,8 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
         <div className="absolute inset-0 bg-gradient-to-tr from-cyan-900/20 via-transparent to-orange-900/15" />
         <FooterBackground />
         <div className="relative z-10 max-w-7xl mx-auto px-6 py-16">
-          <div className="grid md:grid-cols-4 gap-12 mb-12">
-            <div className="md:col-span-1">
+          <div className="grid md:grid-cols-5 gap-12 mb-12">
+            <div className="md:col-span-2">
               <div className="flex items-center gap-4 mb-6">
                 <div className="relative">
                   <div className="relative p-1.5 rounded-lg bg-[#27a0d1]">
@@ -250,19 +250,19 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
               <p className="text-sm text-gray-300 leading-relaxed border-l-4 border-cyan-500 pl-4 font-medium mb-5">
                 Pacific Engineering & Construction Inc. provides full-scale civil and structural engineering, construction consulting, and plan implementation in a vertically integrated business model working on projects of all sizes from residential remodels to public utility and infrastructure projects. Through decades of deep in-field knowledge and network fostering and growth - Pacific Engineering & Construction truly has earned its polished and professional reputation.
               </p>
-              <div className="flex items-center gap-3 mb-3">
+              <div className="flex items-center gap-3">
                 <a
                   href="https://www.linkedin.com/in/a-mark-waldman-814b119"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center border border-white/10 hover:border-cyan-500/50 hover:bg-white/10 transition-all"
+                  className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center border border-white/10 hover:border-cyan-500/50 hover:bg-white/10 transition-all flex-shrink-0"
                   aria-label="LinkedIn"
                   data-testid="link-linkedin-footer"
                 >
                   <SiLinkedin className="w-4 h-4 text-gray-400" />
                 </a>
+                <p className="text-xs text-gray-500 font-medium">Contractor Lic. #: 1351235425</p>
               </div>
-              <p className="text-xs text-gray-500 font-medium">Contractor Lic. #: 1351235425</p>
             </div>
 
             <div>
