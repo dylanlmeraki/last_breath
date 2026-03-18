@@ -729,7 +729,7 @@ export default function Home() {
           aria-hidden="true"
         />
         <svg className="absolute bottom-0 left-0 w-full z-[2] pointer-events-none" style={{ height: "clamp(30px,4vw,60px)" }} preserveAspectRatio="none" viewBox="0 0 1440 60" fill="none">
-          <line x1="0" y1="0" x2="1440" y2="60" stroke="url(#why-bottom-bar)" strokeWidth="3" />
+          <line x1="0" y1="60" x2="1440" y2="0" stroke="url(#why-bottom-bar)" strokeWidth="3" />
           <defs>
             <linearGradient id="why-bottom-bar" x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
               <stop stopColor="#2563eb" stopOpacity="0.3" />
