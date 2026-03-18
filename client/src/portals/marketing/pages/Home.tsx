@@ -646,7 +646,7 @@ export default function Home() {
         </div>
       </motion.section>
       {/* ── HERO → SERVICES DIVIDER ── */}
-      <div className="w-full h-3 bg-gradient-to-r from-cyan-100 via-blue-600 to-cyan-100" />
+      <div className="w-full h-2 bg-gradient-to-r from-orange-100 via-blue-600 to-orange-100" />
       {/* ── SERVICES ── */}
       <section
         className="py-12 sm:py-16 md:py-20 lg:py-28 px-4 sm:px-6 bg-white relative"
@@ -735,7 +735,7 @@ export default function Home() {
                   >
                     Why Pacific Engineering?
                   </h2>
-                  <div className="bg-gradient-to-r from-cyan-100 to-cyan-100 via-blue-500 my-5 sm:my-8 w-24 sm:w-36 h-1 sm:h-1.5 rounded-full mx-auto ml-[232px] mr-[232px] pl-[54px] pr-[54px]" />
+                  <div className="bg-gradient-to-r from-cyan-100 to-cyan-100 via-blue-500 my-5 sm:my-8 w-24 sm:w-36 h-1 sm:h-1.5 rounded-full mx-auto ml-[178px] mr-[178px] pl-[108px] pr-[108px]" />
                   <p className="text-slate-700 mb-6 sm:mb-10 text-base sm:text-lg lg:text-xl leading-relaxed max-w-xl mx-auto">
                     With over 40 years of experience in full-scale civil
                     engineering and construction contracting, we deliver
