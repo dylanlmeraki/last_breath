@@ -646,7 +646,7 @@ export default function Home() {
         </div>
       </motion.section>
       {/* ── HERO → SERVICES DIVIDER ── */}
-      <div className="w-full h-2 bg-gradient-to-r from-cyan-200 via-cyan-600 to-cyan-200 border-t-[#e5e7eb0a] border-r-[#e5e7eb0a] border-b-[#e5e7eb0a] border-l-[#e5e7eb0a]" />
+      <div className="w-full h-2 bg-gradient-to-r from-cyan-100 via-blue-600 to-cyan-200 border-t-[#e5e7eb0a] border-r-[#e5e7eb0a] border-b-[#e5e7eb0a] border-l-[#e5e7eb0a]" />
       {/* ── SERVICES ── */}
       <section
         className="py-12 sm:py-16 md:py-20 lg:py-28 px-4 sm:px-6 bg-white relative"
@@ -883,7 +883,7 @@ export default function Home() {
         </div>
       </section>
       {/* ── WHY → CTA DIAGONAL GRADIENT BAR ── */}
-      <div className="relative w-full bg-slate-100" style={{ height: "clamp(30px,4vw,60px)", marginBottom: "-1px" }}>
+      <div className="relative w-full bg-slate-900" style={{ height: "clamp(30px,4vw,60px)", marginBottom: "-1px" }}>
         <svg className="absolute inset-0 w-full h-full pointer-events-none" preserveAspectRatio="none" viewBox="0 0 1440 60" fill="none">
           <line x1="1440" y1="0" x2="0" y2="60" stroke="url(#why-cta-bar)" strokeWidth="3" />
           <defs>
