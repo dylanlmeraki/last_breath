@@ -574,7 +574,7 @@ export default function Home() {
             >
               Consulting Engineers & Contractors
             </h2>
-            <div className="w-32 sm:w-54 h-1 sm:h-1.5 bg-gradient-to-r from-cyan-100 to-cyan-100 via-blue-500 mx-auto mb-4 sm:mb-8 rounded-full pl-[216px] pr-[216px]" />
+            <div className="w-32 sm:w-54 h-1 sm:h-1 bg-gradient-to-r from-cyan-100 to-cyan-100 via-blue-500 mx-auto mb-4 sm:mb-8 rounded-full pl-[216px] pr-[216px]" />
             <p className="text-base sm:text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed">Full-scale civil and structural engineering and construction plans developed and implemented by our teams of in-house Engineers, QSD/QSPs, and construction experts. Helping you ensure on-time, on budget, full compliance, and with maximum creative outlook for your project. Keep everything on track.</p>
           </AnimatedSection>
 
@@ -612,7 +612,7 @@ export default function Home() {
       </section>
       {/* ── SERVICES → WHY CHOOSE TRANSITION ── */}
       <div className="relative w-full" style={{ marginTop: "2px" }} data-testid="divider-services-whychoose">
-        <div className="h-px bg-gradient-to-r from-slate-200 via-blue-200 to-slate-200" />
+        <div className="h-px bg-gradient-to-r from-slate-200 via-blue-200 to-slate-200 border-t-[2px] border-r-[2px] border-b-[2px] border-l-[2px] border-t-[#e5e7eb] border-r-[#e5e7eb] border-b-[#e5e7eb] border-l-[#e5e7eb]" />
         <div className="h-[3px]" style={{ background: "linear-gradient(to right, #e2e8f0, #3b82f6 25%, #06b6d4 50%, #3b82f6 75%, #e2e8f0)" }} />
         <div className="h-px bg-gradient-to-r from-slate-200 via-cyan-100 to-slate-200" />
       </div>
@@ -637,7 +637,7 @@ export default function Home() {
                   >
                     Why Pacific Engineering?
                   </h2>
-                  <div className="bg-gradient-to-r from-cyan-100 to-cyan-100 via-blue-500 my-5 sm:my-8 w-24 sm:w-36 h-1 sm:h-1.5 rounded-full mx-auto ml-[232px] mr-[232px] pl-[54px] pr-[54px]" />
+                  <div className="bg-gradient-to-r from-cyan-100 to-cyan-100 via-blue-500 my-5 sm:my-8 w-24 sm:w-36 h-1 sm:h-1 rounded-full mx-auto ml-[232px] mr-[232px] pl-[54px] pr-[54px]" />
                   <p className="text-slate-700 mb-6 sm:mb-10 text-base sm:text-lg lg:text-xl leading-relaxed max-w-xl mx-auto">
                     With over 40 years of experience in full-scale civil
                     engineering and construction contracting, we deliver
