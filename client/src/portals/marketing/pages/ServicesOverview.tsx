@@ -19,6 +19,7 @@ import { Badge } from "@/components/ui/badge";
 import AnimatedSection from "../components/AnimatedSection";
 import SEO from "../components/SEO";
 import AnimatedGridBackground from "../components/AnimatedGridBackground";
+import BlueprintBackground from "../components/BlueprintBackground";
 import type { LucideIcon } from "lucide-react";
 
 interface ServiceItem {
@@ -114,29 +115,36 @@ export default function ServicesOverview() {
         url="/services-overview"
       />
       
-      <section className="relative py-16 sm:py-24 md:py-32 px-4 sm:px-6 bg-slate-900 overflow-hidden border-b-4 border-blue-600" data-testid="section-services-hero">
-        <div className="absolute inset-0 opacity-50">
+      <section className="relative py-16 sm:py-24 md:py-32 px-4 sm:px-6 bg-slate-950 overflow-hidden" data-testid="section-services-hero">
+        <div className="absolute inset-0 opacity-[0.6]">
           <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600')] bg-cover bg-center" />
           <div className="absolute inset-0 bg-slate-900/60 mix-blend-multiply"></div>
-        </div>    
-
-        <div className="absolute inset-0 opacity-50 pointer-events-none">
-          <AnimatedGridBackground />
         </div>
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/grid-me.png')] opacity-10 pointer-events-none"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-slate-900/60 to-slate-950/90 opacity-30" />
+        <div className="absolute inset-0 bg-gradient-to-r from-cyan-950/20 via-transparent to-blue-950/15 opacity-50" />
+        <AnimatedGridBackground baseOpacity={0.5} gridSize={40} triggerInterval={500} animationDuration={2500} className="hidden sm:block z-[1] opacity-30" />
+        <BlueprintBackground className="z-[2] opacity-50" />
+        <div className="absolute top-1/3 left-1/5 w-48 md:w-72 h-48 md:h-72 bg-cyan-500/8 rounded-full blur-[80px] md:blur-[120px] pointer-events-none z-[1]" />
+        <div className="absolute bottom-1/4 right-1/5 w-40 md:w-64 h-40 md:h-64 bg-blue-500/6 rounded-full blur-[60px] md:blur-[100px] pointer-events-none z-[1]" />
 
-        <div className="relative z-10 max-w-5xl mx-auto text-center">
-          <AnimatedSection direction="up">
-            <h1 className="text-white mb-6 text-3xl font-bold sm:text-5xl md:text-6xl tracking-tight" data-testid="text-services-hero-title">
-              Our Services
-            </h1>
-            <div className="w-24 h-1 bg-blue-500 mx-auto mb-8"></div>
-            
-            <p className="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed font-light">
-              Local SF Bay Area experts delivering superior vertically integrated services from in-depth environmental compliance to civil and structural engineering at any scale. No matter the project, our teams of highly skilled professionals have your back.
-            </p>
+        <div className="relative z-[5] max-w-5xl mx-auto text-center">
+          <AnimatedSection direction="up" blur>
+            <div className="relative">
+              <div className="absolute -inset-px bg-gradient-to-r from-cyan-500/5 via-blue-500/3 to-cyan-500/5 rounded-2xl blur-sm hidden sm:block" />
+              <div className="relative bg-slate-950/30 sm:bg-slate-950/40 backdrop-blur-[6px] rounded-lg sm:rounded-xl border border-white/[0.06] shadow-2xl overflow-hidden px-5 py-8 sm:p-10 md:p-12">
+                <div className="h-0.5 sm:h-1 bg-gradient-to-r from-blue-600/80 via-cyan-500/80 to-blue-500/80 absolute top-0 left-0 right-0" />
+                <h1 className="text-white mb-6 text-3xl font-bold sm:text-5xl md:text-6xl tracking-tight" data-testid="text-services-hero-title">
+                  Our Services
+                </h1>
+                <div className="w-20 sm:w-32 h-1 bg-gradient-to-r from-cyan-200 via-blue-500 to-cyan-200 mx-auto mb-8 rounded-full"></div>
+                <p className="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed font-light">
+                  Local SF Bay Area experts delivering superior vertically integrated services from in-depth environmental compliance to civil and structural engineering at any scale. No matter the project, our teams of highly skilled professionals have your back.
+                </p>
+              </div>
+            </div>
           </AnimatedSection>
         </div>
+        <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-600/80 via-cyan-500/80 to-blue-500/80" />
       </section>
 
       <section className="py-20 px-6 bg-slate-50" data-testid="section-services-grid">
