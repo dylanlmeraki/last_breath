@@ -408,6 +408,26 @@ export default function Home() {
         <div className="absolute inset-0 bg-white" />
         <div className="absolute inset-0 bg-slate-800" style={{ clipPath: "polygon(0 40%, 100% 0, 100% 60%, 0 100%)" }} />
         <div className="absolute inset-0" style={{ clipPath: "polygon(0 40%, 100% 0, 100% 60%, 0 100%)", background: "linear-gradient(90deg, transparent 5%, rgba(59,130,246,0.3) 30%, rgba(6,182,212,0.5) 50%, rgba(59,130,246,0.3) 70%, transparent 95%)", mixBlendMode: "screen" }} />
+        <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 1440 100" fill="none">
+          <line x1="0" y1="40" x2="1440" y2="0" stroke="url(#svc-why-top)" strokeWidth="2.5" />
+          <line x1="0" y1="100" x2="1440" y2="60" stroke="url(#svc-why-bot)" strokeWidth="2.5" />
+          <defs>
+            <linearGradient id="svc-why-top" x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
+              <stop stopColor="#3b82f6" stopOpacity="0.15" />
+              <stop offset="0.25" stopColor="#3b82f6" stopOpacity="0.7" />
+              <stop offset="0.5" stopColor="#06b6d4" stopOpacity="0.85" />
+              <stop offset="0.75" stopColor="#3b82f6" stopOpacity="0.7" />
+              <stop offset="1" stopColor="#3b82f6" stopOpacity="0.15" />
+            </linearGradient>
+            <linearGradient id="svc-why-bot" x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
+              <stop stopColor="#3b82f6" stopOpacity="0.15" />
+              <stop offset="0.25" stopColor="#3b82f6" stopOpacity="0.7" />
+              <stop offset="0.5" stopColor="#06b6d4" stopOpacity="0.85" />
+              <stop offset="0.75" stopColor="#3b82f6" stopOpacity="0.7" />
+              <stop offset="1" stopColor="#3b82f6" stopOpacity="0.15" />
+            </linearGradient>
+          </defs>
+        </svg>
       </div>
       <section className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 bg-cyan-50/40 relative overflow-hidden" data-testid="section-why-choose">
         <div className="max-w-7xl mx-auto relative z-10">
@@ -486,6 +506,20 @@ export default function Home() {
         style={{ clipPath: "polygon(0 clamp(30px,4vw,60px), 100% 0, 100% 100%, 0 100%)" }}
         data-testid="section-cta"
       >
+        <svg className="absolute top-0 left-0 w-full z-20 pointer-events-none" style={{ height: "clamp(30px,4vw,60px)" }} preserveAspectRatio="none" viewBox="0 0 1440 60" fill="none">
+          <line x1="0" y1="60" x2="1440" y2="0" stroke="url(#cta-diag-bar)" strokeWidth="2.5" />
+          <defs>
+            <linearGradient id="cta-diag-bar" x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
+              <stop stopColor="#06b6d4" stopOpacity="0.1" />
+              <stop offset="0.2" stopColor="#3b82f6" stopOpacity="0.6" />
+              <stop offset="0.4" stopColor="#06b6d4" stopOpacity="0.8" />
+              <stop offset="0.5" stopColor="#f97316" stopOpacity="0.5" />
+              <stop offset="0.6" stopColor="#06b6d4" stopOpacity="0.8" />
+              <stop offset="0.8" stopColor="#3b82f6" stopOpacity="0.6" />
+              <stop offset="1" stopColor="#06b6d4" stopOpacity="0.1" />
+            </linearGradient>
+          </defs>
+        </svg>
         <div className="absolute inset-0 hidden sm:block opacity-80">
           <img src={bayBridgeImg} alt="" className="w-full h-full object-cover" style={{ objectPosition: "center 35%", transform: "scale(1.05)" }} />
         </div>
