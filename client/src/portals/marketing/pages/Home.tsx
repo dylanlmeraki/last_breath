@@ -350,7 +350,6 @@ export default function Home() {
       <section className="py-12 sm:py-16 md:py-20 lg:py-28 px-4 sm:px-6 bg-white" data-testid="section-services">
         <div className="max-w-7xl mx-auto">
           <AnimatedSection direction="up" className="text-center mb-10 sm:mb-14 lg:mb-20" parallax>
-            <p className="text-cyan-600 font-bold uppercase tracking-widest text-xs sm:text-sm mb-3 sm:mb-4">What We Do</p>
             <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 mb-4 sm:mb-6 tracking-tight" data-testid="text-services-title">
               Consulting Engineers & Contractors
             </h2>
@@ -415,11 +414,10 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
             <AnimatedSection direction="left">
               <div className="text-center">
-                <p className="text-cyan-600 font-bold uppercase tracking-widest text-xs sm:text-sm mb-3">Why Choose Us</p>
                 <h2 className="text-slate-900 mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight leading-tight" data-testid="text-why-title">
                   Why Pacific Engineering?
                 </h2>
-                <div className="bg-gradient-to-r from-cyan-500 to-orange-400 my-5 sm:my-8 w-16 sm:w-24 h-1 sm:h-1.5 rounded-full mx-auto" />
+                <div className="bg-gradient-to-r from-cyan-600 to-cyan-400 my-5 sm:my-8 w-24 sm:w-36 h-1 sm:h-1.5 rounded-full mx-auto" />
                 <p className="text-slate-700 mb-6 sm:mb-10 text-base sm:text-lg lg:text-xl leading-relaxed max-w-xl mx-auto">
                   With over 40 years of experience in full-scale civil engineering and construction contracting, we deliver comprehensive solutions keeping projects on track with professional efficiency.
                 </p>
@@ -455,7 +453,7 @@ export default function Home() {
                   <FileText className="w-5 h-5" />
                   Scope Your Project
                 </Link>
-                <Link to={createPageUrl("About")} className="group flex-1 inline-flex items-center justify-center gap-2 text-slate-800 font-bold tracking-tight text-base px-6 py-3.5 sm:py-4 rounded-sm sm:rounded-lg bg-white border-2 border-slate-300 hover:border-cyan-400 shadow-md hover:shadow-lg transition-all duration-200 active:scale-[0.97]" data-testid="link-about-team">
+                <Link to={createPageUrl("About")} className="group flex-1 inline-flex items-center justify-center gap-2 text-slate-800 font-bold tracking-tight text-base px-6 py-3.5 sm:py-4 rounded-sm sm:rounded-lg bg-white border-2 border-slate-300 hover: shadow-md hover:shadow-lg transition-all duration-200 active:scale-[0.97]" data-testid="link-about-team">
                   <Users className="w-5 h-5" /> About Our Team
                 </Link>
               </div>
