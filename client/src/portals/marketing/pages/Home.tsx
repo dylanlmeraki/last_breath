@@ -572,7 +572,7 @@ export default function Home() {
       <div className="w-full h-2 bg-gradient-to-r from-cyan-100 via-blue-600 to-cyan-200 border-t-[#e5e7eb0a] border-r-[#e5e7eb0a] border-b-[#e5e7eb0a] border-l-[#e5e7eb0a]" />
       {/* ── SERVICES ── */}
       <section
-        className="py-12 sm:py-16 md:py-20 lg:py-28 px-4 sm:px-6 bg-white relative"
+        className="py-12 sm:py-16 md:py-20 lg:py-28 px-4 sm:px-6 bg-white relative pb-[64px]"
         data-testid="section-services"
       >
         <div
