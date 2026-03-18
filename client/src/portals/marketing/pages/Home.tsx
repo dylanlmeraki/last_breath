@@ -107,7 +107,9 @@ function MobileStickyBar() {
 
 function ScrollProgress() {
   const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, { stiffness: 200, damping: 30 });
+  const reducedMotion = useReducedMotion();
+  const springScale = useSpring(scrollYProgress, { stiffness: 200, damping: 30 });
+  const scaleX = reducedMotion ? scrollYProgress : springScale;
   return (
     <motion.div
       className="fixed top-20 left-0 right-0 h-[2px] z-50 origin-left"
@@ -507,7 +509,7 @@ export default function Home() {
                 <div className="absolute -inset-px bg-gradient-to-r from-cyan-500/5 via-blue-500/3 to-cyan-500/5 rounded-2xl sm:rounded-3xl blur-sm hidden sm:block" />
 
                 <div className="relative bg-slate-950/30 sm:bg-slate-950/40 lg:bg-slate-950/35 backdrop-blur-[6px] rounded-lg sm:rounded-xl border border-white/[0.06] shadow-2xl overflow-hidden">
-                  <div className="h-.5 sm:h-2 bg-gradient-to-r from-blue-600/80 via-cyan-500/80 to-blue-500/80" />
+                  <div className="h-0.5 sm:h-2 bg-gradient-to-r from-blue-600/80 via-cyan-500/80 to-blue-500/80" />
 
                   <div className="px-5 py-8 sm:p-10 md:p-12 lg:p-16">
                     <motion.h1
