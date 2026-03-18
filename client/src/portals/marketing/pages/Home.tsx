@@ -251,12 +251,12 @@ export default function Home() {
             muted
             preload="auto"
             playsInline
-            className="absolute inset-0 w-full h-full object-cover opacity-[0.72]"
+            className="absolute inset-0 w-full h-full object-cover opacity-[0.74]"
           >
             <source src="/images/hero-ggb-draft.mp4" type="video/mp4" />
           </video>
           <div className="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-slate-900/60 to-slate-950/90 opacity-30" />
-          <div className="absolute inset-0 bg-gradient-to-br from-cyan-950/40 via-transparent to-orange-950/15 opacity-50" />
+          <div className="absolute inset-0 bg-gradient-to-r from-cyan-950/30 via-transparent to-orange-950/20 opacity-50" />
         </div>
 
         <AnimatedGridBackground baseOpacity={0.5} gridSize={40} triggerInterval={500} animationDuration={2500} className="hidden sm:block z-[1] opacity-40" />
