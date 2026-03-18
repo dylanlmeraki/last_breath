@@ -18,20 +18,10 @@ export interface AuthUser {
   status: string | null;
   permissions: any;
   notification_preferences: any;
+  onboarding_complete: boolean | null;
 }
 
-export interface AuthContextType {
-  user: AuthUser | null;
-  isLoading: boolean;
-  isAuthenticated: boolean;
-  isAdmin: boolean;
-  isInternalUser: boolean;
-  isClient: boolean;
-  loginMutation: ReturnType<typeof useMutation>;
-  registerMutation: ReturnType<typeof useMutation>;
-  logoutMutation: ReturnType<typeof useMutation>;
-  verify2faMutation: ReturnType<typeof useMutation>;
-}
+export type AuthContextType = ReturnType<typeof useAuthProvider>;
 
 export const AuthContext = createContext<AuthContextType | null>(null);
 

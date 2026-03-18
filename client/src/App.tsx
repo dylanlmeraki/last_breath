@@ -1,3 +1,4 @@
+import * as React from "react";
 import { lazy, Suspense, useMemo } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { QueryClientProvider } from "@tanstack/react-query";
@@ -79,7 +80,7 @@ function AppRouter() {
   );
 }
 
-function AuthWrapper({ children }: { children: JSX.Element | JSX.Element[] }) {
+function AuthWrapper({ children }: { children: React.ReactNode }) {
   const auth = useAuthProvider();
   return <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>;
 }

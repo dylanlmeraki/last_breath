@@ -1,6 +1,7 @@
 import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import { Loader2 } from "lucide-react";
+import { HelmetProvider } from "react-helmet-async";
 import MarketingLayout from "./layout/MarketingLayout";
 import "./marketing.css";
 
@@ -33,6 +34,7 @@ function MarketingLoading() {
 
 export default function MarketingApp() {
   return (
+    <HelmetProvider>
     <MarketingLayout>
       <Suspense fallback={<MarketingLoading />}>
         <Routes>
@@ -55,5 +57,6 @@ export default function MarketingApp() {
         </Routes>
       </Suspense>
     </MarketingLayout>
+    </HelmetProvider>
   );
 }

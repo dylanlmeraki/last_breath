@@ -12,15 +12,18 @@
 
 | Layer | Technology |
 |---|---|
-| Runtime | Node.js + TypeScript |
-| Backend | Express.js |
-| Frontend | React 18 + react-router-dom |
-| Database | PostgreSQL (Drizzle ORM) |
+| Runtime | Node.js 22 (v22.22.0) + TypeScript 5.9 |
+| Backend | Express 5 |
+| Frontend | React 19 + react-router-dom 7 |
+| Database | PostgreSQL (Drizzle ORM 0.45) |
 | State | TanStack Query v5 |
 | Auth | Session-based (Argon2id + custom sessions) |
 | Email | Resend API + React Email templates |
-| UI | shadcn/ui + Tailwind CSS + Radix primitives |
-| Forms | react-hook-form + zod validation |
+| UI | shadcn/ui + Tailwind CSS 3 + Radix primitives |
+| Forms | react-hook-form 7 + Zod 4 |
+| Animation | Framer Motion 12 |
+| SEO | react-helmet-async |
+| Build | Vite 7 |
 
 ## Directory Structure
 

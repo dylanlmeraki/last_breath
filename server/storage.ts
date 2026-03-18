@@ -234,7 +234,7 @@ export class DatabaseStorage implements IStorage {
   async createEntity(entityName: string, data: Record<string, any>): Promise<any> {
     try {
       const table = getTable(entityName);
-      const [record] = await db.insert(table).values(data).returning();
+      const [record] = await db.insert(table).values(data).returning() as any[];
       return record;
     } catch (error: any) {
       if (error?.code === "23505") {
@@ -252,7 +252,7 @@ export class DatabaseStorage implements IStorage {
     try {
       if (!dataArray.length) return [];
       const table = getTable(entityName);
-      return await db.insert(table).values(dataArray).returning();
+      return await db.insert(table).values(dataArray).returning() as any[];
     } catch (error) {
       console.error(`[storage] bulkCreateEntity(${entityName}) failed:`, error);
       throw new Error(`Failed to bulk create ${entityName}`);
@@ -262,12 +262,12 @@ export class DatabaseStorage implements IStorage {
   async updateEntity(entityName: string, id: string, data: Record<string, any>): Promise<any | undefined> {
     try {
       const table = getTable(entityName);
-      const cleanData = { ...data, updated_date: new Date() };
+      const cleanData: Record<string, any> = { ...data, updated_date: new Date() };
       delete cleanData.id;
       delete cleanData.created_date;
       delete cleanData.created_by;
 
-      const [record] = await db.update(table).set(cleanData).where(eq(table.id, id)).returning();
+      const [record] = await db.update(table).set(cleanData).where(eq(table.id, id)).returning() as any[];
       return record;
     } catch (error) {
       console.error(`[storage] updateEntity(${entityName}, ${id}) failed:`, error);
@@ -278,7 +278,7 @@ export class DatabaseStorage implements IStorage {
   async deleteEntity(entityName: string, id: string): Promise<boolean> {
     try {
       const table = getTable(entityName);
-      const [deleted] = await db.delete(table).where(eq(table.id, id)).returning();
+      const [deleted] = await db.delete(table).where(eq(table.id, id)).returning() as any[];
       return !!deleted;
     } catch (error) {
       console.error(`[storage] deleteEntity(${entityName}, ${id}) failed:`, error);

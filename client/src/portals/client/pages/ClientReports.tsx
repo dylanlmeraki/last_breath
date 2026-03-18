@@ -435,7 +435,7 @@ export default function ClientReports() {
                       <CartesianGrid strokeDasharray="3 3" />
                       <XAxis type="number" domain={[0, 100]} tickFormatter={(v) => `${v}%`} />
                       <YAxis type="category" dataKey="name" width={120} tick={{ fontSize: 12 }} />
-                      <Tooltip formatter={(value: number) => [`${value}%`, "Progress"]} />
+                      <Tooltip formatter={(value: any) => [`${value}%`, "Progress"]} />
                       <Bar dataKey="progress" fill={CHART_COLORS[0]} radius={[0, 4, 4, 0]} />
                     </BarChart>
                   </ResponsiveContainer>
@@ -487,7 +487,7 @@ export default function ClientReports() {
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="name" tick={{ fontSize: 11 }} />
                     <YAxis tickFormatter={(v) => formatCurrency(v)} />
-                    <Tooltip formatter={(value: number) => [formatCurrency(value), "Budget"]} />
+                    <Tooltip formatter={(value: any) => [formatCurrency(value), "Budget"]} />
                     <Bar dataKey="budget" fill={CHART_COLORS[1]} radius={[4, 4, 0, 0]} />
                   </BarChart>
                 </ResponsiveContainer>
@@ -706,7 +706,7 @@ export default function ClientReports() {
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="month" tick={{ fontSize: 11 }} />
                     <YAxis tickFormatter={(v) => formatCurrency(v)} />
-                    <Tooltip formatter={(value: number) => [formatCurrency(value)]} />
+                    <Tooltip formatter={(value: any) => [formatCurrency(value)]} />
                     <Legend />
                     <Bar dataKey="invoiced" name="Invoiced" fill={CHART_COLORS[0]} radius={[4, 4, 0, 0]} />
                     <Bar dataKey="paid" name="Paid" fill={CHART_COLORS[2]} radius={[4, 4, 0, 0]} />

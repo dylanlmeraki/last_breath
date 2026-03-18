@@ -1,8 +1,7 @@
 import { useState, useEffect, ReactNode } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { createPageUrl } from "../lib/utils";
-import { Menu, X, Phone, Mail, MapPin, ChevronDown, PhoneCall, Send } from "lucide-react";
-import { SiLinkedin } from "react-icons/si";
+import { Menu, X, Phone, Mail, MapPin, ChevronDown, PhoneCall, Send, Linkedin } from "lucide-react";
 import ChatBot from "../components/ChatBot";
 import BackToTop from "../components/BackToTop";
 import FooterBackground from "../components/FooterBackground";
@@ -259,7 +258,7 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
                   aria-label="LinkedIn"
                   data-testid="link-linkedin-footer"
                 >
-                  <SiLinkedin className="w-4 h-4 text-gray-400" />
+                  <Linkedin className="w-4 h-4 text-gray-400" />
                 </a>
                 <p className="text-xs text-gray-500 font-medium">Contractor Lic. #: 1351235425</p>
               </div>
@@ -349,7 +348,7 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
                   aria-label="LinkedIn"
                   data-testid="link-linkedin"
                 >
-                  <SiLinkedin className="w-4 h-4 text-gray-400 hover:text-cyan-400" />
+                  <Linkedin className="w-4 h-4 text-gray-400 hover:text-cyan-400" />
                 </a>
               </div>
             </div>
