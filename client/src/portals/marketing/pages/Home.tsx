@@ -12,6 +12,8 @@ import {
   PhoneCall,
   Users,
   Award,
+  Ruler,
+  Droplets,
   Zap,
   TrendingUp,
 } from "lucide-react";
@@ -130,7 +132,7 @@ const SERVICES = [
     page: "Construction",
   },
   {
-    icon: ClipboardCheck,
+    icon: Ruler,
     title: "Engineering Consulting",
     desc: "Professional engineering expertise across civil and structural disciplines, providing innovative solutions and implementation to meet the unique needs of your project - from large-scale infrastructure to single family residential additions.",
     items: ["Civil Engineering Consulting", "Structural Consulting", "Site Assessment & Design", "Development Management & Support"],
@@ -146,7 +148,7 @@ const SERVICES = [
     page: "InspectionsTesting",
   },
   {
-    icon: FileText,
+    icon: Droplets,
     title: "Stormwater Planning",
     desc: "Custom plans from initial assessments, tailored practical BMP designs, and full local, state, and federal regulatory compliance assurance and permitting walkthroughs.",
     items: ["In-house PE/QSD/QSP site assessment", "BMP design and maintenance", "Clear documentation with action items", "Full local, state, and Federal compliance assurance"],
