@@ -575,7 +575,7 @@ export default function Home() {
               Consulting Engineers & Contractors
             </h2>
             <div className="w-32 sm:w-54 h-1 sm:h-1 bg-gradient-to-r from-cyan-100 to-cyan-100 via-blue-500 mx-auto mb-4 sm:mb-8 rounded-full pl-[216px] pr-[216px]" />
-            <p className="text-base sm:text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed">Full-scale civil and structural engineering and construction plans developed and implemented by our teams of in-house Engineers, QSD/QSPs, and construction experts. Helping you ensure on-time, on budget, full compliance, and with maximum creative outlook for your project. Keep everything on track.</p>
+            <p className="sm:text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto text-[22px]">Full-scale civil and structural engineering and construction plans developed and implemented by our teams of in-house Engineers, QSD/QSPs, and construction experts. Helping you ensure on-time, on budget, full compliance, and with maximum creative outlook for your project. Keep everything on track.</p>
           </AnimatedSection>
 
           <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 max-w-6xl mx-auto">
@@ -785,9 +785,9 @@ export default function Home() {
         </div>
       </section>
       {/* ── WHY CHOOSE → CTA TRANSITION ── */}
-      <div className="relative w-full" style={{ marginTop: "-1px" }} data-testid="divider-whychoose-cta">
+      <div className="relative w-full" style={{ marginTop: "1px" }} data-testid="divider-whychoose-cta">
         <div className="h-px bg-gradient-to-r from-slate-200 via-slate-300 to-slate-200" />
-        <div className="h-1" style={{ background: "linear-gradient(to right, #475569, #1e40af 20%, #0891b2 40%, #ea580c 50%, #0891b2 60%, #1e40af 80%, #475569)" }} />
+        <div className="h-2" style={{ background: "linear-gradient(to right, #475569, #1e40af 20%, #0891b2 40%, #ea580c 50%, #0891b2 60%, #1e40af 80%, #475569)" }} />
         <div className="h-[3px] bg-gradient-to-r from-slate-700 via-blue-900 to-slate-700" />
         <div className="h-px bg-gradient-to-r from-slate-800 via-slate-900 to-slate-800" />
       </div>
