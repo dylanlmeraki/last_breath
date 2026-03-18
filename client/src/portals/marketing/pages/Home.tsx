@@ -212,37 +212,41 @@ const SERVICES = [
 ];
 
 const colorMap = {
+  // Card 1 — light orange slice
   darkblue: {
-    bg: "bg-amber-50", hoverBg: "group-hover:from-amber-300 group-hover:to-orange-300",
-    icon: "text-amber-500", check: "text-amber-500", border: "from-amber-400 to-orange-300",
+    bg: "bg-orange-50", hoverBg: "group-hover:from-orange-200 group-hover:to-orange-300",
+    icon: "text-orange-400", check: "text-orange-400", border: "from-orange-300 to-orange-400",
+    titleHover: "group-hover:text-orange-400", textHover: "group-hover:text-orange-400/80",
+    checkHover: "group-hover:text-orange-300", cardBgHover: "group-hover:bg-orange-50/60", h: "h-1.5",
+    glowColor: "rgba(253,186,116,0.20)",
+    barGradient: "linear-gradient(to right, #fed7aa, #fdba74, #fb923c)",
+  },
+  // Card 2 — amber slice
+  bluecyan: {
+    bg: "bg-amber-50", hoverBg: "group-hover:from-amber-200 group-hover:to-amber-300",
+    icon: "text-amber-500", check: "text-amber-500", border: "from-amber-300 to-amber-500",
     titleHover: "group-hover:text-amber-500", textHover: "group-hover:text-amber-500/80",
     checkHover: "group-hover:text-amber-400", cardBgHover: "group-hover:bg-amber-50/60", h: "h-1.5",
     glowColor: "rgba(251,191,36,0.18)",
-    barGradient: "linear-gradient(to right, #fbbf24, #f59e0b, #fb923c)",
+    barGradient: "linear-gradient(to right, #fcd34d, #fbbf24, #f59e0b)",
   },
-  bluecyan: {
-    bg: "bg-orange-50", hoverBg: "group-hover:from-orange-300 group-hover:to-sky-300",
-    icon: "text-orange-400", check: "text-orange-400", border: "from-orange-300 to-sky-300",
-    titleHover: "group-hover:text-sky-500", textHover: "group-hover:text-sky-500/80",
-    checkHover: "group-hover:text-sky-400", cardBgHover: "group-hover:bg-orange-50/60", h: "h-1.5",
-    glowColor: "rgba(251,146,60,0.15)",
-    barGradient: "linear-gradient(to right, #fb923c, #fdba74, #7dd3fc, #38bdf8)",
-  },
+  // Card 3 — teal slice
   cyan: {
-    bg: "bg-sky-50", hoverBg: "group-hover:from-sky-300 group-hover:to-cyan-300",
-    icon: "text-sky-500", check: "text-sky-500", border: "from-sky-300 to-cyan-300",
-    titleHover: "group-hover:text-cyan-500", textHover: "group-hover:text-cyan-500/80",
-    checkHover: "group-hover:text-cyan-400", cardBgHover: "group-hover:bg-sky-50/60", h: "h-1.5",
-    glowColor: "rgba(56,189,248,0.15)",
-    barGradient: "linear-gradient(to right, #38bdf8, #22d3ee, #67e8f9)",
-  },
-  cyanteal: {
-    bg: "bg-cyan-50", hoverBg: "group-hover:from-cyan-300 group-hover:to-teal-300",
-    icon: "text-cyan-500", check: "text-cyan-500", border: "from-cyan-300 to-teal-300",
+    bg: "bg-teal-50", hoverBg: "group-hover:from-teal-200 group-hover:to-teal-300",
+    icon: "text-teal-500", check: "text-teal-500", border: "from-teal-300 to-teal-500",
     titleHover: "group-hover:text-teal-500", textHover: "group-hover:text-teal-500/80",
-    checkHover: "group-hover:text-teal-400", cardBgHover: "group-hover:bg-cyan-50/60", h: "h-1.5",
+    checkHover: "group-hover:text-teal-400", cardBgHover: "group-hover:bg-teal-50/60", h: "h-1.5",
+    glowColor: "rgba(45,212,191,0.18)",
+    barGradient: "linear-gradient(to right, #99f6e4, #2dd4bf, #14b8a6)",
+  },
+  // Card 4 — cyan → blue slice
+  cyanteal: {
+    bg: "bg-cyan-50", hoverBg: "group-hover:from-cyan-200 group-hover:to-blue-300",
+    icon: "text-cyan-500", check: "text-cyan-500", border: "from-cyan-300 to-blue-400",
+    titleHover: "group-hover:text-blue-500", textHover: "group-hover:text-blue-500/80",
+    checkHover: "group-hover:text-blue-400", cardBgHover: "group-hover:bg-cyan-50/60", h: "h-1.5",
     glowColor: "rgba(34,211,238,0.15)",
-    barGradient: "linear-gradient(to right, #67e8f9, #a5f3fc, #99f6e4)",
+    barGradient: "linear-gradient(to right, #67e8f9, #38bdf8, #60a5fa, #3b82f6)",
   },
 };
 
