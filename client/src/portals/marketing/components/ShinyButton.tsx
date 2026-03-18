@@ -230,6 +230,15 @@ export function ShinyButton({
             scale: 1.2;
           }
         }
+
+        @media (prefers-reduced-motion: reduce) {
+          .shiny-cta,
+          .shiny-cta::before,
+          .shiny-cta::after {
+            animation: none !important;
+            transition: none !important;
+          }
+        }
       `}</style>
       <button
         type={type}
