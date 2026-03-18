@@ -724,10 +724,6 @@ export default function Home() {
           className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-white/40 to-transparent pointer-events-none z-[1]"
           aria-hidden="true"
         />
-        <div
-          className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-slate-900/[0.08] to-transparent pointer-events-none z-[1]"
-          aria-hidden="true"
-        />
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
             <div>
