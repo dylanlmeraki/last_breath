@@ -1,0 +1,38 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "1-ns-6siut8mgnyGFdfId"
+uri = "file://screenshots/homepage-full.png"
+type = "image"
+title = "Homepage Full Page (1440px)"
+
+[[outputs]]
+id = "NCQz1ggG3q0zx09R9IfXC"
+uri = "file://screenshots/section-1-hero.png"
+type = "image"
+title = "Hero Section"
+
+[[outputs]]
+id = "gr4qUSWrNgmtuJFPN9vY5"
+uri = "file://screenshots/section-2-services.png"
+type = "image"
+title = "Services Section"
+
+[[outputs]]
+id = "oyiVohnLzVp7ZZ7W9k287"
+uri = "file://screenshots/section-3-whychoose.png"
+type = "image"
+title = "Why Pacific Engineering Section"
+
+[[outputs]]
+id = "1jsQkWpxgSjLreOh5VG9o"
+uri = "file://screenshots/section-4-cta.png"
+type = "image"
+title = "CTA Section + Footer Top"
+
+[[outputs]]
+id = "szd3xA8kZI6y2u-UnZd1x"
+uri = "file://screenshots/section-5-footer.png"
+type = "image"
+title = "Footer Section"
