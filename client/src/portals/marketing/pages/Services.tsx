@@ -119,7 +119,7 @@ export default function Services() {
                   </div>
                   
                   <div className="space-y-4 mb-8">
-                    <h4 className="text-xl font-bold text-slate-900 mb-6 uppercase tracking-wide">What We Do</h4>
+                    <h4 className="text-xl font-bold text-slate-900 mb-6 uppercase tracking-wide text-center">What We Do</h4>
                     
                     <div className="space-y-4">
                       <div className="bg-slate-50 p-6 rounded-md border border-slate-100 hover:border-blue-300 transition-colors">
