@@ -75,7 +75,7 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
   return (
     <div className="marketing-portal min-h-screen bg-white overflow-x-hidden">
       <header className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${isScrolled ? "bg-slate-900/95 backdrop-blur-sm shadow-xl" : "bg-slate-900 shadow-xl"}`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-[2px] pb-[2px]">
           <div className="flex items-center justify-between h-20">
             <Link to={createPageUrl("Home")} className="flex items-center gap-3 group" data-testid="link-logo">
               <div className="relative">
