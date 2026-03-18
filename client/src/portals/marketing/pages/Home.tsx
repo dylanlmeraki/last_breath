@@ -615,7 +615,7 @@ export default function Home() {
             <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 sm:mb-6 tracking-tight mb-[44px]" data-testid="text-services-title">
               Consulting Engineers & Contractors
             </h2>
-            <div className="w-32 sm:w-54 h-1 sm:h-1.5 bg-gradient-to-r from-cyan-500 to-cyan-500 via-blue-500 mx-auto mb-4 sm:mb-8 rounded-full pl-[178px] pr-[178px]" />
+            <div className="w-32 sm:w-54 h-1 sm:h-1.5 bg-gradient-to-r from-cyan-100 to-cyan-100 via-blue-500 mx-auto mb-4 sm:mb-8 rounded-full pl-[142px] pr-[142px]" />
             <p className="text-base sm:text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
               Full-scale engineering and construction by our in-house teams of Engineers, QSD/QSPs, and construction experts.
             </p>
@@ -703,7 +703,7 @@ export default function Home() {
               >
                 <Link
                   to={createPageUrl("ServicesOverview")}
-                  className="group flex-1 inline-flex items-center justify-center gap-2 whitespace-nowrap text-white font-bold tracking-tight text-base px-6 py-3.5 sm:py-4 rounded-sm sm:rounded-lg bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 shadow-lg hover:shadow-xl transition-all duration-300 active:scale-[0.97] hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:outline-none"
+                  className="group flex-1 inline-flex items-center justify-center gap-2 whitespace-nowrap text-white font-bold tracking-tight text-base px-6 py-3.5 sm:py-4 rounded-sm sm:rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 active:scale-[0.97] hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:outline-none [background:radial-gradient(ellipse_at_center,#0891b2,#3b82f6)] hover:[background:radial-gradient(ellipse_at_center,#06b6d4,#2563eb)]"
                   data-testid="link-scope-project"
                 >
                   <FileText className="w-5 h-5" />
