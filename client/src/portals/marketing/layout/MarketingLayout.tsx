@@ -132,7 +132,7 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
                     className="group inline-flex items-center justify-center gap-2 whitespace-nowrap text-white font-bold tracking-tight text-xs h-9 px-4 rounded-md shadow-lg shadow-orange-900/20 hover:shadow-orange-500/50 active:scale-95 transition-all duration-300"
                     style={consultationShinyVars as React.CSSProperties}
                   >
-                    Free Consultation
+                    Start Consultation
                   </ShinyButton>
                 </Link>
               </div>
