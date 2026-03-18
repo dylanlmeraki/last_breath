@@ -618,9 +618,9 @@ export default function Home() {
       </section>
       {/* ── HERO → SERVICES TRANSITION ── */}
       <div className="relative w-full" style={{ marginTop: "-1px" }} data-testid="divider-hero-services">
-        <div className="h-1 bg-gradient-to-r from-slate-800 via-blue-600 to-slate-800" />
+        <div className="h-2 bg-gradient-to-r from-slate-800 via-blue-600 to-slate-800" />
         <div className="h-[3px]" style={{ background: "linear-gradient(to right, #1e293b, #0e7490 20%, #06b6d4 35%, #22d3ee 50%, #06b6d4 65%, #0e7490 80%, #1e293b)" }} />
-        <div className="h-px bg-gradient-to-r from-slate-300 via-cyan-200 to-slate-300" />
+        <div className="h-px bg-gradient-to-r from-slate-300 via-cyan4200 to-slate-300" />
       </div>
       {/* ── SERVICES ── */}
       <section
@@ -695,7 +695,7 @@ export default function Home() {
       </section>
       {/* ── SERVICES → WHY CHOOSE TRANSITION ── */}
       <div className="relative w-full" data-testid="divider-services-whychoose">
-        <div className="h-2 relative overflow-hidden" style={{ background: "linear-gradient(to right, #e2e8f0, #3b82f6 25%, #06b6d4 50%, #3b82f6 75%, #e2e8f0)" }}>
+        <div className="h-1.5 relative overflow-hidden" style={{ background: "linear-gradient(to right, #e2e8f0, #3b82f6 25%, #06b6d4 50%, #3b82f6 75%, #e2e8f0)" }}>
           <LineSweep />
         </div>
         <div className="h-px bg-gradient-to-r from-slate-200 via-cyan-100 to-slate-200" />
