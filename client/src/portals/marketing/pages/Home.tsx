@@ -375,7 +375,7 @@ export default function Home() {
                         <h3 className={`text-slate-900 ${c.titleHover} text-lg sm:text-xl lg:text-2xl font-bold mb-2 sm:mb-4 uppercase tracking-wider transition-colors`}>
                           {svc.title}
                         </h3>
-                        <p className={`text-slate-600 ${c.textHover} mb-4 sm:mb-6 lg:mb-8 leading-relaxed text-sm sm:text-base lg:text-lg transition-colors`}>{svc.desc}</p>
+                        <p className="text-slate-600 mb-4 sm:mb-6 lg:mb-8 leading-relaxed text-sm sm:text-base lg:text-lg">{svc.desc}</p>
                         <ul className="space-y-2 sm:space-y-3 w-full">
                           {svc.items.map((item, i) => (
                             <li key={i} className={`flex items-center justify-center gap-2 sm:gap-3 text-slate-600 ${c.textHover} transition-colors`}>
@@ -500,7 +500,7 @@ export default function Home() {
         </div>
       </section>
       <SectionDivider variant="angled" from="light" to="dark" />
-      <section className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 bg-slate-900 relative overflow-hidden" data-testid="section-cta">
+      <section className="pt-12 pb-0 sm:pt-16 md:pt-20 lg:pt-24 px-4 sm:px-6 bg-slate-900 relative overflow-hidden" data-testid="section-cta">
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1541888082416-a711bc141c2c?w=1600')] bg-cover bg-center opacity-[0.06]" />
         <div className="absolute inset-0 bg-gradient-to-b from-slate-900/70 to-slate-950/90" />
         <BlueprintGrid />
