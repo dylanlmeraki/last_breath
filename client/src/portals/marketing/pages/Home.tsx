@@ -819,7 +819,7 @@ export default function Home() {
             style={{ objectPosition: "center 35%", transform: "scale(1.15)" }}
           />
         </div>
-        <div className="absolute inset-0 bg-slate-900/50 hidden sm:block mix-blend-multiply mb-[24px]" />
+        <div className="absolute inset-0 bg-slate-900/50 hidden sm:block mix-blend-multiply" />
         <div className="absolute inset-0 bg-gradient-to-b from-slate-900/60 to-slate-950/95 sm:from-slate-900/20 sm:to-slate-950/60" />
         <BlueprintGrid />
         <div
