@@ -787,7 +787,7 @@ export default function Home() {
       {/* ── WHY CHOOSE → CTA TRANSITION ── */}
       <div className="relative w-full" style={{ marginTop: "1px" }} data-testid="divider-whychoose-cta">
         <div className="h-px bg-gradient-to-r from-slate-200 via-slate-300 to-slate-200" />
-        <div className="h-2 pb-[0px] mb-[-1px]" style={{ background: "linear-gradient(to right, #475569, #1e40af 20%, #0891b2 40%, #ea580c 50%, #0891b2 60%, #1e40af 80%, #475569)" }} />
+        <div className="h-2 pb-[0px] mb-[-1px] opacity-[0.48]" style={{ background: "linear-gradient(to right, #475569, #1e40af 20%, #0891b2 40%, #ea580c 50%, #0891b2 60%, #1e40af 80%, #475569)" }} />
         <div className="h-[3px] bg-gradient-to-r from-slate-700 via-blue-900 to-slate-700" />
         <div className="h-px bg-gradient-to-r from-slate-800 via-slate-900 to-slate-800" />
       </div>
