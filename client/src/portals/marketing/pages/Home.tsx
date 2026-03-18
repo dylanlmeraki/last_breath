@@ -299,7 +299,7 @@ export default function Home() {
                     <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-5 sm:mb-6">
                       <Link
                         to={createPageUrl("Consultation")}
-                        className="w-full sm:w-auto px-8 py-4 bg-orange-600 hover:bg-orange-500 text-white font-bold uppercase tracking-wider rounded-sm flex items-center justify-center gap-3 shadow-[0_8px_25px_rgba(249,115,22,0.4)] transition-all hover:-translate-y-1 active:scale-[0.97]"
+                        className="w-full sm:w-auto px-8 py-4 bg-orange-600 hover:bg-orange-500 text-white font-bold uppercase tracking-wider rounded-sm sm:rounded-lg flex items-center justify-center gap-3 shadow-[0_8px_25px_rgba(249,115,22,0.4)] transition-all hover:-translate-y-1 active:scale-[0.97]"
                         data-testid="link-hero-quote"
                       >
                         <PhoneCall className="w-5 h-5" />
@@ -307,7 +307,7 @@ export default function Home() {
                       </Link>
                       <Link
                         to={createPageUrl("ServicesOverview")}
-                        className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold uppercase tracking-wider rounded-sm flex items-center justify-center gap-3 shadow-[0_8px_25px_rgba(6,182,212,0.3)] transition-all hover:-translate-y-1 active:scale-[0.97]"
+                        className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold uppercase tracking-wider rounded-sm sm:rounded-lg flex items-center justify-center gap-3 shadow-[0_8px_25px_rgba(6,182,212,0.3)] transition-all hover:-translate-y-1 active:scale-[0.97]"
                         data-testid="link-hero-consultation"
                       >
                         Our Services
@@ -468,13 +468,13 @@ export default function Home() {
               <div className="flex flex-col sm:flex-row gap-3 justify-center w-full">
                 <Link
                   to={createPageUrl("ServicesOverview")}
-                  className="group flex-1 inline-flex items-center justify-center gap-2 whitespace-nowrap text-white font-bold tracking-tight text-base px-6 py-3.5 sm:py-4 rounded-sm bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 shadow-lg hover:shadow-xl transition-all duration-200 active:scale-[0.97]"
+                  className="group flex-1 inline-flex items-center justify-center gap-2 whitespace-nowrap text-white font-bold tracking-tight text-base px-6 py-3.5 sm:py-4 rounded-sm sm:rounded-lg bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 shadow-lg hover:shadow-xl transition-all duration-200 active:scale-[0.97]"
                   data-testid="link-scope-project"
                 >
                   <FileText className="w-5 h-5" />
                   Scope Your Project
                 </Link>
-                <Link to={createPageUrl("About")} className="group flex-1 inline-flex items-center justify-center gap-2 text-slate-700 font-bold tracking-tight text-base px-6 py-3.5 sm:py-4 rounded-sm bg-transparent border-2 border-slate-200 hover:border-cyan-300 hover:bg-white transition-all duration-200 active:scale-[0.97]" data-testid="link-about-team">
+                <Link to={createPageUrl("About")} className="group flex-1 inline-flex items-center justify-center gap-2 text-slate-700 font-bold tracking-tight text-base px-6 py-3.5 sm:py-4 rounded-sm sm:rounded-lg bg-transparent border-2 border-slate-200 hover:border-cyan-300 hover:bg-white transition-all duration-200 active:scale-[0.97]" data-testid="link-about-team">
                   <Users className="w-5 h-5" /> About Our Team
                 </Link>
               </div>
@@ -507,7 +507,7 @@ export default function Home() {
         <div className="absolute inset-0 hidden sm:block">
           <img src={bayBridgeImg} alt="" className="w-full h-full object-cover opacity-[0.12]" />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-900/70 to-slate-950/90" />
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-900/70 to-slate-950/90 sm:from-slate-900/40 sm:to-slate-950/60" />
         <BlueprintGrid />
 
         <div className="relative z-10 max-w-4xl mx-auto text-center">
@@ -523,13 +523,13 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-8 sm:mb-12">
               <Link
                 to={createPageUrl("Consultation")}
-                className="w-full sm:w-auto px-8 sm:px-10 py-4 sm:py-5 bg-orange-600 hover:bg-orange-500 text-white font-bold uppercase tracking-wider rounded-sm flex items-center justify-center gap-3 shadow-[0_8px_25px_rgba(249,115,22,0.4)] transition-all hover:-translate-y-1 active:scale-[0.97]"
+                className="w-full sm:w-auto px-8 sm:px-10 py-4 sm:py-5 bg-orange-600 hover:bg-orange-500 text-white font-bold uppercase tracking-wider rounded-sm sm:rounded-lg flex items-center justify-center gap-3 shadow-[0_8px_25px_rgba(249,115,22,0.4)] transition-all hover:-translate-y-1 active:scale-[0.97]"
                 data-testid="link-cta-quote"
               >
                 <PhoneCall className="w-5 h-5 sm:w-6 sm:h-6" />
                 Request a Quote
               </Link>
-              <a href="tel:+14156894428" className="w-full sm:w-auto px-8 sm:px-10 py-4 sm:py-5 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold uppercase tracking-wider rounded-sm flex items-center justify-center gap-3 shadow-[0_8px_25px_rgba(6,182,212,0.3)] transition-all hover:-translate-y-1 active:scale-[0.97]" data-testid="link-cta-call">
+              <a href="tel:+14156894428" className="w-full sm:w-auto px-8 sm:px-10 py-4 sm:py-5 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold uppercase tracking-wider rounded-sm sm:rounded-lg flex items-center justify-center gap-3 shadow-[0_8px_25px_rgba(6,182,212,0.3)] transition-all hover:-translate-y-1 active:scale-[0.97]" data-testid="link-cta-call">
                 <Phone className="w-5 h-5 sm:w-6 sm:h-6" /> (415) 689-4428
               </a>
             </div>
