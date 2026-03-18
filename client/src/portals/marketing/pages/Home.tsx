@@ -188,7 +188,7 @@ const colorMap = {
     titleHover: "group-hover:text-blue-500", textHover: "group-hover:text-blue-500/80",
     checkHover: "group-hover:text-blue-400", cardBgHover: "group-hover:bg-blue-50/40", h: "h-[5px]",
     glowColor: "rgba(59,130,246,0.15)",
-    gradient: "linear-gradient(to right, #22d3ee, #0891b2, #0ea5e9, #3b82f6)",
+    gradient: "linear-gradient(to right, #22d3ee, #06b6d4, #0ea5e9, #2563eb)",
   },
 };
 
