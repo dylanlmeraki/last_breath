@@ -227,7 +227,7 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
       <main className="pt-20">
         {children}
       </main>
-      <div className="h-1 bg-gradient-to-r from-blue-700 via-cyan-500 to-blue-700" style={{ boxShadow: "0 -1px 3px rgba(6,182,212,0.12)" }} />
+      <div className="h-1 bg-gradient-to-r from-slate-800 via-blue-600 to-cyan-500 bg-[length:200%] bg-center" style={{ background: "linear-gradient(to right, #1e293b, #2563eb 30%, #06b6d4 50%, #2563eb 70%, #1e293b)" }} />
       <footer className="relative bg-slate-900 text-white overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900" />
         <div className="absolute inset-0 bg-gradient-to-tr from-cyan-900/20 via-transparent to-orange-900/15" />

@@ -264,77 +264,31 @@ function ServiceCard({ svc, idx, reducedMotion }: { svc: typeof SERVICES[number]
 
 function HeroServicesTransition() {
   return (
-    <div className="relative w-full overflow-hidden" style={{ height: "32px", marginTop: "-1px", marginBottom: "-1px" }}>
-      <div className="absolute inset-0 bg-gradient-to-b from-slate-950 to-white" />
-      <div className="absolute inset-0 pointer-events-none opacity-20 bg-[linear-gradient(rgba(6,182,212,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.03)_1px,transparent_1px)] bg-[size:24px_24px]" />
-      <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 1440 32" fill="none">
-        <line x1="0" y1="16" x2="1440" y2="16" stroke="url(#hero-svc-dim)" strokeWidth="1" />
-        {[240, 480, 720, 960, 1200].map((x) => (
-          <g key={x}>
-            <line x1={x} y1="12" x2={x} y2="20" stroke="url(#hero-svc-dim)" strokeWidth="0.6" />
-          </g>
-        ))}
-        <defs>
-          <linearGradient id="hero-svc-dim" x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
-            <stop stopColor="#3b82f6" stopOpacity="0" />
-            <stop offset="0.2" stopColor="#3b82f6" stopOpacity="0.2" />
-            <stop offset="0.5" stopColor="#06b6d4" stopOpacity="0.35" />
-            <stop offset="0.8" stopColor="#3b82f6" stopOpacity="0.2" />
-            <stop offset="1" stopColor="#3b82f6" stopOpacity="0" />
-          </linearGradient>
-        </defs>
-      </svg>
+    <div className="relative w-full" style={{ marginTop: "-1px" }}>
+      <div className="h-1 bg-gradient-to-r from-slate-800 via-blue-600 to-slate-800" />
+      <div className="h-[3px]" style={{ background: "linear-gradient(to right, #1e293b, #0e7490 20%, #06b6d4 35%, #f97316 50%, #06b6d4 65%, #0e7490 80%, #1e293b)" }} />
+      <div className="h-px bg-gradient-to-r from-slate-300 via-cyan-200 to-slate-300" />
     </div>
   );
 }
 
 function ServicesWhyChooseTransition() {
   return (
-    <div className="relative w-full overflow-hidden" style={{ height: "20px", marginTop: "-1px", marginBottom: "-1px" }}>
-      <div className="absolute inset-0 bg-gradient-to-b from-white to-slate-100" />
-      <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 1440 20" fill="none">
-        <line x1="0" y1="10" x2="1440" y2="10" stroke="url(#svc-why-beam)" strokeWidth="0.8" />
-        <g>
-          <line x1="60" y1="6" x2="60" y2="14" stroke="url(#svc-why-beam)" strokeWidth="0.6" />
-          <line x1="57" y1="6" x2="63" y2="6" stroke="url(#svc-why-beam)" strokeWidth="0.5" />
-          <line x1="57" y1="14" x2="63" y2="14" stroke="url(#svc-why-beam)" strokeWidth="0.5" />
-        </g>
-        <g>
-          <line x1="1380" y1="6" x2="1380" y2="14" stroke="url(#svc-why-beam)" strokeWidth="0.6" />
-          <line x1="1377" y1="6" x2="1383" y2="6" stroke="url(#svc-why-beam)" strokeWidth="0.5" />
-          <line x1="1377" y1="14" x2="1383" y2="14" stroke="url(#svc-why-beam)" strokeWidth="0.5" />
-        </g>
-        <defs>
-          <linearGradient id="svc-why-beam" x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
-            <stop stopColor="#3b82f6" stopOpacity="0" />
-            <stop offset="0.2" stopColor="#3b82f6" stopOpacity="0.15" />
-            <stop offset="0.5" stopColor="#06b6d4" stopOpacity="0.3" />
-            <stop offset="0.8" stopColor="#3b82f6" stopOpacity="0.15" />
-            <stop offset="1" stopColor="#3b82f6" stopOpacity="0" />
-          </linearGradient>
-        </defs>
-      </svg>
+    <div className="relative w-full" style={{ marginTop: "-1px" }}>
+      <div className="h-px bg-gradient-to-r from-slate-200 via-blue-200 to-slate-200" />
+      <div className="h-[3px]" style={{ background: "linear-gradient(to right, #e2e8f0, #3b82f6 25%, #06b6d4 50%, #3b82f6 75%, #e2e8f0)" }} />
+      <div className="h-px bg-gradient-to-r from-slate-200 via-cyan-100 to-slate-200" />
     </div>
   );
 }
 
 function WhyChooseCtaTransition() {
   return (
-    <div className="relative w-full overflow-hidden" style={{ height: "36px", marginTop: "-1px", marginBottom: "-1px" }}>
-      <div className="absolute inset-0 bg-gradient-to-b from-slate-100 via-slate-500/80 to-slate-900" />
-      <div className="absolute inset-0 pointer-events-none opacity-30 bg-[linear-gradient(rgba(6,182,212,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.03)_1px,transparent_1px)] bg-[size:24px_24px]" style={{ mask: "linear-gradient(to bottom, transparent 30%, black 90%)", WebkitMask: "linear-gradient(to bottom, transparent 30%, black 90%)" }} />
-      <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 1440 36" fill="none">
-        <line x1="0" y1="18" x2="1440" y2="18" stroke="url(#why-cta-line)" strokeWidth="1" />
-        <defs>
-          <linearGradient id="why-cta-line" x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
-            <stop stopColor="#06b6d4" stopOpacity="0" />
-            <stop offset="0.2" stopColor="#06b6d4" stopOpacity="0.2" />
-            <stop offset="0.5" stopColor="#3b82f6" stopOpacity="0.35" />
-            <stop offset="0.8" stopColor="#06b6d4" stopOpacity="0.2" />
-            <stop offset="1" stopColor="#06b6d4" stopOpacity="0" />
-          </linearGradient>
-        </defs>
-      </svg>
+    <div className="relative w-full" style={{ marginTop: "-1px" }}>
+      <div className="h-px bg-gradient-to-r from-slate-200 via-slate-300 to-slate-200" />
+      <div className="h-1" style={{ background: "linear-gradient(to right, #475569, #1e40af 20%, #0891b2 40%, #ea580c 50%, #0891b2 60%, #1e40af 80%, #475569)" }} />
+      <div className="h-[3px] bg-gradient-to-r from-slate-700 via-blue-900 to-slate-700" />
+      <div className="h-px bg-gradient-to-r from-slate-800 via-slate-900 to-slate-800" />
     </div>
   );
 }
