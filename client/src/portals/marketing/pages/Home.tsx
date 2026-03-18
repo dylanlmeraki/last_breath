@@ -121,60 +121,6 @@ function ScrollProgress() {
   );
 }
 
-function DiagonalDivider({ topColor = "#ffffff", bottomColor = "#ffffff", accentGradient = "svc-why" }: { topColor?: string; bottomColor?: string; accentGradient?: string }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.1 });
-  const reducedMotion = useReducedMotion();
-
-  return (
-    <div
-      ref={ref}
-      className="relative w-full overflow-hidden"
-      style={{ height: "clamp(28px, 3.5vw, 52px)", marginTop: "-1px", marginBottom: "-1px" }}
-    >
-      <div className="absolute inset-0" style={{ background: topColor }} />
-      <div className="absolute inset-0" style={{ background: bottomColor, clipPath: "polygon(0 45%, 100% 0, 100% 55%, 0 100%)" }} />
-      <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 1440 100" fill="none">
-        <line
-          x1="0" y1="45" x2="1440" y2="0"
-          stroke={`url(#${accentGradient}-top)`}
-          strokeWidth="2"
-          style={{
-            strokeDasharray: 2000,
-            strokeDashoffset: reducedMotion || isInView ? 0 : 2000,
-            transition: reducedMotion ? "none" : "stroke-dashoffset 1.4s cubic-bezier(0.22, 1, 0.36, 1) 0.1s",
-          }}
-        />
-        <line
-          x1="0" y1="100" x2="1440" y2="55"
-          stroke={`url(#${accentGradient}-bot)`}
-          strokeWidth="2"
-          style={{
-            strokeDasharray: 2000,
-            strokeDashoffset: reducedMotion || isInView ? 0 : -2000,
-            transition: reducedMotion ? "none" : "stroke-dashoffset 1.4s cubic-bezier(0.22, 1, 0.36, 1) 0.3s",
-          }}
-        />
-        <defs>
-          <linearGradient id={`${accentGradient}-top`} x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
-            <stop stopColor="#3b82f6" stopOpacity="0.1" />
-            <stop offset="0.25" stopColor="#3b82f6" stopOpacity="0.6" />
-            <stop offset="0.5" stopColor="#06b6d4" stopOpacity="0.85" />
-            <stop offset="0.75" stopColor="#3b82f6" stopOpacity="0.6" />
-            <stop offset="1" stopColor="#3b82f6" stopOpacity="0.1" />
-          </linearGradient>
-          <linearGradient id={`${accentGradient}-bot`} x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
-            <stop stopColor="#3b82f6" stopOpacity="0.1" />
-            <stop offset="0.25" stopColor="#3b82f6" stopOpacity="0.6" />
-            <stop offset="0.5" stopColor="#06b6d4" stopOpacity="0.85" />
-            <stop offset="0.75" stopColor="#3b82f6" stopOpacity="0.6" />
-            <stop offset="1" stopColor="#3b82f6" stopOpacity="0.1" />
-          </linearGradient>
-        </defs>
-      </svg>
-    </div>
-  );
-}
 
 const SERVICES = [
   {
@@ -377,11 +323,6 @@ export default function Home() {
   const heroFilter = useTransform(heroBlur, (v) => `blur(${v}px)`);
 
   const ctaRef = useRef<HTMLElement>(null);
-  const { scrollYProgress: ctaProgress } = useScroll({
-    target: ctaRef,
-    offset: ["start end", "end start"],
-  });
-  const ctaBgY = useTransform(ctaProgress, [0, 1], prefersReducedMotion ? ["0%", "0%"] : ["0%", "20%"]);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -710,11 +651,7 @@ export default function Home() {
         </div>
       </section>
       {/* ── SERVICES → WHY CHOOSE DIVIDER ── */}
-      <DiagonalDivider
-        topColor="#ffffff"
-        bottomColor="#f1f5f9"
-        accentGradient="svc-why"
-      />
+      <div className="w-full h-px bg-gradient-to-r from-transparent via-slate-800 to-transparent" />
       {/* ── WHY CHOOSE ── */}
       <section
         className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 bg-slate-100 relative overflow-hidden"
@@ -882,69 +819,16 @@ export default function Home() {
           </div>
         </div>
       </section>
-      {/* ── WHY → CTA DIAGONAL GRADIENT BAR ── */}
-      <div className="relative w-full border-t-[#e5e7eb00] border-r-[#e5e7eb00] border-b-[#e5e7eb00] border-l-[#e5e7eb00] opacity-[0] text-[#0707fae6] bg-[#0f172a00] mb-[2px]" style={{ height: "clamp(30px,4vw,60px)", marginBottom: "-1px" }}>
-        <svg className="absolute inset-0 w-full h-full pointer-events-none" preserveAspectRatio="none" viewBox="0 0 1440 60" fill="none">
-          <line x1="1440" y1="0" x2="0" y2="60" stroke="url(#why-cta-bar)" strokeWidth="3" />
-          <defs>
-            <linearGradient id="why-cta-bar" x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
-              <stop stopColor="#2563eb" stopOpacity="0.3" />
-              <stop offset="0.3" stopColor="#0891b2" stopOpacity="0.8" />
-              <stop offset="0.5" stopColor="#06b6d4" />
-              <stop offset="0.7" stopColor="#0891b2" stopOpacity="0.8" />
-              <stop offset="1" stopColor="#2563eb" stopOpacity="0.3" />
-            </linearGradient>
-          </defs>
-        </svg>
-      </div>
+      {/* ── WHY → CTA GRADIENT BAR ── */}
+      <div className="w-full h-2 bg-gradient-to-r from-blue-900 via-cyan-600 to-blue-900" />
       {/* ── CTA ── */}
       <section
         ref={ctaRef}
-        className="relative bg-slate-900 overflow-hidden -mt-[clamp(30px,4vw,60px)]"
-        style={{
-          clipPath:
-            "polygon(0 clamp(30px,4vw,60px), 100% 0, 100% 100%, 0 100%)",
-        }}
+        className="relative bg-slate-900 overflow-hidden"
         data-testid="section-cta"
       >
-        <svg
-          className="absolute top-0 left-0 w-full z-20 pointer-events-none"
-          style={{ height: "clamp(30px,4vw,60px)" }}
-          preserveAspectRatio="none"
-          viewBox="0 0 1440 60"
-          fill="none"
-        >
-          <line
-            x1="0"
-            y1="60"
-            x2="1440"
-            y2="0"
-            stroke="url(#cta-diag-bar)"
-            strokeWidth="2.5"
-          />
-          <defs>
-            <linearGradient
-              id="cta-diag-bar"
-              x1="0"
-              y1="0"
-              x2="1440"
-              y2="0"
-              gradientUnits="userSpaceOnUse"
-            >
-              <stop stopColor="#06b6d4" stopOpacity="0.1" />
-              <stop offset="0.2" stopColor="#3b82f6" stopOpacity="0.6" />
-              <stop offset="0.4" stopColor="#06b6d4" stopOpacity="0.8" />
-              <stop offset="0.5" stopColor="#f97316" stopOpacity="0.5" />
-              <stop offset="0.6" stopColor="#06b6d4" stopOpacity="0.8" />
-              <stop offset="0.8" stopColor="#3b82f6" stopOpacity="0.6" />
-              <stop offset="1" stopColor="#06b6d4" stopOpacity="0.1" />
-            </linearGradient>
-          </defs>
-        </svg>
-
-        <motion.div
+        <div
           className="absolute inset-0 hidden sm:block opacity-80"
-          style={{ y: ctaBgY }}
         >
           <img
             src={bayBridgeImg}
@@ -952,7 +836,7 @@ export default function Home() {
             className="w-full h-full object-cover"
             style={{ objectPosition: "center 35%", transform: "scale(1.15)" }}
           />
-        </motion.div>
+        </div>
         <div className="absolute inset-0 bg-slate-900/50 hidden sm:block mix-blend-multiply" />
         <div className="absolute inset-0 bg-gradient-to-b from-slate-900/60 to-slate-950/95 sm:from-slate-900/20 sm:to-slate-950/60" />
         <BlueprintGrid />
@@ -963,7 +847,7 @@ export default function Home() {
           <AnimatedGridBackground />
         </div>
 
-        <div className="relative z-10 max-w-4xl mx-auto text-center px-4 sm:px-6 pt-[calc(clamp(30px,4vw,60px)+2rem)] sm:pt-[calc(clamp(30px,4vw,60px)+3rem)] pb-8 sm:pb-12 md:pb-16 lg:pb-20">
+        <div className="relative z-10 max-w-4xl mx-auto text-center px-4 sm:px-6 py-12 sm:py-16 md:py-20 lg:py-24">
           <motion.h2
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-white mb-5 sm:mb-8 tracking-tight leading-[1.08]"
             data-testid="text-cta-title"
