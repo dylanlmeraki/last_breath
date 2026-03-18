@@ -28,7 +28,6 @@ export default function Services() {
         keywords="SWPPP services, QSD services, QSP services, stormwater planning, BMP design, erosion control, construction stormwater compliance"
         url="/services"
       />
-      
       <section className="relative py-16 sm:py-24 md:py-32 px-4 sm:px-6 bg-slate-900 border-b-4 border-blue-600 overflow-hidden">
         <div className="absolute inset-0 opacity-50">
           <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=1600')] bg-cover bg-center" />
@@ -52,7 +51,6 @@ export default function Services() {
           </AnimatedSection>
         </div>
       </section>
-
       <section className="py-16 px-6 bg-white border-b border-slate-200">
         <div className="max-w-7xl mx-auto">
           <AnimatedSection direction="up">
@@ -92,7 +90,6 @@ export default function Services() {
           </AnimatedSection>
         </div>
       </section>
-
       <section className="py-20 px-6 bg-slate-50">
         <div className="max-w-7xl mx-auto space-y-12">
           <AnimatedSection direction="up" delay={0.1}>
@@ -126,7 +123,7 @@ export default function Services() {
                     
                     <div className="space-y-4">
                       <div className="bg-slate-50 p-6 rounded-md border border-slate-100 hover:border-blue-300 transition-colors">
-                        <h5 className="font-bold text-slate-900 mb-2 uppercase tracking-wide">Permit Coverage</h5>
+                        <h5 className="font-bold text-slate-900 mb-2 uppercase tracking-wide text-center">Permit Coverage</h5>
                         <p className="text-sm text-slate-600 leading-relaxed">Verify CGP/NPDES applicability, complete NOI/permit filings, and define compliance responsibilities up front.</p>
                       </div>
 
@@ -298,7 +295,6 @@ export default function Services() {
           </AnimatedSection>
         </div>
       </section>
-
       <section className="py-20 px-6 bg-white border-t border-slate-200">
         <div className="max-w-6xl mx-auto">
           <AnimatedSection direction="up" className="text-center mb-16">
@@ -350,7 +346,6 @@ export default function Services() {
           </div>
         </div>
       </section>
-
       <section className="py-24 px-6 bg-slate-900 relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 pointer-events-none"></div>
         <div className="max-w-4xl mx-auto text-center relative z-10">
