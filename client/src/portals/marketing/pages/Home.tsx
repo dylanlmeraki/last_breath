@@ -457,7 +457,10 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white antialiased pb-[4.5rem] sm:pb-0" data-testid="page-home">
+    <div
+      className="min-h-screen bg-white antialiased pb-[4.5rem] sm:pb-0"
+      data-testid="page-home"
+    >
       <SEO
         title="Pacific Engineering & Construction Inc. - Consulting Engineers and Contractors"
         description="SF Bay structural engineering, special inspections, materials testing & SWPPP stormwater compliance—supporting permit-ready construction with fast, reliable service."
@@ -492,9 +495,18 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-r from-cyan-950/30 via-transparent to-orange-950/20 opacity-50" />
         </div>
 
-        <AnimatedGridBackground baseOpacity={0.5} gridSize={40} triggerInterval={500} animationDuration={2500} className="hidden sm:block z-[1] opacity-30" />
+        <AnimatedGridBackground
+          baseOpacity={0.5}
+          gridSize={40}
+          triggerInterval={500}
+          animationDuration={2500}
+          className="hidden sm:block z-[1] opacity-30"
+        />
         <BlueprintBackground className="z-[2] opacity-70" />
-        <ParticleField className="z-[3] opacity-15 hidden md:block" particleCount={35} />
+        <ParticleField
+          className="z-[3] opacity-15 hidden md:block"
+          particleCount={35}
+        />
         <FloatingElements className="z-[4] opacity-60" />
         <FloatingParticles />
 
@@ -503,7 +515,12 @@ export default function Home() {
 
         <div className="relative z-[5] w-full px-4 sm:px-6 lg:px-10">
           <div className="mx-auto w-full max-w-5xl">
-            <AnimatedSection direction="up" duration={1.1} className="text-center" blur>
+            <AnimatedSection
+              direction="up"
+              duration={1.1}
+              className="text-center"
+              blur
+            >
               <div className="relative">
                 <div className="absolute -inset-px bg-gradient-to-r from-cyan-500/5 via-blue-500/3 to-cyan-500/5 rounded-2xl sm:rounded-3xl blur-sm hidden sm:block" />
 
@@ -567,14 +584,31 @@ export default function Home() {
                       data-testid="text-hero-trust"
                       {...entrance({}, 0.6, 0.9)}
                     >
-                      Same-day response · No obligations · 40+ years Bay Area expertise
+                      Same-day response · No obligations · 40+ years Bay Area
+                      expertise
                     </motion.p>
 
                     <div className="grid grid-cols-3 gap-2 sm:gap-4 md:gap-6">
                       {[
-                        { content: <AnimatedCounter target={40} suffix="+" />, label: "Years Experience", testId: "stat-experience" },
-                        { content: "Full-Service", label: "Vertically Integrated", testId: "stat-full-service", textClass: "text-lg sm:text-2xl md:text-3xl lg:text-4xl" },
-                        { content: "Full-Scale", label: "Res, Comm & Infrastructure", testId: "stat-full-scale", textClass: "text-lg sm:text-2xl md:text-3xl lg:text-4xl" },
+                        {
+                          content: <AnimatedCounter target={40} suffix="+" />,
+                          label: "Years Experience",
+                          testId: "stat-experience",
+                        },
+                        {
+                          content: "Full-Service",
+                          label: "Vertically Integrated",
+                          testId: "stat-full-service",
+                          textClass:
+                            "text-lg sm:text-2xl md:text-3xl lg:text-4xl",
+                        },
+                        {
+                          content: "Full-Scale",
+                          label: "Res, Comm & Infrastructure",
+                          testId: "stat-full-scale",
+                          textClass:
+                            "text-lg sm:text-2xl md:text-3xl lg:text-4xl",
+                        },
                       ].map((stat, i) => (
                         <motion.div
                           key={stat.testId}
@@ -582,10 +616,14 @@ export default function Home() {
                           data-testid={stat.testId}
                           {...entrance({ y: 30 }, 0.6, 1.0 + i * 0.1)}
                         >
-                          <div className={`text-white font-bold mb-0.5 sm:mb-2 ${stat.textClass || "text-2xl sm:text-3xl md:text-4xl"}`}>
+                          <div
+                            className={`text-white font-bold mb-0.5 sm:mb-2 ${stat.textClass || "text-2xl sm:text-3xl md:text-4xl"}`}
+                          >
                             {stat.content}
                           </div>
-                          <div className="text-orange-400/90 tracking-tight font-medium text-[10px] sm:text-sm leading-tight text-center">{stat.label}</div>
+                          <div className="text-orange-400/90 tracking-tight font-medium text-[10px] sm:text-sm leading-tight text-center">
+                            {stat.label}
+                          </div>
                         </motion.div>
                       ))}
                     </div>
@@ -601,33 +639,61 @@ export default function Home() {
             className="w-6 h-10 rounded-full border-2 border-white/15 flex items-start justify-center p-2"
             {...entrance({ y: -10 }, 0.6, 1.5)}
           >
-            <div className={`w-1 h-3 bg-white/40 rounded-full ${rm ? '' : 'animate-bounce'}`} />
+            <div
+              className={`w-1 h-3 bg-white/40 rounded-full ${rm ? "" : "animate-bounce"}`}
+            />
           </motion.div>
         </div>
       </motion.section>
       {/* ── HERO → SERVICES DIVIDER ── */}
       <div className="w-full h-3 bg-gradient-to-r from-cyan-100 via-blue-600 to-cyan-100" />
       {/* ── SERVICES ── */}
-      <section className="py-12 sm:py-16 md:py-20 lg:py-28 px-4 sm:px-6 bg-white relative" data-testid="section-services">
-        <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-slate-900/[0.06] to-transparent pointer-events-none z-[1]" aria-hidden="true" />
+      <section
+        className="py-12 sm:py-16 md:py-20 lg:py-28 px-4 sm:px-6 bg-white relative"
+        data-testid="section-services"
+      >
+        <div
+          className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-slate-900/[0.06] to-transparent pointer-events-none z-[1]"
+          aria-hidden="true"
+        />
         <div className="max-w-7xl mx-auto">
-          <AnimatedSection direction="up" className="text-center mb-10 sm:mb-14 lg:mb-20" parallax blur ease="tween">
-            <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 sm:mb-6 tracking-tight mb-[44px]" data-testid="text-services-title">
+          <AnimatedSection
+            direction="up"
+            className="text-center mb-10 sm:mb-14 lg:mb-20"
+            parallax
+            blur
+            ease="tween"
+          >
+            <h2
+              className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 sm:mb-6 tracking-tight mb-[44px]"
+              data-testid="text-services-title"
+            >
               Consulting Engineers & Contractors
             </h2>
             <div className="w-32 sm:w-54 h-1 sm:h-1.5 bg-gradient-to-r from-cyan-100 to-cyan-100 via-blue-500 mx-auto mb-4 sm:mb-8 rounded-full pl-[142px] pr-[142px]" />
             <p className="text-base sm:text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-              Full-scale engineering and construction by our in-house teams of Engineers, QSD/QSPs, and construction experts.
+              Full-scale engineering and construction by our in-house teams of
+              Engineers, QSD/QSPs, and construction experts.
             </p>
           </AnimatedSection>
 
           <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 max-w-6xl mx-auto">
             {SERVICES.map((svc, idx) => (
-              <ServiceCard key={svc.title} svc={svc} idx={idx} reducedMotion={!!prefersReducedMotion} />
+              <ServiceCard
+                key={svc.title}
+                svc={svc}
+                idx={idx}
+                reducedMotion={!!prefersReducedMotion}
+              />
             ))}
           </div>
 
-          <AnimatedSection direction="up" delay={0.5} className="text-center mt-8 sm:mt-12 lg:mt-16" ease="tween">
+          <AnimatedSection
+            direction="up"
+            delay={0.5}
+            className="text-center mt-8 sm:mt-12 lg:mt-16"
+            ease="tween"
+          >
             <Link
               to={createPageUrl("ServicesOverview")}
               className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-white font-bold tracking-tight text-base sm:text-lg px-10 sm:px-14 py-4 sm:py-[18px] rounded-sm sm:rounded-full shadow-[0_8px_25px_rgba(6,182,212,0.3)] hover:shadow-[0_12px_35px_rgba(6,182,212,0.45)] hover:-translate-y-1 active:scale-[0.97] transition-all duration-300 focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:outline-none [background:radial-gradient(ellipse_at_center,#0891b2,#3b82f6)] hover:[background:radial-gradient(ellipse_at_center,#06b6d4,#2563eb)]"
@@ -637,35 +703,70 @@ export default function Home() {
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
             </Link>
           </AnimatedSection>
-          <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-slate-100/60 to-transparent pointer-events-none z-[1]" aria-hidden="true" />
+          <div
+            className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-slate-100/60 to-transparent pointer-events-none z-[1]"
+            aria-hidden="true"
+          />
         </div>
       </section>
       {/* ── SERVICES → WHY CHOOSE DIVIDER ── */}
-      <DiagonalDivider topColor="#ffffff" bottomColor="rgb(236 254 255 / 0.4)" accentGradient="svc-why" />
+      <DiagonalDivider
+        topColor="#ffffff"
+        bottomColor="#f1f5f9"
+        accentGradient="svc-why"
+      />
       {/* ── WHY CHOOSE ── */}
-      <section className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 bg-cyan-50/40 relative overflow-hidden" data-testid="section-why-choose">
-        <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-white/40 to-transparent pointer-events-none z-[1]" aria-hidden="true" />
-        <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-slate-900/[0.08] to-transparent pointer-events-none z-[1]" aria-hidden="true" />
+      <section
+        className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 bg-slate-100 relative overflow-hidden"
+        data-testid="section-why-choose"
+      >
+        <div
+          className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-white/40 to-transparent pointer-events-none z-[1]"
+          aria-hidden="true"
+        />
+        <div
+          className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-slate-900/[0.08] to-transparent pointer-events-none z-[1]"
+          aria-hidden="true"
+        />
+        <div className="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-blue-600 via-cyan-600 to-blue-600 z-[2]" />
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
             <div>
               <AnimatedSection direction="up" ease="tween" blur>
                 <div className="text-center">
-                  <h2 className="text-slate-900 mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight leading-tight" data-testid="text-why-title">
+                  <h2
+                    className="text-slate-900 mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight leading-tight"
+                    data-testid="text-why-title"
+                  >
                     Why Pacific Engineering?
                   </h2>
                   <div className="bg-gradient-to-r from-cyan-100 to-cyan-100 via-blue-500 my-5 sm:my-8 w-24 sm:w-36 h-1 sm:h-1.5 rounded-full mx-auto ml-[232px] mr-[232px] pl-[54px] pr-[54px]" />
                   <p className="text-slate-700 mb-6 sm:mb-10 text-base sm:text-lg lg:text-xl leading-relaxed max-w-xl mx-auto">
-                    With over 40 years of experience in full-scale civil engineering and construction contracting, we deliver comprehensive solutions keeping projects on track with professional efficiency.
+                    With over 40 years of experience in full-scale civil
+                    engineering and construction contracting, we deliver
+                    comprehensive solutions keeping projects on track with
+                    professional efficiency.
                   </p>
                 </div>
               </AnimatedSection>
 
               <div className="space-y-4 sm:space-y-6 lg:space-y-8 mb-8 sm:mb-12 w-full">
                 {[
-                  { icon: Award, title: "EXPERT KNOWLEDGE", desc: "Complete understanding of federal, state, and local stormwater regulations." },
-                  { icon: TrendingUp, title: "PROVEN TRACK RECORD", desc: "100% client satisfaction across 2.5K+ successful projects." },
-                  { icon: Zap, title: "RESPONSIVE SERVICE", desc: "Quick turnaround times and dedicated project support to keep you moving." },
+                  {
+                    icon: Award,
+                    title: "EXPERT KNOWLEDGE",
+                    desc: "Complete understanding of federal, state, and local stormwater regulations.",
+                  },
+                  {
+                    icon: TrendingUp,
+                    title: "PROVEN TRACK RECORD",
+                    desc: "100% client satisfaction across 2.5K+ successful projects.",
+                  },
+                  {
+                    icon: Zap,
+                    title: "RESPONSIVE SERVICE",
+                    desc: "Quick turnaround times and dedicated project support to keep you moving.",
+                  },
                 ].map((item, i) => (
                   <motion.div
                     key={item.title}
@@ -673,12 +774,16 @@ export default function Home() {
                     initial={rm ? { opacity: 1 } : { opacity: 0, x: -30 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true, amount: 0.3 }}
-                    transition={rm ? { duration: 0 } : {
-                      type: "tween",
-                      duration: 0.6,
-                      delay: 0.15 + i * 0.15,
-                      ease: [0.22, 1, 0.36, 1],
-                    }}
+                    transition={
+                      rm
+                        ? { duration: 0 }
+                        : {
+                            type: "tween",
+                            duration: 0.6,
+                            delay: 0.15 + i * 0.15,
+                            ease: [0.22, 1, 0.36, 1],
+                          }
+                    }
                   >
                     <div className="flex-shrink-0 w-11 sm:w-14">
                       <div className="w-11 h-11 sm:w-14 sm:h-14 bg-white rounded-lg sm:rounded-xl flex items-center justify-center shadow-sm sm:shadow-md border border-cyan-100">
@@ -686,10 +791,17 @@ export default function Home() {
                       </div>
                     </div>
                     <div className="text-center flex-1">
-                      <h3 className="text-slate-900 mb-1 sm:mb-2 text-base sm:text-lg lg:text-xl font-bold tracking-wide">{item.title}</h3>
-                      <p className="text-slate-600 text-sm sm:text-base lg:text-lg">{item.desc}</p>
+                      <h3 className="text-slate-900 mb-1 sm:mb-2 text-base sm:text-lg lg:text-xl font-bold tracking-wide">
+                        {item.title}
+                      </h3>
+                      <p className="text-slate-600 text-sm sm:text-base lg:text-lg">
+                        {item.desc}
+                      </p>
                     </div>
-                    <div className="flex-shrink-0 w-11 sm:w-14" aria-hidden="true" />
+                    <div
+                      className="flex-shrink-0 w-11 sm:w-14"
+                      aria-hidden="true"
+                    />
                   </motion.div>
                 ))}
               </div>
@@ -699,7 +811,11 @@ export default function Home() {
                 initial={rm ? { opacity: 1 } : { opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={rm ? { duration: 0 } : { duration: 0.6, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                transition={
+                  rm
+                    ? { duration: 0 }
+                    : { duration: 0.6, delay: 0.6, ease: [0.22, 1, 0.36, 1] }
+                }
               >
                 <Link
                   to={createPageUrl("ServicesOverview")}
@@ -709,13 +825,23 @@ export default function Home() {
                   <FileText className="w-5 h-5" />
                   Scope Your Project
                 </Link>
-                <Link to={createPageUrl("About")} className="group flex-1 inline-flex items-center justify-center gap-2 text-slate-800 font-bold tracking-tight text-base px-6 py-3.5 sm:py-4 rounded-sm sm:rounded-lg bg-white border-2 border-slate-300 hover:border-slate-400 shadow-md hover:shadow-lg transition-all duration-300 active:scale-[0.97] hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:outline-none" data-testid="link-about-team">
+                <Link
+                  to={createPageUrl("About")}
+                  className="group flex-1 inline-flex items-center justify-center gap-2 text-slate-800 font-bold tracking-tight text-base px-6 py-3.5 sm:py-4 rounded-sm sm:rounded-lg bg-white border-2 border-slate-300 hover:border-slate-400 shadow-md hover:shadow-lg transition-all duration-300 active:scale-[0.97] hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:outline-none"
+                  data-testid="link-about-team"
+                >
                   <Users className="w-5 h-5" /> About Our Team
                 </Link>
               </motion.div>
             </div>
 
-            <AnimatedSection direction="right" delay={0.2} className="mt-4 lg:mt-0" parallax ease="tween">
+            <AnimatedSection
+              direction="right"
+              delay={0.2}
+              className="mt-4 lg:mt-0"
+              parallax
+              ease="tween"
+            >
               <div className="relative px-0 sm:px-4 lg:px-8">
                 <div className="aspect-[4/3] rounded-xl sm:rounded-2xl overflow-hidden shadow-lg sm:shadow-2xl border-2 sm:border-4 border-white bg-slate-200">
                   <img
@@ -728,15 +854,33 @@ export default function Home() {
                 </div>
                 <motion.div
                   className="absolute -bottom-4 sm:-bottom-6 right-0 sm:-right-2 lg:-right-6 bg-gradient-to-br from-cyan-500 to-blue-600 p-4 sm:p-6 lg:p-8 rounded-xl sm:rounded-2xl shadow-xl border-2 sm:border-4 border-white flex flex-col items-center justify-center z-20"
-                  initial={rm ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8, y: 20 }}
+                  initial={
+                    rm
+                      ? { opacity: 1, scale: 1 }
+                      : { opacity: 0, scale: 0.8, y: 20 }
+                  }
                   whileInView={{ opacity: 1, scale: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.5 }}
-                  transition={rm ? { duration: 0 } : { type: "spring", stiffness: 120, damping: 15, delay: 0.4 }}
+                  transition={
+                    rm
+                      ? { duration: 0 }
+                      : {
+                          type: "spring",
+                          stiffness: 120,
+                          damping: 15,
+                          delay: 0.4,
+                        }
+                  }
                 >
-                  <div className="text-white mb-0.5 sm:mb-1 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tighter" data-testid="text-projects-count">
+                  <div
+                    className="text-white mb-0.5 sm:mb-1 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tighter"
+                    data-testid="text-projects-count"
+                  >
                     <AnimatedCounter target={2500} suffix="+" />
                   </div>
-                  <div className="text-cyan-50 font-bold uppercase tracking-widest text-[9px] sm:text-xs">Successful Projects</div>
+                  <div className="text-cyan-50 font-bold uppercase tracking-widest text-[9px] sm:text-xs">
+                    Successful Projects
+                  </div>
                 </motion.div>
               </div>
             </AnimatedSection>
@@ -747,13 +891,36 @@ export default function Home() {
       <section
         ref={ctaRef}
         className="relative bg-slate-900 overflow-hidden -mt-[clamp(30px,4vw,60px)]"
-        style={{ clipPath: "polygon(0 clamp(30px,4vw,60px), 100% 0, 100% 100%, 0 100%)" }}
+        style={{
+          clipPath:
+            "polygon(0 clamp(30px,4vw,60px), 100% 0, 100% 100%, 0 100%)",
+        }}
         data-testid="section-cta"
       >
-        <svg className="absolute top-0 left-0 w-full z-20 pointer-events-none" style={{ height: "clamp(30px,4vw,60px)" }} preserveAspectRatio="none" viewBox="0 0 1440 60" fill="none">
-          <line x1="0" y1="60" x2="1440" y2="0" stroke="url(#cta-diag-bar)" strokeWidth="2.5" />
+        <svg
+          className="absolute top-0 left-0 w-full z-20 pointer-events-none"
+          style={{ height: "clamp(30px,4vw,60px)" }}
+          preserveAspectRatio="none"
+          viewBox="0 0 1440 60"
+          fill="none"
+        >
+          <line
+            x1="0"
+            y1="60"
+            x2="1440"
+            y2="0"
+            stroke="url(#cta-diag-bar)"
+            strokeWidth="2.5"
+          />
           <defs>
-            <linearGradient id="cta-diag-bar" x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
+            <linearGradient
+              id="cta-diag-bar"
+              x1="0"
+              y1="0"
+              x2="1440"
+              y2="0"
+              gradientUnits="userSpaceOnUse"
+            >
               <stop stopColor="#06b6d4" stopOpacity="0.1" />
               <stop offset="0.2" stopColor="#3b82f6" stopOpacity="0.6" />
               <stop offset="0.4" stopColor="#06b6d4" stopOpacity="0.8" />
@@ -765,13 +932,24 @@ export default function Home() {
           </defs>
         </svg>
 
-        <motion.div className="absolute inset-0 hidden sm:block opacity-80" style={{ y: ctaBgY }}>
-          <img src={bayBridgeImg} alt="" className="w-full h-full object-cover" style={{ objectPosition: "center 35%", transform: "scale(1.15)" }} />
+        <motion.div
+          className="absolute inset-0 hidden sm:block opacity-80"
+          style={{ y: ctaBgY }}
+        >
+          <img
+            src={bayBridgeImg}
+            alt=""
+            className="w-full h-full object-cover"
+            style={{ objectPosition: "center 35%", transform: "scale(1.15)" }}
+          />
         </motion.div>
         <div className="absolute inset-0 bg-slate-900/50 hidden sm:block mix-blend-multiply" />
         <div className="absolute inset-0 bg-gradient-to-b from-slate-900/60 to-slate-950/95 sm:from-slate-900/20 sm:to-slate-950/60" />
         <BlueprintGrid />
-        <div className="absolute inset-0 opacity-[0.12] pointer-events-none z-[2]" aria-hidden="true">
+        <div
+          className="absolute inset-0 opacity-[0.12] pointer-events-none z-[2]"
+          aria-hidden="true"
+        >
           <AnimatedGridBackground />
         </div>
 
@@ -782,18 +960,26 @@ export default function Home() {
             initial={rm ? { opacity: 1 } : { opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
-            transition={rm ? { duration: 0 } : { duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            transition={
+              rm ? { duration: 0 } : { duration: 0.7, ease: [0.22, 1, 0.36, 1] }
+            }
           >
-            Get Your Project<br className="sm:hidden" /> on Track
+            Get Your Project
+            <br className="sm:hidden" /> on Track
           </motion.h2>
           <motion.p
             className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-300 mb-8 sm:mb-12 leading-relaxed font-light max-w-3xl mx-auto"
             initial={rm ? { opacity: 1 } : { opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
-            transition={rm ? { duration: 0 } : { duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+            transition={
+              rm
+                ? { duration: 0 }
+                : { duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }
+            }
           >
-            Engineering, inspections, construction, and stormwater — one team, one call. We respond same-day to keep your timeline intact.
+            Engineering, inspections, construction, and stormwater — one team,
+            one call. We respond same-day to keep your timeline intact.
           </motion.p>
 
           <motion.div
@@ -801,7 +987,11 @@ export default function Home() {
             initial={rm ? { opacity: 1 } : { opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
-            transition={rm ? { duration: 0 } : { duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            transition={
+              rm
+                ? { duration: 0 }
+                : { duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }
+            }
           >
             <Link
               to={createPageUrl("Consultation")}
@@ -811,7 +1001,11 @@ export default function Home() {
               <PhoneCall className="w-5 h-5 sm:w-6 sm:h-6" />
               Free Consultation
             </Link>
-            <a href="tel:+14156894428" className="w-full sm:w-auto px-10 sm:px-14 py-4 sm:py-[18px] text-white font-bold tracking-tight text-base sm:text-lg rounded-sm sm:rounded-full flex items-center justify-center gap-3 shadow-[0_8px_25px_rgba(6,182,212,0.3)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_35px_rgba(6,182,212,0.45)] active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:outline-none [background:radial-gradient(ellipse_at_center,#0891b2,#3b82f6)] hover:[background:radial-gradient(ellipse_at_center,#06b6d4,#2563eb)]" data-testid="link-cta-call">
+            <a
+              href="tel:+14156894428"
+              className="w-full sm:w-auto px-10 sm:px-14 py-4 sm:py-[18px] text-white font-bold tracking-tight text-base sm:text-lg rounded-sm sm:rounded-full flex items-center justify-center gap-3 shadow-[0_8px_25px_rgba(6,182,212,0.3)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_35px_rgba(6,182,212,0.45)] active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:outline-none [background:radial-gradient(ellipse_at_center,#0891b2,#3b82f6)] hover:[background:radial-gradient(ellipse_at_center,#06b6d4,#2563eb)]"
+              data-testid="link-cta-call"
+            >
               <Phone className="w-5 h-5 sm:w-6 sm:h-6" /> (415) 689-4428
             </a>
           </motion.div>
@@ -823,9 +1017,18 @@ export default function Home() {
             viewport={{ once: true, amount: 0.3 }}
             transition={rm ? { duration: 0 } : { duration: 0.6, delay: 0.5 }}
           >
-            <span className="inline-flex items-center gap-1.5 sm:gap-2"><CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-500" /> Licensed PE/QSD/QSP</span>
-            <span className="inline-flex items-center gap-1.5 sm:gap-2"><CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-500" /> Class A & B Contractor</span>
-            <span className="inline-flex items-center gap-1.5 sm:gap-2"><CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-500" /> 2,500+ Projects</span>
+            <span className="inline-flex items-center gap-1.5 sm:gap-2">
+              <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-500" />{" "}
+              Licensed PE/QSD/QSP
+            </span>
+            <span className="inline-flex items-center gap-1.5 sm:gap-2">
+              <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-500" />{" "}
+              Class A & B Contractor
+            </span>
+            <span className="inline-flex items-center gap-1.5 sm:gap-2">
+              <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-500" />{" "}
+              2,500+ Projects
+            </span>
           </motion.div>
         </div>
       </section>
