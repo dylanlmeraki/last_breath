@@ -1,5 +1,5 @@
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 interface ArchitecturalLineProps {
   path: string;
@@ -208,6 +208,17 @@ interface BlueprintBackgroundProps {
 }
 
 const BlueprintBackground: React.FC<BlueprintBackgroundProps> = ({ className = "" }) => {
+  const prefersReducedMotion = useReducedMotion();
+
+  if (prefersReducedMotion) {
+    return (
+      <div className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`}>
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(6,182,212,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.03)_1px,transparent_1px)] bg-[size:24px_24px]" />
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(249,115,22,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(249,115,22,0.02)_1px,transparent_1px)] bg-[size:120px_120px]" />
+      </div>
+    );
+  }
+
   const architecturalPaths = [
     { path: "M 0 150 L 180 150 L 180 250 L 280 250", fromSide: "left" as const, delay: 0, duration: 5, type: "heavy" as const, strokeWidth: 1.5, opacity: 0.55 },
     { path: "M 0 250 L 120 250 L 120 350 M 180 250 L 180 350 L 280 350", fromSide: "left" as const, delay: 0.5, duration: 4.5, type: "wall" as const, strokeWidth: 1, opacity: 0.45 },

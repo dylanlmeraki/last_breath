@@ -1,5 +1,5 @@
 import { useRef, ReactNode, Children, isValidElement } from "react";
-import { motion, useInView, useScroll, useTransform, useReducedMotion } from "framer-motion";
+import { motion, useInView, useScroll, useTransform, useReducedMotion, type Variants } from "framer-motion";
 
 interface AnimatedSectionProps {
   children: ReactNode;
@@ -15,7 +15,7 @@ interface AnimatedSectionProps {
 }
 
 function ParallaxWrapper({ children, className, variants, isInView, parallaxRef }: {
-  children: ReactNode; className: string; variants: Record<string, any>; isInView: boolean; parallaxRef: React.RefObject<HTMLDivElement | null>;
+  children: ReactNode; className: string; variants: Variants; isInView: boolean; parallaxRef: React.RefObject<HTMLDivElement | null>;
 }) {
   const { scrollYProgress } = useScroll({
     target: parallaxRef,

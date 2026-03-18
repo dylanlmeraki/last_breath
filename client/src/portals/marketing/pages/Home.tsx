@@ -85,7 +85,7 @@ function FloatingParticles() {
           }}
         />
       ))}
-      <style>{`@keyframes pe-float { 0% { transform: translateY(0px) scale(1); opacity: 0.3; } 100% { transform: translateY(-30px) scale(1.5); opacity: 0.6; } }`}</style>
+      <style>{`@keyframes pe-float { 0% { transform: translateY(0px) scale(1); opacity: 0.3; } 100% { transform: translateY(-30px) scale(1.5); opacity: 0.6; } } @media (prefers-reduced-motion: reduce) { .pe-float, [style*="pe-float"] { animation: none !important; } }`}</style>
     </div>
   );
 }
@@ -309,6 +309,43 @@ function ServiceCard({ svc, idx }: { svc: typeof SERVICES[number]; idx: number }
   );
 }
 
+
+function HeroServicesDivider() {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
+
+  return (
+    <div
+      ref={ref}
+      className="relative w-full overflow-hidden"
+      style={{ height: "clamp(28px, 3vw, 48px)", marginTop: "-1px", marginBottom: "-1px" }}
+    >
+      <div className="absolute inset-0 bg-slate-950" />
+      <div className="absolute inset-0 bg-white" style={{ clipPath: "polygon(0 60%, 100% 0, 100% 100%, 0 100%)" }} />
+      <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 1440 60" fill="none">
+        <line
+          x1="0" y1="36" x2="1440" y2="0"
+          stroke="url(#hero-svc-line)"
+          strokeWidth="2.5"
+          style={{
+            strokeDasharray: 2000,
+            strokeDashoffset: isInView ? 0 : 2000,
+            transition: "stroke-dashoffset 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.05s",
+          }}
+        />
+        <defs>
+          <linearGradient id="hero-svc-line" x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
+            <stop stopColor="#3b82f6" stopOpacity="0.15" />
+            <stop offset="0.2" stopColor="#3b82f6" stopOpacity="0.7" />
+            <stop offset="0.5" stopColor="#06b6d4" stopOpacity="0.9" />
+            <stop offset="0.8" stopColor="#3b82f6" stopOpacity="0.7" />
+            <stop offset="1" stopColor="#3b82f6" stopOpacity="0.15" />
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+  );
+}
 
 export default function Home() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -572,14 +609,7 @@ export default function Home() {
       </motion.section>
 
       {/* ── HERO → SERVICES DIVIDER ── */}
-      <div className="relative w-full overflow-hidden" style={{ height: "clamp(4px, 0.5vw, 8px)", marginTop: "-1px" }}>
-        <div
-          className="absolute inset-0"
-          style={{
-            background: "linear-gradient(90deg, transparent 5%, #3b82f6 25%, #06b6d4 50%, #3b82f6 75%, transparent 95%)",
-          }}
-        />
-      </div>
+      <HeroServicesDivider />
 
       {/* ── SERVICES ── */}
       <section className="py-12 sm:py-16 md:py-20 lg:py-28 px-4 sm:px-6 bg-white relative" data-testid="section-services">

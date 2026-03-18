@@ -1,16 +1,22 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 interface FloatingElementsProps {
   className?: string;
 }
 
 const FloatingElements: React.FC<FloatingElementsProps> = ({ className = "" }) => {
+  const prefersReducedMotion = useReducedMotion();
+
+  const floatAnim = (vals: Record<string, number[]>, dur: number, del = 0) =>
+    prefersReducedMotion
+      ? { animate: {}, transition: {} }
+      : { animate: vals, transition: { duration: dur, repeat: Infinity, ease: "easeInOut" as const, delay: del } };
+
   return (
     <div className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`}>
       <motion.div
         className="absolute top-[8%] left-[4%] w-40 h-48"
-        animate={{ y: [0, -12, 0], opacity: [0.6, 0.9, 0.6] }}
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+        {...floatAnim({ y: [0, -12, 0], opacity: [0.6, 0.9, 0.6] }, 10)}
       >
         <svg viewBox="0 0 160 200" className="w-full h-full" fill="none">
           <rect x="10" y="40" width="100" height="120" stroke="rgba(6,182,212,0.12)" strokeWidth="0.8" />
@@ -30,8 +36,7 @@ const FloatingElements: React.FC<FloatingElementsProps> = ({ className = "" }) =
 
       <motion.div
         className="absolute top-[12%] right-[6%] w-36 h-36"
-        animate={{ y: [0, 10, 0], rotate: [0, -2, 0] }}
-        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+        {...floatAnim({ y: [0, 10, 0], rotate: [0, -2, 0] }, 12, 1)}
       >
         <svg viewBox="0 0 140 140" className="w-full h-full" fill="none">
           <rect x="20" y="20" width="100" height="100" stroke="rgba(6,182,212,0.1)" strokeWidth="0.5" />
@@ -50,8 +55,7 @@ const FloatingElements: React.FC<FloatingElementsProps> = ({ className = "" }) =
 
       <motion.div
         className="absolute bottom-[22%] left-[6%] w-32 h-32"
-        animate={{ y: [0, -8, 0], x: [0, 4, 0] }}
-        transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+        {...floatAnim({ y: [0, -8, 0], x: [0, 4, 0] }, 9, 2)}
       >
         <svg viewBox="0 0 120 120" className="w-full h-full" fill="none">
           <rect x="10" y="10" width="100" height="100" stroke="rgba(6,182,212,0.08)" strokeWidth="0.4" />
@@ -75,8 +79,7 @@ const FloatingElements: React.FC<FloatingElementsProps> = ({ className = "" }) =
 
       <motion.div
         className="absolute bottom-[28%] right-[4%] w-36 h-44"
-        animate={{ y: [0, 14, 0], opacity: [0.5, 0.8, 0.5] }}
-        transition={{ duration: 11, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+        {...floatAnim({ y: [0, 14, 0], opacity: [0.5, 0.8, 0.5] }, 11, 0.5)}
       >
         <svg viewBox="0 0 140 180" className="w-full h-full" fill="none">
           <rect x="20" y="10" width="100" height="160" stroke="rgba(6,182,212,0.1)" strokeWidth="0.5" />
@@ -100,8 +103,7 @@ const FloatingElements: React.FC<FloatingElementsProps> = ({ className = "" }) =
 
       <motion.div
         className="absolute top-[42%] left-[2%] w-14 h-52"
-        animate={{ opacity: [0.4, 0.7, 0.4] }}
-        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+        {...floatAnim({ opacity: [0.4, 0.7, 0.4] }, 5)}
       >
         <svg viewBox="0 0 40 200" className="w-full h-full" fill="none">
           <line x1="20" y1="5" x2="20" y2="195" stroke="rgba(6,182,212,0.12)" strokeWidth="0.6" />
@@ -118,8 +120,7 @@ const FloatingElements: React.FC<FloatingElementsProps> = ({ className = "" }) =
 
       <motion.div
         className="absolute top-[38%] right-[2%] w-14 h-52"
-        animate={{ opacity: [0.3, 0.65, 0.3] }}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+        {...floatAnim({ opacity: [0.3, 0.65, 0.3] }, 6, 1.5)}
       >
         <svg viewBox="0 0 40 200" className="w-full h-full" fill="none">
           <line x1="20" y1="5" x2="20" y2="195" stroke="rgba(249,115,22,0.1)" strokeWidth="0.5" />
