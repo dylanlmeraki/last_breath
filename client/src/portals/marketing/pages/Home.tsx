@@ -162,29 +162,33 @@ const colorMap = {
     bg: "bg-blue-100", hoverBg: "group-hover:from-blue-500 group-hover:to-blue-700",
     icon: "text-blue-700", check: "text-blue-600", border: "from-blue-700 to-blue-500",
     titleHover: "group-hover:text-blue-500", textHover: "group-hover:text-blue-500/80",
-    checkHover: "group-hover:text-blue-400", cardBgHover: "group-hover:bg-blue-50/60", h: "h-1.5",
+    checkHover: "group-hover:text-blue-400", cardBgHover: "group-hover:bg-blue-50/60", h: "h-2",
     glowColor: "rgba(59,130,246,0.15)",
+    gradient: "linear-gradient(to right, #e86008, #f59e0b, #fbbf24, #fcd34d)",
   },
   bluecyan: {
     bg: "bg-sky-50", hoverBg: "group-hover:from-sky-400 group-hover:to-cyan-500",
     icon: "text-sky-700", check: "text-sky-600", border: "from-sky-500 to-cyan-500",
     titleHover: "group-hover:text-cyan-500", textHover: "group-hover:text-cyan-600/80",
-    checkHover: "group-hover:text-cyan-400", cardBgHover: "group-hover:bg-sky-50/60", h: "h-1.5",
+    checkHover: "group-hover:text-cyan-400", cardBgHover: "group-hover:bg-sky-50/60", h: "h-2",
     glowColor: "rgba(14,165,233,0.15)",
+    gradient: "linear-gradient(to right, #fbbf24, #fde68a, #d9f99d, #bbf7d0)",
   },
   cyan: {
     bg: "bg-cyan-50", hoverBg: "group-hover:from-cyan-400 group-hover:to-teal-500",
     icon: "text-cyan-700", check: "text-cyan-600", border: "from-cyan-500 to-teal-500",
     titleHover: "group-hover:text-teal-500", textHover: "group-hover:text-teal-600/80",
-    checkHover: "group-hover:text-teal-400", cardBgHover: "group-hover:bg-cyan-50/60", h: "h-1.5",
+    checkHover: "group-hover:text-teal-400", cardBgHover: "group-hover:bg-cyan-50/60", h: "h-2",
     glowColor: "rgba(6,182,212,0.15)",
+    gradient: "linear-gradient(to right, #bbf7d0, #99f6e4, #5eead4, #22d3ee)",
   },
   cyanteal: {
     bg: "bg-teal-50", hoverBg: "group-hover:from-teal-400 group-hover:to-cyan-500",
     icon: "text-teal-700", check: "text-teal-600", border: "from-teal-500 to-cyan-600",
     titleHover: "group-hover:text-cyan-500", textHover: "group-hover:text-cyan-600/80",
-    checkHover: "group-hover:text-cyan-400", cardBgHover: "group-hover:bg-teal-50/60", h: "h-1.5",
+    checkHover: "group-hover:text-cyan-400", cardBgHover: "group-hover:bg-teal-50/60", h: "h-2",
     glowColor: "rgba(20,184,166,0.15)",
+    gradient: "linear-gradient(to right, #2dd4bf, #0d9488, #0891b2, #1e40af)",
   },
 };
 
@@ -237,7 +241,7 @@ function ServiceCard({ svc, idx, reducedMotion }: { svc: typeof SERVICES[number]
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
         >
-          <div className={`${c.h} bg-gradient-to-r ${c.border}`} />
+          <div className={c.h} style={{ background: c.gradient }} />
           <div className="p-5 sm:p-8 lg:p-10 flex flex-col items-center text-center">
             <div className={`${c.bg} rounded-xl sm:rounded-2xl w-14 h-14 sm:w-20 sm:h-20 lg:w-24 lg:h-24 flex items-center justify-center mb-4 sm:mb-6 lg:mb-8 group-hover:bg-gradient-to-br ${c.hoverBg} group-hover:shadow-lg transition-all duration-300`}>
               <Icon className={`w-7 h-7 sm:w-10 sm:h-10 lg:w-12 lg:h-12 ${c.icon} group-hover:text-white transition-colors`} />
