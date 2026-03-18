@@ -303,7 +303,7 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
                   <div className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center border border-white/10 group-hover:border-cyan-500/50 transition-colors flex-shrink-0">
                     <Mail className="w-4 h-4 text-cyan-400" />
                   </div>
-                  <a href="mailto:amwaldman@sbcglobal.net" className="hover:text-cyan-400 transition-colors break-all text-sm font-medium">amwaldman@sbcglobal.net</a>
+                  <a href="mailto:amwaldman@sbcglobal.net" className="hover:text-cyan-400 transition-colors whitespace-nowrap text-sm font-medium">amwaldman@sbcglobal.net</a>
                 </li>
                 <li className="flex items-center gap-3 text-gray-300 group">
                   <div className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center border border-white/10 group-hover:border-cyan-500/50 transition-colors flex-shrink-0">

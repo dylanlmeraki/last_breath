@@ -273,7 +273,7 @@ export default function Home() {
                 <div className="absolute -inset-px bg-gradient-to-r from-cyan-500/5 via-blue-500/3 to-cyan-500/5 rounded-2xl sm:rounded-3xl blur-sm hidden sm:block" />
 
                 <div className="relative bg-slate-950/30 sm:bg-slate-950/40 lg:bg-slate-950/35 backdrop-blur-[6px] rounded-lg sm:rounded-xl border border-white/[0.06] shadow-2xl overflow-hidden">
-                  <div className="h-.5 sm:h-2 bg-gradient-to-r from-blue-600/80 via-cyan-500/80 to-cyan-400/80" />
+                  <div className="h-.5 sm:h-2 bg-gradient-to-r from-blue-600/80 via-cyan-500/80 to-blue-500/80" />
 
                   <div className="px-5 py-8 sm:p-10 md:p-12 lg:p-16">
                     <h1 className="text-white font-bold tracking-tight leading-[1.08] text-[1.75rem] sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl mb-3 sm:mb-5" data-testid="text-hero-title">
