@@ -395,7 +395,7 @@ export default function Home() {
           <AnimatedSection direction="up" delay={0.5} className="text-center mt-8 sm:mt-12 lg:mt-16">
             <Link
               to={createPageUrl("ServicesOverview")}
-              className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-white font-bold tracking-tight text-base sm:text-lg px-8 sm:px-12 py-4 sm:py-5 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 shadow-lg hover:shadow-xl hover:-translate-y-0.5 active:scale-[0.97] transition-all duration-200"
+              className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-white font-bold tracking-tight text-base sm:text-lg px-10 sm:px-14 py-4 sm:py-[18px] rounded-sm sm:rounded-full bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 shadow-[0_8px_25px_rgba(6,182,212,0.3)] hover:-translate-y-1 active:scale-[0.97] transition-all duration-200"
               data-testid="link-view-all-services"
             >
               View All Services
