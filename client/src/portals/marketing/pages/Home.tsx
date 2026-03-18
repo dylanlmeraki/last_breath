@@ -175,15 +175,19 @@ export default function Home() {
     video.playbackRate = 1;
 
     let rafId: number | null = null;
+    let pauseTimer: ReturnType<typeof setTimeout> | null = null;
     let reversing = false;
     let lastTs: number | null = null;
     let targetTime = 0;
+    let disposed = false;
 
-    const reverseSpeed = 0.8;
+    const reverseSpeed = 1;
     const stepSize = 1 / 30;
+    const endPause = 1200;
+    const startPause = 800;
 
     const reverseFrame = (ts: number) => {
-      if (!reversing) return;
+      if (!reversing || disposed) return;
 
       if (lastTs === null) {
         lastTs = ts;
@@ -205,9 +209,9 @@ export default function Home() {
         targetTime = 0;
         video.currentTime = 0;
 
-        setTimeout(() => {
-          video.play().catch(() => {});
-        }, 50);
+        pauseTimer = setTimeout(() => {
+          if (!disposed) video.play().catch(() => {});
+        }, startPause);
         return;
       }
 
@@ -215,19 +219,23 @@ export default function Home() {
     };
 
     const handleEnded = () => {
-      reversing = true;
-      lastTs = null;
-      targetTime = video.duration;
       video.pause();
-
-      rafId = window.requestAnimationFrame(reverseFrame);
+      pauseTimer = setTimeout(() => {
+        if (disposed) return;
+        reversing = true;
+        lastTs = null;
+        targetTime = video.duration;
+        rafId = window.requestAnimationFrame(reverseFrame);
+      }, endPause);
     };
 
     video.addEventListener("ended", handleEnded);
 
     return () => {
+      disposed = true;
       video.removeEventListener("ended", handleEnded);
       if (rafId !== null) window.cancelAnimationFrame(rafId);
+      if (pauseTimer !== null) clearTimeout(pauseTimer);
       reversing = false;
     };
   }, []);
