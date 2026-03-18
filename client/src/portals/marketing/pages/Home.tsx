@@ -866,9 +866,9 @@ export default function Home() {
       </section>
       {/* ── WHY CHOOSE → CTA TRANSITION ── */}
       <div className="relative w-full" style={{ marginTop: "3px" }} data-testid="divider-whychoose-cta">
-        <div className="h-px bg-gradient-to-r from-slate-300 via-cyan-200 to-slate-300" />
-        <div className="h-[3px]" style={{ background: "linear-gradient(to right, #475569, #0e7490 20%, #06b6d4 35%, #22d3ee 50%, #06b6d4 65%, #0e7490 80%, #475569)" }} />
-        <div className="h-2 bg-gradient-to-r from-slate-800 via-blue-900 to-slate-800 opacity-[0.8]" />
+        <div className="h-px bg-gradient-to-r from-blue-400 via-cyan-600 to-blue-400" />
+        <div className="h-2" style={{ background: "linear-gradient(to right, #475569, #0e7490 20%, #06b6d4 35%, #22d3ee 50%, #06b6d4 65%, #0e7490 80%, #475569)" }} />
+        <div className="h-2px bg-gradient-to-r from-slate-800 via-blue-900 to-slate-800" />
       </div>
       {/* ── CTA ── */}
       <section
@@ -938,7 +938,7 @@ export default function Home() {
           >
             <Link
               to={createPageUrl("Consultation")}
-              className="w-full sm:w-auto px-10 sm:px-14 py-4 sm:py-[18px] bg-orange-600 hover:bg-orange-500 text-white font-bold tracking-tight text-base sm:text-lg rounded-sm sm:rounded-full flex items-center justify-center gap-3 shadow-[0_8px_25px_rgba(249,115,22,0.4)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_35px_rgba(249,115,22,0.5)] active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-orange-300 focus-visible:ring-offset-2 focus-visible:outline-none"
+              className="w-full sm:w-auto px-10 sm:px-14 py-4 sm:py-[18px] bg-orange-600 hover:bg-orange-500 text-white font-bold tracking-tight text-base sm:text-lg rounded-sm sm:rounded-full flex items-center justify-center gap-3 shadow-[0_4px_12px_rgba(249,115,22,0.15)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_35px_rgba(249,115,22,0.5)] active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-orange-300 focus-visible:ring-offset-2 focus-visible:outline-none"
               data-testid="link-cta-quote"
             >
               <PhoneCall className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -946,7 +946,7 @@ export default function Home() {
             </Link>
             <a
               href="tel:+14156894428"
-              className="w-full sm:w-auto px-10 sm:px-14 py-4 sm:py-[18px] text-white font-bold tracking-tight text-base sm:text-lg rounded-sm sm:rounded-full flex items-center justify-center gap-3 shadow-[0_8px_25px_rgba(6,182,212,0.3)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_35px_rgba(6,182,212,0.45)] active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:outline-none [background:radial-gradient(ellipse_at_center,#0891b2,#3b82f6)] hover:[background:radial-gradient(ellipse_at_center,#06b6d4,#2563eb)]"
+              className="w-full sm:w-auto px-10 sm:px-14 py-4 sm:py-[18px] text-white font-bold tracking-tight text-base sm:text-lg rounded-sm sm:rounded-full flex items-center justify-center gap-3 shadow-[0_4px_12px_rgba(6,182,212,0.12)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_35px_rgba(6,182,212,0.45)] active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:outline-none [background:radial-gradient(ellipse_at_center,#0891b2,#3b82f6)] hover:[background:radial-gradient(ellipse_at_center,#06b6d4,#2563eb)]"
               data-testid="link-cta-call"
             >
               <Phone className="w-5 h-5 sm:w-6 sm:h-6" /> (415) 689-4428
