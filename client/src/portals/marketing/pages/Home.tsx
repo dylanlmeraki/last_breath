@@ -612,7 +612,7 @@ export default function Home() {
         <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-slate-900/[0.06] to-transparent pointer-events-none z-[1]" aria-hidden="true" />
         <div className="max-w-7xl mx-auto">
           <AnimatedSection direction="up" className="text-center mb-10 sm:mb-14 lg:mb-20" parallax blur ease="tween">
-            <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 mb-4 sm:mb-6 tracking-tight" data-testid="text-services-title">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 sm:mb-6 tracking-tight mb-[44px]" data-testid="text-services-title">
               Consulting Engineers & Contractors
             </h2>
             <div className="w-32 sm:w-54 h-1 sm:h-1.5 bg-gradient-to-r from-blue-500 to-cyan-400 mx-auto mb-4 sm:mb-8 rounded-full pl-[142px] pr-[142px]" />
