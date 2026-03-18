@@ -110,7 +110,7 @@ function ScrollProgress() {
   const scaleX = useSpring(scrollYProgress, { stiffness: 200, damping: 30 });
   return (
     <motion.div
-      className="fixed top-[4.5rem] sm:top-20 left-0 right-0 h-[2px] z-50 origin-left"
+      className="fixed top-20 left-0 right-0 h-[2px] z-50 origin-left"
       style={{
         scaleX,
         background: "linear-gradient(90deg, #3b82f6, #06b6d4 50%, #3b82f6)",
@@ -543,7 +543,7 @@ export default function Home() {
                     >
                       <Link
                         to={createPageUrl("Consultation")}
-                        className="w-full sm:w-auto px-10 sm:px-12 py-4 sm:py-[18px] bg-orange-600 hover:bg-orange-500 text-white font-bold tracking-tight text-base sm:text-lg rounded-sm sm:rounded-full flex items-center justify-center gap-3 shadow-[0_8px_25px_rgba(249,115,22,0.4)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_35px_rgba(249,115,22,0.5)] active:scale-[0.97]"
+                        className="w-full sm:w-auto px-10 sm:px-12 py-4 sm:py-[18px] bg-orange-600 hover:bg-orange-500 text-white font-bold tracking-tight text-base sm:text-lg rounded-sm sm:rounded-full flex items-center justify-center gap-3 shadow-[0_8px_25px_rgba(249,115,22,0.4)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_35px_rgba(249,115,22,0.5)] active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-orange-300 focus-visible:ring-offset-2 focus-visible:outline-none"
                         data-testid="link-hero-quote"
                       >
                         <PhoneCall className="w-5 h-5" />
@@ -629,7 +629,7 @@ export default function Home() {
           <AnimatedSection direction="up" delay={0.5} className="text-center mt-8 sm:mt-12 lg:mt-16" ease="tween">
             <Link
               to={createPageUrl("ServicesOverview")}
-              className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-white font-bold tracking-tight text-base sm:text-lg px-10 sm:px-14 py-4 sm:py-[18px] rounded-sm sm:rounded-full bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 shadow-[0_8px_25px_rgba(6,182,212,0.3)] hover:shadow-[0_12px_35px_rgba(6,182,212,0.45)] hover:-translate-y-1 active:scale-[0.97] transition-all duration-300"
+              className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-white font-bold tracking-tight text-base sm:text-lg px-10 sm:px-14 py-4 sm:py-[18px] rounded-sm sm:rounded-full bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 shadow-[0_8px_25px_rgba(6,182,212,0.3)] hover:shadow-[0_12px_35px_rgba(6,182,212,0.45)] hover:-translate-y-1 active:scale-[0.97] transition-all duration-300 focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:outline-none"
               data-testid="link-view-all-services"
             >
               View All Services
@@ -704,13 +704,13 @@ export default function Home() {
               >
                 <Link
                   to={createPageUrl("ServicesOverview")}
-                  className="group flex-1 inline-flex items-center justify-center gap-2 whitespace-nowrap text-white font-bold tracking-tight text-base px-6 py-3.5 sm:py-4 rounded-sm sm:rounded-lg bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 shadow-lg hover:shadow-xl transition-all duration-300 active:scale-[0.97] hover:-translate-y-0.5"
+                  className="group flex-1 inline-flex items-center justify-center gap-2 whitespace-nowrap text-white font-bold tracking-tight text-base px-6 py-3.5 sm:py-4 rounded-sm sm:rounded-lg bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 shadow-lg hover:shadow-xl transition-all duration-300 active:scale-[0.97] hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:outline-none"
                   data-testid="link-scope-project"
                 >
                   <FileText className="w-5 h-5" />
                   Scope Your Project
                 </Link>
-                <Link to={createPageUrl("About")} className="group flex-1 inline-flex items-center justify-center gap-2 text-slate-800 font-bold tracking-tight text-base px-6 py-3.5 sm:py-4 rounded-sm sm:rounded-lg bg-white border-2 border-slate-300 hover:border-slate-400 shadow-md hover:shadow-lg transition-all duration-300 active:scale-[0.97] hover:-translate-y-0.5" data-testid="link-about-team">
+                <Link to={createPageUrl("About")} className="group flex-1 inline-flex items-center justify-center gap-2 text-slate-800 font-bold tracking-tight text-base px-6 py-3.5 sm:py-4 rounded-sm sm:rounded-lg bg-white border-2 border-slate-300 hover:border-slate-400 shadow-md hover:shadow-lg transition-all duration-300 active:scale-[0.97] hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:outline-none" data-testid="link-about-team">
                   <Users className="w-5 h-5" /> About Our Team
                 </Link>
               </motion.div>
@@ -807,13 +807,13 @@ export default function Home() {
           >
             <Link
               to={createPageUrl("Consultation")}
-              className="w-full sm:w-auto px-10 sm:px-14 py-4 sm:py-[18px] bg-orange-600 hover:bg-orange-500 text-white font-bold tracking-tight text-base sm:text-lg rounded-sm sm:rounded-full flex items-center justify-center gap-3 shadow-[0_8px_25px_rgba(249,115,22,0.4)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_35px_rgba(249,115,22,0.5)] active:scale-[0.97]"
+              className="w-full sm:w-auto px-10 sm:px-14 py-4 sm:py-[18px] bg-orange-600 hover:bg-orange-500 text-white font-bold tracking-tight text-base sm:text-lg rounded-sm sm:rounded-full flex items-center justify-center gap-3 shadow-[0_8px_25px_rgba(249,115,22,0.4)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_35px_rgba(249,115,22,0.5)] active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-orange-300 focus-visible:ring-offset-2 focus-visible:outline-none"
               data-testid="link-cta-quote"
             >
               <PhoneCall className="w-5 h-5 sm:w-6 sm:h-6" />
               Free Consultation
             </Link>
-            <a href="tel:+14156894428" className="w-full sm:w-auto px-10 sm:px-14 py-4 sm:py-[18px] bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold tracking-tight text-base sm:text-lg rounded-sm sm:rounded-full flex items-center justify-center gap-3 shadow-[0_8px_25px_rgba(6,182,212,0.3)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_35px_rgba(6,182,212,0.45)] active:scale-[0.97]" data-testid="link-cta-call">
+            <a href="tel:+14156894428" className="w-full sm:w-auto px-10 sm:px-14 py-4 sm:py-[18px] bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold tracking-tight text-base sm:text-lg rounded-sm sm:rounded-full flex items-center justify-center gap-3 shadow-[0_8px_25px_rgba(6,182,212,0.3)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_35px_rgba(6,182,212,0.45)] active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:outline-none" data-testid="link-cta-call">
               <Phone className="w-5 h-5 sm:w-6 sm:h-6" /> (415) 689-4428
             </a>
           </motion.div>
