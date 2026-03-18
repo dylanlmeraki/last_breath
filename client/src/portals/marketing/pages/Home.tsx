@@ -441,7 +441,7 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className="space-y-4 sm:space-y-6 lg:space-y-8 mb-8 sm:mb-12 max-w-md mx-auto">
+              <div className="space-y-4 sm:space-y-6 lg:space-y-8 mb-8 sm:mb-12 w-full">
                 {[
                   { icon: Award, title: "EXPERT KNOWLEDGE", desc: "Complete understanding of federal, state, and local stormwater regulations." },
                   { icon: TrendingUp, title: "PROVEN TRACK RECORD", desc: "100% client satisfaction across 2.5K+ successful projects." },
@@ -462,10 +462,10 @@ export default function Home() {
                 ))}
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto">
+              <div className="flex flex-col sm:flex-row gap-3 justify-center w-full">
                 <Link
                   to={createPageUrl("ServicesOverview")}
-                  className="group flex-1 inline-flex items-center justify-center gap-2 text-white font-bold tracking-tight text-base px-6 py-3.5 sm:py-4 rounded-sm bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 shadow-lg hover:shadow-xl transition-all duration-200 active:scale-[0.97]"
+                  className="group flex-1 inline-flex items-center justify-center gap-2 whitespace-nowrap text-white font-bold tracking-tight text-base px-6 py-3.5 sm:py-4 rounded-sm bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 shadow-lg hover:shadow-xl transition-all duration-200 active:scale-[0.97]"
                   data-testid="link-scope-project"
                 >
                   <FileText className="w-5 h-5" />
