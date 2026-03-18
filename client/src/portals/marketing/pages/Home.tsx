@@ -627,7 +627,6 @@ export default function Home() {
           aria-hidden="true"
         />
         <div className="max-w-7xl mx-auto relative z-10">
-          
           <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
             <div>
               <AnimatedSection direction="up" ease="tween" blur>
