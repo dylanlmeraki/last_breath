@@ -249,7 +249,7 @@ export default function Home() {
             muted
             preload="auto"
             playsInline
-            className="absolute inset-0 w-full h-full object-cover opacity-[0.74]"
+            className="absolute inset-0 w-full h-full object-cover opacity-[0.84]"
           >
             <source src="/images/hero-ggb-draft.mp4" type="video/mp4" />
           </video>
@@ -257,10 +257,10 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-r from-cyan-950/30 via-transparent to-orange-950/20 opacity-50" />
         </div>
 
-        <AnimatedGridBackground baseOpacity={0.5} gridSize={40} triggerInterval={500} animationDuration={2500} className="hidden sm:block z-[1] opacity-40" />
-        <BlueprintBackground className="z-[2] opacity-60" />
+        <AnimatedGridBackground baseOpacity={0.5} gridSize={40} triggerInterval={500} animationDuration={2500} className="hidden sm:block z-[1] opacity-30" />
+        <BlueprintBackground className="z-[2] opacity-70" />
         <ParticleField className="z-[3] opacity-15 hidden md:block" particleCount={35} />
-        <FloatingElements className="z-[4] opacity-50" />
+        <FloatingElements className="z-[4] opacity-60" />
         <FloatingParticles />
 
         <div className="absolute top-1/3 left-1/5 w-64 md:w-96 h-64 md:h-96 bg-cyan-500/8 rounded-full blur-[100px] md:blur-[140px] pointer-events-none z-[1]" />
@@ -305,7 +305,7 @@ export default function Home() {
                       </Link>
                       <Link
                         to={createPageUrl("ServicesOverview")}
-                        className="w-full sm:w-auto px-10 sm:px-12 py-4 sm:py-[18px] bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold tracking-tight text-base sm:text-lg rounded-sm sm:rounded-full flex items-center justify-center gap-3 shadow-[0_8px_25px_rgba(6,182,212,0.3)] transition-all hover:-translate-y-1 active:scale-[0.97]"
+                        className="w-full sm:w-auto px-10 sm:px-12 py-4 sm:py-[18px] bg-[#0f172a] hover:bg-slate-800 text-white font-bold tracking-tight text-base sm:text-lg rounded-sm sm:rounded-full flex items-center justify-center gap-3 border border-cyan-500/40 shadow-[inset_0_0_0_1px_rgba(15,23,42,0.85),0_16px_40px_-16px_rgba(59,130,246,0.4)] hover:shadow-[inset_0_0_0_1px_rgba(15,23,42,0.85),0_20px_48px_-16px_rgba(56,189,248,0.55)] transition-all hover:-translate-y-1 active:scale-[0.97]"
                         data-testid="link-hero-consultation"
                       >
                         Our Services
@@ -346,14 +346,14 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <SectionDivider variant="gradient" from="dark" to="light" />
+      <SectionDivider variant="angled" from="dark" to="light" />
       <section className="py-12 sm:py-16 md:py-20 lg:py-28 px-4 sm:px-6 bg-white" data-testid="section-services">
         <div className="max-w-7xl mx-auto">
           <AnimatedSection direction="up" className="text-center mb-10 sm:mb-14 lg:mb-20" parallax>
             <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 mb-4 sm:mb-6 tracking-tight" data-testid="text-services-title">
               Consulting Engineers & Contractors
             </h2>
-            <div className="w-20 sm:w-32 h-1 sm:h-1.5 bg-gradient-to-r from-cyan-500 to-orange-400 mx-auto mb-4 sm:mb-8 rounded-full" />
+            <div className="w-32 sm:w-54 h-1 sm:h-1.5 bg-gradient-to-r from-blue-500 to-cyan-400 mx-auto mb-4 sm:mb-8 rounded-full" />
             <p className="text-base sm:text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
               Full-scale engineering and construction by our in-house teams of Engineers, QSD/QSPs, and construction experts.
             </p>
@@ -395,7 +395,7 @@ export default function Home() {
           <AnimatedSection direction="up" delay={0.5} className="text-center mt-8 sm:mt-12 lg:mt-16">
             <Link
               to={createPageUrl("ServicesOverview")}
-              className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-white font-bold tracking-tight text-base sm:text-lg px-8 sm:px-12 py-4 sm:py-5 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 shadow-lg hover:shadow-xl hover:-translate-y-0.5 active:scale-[0.97] transition-all duration-200"
+              className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-white font-bold tracking-tight text-base sm:text-lg px-8 sm:px-12 py-4 sm:py-5 rounded-sm sm:rounded-full bg-[#0f172a] hover:bg-slate-800 border border-cyan-500/40 shadow-[inset_0_0_0_1px_rgba(15,23,42,0.85),0_16px_40px_-16px_rgba(59,130,246,0.4)] hover:shadow-[inset_0_0_0_1px_rgba(15,23,42,0.85),0_20px_48px_-16px_rgba(56,189,248,0.55)] hover:-translate-y-0.5 active:scale-[0.97] transition-all duration-200"
               data-testid="link-view-all-services"
             >
               View All Services
@@ -404,11 +404,7 @@ export default function Home() {
           </AnimatedSection>
         </div>
       </section>
-      <div className="relative" style={{ height: "clamp(24px, 3vw, 44px)", marginTop: "-1px", marginBottom: "-1px" }}>
-        <div className="absolute inset-0 bg-white" />
-        <div className="absolute inset-0 bg-slate-800" style={{ clipPath: "polygon(0 40%, 100% 0, 100% 60%, 0 100%)" }} />
-        <div className="absolute inset-0" style={{ clipPath: "polygon(0 40%, 100% 0, 100% 60%, 0 100%)", background: "linear-gradient(90deg, transparent 5%, rgba(59,130,246,0.3) 30%, rgba(6,182,212,0.5) 50%, rgba(59,130,246,0.3) 70%, transparent 95%)", mixBlendMode: "screen" }} />
-      </div>
+      <SectionDivider variant="angled" from="light" to="light" />
       <section className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 bg-cyan-50/40 relative overflow-hidden" data-testid="section-why-choose">
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
@@ -486,8 +482,8 @@ export default function Home() {
         style={{ clipPath: "polygon(0 clamp(30px,4vw,60px), 100% 0, 100% 100%, 0 100%)" }}
         data-testid="section-cta"
       >
-        <div className="absolute inset-0 hidden sm:block opacity-72">
-          <img src={bayBridgeImg} alt="" className="w-full h-full object-cover object-top" />
+        <div className="absolute inset-0 hidden sm:block opacity-80">
+          <img src={bayBridgeImg} alt="" className="w-full h-full object-cover" style={{ objectPosition: "center 35%", transform: "scale(1.05)" }} />
         </div>
         <div className="absolute inset-0 bg-slate-900/50 hidden sm:block mix-blend-multiply" />
         <div className="absolute inset-0 bg-gradient-to-b from-slate-900/60 to-slate-950/95 sm:from-slate-900/20 sm:to-slate-950/60" />
@@ -511,7 +507,7 @@ export default function Home() {
                 <PhoneCall className="w-5 h-5 sm:w-6 sm:h-6" />
                 Free Consultation
               </Link>
-              <a href="tel:+14156894428" className="w-full sm:w-auto px-10 sm:px-14 py-4 sm:py-[18px] bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold tracking-tight text-base sm:text-lg rounded-sm sm:rounded-full flex items-center justify-center gap-3 shadow-[0_8px_25px_rgba(6,182,212,0.3)] transition-all hover:-translate-y-1 active:scale-[0.97]" data-testid="link-cta-call">
+              <a href="tel:+14156894428" className="w-full sm:w-auto px-10 sm:px-14 py-4 sm:py-[18px] bg-[#0f172a] hover:bg-slate-800 text-white font-bold tracking-tight text-base sm:text-lg rounded-sm sm:rounded-full flex items-center justify-center gap-3 border border-cyan-500/40 shadow-[inset_0_0_0_1px_rgba(15,23,42,0.85),0_16px_40px_-16px_rgba(59,130,246,0.4)] hover:shadow-[inset_0_0_0_1px_rgba(15,23,42,0.85),0_20px_48px_-16px_rgba(56,189,248,0.55)] transition-all hover:-translate-y-1 active:scale-[0.97]" data-testid="link-cta-call">
                 <Phone className="w-5 h-5 sm:w-6 sm:h-6" /> (415) 689-4428
               </a>
             </div>

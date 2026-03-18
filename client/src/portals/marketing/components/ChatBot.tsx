@@ -112,11 +112,13 @@ function getIntentResponse(intent: ChatIntent, entities: Record<string, string>)
 
 export default function ChatBot() {
   const navigate = useNavigate();
-  const [isOpen, setIsOpen] = useState(() => typeof window !== "undefined" && window.innerWidth >= 640);
+  const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [showCallOverlay, setShowCallOverlay] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const autoOpenedRef = useRef(false);
+  const manuallyClosedRef = useRef(false);
 
   const [messages, setMessages] = useState<ChatMessage[]>(() => {
     const saved = loadState();
@@ -149,27 +151,38 @@ export default function ChatBot() {
 
   useEffect(() => {
     const handler = () => {
-      if (isOpen) return;
       const scrollY = window.scrollY;
       const docH = document.documentElement.scrollHeight;
       const winH = window.innerHeight;
       const scrollPct = scrollY / Math.max(1, docH - winH);
 
-      const base = getBaseBottom();
-      if (scrollPct > 0.15) {
-        const raisePx = Math.min(scrollPct * 0.3, 0.25) * winH;
-        setBottomOffset(base + raisePx);
-      } else {
-        setBottomOffset(base);
+      if (!isOpen) {
+        const base = getBaseBottom();
+        if (scrollPct > 0.15) {
+          const raisePx = Math.min(scrollPct * 0.3, 0.25) * winH;
+          setBottomOffset(base + raisePx);
+        } else {
+          setBottomOffset(base);
+        }
+
+        if (scrollPct > 0.92 && !hasClickedRef.current && !promptDismissedRef.current) {
+          setShowPromptBubble(true);
+        }
       }
 
-      if (scrollPct > 0.92 && !hasClickedRef.current && !promptDismissedRef.current && !isOpen) {
-        setShowPromptBubble(true);
+      if (scrollPct >= 0.5 && !autoOpenedRef.current && !manuallyClosedRef.current && !isOpen) {
+        autoOpenedRef.current = true;
+        setIsOpen(true);
       }
     };
     window.addEventListener("scroll", handler, { passive: true });
     return () => window.removeEventListener("scroll", handler);
   }, [isOpen]);
+
+  const handleClose = useCallback(() => {
+    manuallyClosedRef.current = true;
+    setIsOpen(false);
+  }, []);
 
   const handlePointerDown = useCallback((e: React.PointerEvent) => {
     if (isOpen) return;
@@ -333,7 +346,7 @@ export default function ChatBot() {
                   </div>
                 </div>
               </div>
-              <button onClick={() => setIsOpen(false)} className="text-white/70 hover:text-white" data-testid="button-chatbot-close">
+              <button onClick={handleClose} className="text-white/70 hover:text-white" data-testid="button-chatbot-close">
                 <X className="w-5 h-5" />
               </button>
             </div>
