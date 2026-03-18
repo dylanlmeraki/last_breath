@@ -59,7 +59,7 @@ const FooterBackground: React.FC<FooterBackgroundProps> = ({ className = "" }) =
         const y2 = line.y2 * canvas.height;
 
         const waveOffset = Math.sin(time + index * 0.4) * 0.5 + 0.5;
-        const lineOpacity = 0.15 + Math.sin(time * 0.5 + index * 0.3) * 0.1;
+        const lineOpacity = 0.20 + Math.sin(time * 0.5 + index * 0.3) * 0.13;
         const strokeWidth = 1 + Math.sin(time * 0.3 + index * 0.5) * 0.5;
         const segments = 40;
 
@@ -75,7 +75,7 @@ const FooterBackground: React.FC<FooterBackgroundProps> = ({ className = "" }) =
           const fadeWave = Math.sin((t1 - waveOffset) * Math.PI * 2);
           const opacity = Math.max(0, Math.min(1, fadeWave * 0.5 + 0.5));
 
-          const shimmer = Math.sin(time * 2.5 + i * 0.25) * 0.4 + 0.6;
+          const shimmer = Math.sin(time * 2.5 + i * 0.25) * 0.5 + 0.6;
           const finalOpacity = opacity * shimmer * lineOpacity;
 
           ctx.beginPath();

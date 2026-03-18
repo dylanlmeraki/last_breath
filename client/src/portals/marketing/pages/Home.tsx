@@ -895,9 +895,12 @@ export default function Home() {
           <AnimatedGridBackground />
         </div>
 
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[400px] bg-cyan-500/[0.06] rounded-full blur-[120px] pointer-events-none z-[3]" />
+
         <div className="relative z-10 max-w-4xl mx-auto text-center px-4 sm:px-6 py-12 sm:py-16 md:py-20 lg:py-24">
           <motion.h2
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-white mb-5 sm:mb-8 tracking-tight leading-[1.08]"
+            style={{ textShadow: "0 0 40px rgba(6,182,212,0.15), 0 0 80px rgba(6,182,212,0.08)" }}
             data-testid="text-cta-title"
             initial={rm ? { opacity: 1 } : { opacity: 0, y: 40, filter: "blur(8px)" }}
             whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
@@ -925,7 +928,7 @@ export default function Home() {
           </motion.p>
 
           <motion.div
-            className="inline-flex flex-col sm:flex-row gap-3 sm:gap-5 md:gap-8 justify-center items-center mb-8 sm:mb-12 bg-white/[0.04] backdrop-blur-sm border border-white/[0.08] rounded-lg sm:rounded-full px-4 sm:px-6 py-4 sm:py-3"
+            className="inline-flex flex-col sm:flex-row gap-3 sm:gap-5 md:gap-8 justify-center items-center mb-8 sm:mb-12 bg-white/[0.05] backdrop-blur-sm border border-white/[0.12] rounded-lg sm:rounded-full px-4 sm:px-6 py-4 sm:py-3 shadow-[inset_0_1px_1px_rgba(255,255,255,0.06)]"
             initial={rm ? { opacity: 1 } : { opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
@@ -952,26 +955,25 @@ export default function Home() {
             </a>
           </motion.div>
 
-          <motion.div
-            className="flex flex-wrap justify-center gap-x-4 sm:gap-x-8 gap-y-2 sm:gap-y-3 text-slate-300 text-xs sm:text-sm font-medium"
-            initial={rm ? { opacity: 1 } : { opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={rm ? { duration: 0 } : { duration: 0.6, delay: 0.5 }}
-          >
-            <span className="inline-flex items-center gap-1.5 sm:gap-2">
-              <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-500" />{" "}
-              Licensed PE/QSD/QSP
-            </span>
-            <span className="inline-flex items-center gap-1.5 sm:gap-2">
-              <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-500" />{" "}
-              Class A & B Contractor
-            </span>
-            <span className="inline-flex items-center gap-1.5 sm:gap-2">
-              <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-500" />{" "}
-              2,500+ Projects
-            </span>
-          </motion.div>
+          <div className="flex flex-wrap justify-center gap-x-4 sm:gap-x-8 gap-y-2 sm:gap-y-3 text-slate-300 text-xs sm:text-sm font-medium">
+            {[
+              { icon: CheckCircle, label: "Licensed PE/QSD/QSP" },
+              { icon: CheckCircle, label: "Class A & B Contractor" },
+              { icon: CheckCircle, label: "2,500+ Projects" },
+            ].map((badge, i) => (
+              <motion.span
+                key={badge.label}
+                className="inline-flex items-center gap-1.5 sm:gap-2"
+                initial={rm ? { opacity: 1 } : { opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={rm ? { duration: 0 } : { duration: 0.5, delay: 0.5 + i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <badge.icon className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-500" />{" "}
+                {badge.label}
+              </motion.span>
+            ))}
+          </div>
         </div>
       </section>
     </div>

@@ -227,7 +227,7 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
       <main className="pt-20">
         {children}
       </main>
-      <div className="h-1 bg-gradient-to-r from-slate-800 via-blue-600 to-cyan-500 bg-[length:200%] bg-center" style={{ background: "linear-gradient(to right, #1e293b, #2563eb 30%, #06b6d4 50%, #2563eb 70%, #1e293b)" }} />
+      <div className="h-1.5 bg-gradient-to-r from-slate-800 via-blue-600 to-cyan-500 bg-[length:200%] bg-center" style={{ background: "linear-gradient(to right, #1e293b, #2563eb 30%, #06b6d4 50%, #2563eb 70%, #1e293b)" }} />
       <footer className="relative bg-slate-900 text-white overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900" />
         <div className="absolute inset-0 bg-gradient-to-tr from-cyan-900/20 via-transparent to-orange-900/15" />
@@ -265,7 +265,7 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
             </div>
 
             <div>
-              <h4 className="font-bold text-base uppercase tracking-wider text-cyan-400 mb-5 text-center border-b border-cyan-500/20 pb-3">Services</h4>
+              <h4 className="font-bold text-base uppercase tracking-wider text-cyan-400 mb-5 text-center border-b border-cyan-500/20 pb-3" style={{ textShadow: "0 0 20px rgba(6,182,212,0.2)" }}>Services</h4>
               <ul className="space-y-2.5 text-center">
                 {servicesItems.map((item) => (
                   <li key={item.path}>
@@ -276,7 +276,7 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
             </div>
 
             <div>
-              <h4 className="font-bold text-base uppercase tracking-wider text-cyan-400 mb-5 text-center border-b border-cyan-500/20 pb-3">Company</h4>
+              <h4 className="font-bold text-base uppercase tracking-wider text-cyan-400 mb-5 text-center border-b border-cyan-500/20 pb-3" style={{ textShadow: "0 0 20px rgba(6,182,212,0.2)" }}>Company</h4>
               <ul className="space-y-2.5 text-center">
                 {aboutItems.map((item) => (
                   <li key={item.path}>
@@ -290,7 +290,7 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
             </div>
 
             <div>
-              <h4 className="font-bold text-base uppercase tracking-wider text-cyan-400 mb-5 text-center border-b border-cyan-500/20 pb-3">Contact</h4>
+              <h4 className="font-bold text-base uppercase tracking-wider text-cyan-400 mb-5 text-center border-b border-cyan-500/20 pb-3" style={{ textShadow: "0 0 20px rgba(6,182,212,0.2)" }}>Contact</h4>
               <ul className="space-y-3">
                 <li className="flex items-center gap-3 text-gray-300 group">
                   <div className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center border border-white/10 group-hover:border-cyan-500/50 transition-colors flex-shrink-0">
@@ -334,7 +334,8 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
             </form>
           </div>
 
-          <div className="pt-8 border-t border-white/10">
+          <div className="pt-8 border-t border-transparent relative">
+            <div className="absolute top-0 left-0 right-0 h-px" style={{ background: "linear-gradient(to right, transparent, rgba(6,182,212,0.3) 30%, rgba(59,130,246,0.4) 50%, rgba(6,182,212,0.3) 70%, transparent)" }} />
             <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-400 font-medium">
               <p>&copy; {new Date().getFullYear()} Pacific Engineering. All rights reserved.</p>
               <div className="flex items-center gap-6">
