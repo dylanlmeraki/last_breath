@@ -276,7 +276,7 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
             </div>
 
             <div>
-              <h4 className="font-semibold text-sm uppercase tracking-wider text-cyan-400 mb-4">Contact</h4>
+              <h4 className="font-semibold text-sm uppercase tracking-wider text-cyan-400 mb-4 text-center">Contact</h4>
               <ul className="space-y-3">
                 <li className="flex items-center gap-3 text-gray-300 group">
                   <div className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center border border-white/10 group-hover:border-cyan-500/50 transition-colors">
