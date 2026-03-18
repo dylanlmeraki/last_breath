@@ -900,8 +900,8 @@ export default function Home() {
           <motion.h2
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-white mb-5 sm:mb-8 tracking-tight leading-[1.08]"
             data-testid="text-cta-title"
-            initial={rm ? { opacity: 1 } : { opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={rm ? { opacity: 1 } : { opacity: 0, y: 40, filter: "blur(8px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             viewport={{ once: true, amount: 0.3 }}
             transition={
               rm ? { duration: 0 } : { duration: 0.7, ease: [0.22, 1, 0.36, 1] }
