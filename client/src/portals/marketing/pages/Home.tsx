@@ -613,7 +613,7 @@ export default function Home() {
       {/* ── SERVICES → WHY CHOOSE TRANSITION ── */}
       <div className="relative w-full" style={{ marginTop: "2px" }} data-testid="divider-services-whychoose">
         <div className="h-px bg-gradient-to-r from-slate-200 via-blue-200 to-slate-200 border-t-[2px] border-r-[2px] border-b-[2px] border-l-[2px] border-t-[#e5e7eb] border-r-[#e5e7eb] border-b-[#e5e7eb] border-l-[#e5e7eb] opacity-[0]" />
-        <div className="h-[3px]" style={{ background: "linear-gradient(to right, #e2e8f0, #3b82f6 25%, #06b6d4 50%, #3b82f6 75%, #e2e8f0)" }} />
+        <div className="h-3" style={{ background: "linear-gradient(to right, #e2e8f0, #3b82f6 25%, #06b6d4 50%, #3b82f6 75%, #e2e8f0)" }} />
         <div className="h-px bg-gradient-to-r from-slate-200 via-cyan-100 to-slate-200" />
       </div>
       {/* ── WHY CHOOSE ── */}

@@ -31,7 +31,7 @@ function ParallaxWrapper({ children, className, variants, isInView, parallaxRef 
       animate={isInView ? "visible" : "hidden"}
       variants={variants}
       style={{ y, opacity: scrollOpacity }}
-      className={className}
+      className="text-center sm:mb-14 lg:mb-20 mb-[72px]"
     >
       {children}
     </motion.div>
