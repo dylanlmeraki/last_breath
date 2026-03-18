@@ -466,7 +466,6 @@ export default function Home() {
       />
       <ScrollProgress />
       <MobileStickyBar />
-
       {/* ── HERO ── */}
       <motion.section
         ref={heroRef}
@@ -606,10 +605,8 @@ export default function Home() {
           </motion.div>
         </div>
       </motion.section>
-
       {/* ── HERO → SERVICES DIVIDER ── */}
       <HeroServicesDivider />
-
       {/* ── SERVICES ── */}
       <section className="py-12 sm:py-16 md:py-20 lg:py-28 px-4 sm:px-6 bg-white relative" data-testid="section-services">
         <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-slate-900/[0.06] to-transparent pointer-events-none z-[1]" aria-hidden="true" />
@@ -643,10 +640,8 @@ export default function Home() {
           <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-slate-100/60 to-transparent pointer-events-none z-[1]" aria-hidden="true" />
         </div>
       </section>
-
       {/* ── SERVICES → WHY CHOOSE DIVIDER ── */}
       <DiagonalDivider topColor="#ffffff" bottomColor="rgb(236 254 255 / 0.4)" accentGradient="svc-why" />
-
       {/* ── WHY CHOOSE ── */}
       <section className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 bg-cyan-50/40 relative overflow-hidden" data-testid="section-why-choose">
         <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-white/40 to-transparent pointer-events-none z-[1]" aria-hidden="true" />
@@ -659,7 +654,7 @@ export default function Home() {
                   <h2 className="text-slate-900 mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight leading-tight" data-testid="text-why-title">
                     Why Pacific Engineering?
                   </h2>
-                  <div className="bg-gradient-to-r from-cyan-600 to-cyan-400 my-5 sm:my-8 w-24 sm:w-36 h-1 sm:h-1.5 rounded-full mx-auto" />
+                  <div className="bg-gradient-to-r from-cyan-600 to-cyan-400 my-5 sm:my-8 w-24 sm:w-36 h-1 sm:h-1.5 rounded-full mx-auto ml-[232px] mr-[232px] pl-[54px] pr-[54px]" />
                   <p className="text-slate-700 mb-6 sm:mb-10 text-base sm:text-lg lg:text-xl leading-relaxed max-w-xl mx-auto">
                     With over 40 years of experience in full-scale civil engineering and construction contracting, we deliver comprehensive solutions keeping projects on track with professional efficiency.
                   </p>
@@ -748,7 +743,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* ── CTA ── */}
       <section
         ref={ctaRef}
