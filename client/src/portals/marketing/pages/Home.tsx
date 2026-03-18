@@ -180,7 +180,7 @@ const colorMap = {
     titleHover: "group-hover:text-teal-500", textHover: "group-hover:text-teal-600/80",
     checkHover: "group-hover:text-teal-400", cardBgHover: "group-hover:bg-cyan-50/60", h: "h-2",
     glowColor: "rgba(6,182,212,0.15)",
-    gradient: "linear-gradient(to right, #a7f3d0, #6ee7b7, #34d399, #2dd4bf)",
+    gradient: "linear-gradient(to right, #a7f3d0, #6ee7b7, #5eead4, #22d3ee)",
   },
   cyanteal: {
     bg: "bg-teal-50", hoverBg: "group-hover:from-teal-400 group-hover:to-cyan-500",
@@ -188,7 +188,7 @@ const colorMap = {
     titleHover: "group-hover:text-cyan-500", textHover: "group-hover:text-cyan-600/80",
     checkHover: "group-hover:text-cyan-400", cardBgHover: "group-hover:bg-teal-50/60", h: "h-2",
     glowColor: "rgba(20,184,166,0.15)",
-    gradient: "linear-gradient(to right, #2dd4bf, #22d3ee, #0ea5e9, #3b82f6)",
+    gradient: "linear-gradient(to right, #22d3ee, #0891b2, #0ea5e9, #3b82f6)",
   },
 };
 
