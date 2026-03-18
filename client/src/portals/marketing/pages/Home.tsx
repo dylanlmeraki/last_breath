@@ -865,10 +865,10 @@ export default function Home() {
         </div>
       </section>
       {/* ── WHY CHOOSE → CTA TRANSITION ── */}
-      <div className="relative w-full" style={{ marginTop: "-1px" }} data-testid="divider-whychoose-cta">
+      <div className="relative w-full" style={{ marginTop: "3px" }} data-testid="divider-whychoose-cta">
         <div className="h-px bg-gradient-to-r from-slate-300 via-cyan-200 to-slate-300" />
         <div className="h-[3px]" style={{ background: "linear-gradient(to right, #475569, #0e7490 20%, #06b6d4 35%, #22d3ee 50%, #06b6d4 65%, #0e7490 80%, #475569)" }} />
-        <div className="h-2 bg-gradient-to-r from-slate-800 via-blue-900 to-slate-800" />
+        <div className="h-2 bg-gradient-to-r from-slate-800 via-blue-900 to-slate-800 opacity-[0.8]" />
       </div>
       {/* ── CTA ── */}
       <section
