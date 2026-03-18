@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import { Link } from "react-router-dom";
-import { motion, useScroll, useTransform, useSpring, useInView, useReducedMotion } from "framer-motion";
+import { motion, useScroll, useSpring, useInView, useReducedMotion } from "framer-motion";
 import { createPageUrl } from "../lib/utils";
 import {
   CheckCircle,
@@ -302,13 +302,6 @@ function HeroServicesDivider() {
 
 export default function Home() {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const heroRef = useRef<HTMLElement>(null);
-
-  const { scrollYProgress: heroProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"],
-  });
-
   const prefersReducedMotion = useReducedMotion();
   const rm = !!prefersReducedMotion;
 
@@ -317,11 +310,6 @@ export default function Home() {
       ? { initial: { opacity: 1 }, animate: { opacity: 1 }, transition: { duration: 0 } }
       : { initial: { opacity: 0, ...init }, animate: { opacity: 1, y: 0, x: 0, scale: 1, scaleX: 1 }, transition: { duration: dur, delay: del, ease: [0.22, 1, 0.36, 1] as const } };
 
-  const heroOpacity = useTransform(heroProgress, [0, 0.7, 1], prefersReducedMotion ? [1, 1, 1] : [1, 1, 0]);
-  const heroScale = useTransform(heroProgress, [0, 0.7, 1], prefersReducedMotion ? [1, 1, 1] : [1, 1, 0.95]);
-  const heroBlur = useTransform(heroProgress, [0, 0.7, 1], prefersReducedMotion ? [0, 0, 0] : [0, 0, 8]);
-  const heroFilter = useTransform(heroBlur, (v) => `blur(${v}px)`);
-
   const ctaRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -329,7 +317,7 @@ export default function Home() {
     if (!video) return;
 
     video.loop = false;
-    video.playbackRate = 1;
+    video.playbackRate = 0.5;
 
     let rafId: number | null = null;
     let pauseTimer: ReturnType<typeof setTimeout> | null = null;
@@ -338,7 +326,7 @@ export default function Home() {
     let targetTime = 0;
     let disposed = false;
 
-    const reverseSpeed = 1;
+    const reverseSpeed = 0.5;
     const stepSize = 1 / 30;
     const endPause = 1200;
     const startPause = 800;
@@ -411,15 +399,9 @@ export default function Home() {
       <ScrollProgress />
       <MobileStickyBar />
       {/* ── HERO ── */}
-      <motion.section
-        ref={heroRef}
+      <section
         className="relative min-h-[calc(100svh-5rem)] flex items-center justify-center overflow-hidden bg-slate-950 py-8 sm:py-12 md:py-16 lg:py-20"
         data-testid="section-hero"
-        style={{
-          opacity: heroOpacity,
-          scale: heroScale,
-          filter: heroFilter,
-        }}
       >
         <div className="absolute inset-0">
           <video
@@ -585,7 +567,7 @@ export default function Home() {
             />
           </motion.div>
         </div>
-      </motion.section>
+      </section>
       {/* ── HERO → SERVICES DIVIDER ── */}
       <div className="w-full h-2 bg-gradient-to-r from-cyan-100 via-blue-600 to-cyan-200 border-t-[#e5e7eb0a] border-r-[#e5e7eb0a] border-b-[#e5e7eb0a] border-l-[#e5e7eb0a]" />
       {/* ── SERVICES ── */}
