@@ -362,20 +362,20 @@ export default function Home() {
               return (
                 <AnimatedSection key={svc.title} direction={idx % 2 === 0 ? "right" : "left"} delay={0.1 + idx * 0.1} className="h-full">
                   <Link to={createPageUrl(svc.page)} className="block group h-full" data-testid={`link-${svc.title.toLowerCase().replace(/\s+/g, "-")}`}>
-                    <div className={`h-full bg-white rounded-xl sm:rounded-2xl shadow-md sm:shadow-lg hover:shadow-xl border border-slate-100 transition-all duration-300 overflow-hidden cursor-pointer hover:-translate-y-1 sm:hover:-translate-y-2`}>
+                    <div className="h-full bg-white group-hover:bg-slate-900 group-active:bg-slate-900 rounded-xl sm:rounded-2xl shadow-md sm:shadow-lg group-hover:shadow-2xl border border-slate-100 group-hover:border-transparent transition-all duration-300 overflow-hidden cursor-pointer hover:-translate-y-1 sm:hover:-translate-y-2">
                       <div className={`${c.h} bg-gradient-to-r ${c.border}`} />
                       <div className="p-5 sm:p-8 lg:p-10 flex flex-col items-center text-center">
                         <div className={`${c.bg} rounded-xl sm:rounded-2xl w-14 h-14 sm:w-20 sm:h-20 lg:w-24 lg:h-24 flex items-center justify-center mb-4 sm:mb-6 lg:mb-8 group-hover:bg-gradient-to-br ${c.hoverBg} group-hover:shadow-lg transition-all duration-300`}>
                           <Icon className={`w-7 h-7 sm:w-10 sm:h-10 lg:w-12 lg:h-12 ${c.icon} group-hover:text-white transition-colors`} />
                         </div>
-                        <h3 className={`text-slate-900 text-lg sm:text-xl lg:text-2xl font-bold mb-2 sm:mb-4 uppercase tracking-wider ${c.titleHover} transition-colors`}>
+                        <h3 className="text-slate-900 group-hover:text-white group-active:text-white text-lg sm:text-xl lg:text-2xl font-bold mb-2 sm:mb-4 uppercase tracking-wider transition-colors">
                           {svc.title}
                         </h3>
-                        <p className="text-slate-600 mb-4 sm:mb-6 lg:mb-8 leading-relaxed text-sm sm:text-base lg:text-lg">{svc.desc}</p>
+                        <p className="text-slate-600 group-hover:text-white/80 group-active:text-white/80 mb-4 sm:mb-6 lg:mb-8 leading-relaxed text-sm sm:text-base lg:text-lg transition-colors">{svc.desc}</p>
                         <ul className="space-y-2 sm:space-y-3 w-full">
                           {svc.items.map((item, i) => (
-                            <li key={i} className="flex items-center gap-2 sm:gap-3 text-slate-600 text-left">
-                              <CheckCircle className={`w-4 h-4 sm:w-5 sm:h-5 ${c.check} flex-shrink-0`} />
+                            <li key={i} className="flex items-center justify-center gap-2 sm:gap-3 text-slate-600 group-hover:text-white/85 group-active:text-white/85 transition-colors">
+                              <CheckCircle className={`w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0 ${c.check} group-hover:text-white/70 group-active:text-white/70 transition-colors`} />
                               <span className="font-medium text-sm sm:text-base">{item}</span>
                             </li>
                           ))}
@@ -401,42 +401,24 @@ export default function Home() {
         </div>
       </section>
       <SectionDivider variant="angled" from="light" to="dark" />
-      <section
-        className="relative px-4 sm:px-6 bg-slate-900 overflow-hidden"
-        style={{ clipPath: "polygon(0 8%, 100% 0, 100% 100%, 0 100%)" }}
-        data-testid="section-midpage-cta"
-      >
-        <BlueprintGrid />
-        <div className="relative z-10 max-w-4xl mx-auto text-center pt-20 sm:pt-24 md:pt-28 pb-12 sm:pb-16 md:pb-20">
-          <AnimatedSection direction="up">
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white mb-8 sm:mb-10 tracking-tight" data-testid="text-midcta-title">
-              Ready to Start?
-            </h2>
-
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-8 sm:mb-10">
-              <Link
-                to={createPageUrl("Consultation")}
-                className="w-full sm:w-auto px-8 py-4 bg-orange-600 hover:bg-orange-500 text-white font-bold uppercase tracking-wider rounded-sm flex items-center justify-center gap-3 shadow-[0_8px_25px_rgba(249,115,22,0.4)] transition-all hover:-translate-y-1 active:scale-[0.97]"
-                data-testid="link-midcta-consultation"
-              >
-                <PhoneCall className="w-5 h-5" />
-                Request a Quote
-              </Link>
-              <a
-                href="tel:+14156894428"
-                className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold uppercase tracking-wider rounded-sm flex items-center justify-center gap-3 shadow-[0_8px_25px_rgba(6,182,212,0.3)] transition-all hover:-translate-y-1 active:scale-[0.97]"
-                data-testid="link-midcta-call"
-              >
-                <Phone className="w-5 h-5" /> (415) 689-4428
-              </a>
-            </div>
-
-            <div className="flex flex-wrap justify-center gap-x-4 sm:gap-x-8 gap-y-2 sm:gap-y-3 text-slate-400 text-xs sm:text-sm font-medium">
-              <span className="inline-flex items-center gap-1.5 sm:gap-2"><CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-500" /> Licensed PE/QSD/QSP</span>
-              <span className="inline-flex items-center gap-1.5 sm:gap-2"><CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-500" /> Class A & B Contractor</span>
-              <span className="inline-flex items-center gap-1.5 sm:gap-2"><CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-500" /> 2,500+ Projects</span>
-            </div>
-          </AnimatedSection>
+      <section className="py-8 sm:py-12 md:py-16 px-4 sm:px-6 bg-slate-900 overflow-hidden" data-testid="section-trust-badges">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6">
+            {[
+              { icon: Shield, label: "Licensed PE/QSD/QSP", value: "Certified" },
+              { icon: Building2, label: "Class A & B", value: "Contractor" },
+              { icon: MapPin, label: "Bay Area", value: "40+ Years" },
+              { icon: Star, label: "Client Rating", value: "5-Star" },
+            ].map((badge, idx) => (
+              <AnimatedSection key={badge.label} direction="up" delay={idx * 0.1}>
+                <div className="text-center p-3 sm:p-6 rounded-xl border border-white/[0.06] bg-white/[0.03] hover:bg-white/[0.06] transition-colors" data-testid={`trust-${badge.label.toLowerCase().replace(/\s+/g, "-")}`}>
+                  <badge.icon className="w-6 h-6 sm:w-8 sm:h-8 text-cyan-400 mx-auto mb-2 sm:mb-3" />
+                  <div className="text-white font-bold text-lg sm:text-xl lg:text-2xl mb-0.5">{badge.value}</div>
+                  <div className="text-slate-400 text-xs sm:text-sm font-medium">{badge.label}</div>
+                </div>
+              </AnimatedSection>
+            ))}
+          </div>
         </div>
       </section>
       <SectionDivider variant="gradient" from="dark" to="light" />
@@ -511,44 +493,6 @@ export default function Home() {
               </div>
             </AnimatedSection>
           </div>
-        </div>
-      </section>
-      <SectionDivider variant="angled" from="light" to="dark" />
-      <section className="py-8 sm:py-12 md:py-16 px-4 sm:px-6 bg-slate-900 overflow-hidden" data-testid="section-trust-badges">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6">
-            {[
-              { icon: Shield, label: "Licensed PE/QSD/QSP", value: "Certified" },
-              { icon: Building2, label: "Class A & B", value: "Contractor" },
-              { icon: MapPin, label: "Bay Area", value: "40+ Years" },
-              { icon: Star, label: "Client Rating", value: "5-Star" },
-            ].map((badge, idx) => (
-              <AnimatedSection key={badge.label} direction="up" delay={idx * 0.1}>
-                <div className="text-center p-3 sm:p-6 rounded-xl border border-white/[0.06] bg-white/[0.03] hover:bg-white/[0.06] transition-colors" data-testid={`trust-${badge.label.toLowerCase().replace(/\s+/g, "-")}`}>
-                  <badge.icon className="w-6 h-6 sm:w-8 sm:h-8 text-cyan-400 mx-auto mb-2 sm:mb-3" />
-                  <div className="text-white font-bold text-lg sm:text-xl lg:text-2xl mb-0.5">{badge.value}</div>
-                  <div className="text-slate-400 text-xs sm:text-sm font-medium">{badge.label}</div>
-                </div>
-              </AnimatedSection>
-            ))}
-          </div>
-        </div>
-      </section>
-      <SectionDivider variant="gradient" from="dark" to="light" />
-      <section className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 bg-white relative overflow-hidden" data-testid="section-testimonial">
-        <div className="max-w-4xl mx-auto text-center">
-          <AnimatedSection direction="up">
-            <div className="flex justify-center gap-1 mb-4 sm:mb-6">
-              {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 sm:w-6 sm:h-6 text-amber-400 fill-amber-400" />)}
-            </div>
-            <blockquote className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-slate-800 font-medium leading-relaxed mb-6 sm:mb-8 italic" data-testid="text-testimonial">
-              "Pacific Engineering's team was incredibly responsive and thorough. They handled our structural assessment, inspections, and stormwater planning — all under one roof. Saved us weeks of coordination."
-            </blockquote>
-            <div>
-              <div className="text-slate-900 font-bold text-base sm:text-lg">Mike Torres</div>
-              <div className="text-slate-500 text-sm sm:text-base">Senior PM · Bay Area Commercial Development</div>
-            </div>
-          </AnimatedSection>
         </div>
       </section>
       <SectionDivider variant="angled" from="light" to="dark" />
