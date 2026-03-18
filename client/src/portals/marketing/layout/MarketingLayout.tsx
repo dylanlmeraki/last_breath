@@ -157,6 +157,7 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
             </div>
           </div>
         </div>
+        <div className="hidden sm:block absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600" />
       </header>
       {isMobileMenuOpen && (
         <div className="fixed inset-0 z-50 bg-slate-950/95 backdrop-blur-md lg:hidden" data-testid="mobile-menu">

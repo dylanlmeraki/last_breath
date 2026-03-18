@@ -25,6 +25,8 @@ import SEO from "../components/SEO";
 import ParticleField from "../components/ParticleField";
 import FloatingElements from "../components/FloatingElements";
 import BlueprintBackground from "../components/BlueprintBackground";
+import AnimatedGridBackground from "../components/AnimatedGridBackground";
+import bayBridgeImg from "@assets/bay-bridge-sunrise_1773821710974.jpg";
 
 function useInView(threshold = 0.15) {
   const ref = useRef<HTMLDivElement>(null);
@@ -257,6 +259,7 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-br from-cyan-950/40 via-transparent to-orange-950/15 opacity-50" />
         </div>
 
+        <AnimatedGridBackground baseOpacity={0.5} gridSize={40} triggerInterval={500} animationDuration={2500} className="hidden sm:block z-[1] opacity-40" />
         <BlueprintBackground className="z-[2] opacity-60" />
         <ParticleField className="z-[3] opacity-15 hidden md:block" particleCount={35} />
         <FloatingElements className="z-[4] opacity-50" />
@@ -501,7 +504,9 @@ export default function Home() {
       </section>
       <SectionDivider variant="angled" from="light" to="dark" />
       <section className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 bg-slate-900 relative overflow-hidden" data-testid="section-cta">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1541888082416-a711bc141c2c?w=1600')] bg-cover bg-center opacity-[0.06]" />
+        <div className="absolute inset-0 hidden sm:block">
+          <img src={bayBridgeImg} alt="" className="w-full h-full object-cover opacity-[0.12]" />
+        </div>
         <div className="absolute inset-0 bg-gradient-to-b from-slate-900/70 to-slate-950/90" />
         <BlueprintGrid />
 

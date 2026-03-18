@@ -19,6 +19,7 @@ interface CellState {
   scale: number;
   opacity: number;
   animationStart: number;
+  hue: number;
 }
 
 const AnimatedGridBackground = ({
@@ -33,13 +34,35 @@ const AnimatedGridBackground = ({
   className = "",
 }: AnimatedGridBackgroundProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
   const cellsRef = useRef<CellState[]>([]);
   const animationFrameRef = useRef<number>();
   const lastTriggerRef = useRef(0);
   const startTimeRef = useRef<number | null>(null);
+  const isVisibleRef = useRef(true);
 
   const CELL_PADDING = 2;
+
+  useEffect(() => {
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReduced) {
+      isVisibleRef.current = false;
+      return;
+    }
+
+    const wrapper = wrapperRef.current;
+    if (!wrapper) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisibleRef.current = entry.isIntersecting;
+      },
+      { threshold: 0 }
+    );
+    observer.observe(wrapper);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const updateDimensions = () => {
@@ -62,7 +85,10 @@ const AnimatedGridBackground = ({
     cellsRef.current = [];
     for (let y = 0; y < rows; y++) {
       for (let x = 0; x < cols; x++) {
-        cellsRef.current.push({ x, y, isAnimating: false, scale: 0, opacity: 0, animationStart: 0 });
+        cellsRef.current.push({
+          x, y, isAnimating: false, scale: 0, opacity: 0, animationStart: 0,
+          hue: 190 + Math.random() * 30,
+        });
       }
     }
   }, [dimensions.width, dimensions.height, gridSize]);
@@ -74,6 +100,10 @@ const AnimatedGridBackground = ({
     if (!ctx) return;
 
     const animate = (timestamp: number) => {
+      animationFrameRef.current = requestAnimationFrame(animate);
+
+      if (!isVisibleRef.current) return;
+
       if (startTimeRef.current === null) startTimeRef.current = timestamp;
       ctx.clearRect(0, 0, dimensions.width, dimensions.height);
       if (baseOpacity === 1) {
@@ -81,8 +111,6 @@ const AnimatedGridBackground = ({
         ctx.fillRect(0, 0, dimensions.width, dimensions.height);
       }
 
-      const cols = Math.ceil(dimensions.width / gridSize);
-      const rows = Math.ceil(dimensions.height / gridSize);
       let curOffX = offsetX;
       let curOffY = offsetY;
       if (movingOffset) {
@@ -90,6 +118,9 @@ const AnimatedGridBackground = ({
         curOffX = offsetX + Math.sin(elapsed * 0.1) * 20;
         curOffY = offsetY + Math.cos(elapsed * 0.1) * 20;
       }
+
+      const cols = Math.ceil(dimensions.width / gridSize);
+      const rows = Math.ceil(dimensions.height / gridSize);
 
       ctx.strokeStyle = `rgba(100, 150, 200, ${0.08 * baseOpacity})`;
       ctx.lineWidth = 1;
@@ -112,6 +143,7 @@ const AnimatedGridBackground = ({
         if (cell && !cell.isAnimating) {
           cell.isAnimating = true;
           cell.animationStart = timestamp;
+          cell.hue = 190 + Math.random() * 30;
         }
         lastTriggerRef.current = timestamp;
       }
@@ -139,17 +171,14 @@ const AnimatedGridBackground = ({
             const offset = (cellSize - scaledSize) / 2;
             const x = cell.x * gridSize + CELL_PADDING + curOffX;
             const y = cell.y * gridSize + CELL_PADDING + curOffY;
-            const hue = 190 + Math.random() * 30;
-            ctx.fillStyle = `hsla(${hue}, 70%, 50%, ${cell.opacity * 0.3 * baseOpacity})`;
-            ctx.shadowColor = `hsla(${hue}, 70%, 50%, ${cell.opacity * baseOpacity})`;
+            ctx.fillStyle = `hsla(${cell.hue}, 70%, 50%, ${cell.opacity * 0.3 * baseOpacity})`;
+            ctx.shadowColor = `hsla(${cell.hue}, 70%, 50%, ${cell.opacity * baseOpacity})`;
             ctx.shadowBlur = 15 * cell.opacity * baseOpacity;
             ctx.fillRect(x + offset, y + offset, scaledSize, scaledSize);
             ctx.shadowBlur = 0;
           }
         }
       });
-
-      animationFrameRef.current = requestAnimationFrame(animate);
     };
 
     animationFrameRef.current = requestAnimationFrame(animate);
@@ -157,11 +186,13 @@ const AnimatedGridBackground = ({
   }, [animationDuration, gridSize, triggerInterval, baseOpacity, dimensions.height, dimensions.width, movingOffset, offsetX, offsetY]);
 
   return (
-    <canvas
-      ref={canvasRef}
-      className={`absolute inset-0 w-full h-full pointer-events-none ${className}`}
-      style={{ background: baseOpacity === 1 ? "hsl(220, 13%, 9%)" : "transparent", zIndex }}
-    />
+    <div ref={wrapperRef} className={`absolute inset-0 pointer-events-none ${className}`} style={{ zIndex }}>
+      <canvas
+        ref={canvasRef}
+        className="absolute inset-0 w-full h-full"
+        style={{ background: baseOpacity === 1 ? "hsl(220, 13%, 9%)" : "transparent" }}
+      />
+    </div>
   );
 };
 
