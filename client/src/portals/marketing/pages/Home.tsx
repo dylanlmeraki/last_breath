@@ -143,7 +143,7 @@ const colorMap = {
     bg: "bg-blue-100", hoverBg: "group-hover:from-blue-500 group-hover:to-blue-700",
     icon: "text-blue-700", check: "text-blue-600", border: "from-blue-700 to-blue-500",
     titleHover: "group-hover:text-blue-500", textHover: "group-hover:text-blue-500/80",
-    checkHover: "group-hover:text-blue-400", cardBgHover: "group-hover:bg-blue-50/60", h: "h-2",
+    checkHover: "group-hover:text-blue-400", cardBgHover: "group-hover:bg-blue-50/60", h: "h-1.5",
   },
   bluecyan: {
     bg: "bg-sky-50", hoverBg: "group-hover:from-sky-400 group-hover:to-cyan-500",
@@ -161,7 +161,7 @@ const colorMap = {
     bg: "bg-teal-50", hoverBg: "group-hover:from-teal-400 group-hover:to-cyan-500",
     icon: "text-teal-700", check: "text-teal-600", border: "from-teal-500 to-cyan-600",
     titleHover: "group-hover:text-cyan-500", textHover: "group-hover:text-cyan-600/80",
-    checkHover: "group-hover:text-cyan-400", cardBgHover: "group-hover:bg-teal-50/60", h: "h-2",
+    checkHover: "group-hover:text-cyan-400", cardBgHover: "group-hover:bg-teal-50/60", h: "h-1.5",
   },
 };
 
