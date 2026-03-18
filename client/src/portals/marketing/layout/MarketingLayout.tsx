@@ -252,7 +252,7 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
 
             <div>
               <h4 className="font-semibold text-sm uppercase tracking-wider text-cyan-400 mb-4">Services</h4>
-              <ul className="space-y-2">
+              <ul className="space-y-2 text-center">
                 {servicesItems.map((item) => (
                   <li key={item.path}>
                     <Link to={item.path} className="text-sm text-gray-400 hover:text-cyan-400 transition-colors">{item.name}</Link>
