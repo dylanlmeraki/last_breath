@@ -551,7 +551,7 @@ export default function Home() {
       </div>
       {/* ── SERVICES ── */}
       <section
-        className="py-12 sm:py-16 md:py-20 lg:py-28 px-4 sm:px-6 bg-white relative pt-[72px] pb-[72px]"
+        className="py-12 sm:py-16 md:py-20 lg:py-28 px-4 sm:px-6 bg-white relative pt-[84px] pb-[84px]"
         data-testid="section-services"
       >
         <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(rgba(6,182,212,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.02)_1px,transparent_1px)] bg-[size:60px_60px]" aria-hidden="true" />
