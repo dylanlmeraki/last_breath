@@ -633,7 +633,7 @@ export default function Home() {
         </div>
       </section>
       {/* ── SERVICES → WHY CHOOSE DIVIDER ── */}
-      <div className="w-full h-px bg-gradient-to-r from-transparent via-slate-800 to-transparent" />
+      <div className="w-full h-2 bg-gradient-to-r from-orange-100 via-cyan-500 to-orange-100" />
       {/* ── WHY CHOOSE ── */}
       <section
         className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 bg-slate-100 relative overflow-hidden"
