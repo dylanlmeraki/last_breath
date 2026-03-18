@@ -180,7 +180,7 @@ const colorMap = {
     titleHover: "group-hover:text-teal-500", textHover: "group-hover:text-teal-600/80",
     checkHover: "group-hover:text-teal-400", cardBgHover: "group-hover:bg-cyan-50/60", h: "h-2",
     glowColor: "rgba(6,182,212,0.15)",
-    gradient: "linear-gradient(to right, #a7f3d0, #5eead4, #2dd4bf, #22d3ee)",
+    gradient: "linear-gradient(to right, #a7f3d0, #6ee7b7, #34d399, #2dd4bf)",
   },
   cyanteal: {
     bg: "bg-teal-50", hoverBg: "group-hover:from-teal-400 group-hover:to-cyan-500",
@@ -188,7 +188,7 @@ const colorMap = {
     titleHover: "group-hover:text-cyan-500", textHover: "group-hover:text-cyan-600/80",
     checkHover: "group-hover:text-cyan-400", cardBgHover: "group-hover:bg-teal-50/60", h: "h-2",
     glowColor: "rgba(20,184,166,0.15)",
-    gradient: "linear-gradient(to right, #22d3ee, #0891b2, #0369a1, #2563eb)",
+    gradient: "linear-gradient(to right, #2dd4bf, #22d3ee, #0ea5e9, #3b82f6)",
   },
 };
 
@@ -617,7 +617,7 @@ export default function Home() {
       {/* ── SERVICES → WHY CHOOSE TRANSITION ── */}
       <div className="relative w-full" style={{ marginTop: "2px" }} data-testid="divider-services-whychoose">
         <div className="h-px bg-gradient-to-r from-slate-200 via-blue-200 to-slate-200 border-t-[2px] border-r-[2px] border-b-[2px] border-l-[2px] border-t-[#e5e7eb] border-r-[#e5e7eb] border-b-[#e5e7eb] border-l-[#e5e7eb] opacity-[0]" />
-        <div className="h-3" style={{ background: "linear-gradient(to right, #e2e8f0, #3b82f6 25%, #06b6d4 50%, #3b82f6 75%, #e2e8f0)" }} />
+        <div className="h-2" style={{ background: "linear-gradient(to right, #e2e8f0, #3b82f6 25%, #06b6d4 50%, #3b82f6 75%, #e2e8f0)" }} />
         <div className="h-px bg-gradient-to-r from-slate-200 via-cyan-100 to-slate-200" />
       </div>
       {/* ── WHY CHOOSE ── */}
