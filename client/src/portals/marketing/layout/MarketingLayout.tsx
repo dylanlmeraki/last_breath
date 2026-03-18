@@ -81,7 +81,7 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
                 <div className="absolute inset-0 bg-white rounded-md opacity-10 group-hover:opacity-20 transition-opacity" />
                 <img src="/images/pe-logo.png" alt="Pacific Engineering Logo" className="rounded-md h-14 w-14 object-contain relative z-10" />
               </div>
-              <div className="min-w-0">
+              <div className="min-w-0 hidden sm:block">
                 <div className="font-bold text-white tracking-tight text-base sm:text-lg lg:text-xl xl:text-[24px] truncate">Pacific Engineering & Construction Inc.</div>
                 <div className="text-xs font-medium text-blue-200 tracking-wide hidden sm:block">Consulting Engineers & Contractors</div>
               </div>
@@ -140,11 +140,11 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
             <div className="flex items-center gap-2 lg:hidden">
               <a
                 href="tel:+14156894428"
-                className="flex items-center gap-1.5 px-3 py-2 bg-orange-500 hover:bg-orange-400 active:bg-orange-600 text-white text-sm font-bold rounded-full transition-colors shadow-lg shadow-orange-500/30"
+                className="flex items-center justify-center w-10 h-10 bg-orange-500 hover:bg-orange-400 active:bg-orange-600 text-white rounded-full transition-colors shadow-lg shadow-orange-500/30"
                 data-testid="btn-header-call"
+                aria-label="Call Pacific Engineering"
               >
-                <Phone className="w-4 h-4" />
-                <span>Call</span>
+                <Phone className="w-5 h-5" />
               </a>
               <button
                 className="p-2 text-white hover:bg-white/10 rounded-lg transition-colors"

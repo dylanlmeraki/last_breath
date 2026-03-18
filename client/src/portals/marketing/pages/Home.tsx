@@ -89,20 +89,13 @@ function FloatingParticles() {
 }
 
 function MobileStickyBar() {
-  const [visible, setVisible] = useState(false);
-  useEffect(() => {
-    const handler = () => setVisible(window.scrollY > 600);
-    window.addEventListener("scroll", handler, { passive: true });
-    return () => window.removeEventListener("scroll", handler);
-  }, []);
-  if (!visible) return null;
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-30 bg-slate-900/95 backdrop-blur-md border-t border-white/10 px-4 py-3 flex gap-3 sm:hidden" data-testid="mobile-sticky-bar">
-      <a href="tel:+14156894428" className="flex-1 py-3 rounded-lg bg-white/10 text-white font-bold text-sm flex items-center justify-center gap-2 active:bg-white/20 transition-colors" data-testid="btn-sticky-call">
+    <div className="fixed bottom-0 left-0 right-0 z-40 bg-slate-950/95 backdrop-blur-md border-t border-white/10 px-4 py-3 flex gap-3 sm:hidden shadow-[0_-10px_30px_rgba(0,0,0,0.5)]" style={{ paddingBottom: "max(0.75rem, env(safe-area-inset-bottom))" }} data-testid="mobile-sticky-bar">
+      <a href="tel:+14156894428" className="flex-1 py-3 rounded-sm bg-white/10 text-white font-bold text-sm flex items-center justify-center gap-2 active:bg-white/20 transition-colors" data-testid="btn-sticky-call">
         <Phone className="w-4 h-4 text-cyan-400" /> Call Now
       </a>
-      <Link to={createPageUrl("Consultation")} className="flex-1 py-3 rounded-lg bg-orange-600 text-white font-bold text-sm flex items-center justify-center gap-2 active:bg-orange-500 transition-colors shadow-md" data-testid="btn-sticky-quote">
-        Free Consultation <ArrowRight className="w-4 h-4" />
+      <Link to={createPageUrl("Consultation")} className="flex-1 py-3 rounded-sm bg-orange-600 text-white font-bold text-sm flex items-center justify-center gap-2 active:bg-orange-500 transition-colors shadow-md" data-testid="btn-sticky-quote">
+        <PhoneCall className="w-4 h-4" /> Get Quote
       </Link>
     </div>
   );
@@ -236,7 +229,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white antialiased" data-testid="page-home">
+    <div className="min-h-screen bg-white antialiased pb-[4.5rem] sm:pb-0" data-testid="page-home">
       <SEO
         title="Pacific Engineering & Construction Inc. - Consulting Engineers and Contractors"
         description="SF Bay structural engineering, special inspections, materials testing & SWPPP stormwater compliance—supporting permit-ready construction with fast, reliable service."
@@ -298,20 +291,20 @@ export default function Home() {
 
                     <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-5 sm:mb-6">
                       <Link
-                        to={createPageUrl("ServicesOverview")}
-                        className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-white font-bold tracking-tight text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-5 rounded-xl bg-orange-600 hover:bg-orange-500 shadow-xl shadow-orange-600/25 hover:shadow-orange-500/40 hover:-translate-y-0.5 active:scale-[0.97] transition-all duration-200 pe-glow-orange"
+                        to={createPageUrl("Consultation")}
+                        className="w-full sm:w-auto px-8 py-4 bg-orange-600 hover:bg-orange-500 text-white font-bold uppercase tracking-wider rounded-sm flex items-center justify-center gap-3 shadow-[0_8px_25px_rgba(249,115,22,0.4)] transition-all hover:-translate-y-1 active:scale-[0.97]"
                         data-testid="link-hero-quote"
                       >
-                        Our Services
-                        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
+                        <PhoneCall className="w-5 h-5" />
+                        Request a Quote
                       </Link>
                       <Link
-                        to={createPageUrl("Consultation")}
-                        className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-white font-bold tracking-tight text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-5 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 shadow-xl shadow-cyan-600/15 hover:shadow-cyan-500/30 hover:-translate-y-0.5 active:scale-[0.97] transition-all duration-200 pe-glow-cyan"
+                        to={createPageUrl("ServicesOverview")}
+                        className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold uppercase tracking-wider rounded-sm flex items-center justify-center gap-3 shadow-[0_8px_25px_rgba(6,182,212,0.3)] transition-all hover:-translate-y-1 active:scale-[0.97]"
                         data-testid="link-hero-consultation"
                       >
-                        Free Consultation
-                        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
+                        Our Services
+                        <ArrowRight className="w-5 h-5" />
                       </Link>
                     </div>
 
@@ -423,15 +416,15 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-8 sm:mb-10">
               <Link
                 to={createPageUrl("Consultation")}
-                className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 text-white font-bold tracking-tight text-base sm:text-lg px-8 sm:px-10 py-4 sm:py-5 rounded-xl bg-orange-600 hover:bg-orange-500 shadow-lg shadow-orange-600/25 hover:shadow-xl hover:shadow-orange-500/40 hover:-translate-y-0.5 active:scale-[0.97] transition-all duration-200"
+                className="w-full sm:w-auto px-8 py-4 bg-orange-600 hover:bg-orange-500 text-white font-bold uppercase tracking-wider rounded-sm flex items-center justify-center gap-3 shadow-[0_8px_25px_rgba(249,115,22,0.4)] transition-all hover:-translate-y-1 active:scale-[0.97]"
                 data-testid="link-midcta-consultation"
               >
-                Free Consultation
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
+                <PhoneCall className="w-5 h-5" />
+                Request a Quote
               </Link>
               <a
                 href="tel:+14156894428"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 text-white font-bold tracking-tight text-base sm:text-lg px-8 sm:px-10 py-4 sm:py-5 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 shadow-lg hover:shadow-xl transition-all duration-200 active:scale-[0.97]"
+                className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold uppercase tracking-wider rounded-sm flex items-center justify-center gap-3 shadow-[0_8px_25px_rgba(6,182,212,0.3)] transition-all hover:-translate-y-1 active:scale-[0.97]"
                 data-testid="link-midcta-call"
               >
                 <Phone className="w-5 h-5" /> (415) 689-4428
@@ -577,14 +570,13 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-8 sm:mb-12">
               <Link
                 to={createPageUrl("Consultation")}
-                className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 sm:gap-3 text-white font-bold tracking-tight text-base sm:text-lg lg:text-xl px-8 sm:px-10 py-4 sm:py-5 rounded-xl bg-orange-600 hover:bg-orange-500 shadow-lg shadow-orange-600/25 hover:shadow-xl hover:shadow-orange-500/40 hover:-translate-y-0.5 active:scale-[0.97] transition-all duration-200 pe-glow-orange"
+                className="w-full sm:w-auto px-8 sm:px-10 py-4 sm:py-5 bg-orange-600 hover:bg-orange-500 text-white font-bold uppercase tracking-wider rounded-sm flex items-center justify-center gap-3 shadow-[0_8px_25px_rgba(249,115,22,0.4)] transition-all hover:-translate-y-1 active:scale-[0.97]"
                 data-testid="link-cta-quote"
               >
                 <PhoneCall className="w-5 h-5 sm:w-6 sm:h-6" />
                 Request a Quote
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
               </Link>
-              <a href="tel:+14156894428" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 sm:gap-3 text-white font-bold tracking-tight text-base sm:text-lg lg:text-xl px-8 sm:px-10 py-4 sm:py-5 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 shadow-lg hover:shadow-xl transition-all duration-200 group active:scale-[0.97]" data-testid="link-cta-call">
+              <a href="tel:+14156894428" className="w-full sm:w-auto px-8 sm:px-10 py-4 sm:py-5 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold uppercase tracking-wider rounded-sm flex items-center justify-center gap-3 shadow-[0_8px_25px_rgba(6,182,212,0.3)] transition-all hover:-translate-y-1 active:scale-[0.97]" data-testid="link-cta-call">
                 <Phone className="w-5 h-5 sm:w-6 sm:h-6" /> (415) 689-4428
               </a>
             </div>
