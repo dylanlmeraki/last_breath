@@ -122,6 +122,7 @@ function ScrollProgress() {
 function DiagonalDivider({ topColor = "#ffffff", bottomColor = "#ffffff", accentGradient = "svc-why" }: { topColor?: string; bottomColor?: string; accentGradient?: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
+  const reducedMotion = useReducedMotion();
 
   return (
     <div
@@ -138,8 +139,8 @@ function DiagonalDivider({ topColor = "#ffffff", bottomColor = "#ffffff", accent
           strokeWidth="2"
           style={{
             strokeDasharray: 2000,
-            strokeDashoffset: isInView ? 0 : 2000,
-            transition: "stroke-dashoffset 1.4s cubic-bezier(0.22, 1, 0.36, 1) 0.1s",
+            strokeDashoffset: reducedMotion || isInView ? 0 : 2000,
+            transition: reducedMotion ? "none" : "stroke-dashoffset 1.4s cubic-bezier(0.22, 1, 0.36, 1) 0.1s",
           }}
         />
         <line
@@ -148,8 +149,8 @@ function DiagonalDivider({ topColor = "#ffffff", bottomColor = "#ffffff", accent
           strokeWidth="2"
           style={{
             strokeDasharray: 2000,
-            strokeDashoffset: isInView ? 0 : -2000,
-            transition: "stroke-dashoffset 1.4s cubic-bezier(0.22, 1, 0.36, 1) 0.3s",
+            strokeDashoffset: reducedMotion || isInView ? 0 : -2000,
+            transition: reducedMotion ? "none" : "stroke-dashoffset 1.4s cubic-bezier(0.22, 1, 0.36, 1) 0.3s",
           }}
         />
         <defs>
@@ -316,6 +317,7 @@ function ServiceCard({ svc, idx, reducedMotion }: { svc: typeof SERVICES[number]
 function HeroServicesDivider() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
+  const reducedMotion = useReducedMotion();
 
   return (
     <div
@@ -332,8 +334,8 @@ function HeroServicesDivider() {
           strokeWidth="2.5"
           style={{
             strokeDasharray: 2000,
-            strokeDashoffset: isInView ? 0 : 2000,
-            transition: "stroke-dashoffset 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.05s",
+            strokeDashoffset: reducedMotion || isInView ? 0 : 2000,
+            transition: reducedMotion ? "none" : "stroke-dashoffset 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.05s",
           }}
         />
         <defs>
