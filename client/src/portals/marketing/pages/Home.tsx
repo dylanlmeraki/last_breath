@@ -375,7 +375,7 @@ export default function Home() {
                         <h3 className={`text-slate-900 ${c.titleHover} text-lg sm:text-xl lg:text-2xl font-bold mb-2 sm:mb-4 uppercase tracking-wider transition-colors`}>
                           {svc.title}
                         </h3>
-                        <p className={`text-slate-600 ${c.textHover} mb-4 sm:mb-6 lg:mb-8 leading-relaxed text-sm sm:text-base lg:text-lg transition-colors`}>{svc.desc}</p>
+                        <p className="group-hover:text-blue-500/80 mb-4 sm:mb-6 lg:mb-8 text-sm sm:text-base lg:text-lg transition-colors text-[#677283]">{svc.desc}</p>
                         <ul className="space-y-2 sm:space-y-3 w-full">
                           {svc.items.map((item, i) => (
                             <li key={i} className={`flex items-center justify-center gap-2 sm:gap-3 text-slate-600 ${c.textHover} transition-colors`}>
