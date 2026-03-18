@@ -670,7 +670,7 @@ export default function Home() {
             >
               Consulting Engineers & Contractors
             </h2>
-            <div className="w-32 sm:w-54 h-1 sm:h-1.5 bg-gradient-to-r from-cyan-100 to-cyan-100 via-blue-500 mx-auto mb-4 sm:mb-8 rounded-full pl-[142px] pr-[142px]" />
+            <div className="w-32 sm:w-54 h-1 sm:h-1.5 bg-gradient-to-r from-cyan-100 to-cyan-100 via-blue-500 mx-auto mb-4 sm:mb-8 rounded-full pl-[216px] pr-[216px]" />
             <p className="text-base sm:text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
               Full-scale engineering and construction by our in-house teams of
               Engineers, QSD/QSPs, and construction experts.
