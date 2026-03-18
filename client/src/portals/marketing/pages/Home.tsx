@@ -262,36 +262,6 @@ function ServiceCard({ svc, idx, reducedMotion }: { svc: typeof SERVICES[number]
 }
 
 
-function HeroServicesTransition() {
-  return (
-    <div className="relative w-full" style={{ marginTop: "-1px" }}>
-      <div className="h-1 bg-gradient-to-r from-slate-800 via-blue-600 to-slate-800" />
-      <div className="h-[3px]" style={{ background: "linear-gradient(to right, #1e293b, #0e7490 20%, #06b6d4 35%, #f97316 50%, #06b6d4 65%, #0e7490 80%, #1e293b)" }} />
-      <div className="h-px bg-gradient-to-r from-slate-300 via-cyan-200 to-slate-300" />
-    </div>
-  );
-}
-
-function ServicesWhyChooseTransition() {
-  return (
-    <div className="relative w-full" style={{ marginTop: "-1px" }}>
-      <div className="h-px bg-gradient-to-r from-slate-200 via-blue-200 to-slate-200" />
-      <div className="h-[3px]" style={{ background: "linear-gradient(to right, #e2e8f0, #3b82f6 25%, #06b6d4 50%, #3b82f6 75%, #e2e8f0)" }} />
-      <div className="h-px bg-gradient-to-r from-slate-200 via-cyan-100 to-slate-200" />
-    </div>
-  );
-}
-
-function WhyChooseCtaTransition() {
-  return (
-    <div className="relative w-full" style={{ marginTop: "-1px" }}>
-      <div className="h-px bg-gradient-to-r from-slate-200 via-slate-300 to-slate-200" />
-      <div className="h-1" style={{ background: "linear-gradient(to right, #475569, #1e40af 20%, #0891b2 40%, #ea580c 50%, #0891b2 60%, #1e40af 80%, #475569)" }} />
-      <div className="h-[3px] bg-gradient-to-r from-slate-700 via-blue-900 to-slate-700" />
-      <div className="h-px bg-gradient-to-r from-slate-800 via-slate-900 to-slate-800" />
-    </div>
-  );
-}
 
 function DiagonalHatching() {
   return (
@@ -574,7 +544,11 @@ export default function Home() {
         </div>
       </section>
       {/* ── HERO → SERVICES TRANSITION ── */}
-      <HeroServicesTransition />
+      <div className="relative w-full" style={{ marginTop: "-1px" }} data-testid="divider-hero-services">
+        <div className="h-1 bg-gradient-to-r from-slate-800 via-blue-600 to-slate-800" />
+        <div className="h-[3px]" style={{ background: "linear-gradient(to right, #1e293b, #0e7490 20%, #06b6d4 35%, #f97316 50%, #06b6d4 65%, #0e7490 80%, #1e293b)" }} />
+        <div className="h-px bg-gradient-to-r from-slate-300 via-cyan-200 to-slate-300" />
+      </div>
       {/* ── SERVICES ── */}
       <section
         className="py-12 sm:py-16 md:py-20 lg:py-28 px-4 sm:px-6 bg-white relative pt-[72px] pb-[72px]"
@@ -637,7 +611,11 @@ export default function Home() {
         </div>
       </section>
       {/* ── SERVICES → WHY CHOOSE TRANSITION ── */}
-      <ServicesWhyChooseTransition />
+      <div className="relative w-full" style={{ marginTop: "2px" }} data-testid="divider-services-whychoose">
+        <div className="h-px bg-gradient-to-r from-slate-200 via-blue-200 to-slate-200" />
+        <div className="h-[3px]" style={{ background: "linear-gradient(to right, #e2e8f0, #3b82f6 25%, #06b6d4 50%, #3b82f6 75%, #e2e8f0)" }} />
+        <div className="h-px bg-gradient-to-r from-slate-200 via-cyan-100 to-slate-200" />
+      </div>
       {/* ── WHY CHOOSE ── */}
       <section
         className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 bg-slate-100 relative overflow-hidden"
@@ -807,7 +785,12 @@ export default function Home() {
         </div>
       </section>
       {/* ── WHY CHOOSE → CTA TRANSITION ── */}
-      <WhyChooseCtaTransition />
+      <div className="relative w-full" style={{ marginTop: "-1px" }} data-testid="divider-whychoose-cta">
+        <div className="h-px bg-gradient-to-r from-slate-200 via-slate-300 to-slate-200" />
+        <div className="h-1" style={{ background: "linear-gradient(to right, #475569, #1e40af 20%, #0891b2 40%, #ea580c 50%, #0891b2 60%, #1e40af 80%, #475569)" }} />
+        <div className="h-[3px] bg-gradient-to-r from-slate-700 via-blue-900 to-slate-700" />
+        <div className="h-px bg-gradient-to-r from-slate-800 via-slate-900 to-slate-800" />
+      </div>
       {/* ── CTA ── */}
       <section
         ref={ctaRef}
