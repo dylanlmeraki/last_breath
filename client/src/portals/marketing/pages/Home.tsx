@@ -305,7 +305,7 @@ export default function Home() {
                       </Link>
                       <Link
                         to={createPageUrl("ServicesOverview")}
-                        className="w-full sm:w-auto px-10 sm:px-12 py-4 sm:py-[18px] bg-[#0f172a] hover:bg-slate-800 text-white font-bold tracking-tight text-base sm:text-lg rounded-sm sm:rounded-full flex items-center justify-center gap-3 border border-cyan-500/40 shadow-[inset_0_0_0_1px_rgba(15,23,42,0.85),0_16px_40px_-16px_rgba(59,130,246,0.4)] hover:shadow-[inset_0_0_0_1px_rgba(15,23,42,0.85),0_20px_48px_-16px_rgba(56,189,248,0.55)] transition-all hover:-translate-y-1 active:scale-[0.97]"
+                        className="w-full sm:w-auto px-10 sm:px-12 py-4 sm:py-[18px] bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold tracking-tight text-base sm:text-lg rounded-sm sm:rounded-full flex items-center justify-center gap-3 shadow-[0_8px_25px_rgba(6,182,212,0.3)] transition-all hover:-translate-y-1 active:scale-[0.97]"
                         data-testid="link-hero-consultation"
                       >
                         Our Services
@@ -346,7 +346,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <SectionDivider variant="angled" from="dark" to="light" />
+      <SectionDivider variant="gradient" from="dark" to="light" />
       <section className="py-12 sm:py-16 md:py-20 lg:py-28 px-4 sm:px-6 bg-white" data-testid="section-services">
         <div className="max-w-7xl mx-auto">
           <AnimatedSection direction="up" className="text-center mb-10 sm:mb-14 lg:mb-20" parallax>
@@ -395,7 +395,7 @@ export default function Home() {
           <AnimatedSection direction="up" delay={0.5} className="text-center mt-8 sm:mt-12 lg:mt-16">
             <Link
               to={createPageUrl("ServicesOverview")}
-              className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-white font-bold tracking-tight text-base sm:text-lg px-8 sm:px-12 py-4 sm:py-5 rounded-sm sm:rounded-full bg-[#0f172a] hover:bg-slate-800 border border-cyan-500/40 shadow-[inset_0_0_0_1px_rgba(15,23,42,0.85),0_16px_40px_-16px_rgba(59,130,246,0.4)] hover:shadow-[inset_0_0_0_1px_rgba(15,23,42,0.85),0_20px_48px_-16px_rgba(56,189,248,0.55)] hover:-translate-y-0.5 active:scale-[0.97] transition-all duration-200"
+              className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-white font-bold tracking-tight text-base sm:text-lg px-8 sm:px-12 py-4 sm:py-5 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 shadow-lg hover:shadow-xl hover:-translate-y-0.5 active:scale-[0.97] transition-all duration-200"
               data-testid="link-view-all-services"
             >
               View All Services
@@ -404,7 +404,11 @@ export default function Home() {
           </AnimatedSection>
         </div>
       </section>
-      <SectionDivider variant="angled" from="light" to="light" />
+      <div className="relative" style={{ height: "clamp(24px, 3vw, 44px)", marginTop: "-1px", marginBottom: "-1px" }}>
+        <div className="absolute inset-0 bg-white" />
+        <div className="absolute inset-0 bg-slate-800" style={{ clipPath: "polygon(0 40%, 100% 0, 100% 60%, 0 100%)" }} />
+        <div className="absolute inset-0" style={{ clipPath: "polygon(0 40%, 100% 0, 100% 60%, 0 100%)", background: "linear-gradient(90deg, transparent 5%, rgba(59,130,246,0.3) 30%, rgba(6,182,212,0.5) 50%, rgba(59,130,246,0.3) 70%, transparent 95%)", mixBlendMode: "screen" }} />
+      </div>
       <section className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 bg-cyan-50/40 relative overflow-hidden" data-testid="section-why-choose">
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
@@ -507,7 +511,7 @@ export default function Home() {
                 <PhoneCall className="w-5 h-5 sm:w-6 sm:h-6" />
                 Free Consultation
               </Link>
-              <a href="tel:+14156894428" className="w-full sm:w-auto px-10 sm:px-14 py-4 sm:py-[18px] bg-[#0f172a] hover:bg-slate-800 text-white font-bold tracking-tight text-base sm:text-lg rounded-sm sm:rounded-full flex items-center justify-center gap-3 border border-cyan-500/40 shadow-[inset_0_0_0_1px_rgba(15,23,42,0.85),0_16px_40px_-16px_rgba(59,130,246,0.4)] hover:shadow-[inset_0_0_0_1px_rgba(15,23,42,0.85),0_20px_48px_-16px_rgba(56,189,248,0.55)] transition-all hover:-translate-y-1 active:scale-[0.97]" data-testid="link-cta-call">
+              <a href="tel:+14156894428" className="w-full sm:w-auto px-10 sm:px-14 py-4 sm:py-[18px] bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold tracking-tight text-base sm:text-lg rounded-sm sm:rounded-full flex items-center justify-center gap-3 shadow-[0_8px_25px_rgba(6,182,212,0.3)] transition-all hover:-translate-y-1 active:scale-[0.97]" data-testid="link-cta-call">
                 <Phone className="w-5 h-5 sm:w-6 sm:h-6" /> (415) 689-4428
               </a>
             </div>
