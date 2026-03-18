@@ -444,48 +444,49 @@ export default function Home() {
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
             <AnimatedSection direction="left">
-              <p className="text-cyan-600 font-bold uppercase tracking-widest text-xs sm:text-sm mb-3">Why Choose Us</p>
-              <h2 className="text-slate-900 mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight leading-tight text-center" data-testid="text-why-title">
-                Why Pacific Engineering?
-              </h2>
-              <div className="bg-gradient-to-r from-cyan-500 to-orange-400 my-5 sm:my-8 w-16 sm:w-24 h-1 sm:h-1.5 rounded-full" />
+              <div className="text-center">
+                <p className="text-cyan-600 font-bold uppercase tracking-widest text-xs sm:text-sm mb-3">Why Choose Us</p>
+                <h2 className="text-slate-900 mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight leading-tight" data-testid="text-why-title">
+                  Why Pacific Engineering?
+                </h2>
+                <div className="bg-gradient-to-r from-cyan-500 to-orange-400 my-5 sm:my-8 w-16 sm:w-24 h-1 sm:h-1.5 rounded-full mx-auto" />
+                <p className="text-slate-700 mb-6 sm:mb-10 text-base sm:text-lg lg:text-xl leading-relaxed max-w-xl mx-auto">
+                  With over 40 years of experience in full-scale civil engineering and construction contracting, we deliver comprehensive solutions keeping projects on track with professional efficiency.
+                </p>
+              </div>
 
-              <p className="text-slate-700 mb-6 sm:mb-10 text-base sm:text-lg lg:text-xl leading-relaxed">
-                With over 40 years of experience in full-scale civil engineering and construction contracting, we deliver comprehensive solutions keeping projects on track with professional efficiency.
-              </p>
-
-              <div className="space-y-4 sm:space-y-6 lg:space-y-8 mb-8 sm:mb-12">
+              <div className="space-y-4 sm:space-y-6 lg:space-y-8 mb-8 sm:mb-12 max-w-md mx-auto">
                 {[
                   { icon: Award, title: "EXPERT KNOWLEDGE", desc: "Complete understanding of federal, state, and local stormwater regulations." },
                   { icon: TrendingUp, title: "PROVEN TRACK RECORD", desc: "100% client satisfaction across 2.5K+ successful projects." },
                   { icon: Zap, title: "RESPONSIVE SERVICE", desc: "Quick turnaround times and dedicated project support to keep you moving." },
                 ].map((item) => (
-                  <div key={item.title} className="flex gap-4 sm:gap-6 items-start">
-                    <div className="flex-shrink-0 mt-0.5">
+                  <div key={item.title} className="flex items-start gap-4 sm:gap-5">
+                    <div className="flex-shrink-0 w-11 sm:w-14">
                       <div className="w-11 h-11 sm:w-14 sm:h-14 bg-white rounded-lg sm:rounded-xl flex items-center justify-center shadow-sm sm:shadow-md border border-cyan-100">
                         <item.icon className="w-5 h-5 sm:w-7 sm:h-7 text-cyan-600" />
                       </div>
                     </div>
-                    <div>
+                    <div className="text-center flex-1">
                       <h3 className="text-slate-900 mb-1 sm:mb-2 text-base sm:text-lg lg:text-xl font-bold tracking-wide">{item.title}</h3>
                       <p className="text-slate-600 text-sm sm:text-base lg:text-lg">{item.desc}</p>
                     </div>
+                    <div className="flex-shrink-0 w-11 sm:w-14" aria-hidden="true" />
                   </div>
                 ))}
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-3">
+              <div className="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto">
                 <Link
                   to={createPageUrl("ServicesOverview")}
-                  className="group inline-flex items-center justify-center gap-2 text-white font-bold tracking-tight text-base px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 shadow-lg hover:shadow-xl transition-all duration-200 active:scale-[0.97]"
+                  className="group flex-1 inline-flex items-center justify-center gap-2 text-white font-bold tracking-tight text-base px-6 py-3.5 sm:py-4 rounded-sm bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 shadow-lg hover:shadow-xl transition-all duration-200 active:scale-[0.97]"
                   data-testid="link-scope-project"
                 >
                   <FileText className="w-5 h-5" />
                   Scope Your Project
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
                 </Link>
-                <Link to={createPageUrl("About")} className="inline-flex items-center justify-center gap-2 text-slate-700 font-bold tracking-tight text-base px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl bg-transparent border-2 border-slate-200 hover:border-cyan-300 hover:bg-white transition-all duration-200 group active:scale-[0.97]" data-testid="link-about-team">
-                    <Users className="w-5 h-5" /> About Our Team
+                <Link to={createPageUrl("About")} className="group flex-1 inline-flex items-center justify-center gap-2 text-slate-700 font-bold tracking-tight text-base px-6 py-3.5 sm:py-4 rounded-sm bg-transparent border-2 border-slate-200 hover:border-cyan-300 hover:bg-white transition-all duration-200 active:scale-[0.97]" data-testid="link-about-team">
+                  <Users className="w-5 h-5" /> About Our Team
                 </Link>
               </div>
             </AnimatedSection>
