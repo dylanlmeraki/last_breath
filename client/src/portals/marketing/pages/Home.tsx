@@ -44,8 +44,10 @@ function useInViewOnce(threshold = 0.15) {
 function AnimatedCounter({ target, suffix = "", duration = 2000 }: { target: number; suffix?: string; duration?: number }) {
   const { ref, inView } = useInViewOnce(0.3);
   const [count, setCount] = useState(0);
+  const reducedMotion = typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   useEffect(() => {
     if (!inView) return;
+    if (reducedMotion) { setCount(target); return; }
     const startTime = performance.now();
     let rafId: number;
     const animate = (now: number) => {
@@ -57,7 +59,7 @@ function AnimatedCounter({ target, suffix = "", duration = 2000 }: { target: num
     };
     rafId = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(rafId);
-  }, [inView, target, duration]);
+  }, [inView, target, duration, reducedMotion]);
   return <span ref={ref}>{inView ? `${count.toLocaleString()}${suffix}` : `0${suffix}`}</span>;
 }
 
@@ -237,7 +239,7 @@ const colorMap = {
   },
 };
 
-function ServiceCard({ svc, idx }: { svc: typeof SERVICES[number]; idx: number }) {
+function ServiceCard({ svc, idx, reducedMotion }: { svc: typeof SERVICES[number]; idx: number; reducedMotion: boolean }) {
   const c = colorMap[svc.color];
   const Icon = svc.icon;
   const ref = useRef<HTMLDivElement>(null);
@@ -245,6 +247,7 @@ function ServiceCard({ svc, idx }: { svc: typeof SERVICES[number]; idx: number }
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
   const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    if (reducedMotion) return;
     const el = cardRef.current;
     if (!el) return;
     const rect = el.getBoundingClientRect();
@@ -252,7 +255,7 @@ function ServiceCard({ svc, idx }: { svc: typeof SERVICES[number]; idx: number }
     const y = (e.clientY - rect.top) / rect.height - 0.5;
     el.style.transform = `rotateX(${y * -6}deg) rotateY(${x * 6}deg)`;
     el.style.boxShadow = `0 20px 40px -12px ${c.glowColor}, 0 8px 20px -8px rgba(0,0,0,0.08)`;
-  }, [c.glowColor]);
+  }, [c.glowColor, reducedMotion]);
 
   const handleMouseLeave = useCallback(() => {
     const el = cardRef.current;
@@ -264,23 +267,23 @@ function ServiceCard({ svc, idx }: { svc: typeof SERVICES[number]; idx: number }
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 50, scale: 0.92 }}
+      initial={reducedMotion ? { opacity: 1 } : { opacity: 0, y: 50, scale: 0.92 }}
       animate={isInView ? { opacity: 1, y: 0, scale: 1 } : undefined}
-      transition={{
+      transition={reducedMotion ? { duration: 0 } : {
         type: "tween",
         duration: 0.7,
         delay: 0.1 + idx * 0.12,
         ease: [0.22, 1, 0.36, 1],
       }}
       className="h-full"
-      style={{ perspective: "800px" }}
+      style={{ perspective: reducedMotion ? undefined : "800px" }}
     >
       <Link to={createPageUrl(svc.page)} className="block group h-full" data-testid={`link-${svc.title.toLowerCase().replace(/\s+/g, "-")}`}>
         <div
           ref={cardRef}
           className={`h-full bg-white ${c.cardBgHover} rounded-md sm:rounded-lg shadow-md sm:shadow-lg group-hover:shadow-2xl border border-slate-100 group-hover:border-slate-200 transition-all duration-500 overflow-hidden cursor-pointer`}
           style={{
-            transition: "transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s ease, border-color 0.5s ease, background-color 0.5s ease",
+            transition: reducedMotion ? "border-color 0.5s ease, background-color 0.5s ease" : "transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s ease, border-color 0.5s ease, background-color 0.5s ease",
           }}
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
@@ -357,6 +360,12 @@ export default function Home() {
   });
 
   const prefersReducedMotion = useReducedMotion();
+  const rm = !!prefersReducedMotion;
+
+  const entrance = (init: Record<string, number>, dur: number, del: number) =>
+    rm
+      ? { initial: { opacity: 1 }, animate: { opacity: 1 }, transition: { duration: 0 } }
+      : { initial: { opacity: 0, ...init }, animate: { opacity: 1, y: 0, x: 0, scale: 1, scaleX: 1 }, transition: { duration: dur, delay: del, ease: [0.22, 1, 0.36, 1] as const } };
 
   const heroOpacity = useTransform(heroProgress, [0, 0.7, 1], prefersReducedMotion ? [1, 1, 1] : [1, 1, 0]);
   const heroScale = useTransform(heroProgress, [0, 0.7, 1], prefersReducedMotion ? [1, 1, 1] : [1, 1, 0.95]);
@@ -502,9 +511,7 @@ export default function Home() {
                     <motion.h1
                       className="text-white font-bold tracking-tight leading-[1.08] text-[1.75rem] sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl mb-3 sm:mb-5"
                       data-testid="text-hero-title"
-                      initial={{ opacity: 0, y: 30 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                      {...entrance({ y: 30 }, 0.8, 0.2)}
                     >
                       <span className="text-white">Pacific Engineering</span>
                       <br />
@@ -515,9 +522,7 @@ export default function Home() {
 
                     <motion.div
                       className="flex items-center justify-center gap-4 my-6 sm:my-8 md:my-10"
-                      initial={{ opacity: 0, scaleX: 0 }}
-                      animate={{ opacity: 1, scaleX: 1 }}
-                      transition={{ duration: 0.6, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                      {...entrance({ scaleX: 0 }, 0.6, 0.5)}
                     >
                       <div className="h-px w-16 sm:w-24 bg-gradient-to-r from-transparent to-cyan-500" />
                       <div className="w-3 h-3 rotate-45 bg-orange-400" />
@@ -527,18 +532,14 @@ export default function Home() {
                     <motion.p
                       className="text-slate-300/90 mx-auto font-light tracking-wide text-sm sm:text-lg md:text-xl lg:text-2xl mb-6 sm:mb-8 max-w-2xl"
                       data-testid="text-hero-subtitle"
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.7, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                      {...entrance({ y: 20 }, 0.7, 0.6)}
                     >
                       Consulting Engineers & Contractors
                     </motion.p>
 
                     <motion.div
                       className="flex flex-col sm:flex-row gap-3 sm:gap-6 justify-center items-center mb-5 sm:mb-6"
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.7, delay: 0.75, ease: [0.22, 1, 0.36, 1] }}
+                      {...entrance({ y: 20 }, 0.7, 0.75)}
                     >
                       <Link
                         to={createPageUrl("Consultation")}
@@ -561,9 +562,7 @@ export default function Home() {
                     <motion.p
                       className="text-slate-400/80 text-xs sm:text-sm md:text-base tracking-wide mb-8 sm:mb-12"
                       data-testid="text-hero-trust"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ duration: 0.6, delay: 0.9 }}
+                      {...entrance({}, 0.6, 0.9)}
                     >
                       Same-day response · No obligations · 40+ years Bay Area expertise
                     </motion.p>
@@ -578,9 +577,7 @@ export default function Home() {
                           key={stat.testId}
                           className="group relative rounded-lg sm:rounded-xl bg-white/[0.04] border border-white/[0.08] hover:border-cyan-500/30 transition-all duration-300 hover:bg-white/[0.07] p-3 sm:p-5 md:p-6 flex flex-col items-center justify-center"
                           data-testid={stat.testId}
-                          initial={{ opacity: 0, y: 30 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.6, delay: 1.0 + i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+                          {...entrance({ y: 30 }, 0.6, 1.0 + i * 0.1)}
                         >
                           <div className={`text-white font-bold mb-0.5 sm:mb-2 ${stat.textClass || "text-2xl sm:text-3xl md:text-4xl"}`}>
                             {stat.content}
@@ -599,9 +596,7 @@ export default function Home() {
         <div className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-10 hidden sm:block">
           <motion.div
             className="w-6 h-10 rounded-full border-2 border-white/15 flex items-start justify-center p-2"
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.5, duration: 0.6 }}
+            {...entrance({ y: -10 }, 0.6, 1.5)}
           >
             <div className="w-1 h-3 bg-white/40 rounded-full animate-bounce" />
           </motion.div>
@@ -613,6 +608,7 @@ export default function Home() {
 
       {/* ── SERVICES ── */}
       <section className="py-12 sm:py-16 md:py-20 lg:py-28 px-4 sm:px-6 bg-white relative" data-testid="section-services">
+        <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-slate-900/[0.06] to-transparent pointer-events-none z-[1]" aria-hidden="true" />
         <div className="max-w-7xl mx-auto">
           <AnimatedSection direction="up" className="text-center mb-10 sm:mb-14 lg:mb-20" parallax blur ease="tween">
             <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 mb-4 sm:mb-6 tracking-tight" data-testid="text-services-title">
@@ -626,7 +622,7 @@ export default function Home() {
 
           <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 max-w-6xl mx-auto">
             {SERVICES.map((svc, idx) => (
-              <ServiceCard key={svc.title} svc={svc} idx={idx} />
+              <ServiceCard key={svc.title} svc={svc} idx={idx} reducedMotion={!!prefersReducedMotion} />
             ))}
           </div>
 
@@ -640,6 +636,7 @@ export default function Home() {
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
             </Link>
           </AnimatedSection>
+          <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-slate-100/60 to-transparent pointer-events-none z-[1]" aria-hidden="true" />
         </div>
       </section>
 
@@ -648,6 +645,8 @@ export default function Home() {
 
       {/* ── WHY CHOOSE ── */}
       <section className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 bg-cyan-50/40 relative overflow-hidden" data-testid="section-why-choose">
+        <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-white/40 to-transparent pointer-events-none z-[1]" aria-hidden="true" />
+        <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-slate-900/[0.08] to-transparent pointer-events-none z-[1]" aria-hidden="true" />
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
             <div>
@@ -672,10 +671,10 @@ export default function Home() {
                   <motion.div
                     key={item.title}
                     className="flex items-start gap-4 sm:gap-5"
-                    initial={{ opacity: 0, x: -30 }}
+                    initial={rm ? { opacity: 1 } : { opacity: 0, x: -30 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true, amount: 0.3 }}
-                    transition={{
+                    transition={rm ? { duration: 0 } : {
                       type: "tween",
                       duration: 0.6,
                       delay: 0.15 + i * 0.15,
@@ -698,10 +697,10 @@ export default function Home() {
 
               <motion.div
                 className="flex flex-col sm:flex-row gap-3 justify-center w-full"
-                initial={{ opacity: 0, y: 20 }}
+                initial={rm ? { opacity: 1 } : { opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                transition={rm ? { duration: 0 } : { duration: 0.6, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
               >
                 <Link
                   to={createPageUrl("ServicesOverview")}
@@ -730,10 +729,10 @@ export default function Home() {
                 </div>
                 <motion.div
                   className="absolute -bottom-4 sm:-bottom-6 right-0 sm:-right-2 lg:-right-6 bg-gradient-to-br from-cyan-500 to-blue-600 p-4 sm:p-6 lg:p-8 rounded-xl sm:rounded-2xl shadow-xl border-2 sm:border-4 border-white flex flex-col items-center justify-center z-20"
-                  initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                  initial={rm ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8, y: 20 }}
                   whileInView={{ opacity: 1, scale: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.5 }}
-                  transition={{ type: "spring", stiffness: 120, damping: 15, delay: 0.4 }}
+                  transition={rm ? { duration: 0 } : { type: "spring", stiffness: 120, damping: 15, delay: 0.4 }}
                 >
                   <div className="text-white mb-0.5 sm:mb-1 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tighter" data-testid="text-projects-count">
                     <AnimatedCounter target={2500} suffix="+" />
@@ -774,34 +773,37 @@ export default function Home() {
         <div className="absolute inset-0 bg-slate-900/50 hidden sm:block mix-blend-multiply" />
         <div className="absolute inset-0 bg-gradient-to-b from-slate-900/60 to-slate-950/95 sm:from-slate-900/20 sm:to-slate-950/60" />
         <BlueprintGrid />
+        <div className="absolute inset-0 opacity-[0.12] pointer-events-none z-[2]" aria-hidden="true">
+          <AnimatedGridBackground />
+        </div>
 
         <div className="relative z-10 max-w-4xl mx-auto text-center px-4 sm:px-6 pt-[calc(clamp(30px,4vw,60px)+2rem)] sm:pt-[calc(clamp(30px,4vw,60px)+3rem)] pb-8 sm:pb-12 md:pb-16 lg:pb-20">
           <motion.h2
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-white mb-5 sm:mb-8 tracking-tight leading-[1.08]"
             data-testid="text-cta-title"
-            initial={{ opacity: 0, y: 40 }}
+            initial={rm ? { opacity: 1 } : { opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            transition={rm ? { duration: 0 } : { duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           >
             Get Your Project<br className="sm:hidden" /> on Track
           </motion.h2>
           <motion.p
             className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-300 mb-8 sm:mb-12 leading-relaxed font-light max-w-3xl mx-auto"
-            initial={{ opacity: 0, y: 30 }}
+            initial={rm ? { opacity: 1 } : { opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+            transition={rm ? { duration: 0 } : { duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
           >
             Engineering, inspections, construction, and stormwater — one team, one call. We respond same-day to keep your timeline intact.
           </motion.p>
 
           <motion.div
             className="flex flex-col sm:flex-row gap-3 sm:gap-8 justify-center items-center mb-8 sm:mb-12"
-            initial={{ opacity: 0, y: 30 }}
+            initial={rm ? { opacity: 1 } : { opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            transition={rm ? { duration: 0 } : { duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
           >
             <Link
               to={createPageUrl("Consultation")}
@@ -818,10 +820,10 @@ export default function Home() {
 
           <motion.div
             className="flex flex-wrap justify-center gap-x-4 sm:gap-x-8 gap-y-2 sm:gap-y-3 text-slate-400 text-xs sm:text-sm font-medium"
-            initial={{ opacity: 0 }}
+            initial={rm ? { opacity: 1 } : { opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
+            transition={rm ? { duration: 0 } : { duration: 0.6, delay: 0.5 }}
           >
             <span className="inline-flex items-center gap-1.5 sm:gap-2"><CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-500" /> Licensed PE/QSD/QSP</span>
             <span className="inline-flex items-center gap-1.5 sm:gap-2"><CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-500" /> Class A & B Contractor</span>
