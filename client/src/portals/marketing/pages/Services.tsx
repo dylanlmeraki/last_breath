@@ -372,7 +372,7 @@ export default function Services() {
               className="group inline-flex items-center justify-center gap-2 whitespace-nowrap text-white font-bold tracking-tight text-lg px-10 py-7 rounded-md shadow-lg hover:shadow-blue-500/60 hover:-translate-y-1 active:scale-95 transition-all duration-300"
               style={consultationShinyVars}
             >
-              Get a Consultation
+              Talk to an Expert
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
             </ShinyButton>
           </Link>
