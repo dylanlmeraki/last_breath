@@ -274,8 +274,8 @@ export default function Home() {
               <div className="relative">
                 <div className="absolute -inset-px bg-gradient-to-r from-cyan-500/5 via-blue-500/3 to-cyan-500/5 rounded-2xl sm:rounded-3xl blur-sm hidden sm:block" />
 
-                <div className="relative bg-slate-950/30 sm:bg-slate-950/40 lg:bg-slate-950/35 backdrop-blur-[6px] rounded-2xl sm:rounded-3xl border border-white/[0.06] shadow-2xl overflow-hidden">
-                  <div className="h-0.5 sm:h-1 bg-gradient-to-r from-blue-600/80 via-cyan-500/80 to-cyan-400/80" />
+                <div className="relative bg-slate-950/30 sm:bg-slate-950/40 lg:bg-slate-950/35 backdrop-blur-[6px] rounded-lg sm:rounded-xl border border-white/[0.06] shadow-2xl overflow-hidden">
+                  <div className="h-.5 sm:h-2 bg-gradient-to-r from-blue-600/80 via-cyan-500/80 to-cyan-400/80" />
 
                   <div className="px-5 py-8 sm:p-10 md:p-12 lg:p-16">
                     <h1 className="text-white font-bold tracking-tight leading-[1.08] text-[1.75rem] sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl mb-3 sm:mb-5" data-testid="text-hero-title">
@@ -286,20 +286,20 @@ export default function Home() {
                       </span>
                     </h1>
 
-                    <div className="flex items-center justify-center gap-3 sm:gap-4 my-4 sm:my-6">
-                      <div className="h-px w-10 sm:w-20 bg-gradient-to-r from-transparent to-cyan-500/60" />
-                      <div className="w-2 h-2 sm:w-3 sm:h-3 rotate-45 bg-orange-400" />
-                      <div className="h-px w-10 sm:w-20 bg-gradient-to-l from-transparent to-cyan-500/60" />
+                    <div className="flex items-center justify-center gap-4 my-6 sm:my-8 md:my-10">
+                      <div className="h-px w-16 sm:w-24 bg-gradient-to-r from-transparent to-cyan-500" />
+                      <div className="w-3 h-3 rotate-45 bg-orange-400" />
+                      <div className="h-px w-16 sm:w-24 bg-gradient-to-l from-transparent to-cyan-500" />
                     </div>
 
                     <p className="text-slate-300/90 mx-auto font-light tracking-wide text-sm sm:text-lg md:text-xl lg:text-2xl mb-6 sm:mb-8 max-w-2xl" data-testid="text-hero-subtitle">
                       Consulting Engineers & Contractors
                     </p>
 
-                    <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-5 sm:mb-6">
+                    <div className="flex flex-col sm:flex-row gap-3 sm:gap-5 justify-center items-center mb-5 sm:mb-6">
                       <Link
                         to={createPageUrl("Consultation")}
-                        className="w-full sm:w-auto px-8 py-4 bg-orange-600 hover:bg-orange-500 text-white font-bold uppercase tracking-wider rounded-sm sm:rounded-lg flex items-center justify-center gap-3 shadow-[0_8px_25px_rgba(249,115,22,0.4)] transition-all hover:-translate-y-1 active:scale-[0.97]"
+                        className="w-full sm:w-auto px-8 py-4 bg-orange-600 hover:bg-orange-500 text-white font-bold uppercase tracking-wider rounded-sm sm:rounded-xl flex items-center justify-center gap-3 shadow-[0_8px_25px_rgba(249,115,22,0.4)] transition-all hover:-translate-y-1 active:scale-[0.97]"
                         data-testid="link-hero-quote"
                       >
                         <PhoneCall className="w-5 h-5" />
@@ -307,7 +307,7 @@ export default function Home() {
                       </Link>
                       <Link
                         to={createPageUrl("ServicesOverview")}
-                        className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold uppercase tracking-wider rounded-sm sm:rounded-lg flex items-center justify-center gap-3 shadow-[0_8px_25px_rgba(6,182,212,0.3)] transition-all hover:-translate-y-1 active:scale-[0.97]"
+                        className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold uppercase tracking-wider rounded-sm sm:rounded-xl flex items-center justify-center gap-3 shadow-[0_8px_25px_rgba(6,182,212,0.3)] transition-all hover:-translate-y-1 active:scale-[0.97]"
                         data-testid="link-hero-consultation"
                       >
                         Our Services
@@ -324,15 +324,15 @@ export default function Home() {
                         <div className="text-white font-bold mb-0.5 sm:mb-2 text-2xl sm:text-3xl md:text-4xl">
                           <AnimatedCounter target={40} suffix="+" />
                         </div>
-                        <div className="text-cyan-400/90 tracking-tight font-medium text-[10px] sm:text-sm">Years Experience</div>
+                        <div className="text-orange-400/90 tracking-tight font-medium text-[10px] sm:text-sm">Years Experience</div>
                       </div>
                       <div className="group relative rounded-lg sm:rounded-xl bg-white/[0.04] border border-white/[0.08] hover:border-cyan-500/30 transition-all duration-300 hover:bg-white/[0.07] p-3 sm:p-5 md:p-6 flex flex-col items-center justify-center" data-testid="stat-full-service">
                         <div className="text-white font-bold mb-0.5 sm:mb-2 text-lg sm:text-2xl md:text-3xl lg:text-4xl">Full-Service</div>
-                        <div className="text-cyan-400/90 tracking-tight font-medium text-[10px] sm:text-sm">Vertically Integrated</div>
+                        <div className="text-orange-400/90 tracking-tight font-medium text-[10px] sm:text-sm">Vertically Integrated</div>
                       </div>
                       <div className="group relative rounded-lg sm:rounded-xl bg-white/[0.04] border border-white/[0.08] hover:border-cyan-500/30 transition-all duration-300 hover:bg-white/[0.07] p-3 sm:p-5 md:p-6 flex flex-col items-center justify-center" data-testid="stat-full-scale">
                         <div className="text-white font-bold mb-0.5 sm:mb-2 text-lg sm:text-2xl md:text-3xl lg:text-4xl">Full-Scale</div>
-                        <div className="text-cyan-400/90 tracking-tight font-medium text-[10px] sm:text-sm leading-tight text-center">Res, Comm & Infrastructure</div>
+                        <div className="text-orange-400/90 tracking-tight font-medium text-[10px] sm:text-sm leading-tight text-center">Res, Comm & Infrastructure</div>
                       </div>
                     </div>
                   </div>
@@ -369,7 +369,7 @@ export default function Home() {
               return (
                 <AnimatedSection key={svc.title} direction={idx % 2 === 0 ? "right" : "left"} delay={0.1 + idx * 0.1} className="h-full">
                   <Link to={createPageUrl(svc.page)} className="block group h-full" data-testid={`link-${svc.title.toLowerCase().replace(/\s+/g, "-")}`}>
-                    <div className={`h-full bg-white ${c.cardBgHover} rounded-xl sm:rounded-2xl shadow-md sm:shadow-lg group-hover:shadow-xl border border-slate-100 transition-all duration-300 overflow-hidden cursor-pointer hover:-translate-y-1 sm:hover:-translate-y-2`}>
+                    <div className={`h-full bg-white ${c.cardBgHover} rounded-md sm:rounded-lg shadow-md sm:shadow-lg group-hover:shadow-xl border border-slate-100 transition-all duration-300 overflow-hidden cursor-pointer hover:-translate-y-1 sm:hover:-translate-y-2`}>
                       <div className={`${c.h} bg-gradient-to-r ${c.border}`} />
                       <div className="p-5 sm:p-8 lg:p-10 flex flex-col items-center text-center">
                         <div className={`${c.bg} rounded-xl sm:rounded-2xl w-14 h-14 sm:w-20 sm:h-20 lg:w-24 lg:h-24 flex items-center justify-center mb-4 sm:mb-6 lg:mb-8 group-hover:bg-gradient-to-br ${c.hoverBg} group-hover:shadow-lg transition-all duration-300`}>
