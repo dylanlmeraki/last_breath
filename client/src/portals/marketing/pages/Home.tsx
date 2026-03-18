@@ -262,41 +262,98 @@ function ServiceCard({ svc, idx, reducedMotion }: { svc: typeof SERVICES[number]
 }
 
 
-function HeroServicesDivider() {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.3 });
-  const reducedMotion = useReducedMotion();
-
+function HeroServicesTransition() {
   return (
-    <div
-      ref={ref}
-      className="relative w-full overflow-hidden"
-      style={{ height: "clamp(28px, 3vw, 48px)", marginTop: "-1px", marginBottom: "-1px" }}
-    >
-      <div className="absolute inset-0 bg-slate-950" />
-      <div className="absolute inset-0 bg-white" style={{ clipPath: "polygon(0 60%, 100% 0, 100% 100%, 0 100%)" }} />
-      <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 1440 60" fill="none">
-        <line
-          x1="0" y1="36" x2="1440" y2="0"
-          stroke="url(#hero-svc-line)"
-          strokeWidth="2.5"
-          style={{
-            strokeDasharray: 2000,
-            strokeDashoffset: reducedMotion || isInView ? 0 : 2000,
-            transition: reducedMotion ? "none" : "stroke-dashoffset 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.05s",
-          }}
-        />
+    <div className="relative w-full overflow-hidden" style={{ height: "72px", marginTop: "-1px", marginBottom: "-1px" }}>
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-950 to-white" />
+      <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(rgba(6,182,212,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.04)_1px,transparent_1px)] bg-[size:24px_24px] opacity-60" />
+      <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 1440 72" fill="none">
+        <line x1="0" y1="36" x2="1440" y2="36" stroke="url(#hero-svc-dim)" strokeWidth="1.5" />
+        {[120, 360, 600, 840, 1080, 1320].map((x) => (
+          <g key={x}>
+            <line x1={x} y1="30" x2={x} y2="42" stroke="url(#hero-svc-dim)" strokeWidth="1" />
+            <line x1={x - 4} y1="30" x2={x + 4} y2="30" stroke="url(#hero-svc-dim)" strokeWidth="0.8" />
+            <line x1={x - 4} y1="42" x2={x + 4} y2="42" stroke="url(#hero-svc-dim)" strokeWidth="0.8" />
+          </g>
+        ))}
         <defs>
-          <linearGradient id="hero-svc-line" x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
-            <stop stopColor="#3b82f6" stopOpacity="0.15" />
-            <stop offset="0.2" stopColor="#3b82f6" stopOpacity="0.7" />
-            <stop offset="0.5" stopColor="#06b6d4" stopOpacity="0.9" />
-            <stop offset="0.8" stopColor="#3b82f6" stopOpacity="0.7" />
-            <stop offset="1" stopColor="#3b82f6" stopOpacity="0.15" />
+          <linearGradient id="hero-svc-dim" x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
+            <stop stopColor="#3b82f6" stopOpacity="0" />
+            <stop offset="0.15" stopColor="#3b82f6" stopOpacity="0.5" />
+            <stop offset="0.5" stopColor="#06b6d4" stopOpacity="0.8" />
+            <stop offset="0.85" stopColor="#3b82f6" stopOpacity="0.5" />
+            <stop offset="1" stopColor="#3b82f6" stopOpacity="0" />
           </linearGradient>
         </defs>
       </svg>
     </div>
+  );
+}
+
+function ServicesWhyChooseTransition() {
+  return (
+    <div className="relative w-full overflow-hidden" style={{ height: "40px", marginTop: "-1px", marginBottom: "-1px" }}>
+      <div className="absolute inset-0 bg-gradient-to-b from-white to-slate-100" />
+      <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 1440 40" fill="none">
+        <line x1="0" y1="20" x2="1440" y2="20" stroke="url(#svc-why-beam)" strokeWidth="1.5" />
+        <g>
+          <line x1="40" y1="14" x2="40" y2="26" stroke="url(#svc-why-beam)" strokeWidth="1.2" />
+          <line x1="36" y1="14" x2="44" y2="14" stroke="url(#svc-why-beam)" strokeWidth="1" />
+          <line x1="36" y1="26" x2="44" y2="26" stroke="url(#svc-why-beam)" strokeWidth="1" />
+          <line x1="36" y1="20" x2="40" y2="14" stroke="url(#svc-why-beam)" strokeWidth="0.8" />
+          <line x1="36" y1="20" x2="40" y2="26" stroke="url(#svc-why-beam)" strokeWidth="0.8" />
+        </g>
+        <g>
+          <line x1="1400" y1="14" x2="1400" y2="26" stroke="url(#svc-why-beam)" strokeWidth="1.2" />
+          <line x1="1396" y1="14" x2="1404" y2="14" stroke="url(#svc-why-beam)" strokeWidth="1" />
+          <line x1="1396" y1="26" x2="1404" y2="26" stroke="url(#svc-why-beam)" strokeWidth="1" />
+          <line x1="1404" y1="20" x2="1400" y2="14" stroke="url(#svc-why-beam)" strokeWidth="0.8" />
+          <line x1="1404" y1="20" x2="1400" y2="26" stroke="url(#svc-why-beam)" strokeWidth="0.8" />
+        </g>
+        <defs>
+          <linearGradient id="svc-why-beam" x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
+            <stop stopColor="#3b82f6" stopOpacity="0" />
+            <stop offset="0.15" stopColor="#3b82f6" stopOpacity="0.4" />
+            <stop offset="0.5" stopColor="#06b6d4" stopOpacity="0.7" />
+            <stop offset="0.85" stopColor="#3b82f6" stopOpacity="0.4" />
+            <stop offset="1" stopColor="#3b82f6" stopOpacity="0" />
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+  );
+}
+
+function WhyChooseCtaTransition() {
+  return (
+    <div className="relative w-full overflow-hidden" style={{ height: "72px", marginTop: "-1px", marginBottom: "-1px" }}>
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-100 via-slate-400 to-slate-900" />
+      <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(rgba(6,182,212,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.05)_1px,transparent_1px)] bg-[size:24px_24px]" style={{ mask: "linear-gradient(to bottom, transparent 20%, black 80%)", WebkitMask: "linear-gradient(to bottom, transparent 20%, black 80%)" }} />
+      <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 1440 72" fill="none">
+        <line x1="0" y1="36" x2="1440" y2="36" stroke="url(#why-cta-line)" strokeWidth="2" />
+        <defs>
+          <linearGradient id="why-cta-line" x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
+            <stop stopColor="#06b6d4" stopOpacity="0" />
+            <stop offset="0.2" stopColor="#06b6d4" stopOpacity="0.6" />
+            <stop offset="0.5" stopColor="#3b82f6" stopOpacity="0.9" />
+            <stop offset="0.8" stopColor="#06b6d4" stopOpacity="0.6" />
+            <stop offset="1" stopColor="#06b6d4" stopOpacity="0" />
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+  );
+}
+
+function DiagonalHatching() {
+  return (
+    <div
+      className="absolute inset-0 pointer-events-none"
+      style={{
+        backgroundImage: "repeating-linear-gradient(45deg, transparent, transparent 14px, rgba(6,182,212,0.025) 14px, rgba(6,182,212,0.025) 15px)",
+      }}
+      aria-hidden="true"
+    />
   );
 }
 
@@ -568,13 +625,15 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
-      {/* ── HERO → SERVICES DIVIDER ── */}
-      <div className="w-full h-2 bg-gradient-to-r from-cyan-100 via-blue-600 to-cyan-200 border-t-[#e5e7eb0a] border-r-[#e5e7eb0a] border-b-[#e5e7eb0a] border-l-[#e5e7eb0a]" />
+      {/* ── HERO → SERVICES TRANSITION ── */}
+      <HeroServicesTransition />
       {/* ── SERVICES ── */}
       <section
         className="py-12 sm:py-16 md:py-20 lg:py-28 px-4 sm:px-6 bg-white relative pb-[64px]"
         data-testid="section-services"
       >
+        <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(rgba(6,182,212,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.02)_1px,transparent_1px)] bg-[size:60px_60px]" aria-hidden="true" />
+        <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(rgba(6,182,212,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.01)_1px,transparent_1px)] bg-[size:12px_12px]" aria-hidden="true" />
         <div
           className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-slate-900/[0.06] to-transparent pointer-events-none z-[1]"
           aria-hidden="true"
@@ -632,13 +691,14 @@ export default function Home() {
           />
         </div>
       </section>
-      {/* ── SERVICES → WHY CHOOSE DIVIDER ── */}
-      <div className="w-full h-2 bg-gradient-to-r from-orange-100 via-cyan-500 to-orange-100" />
+      {/* ── SERVICES → WHY CHOOSE TRANSITION ── */}
+      <ServicesWhyChooseTransition />
       {/* ── WHY CHOOSE ── */}
       <section
         className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 bg-slate-100 relative overflow-hidden"
         data-testid="section-why-choose"
       >
+        <DiagonalHatching />
         <div
           className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-white/40 to-transparent pointer-events-none z-[1]"
           aria-hidden="true"
@@ -801,8 +861,8 @@ export default function Home() {
           </div>
         </div>
       </section>
-      {/* ── WHY → CTA GRADIENT BAR ── */}
-      <div className="w-full h-2 bg-gradient-to-r from-blue-900 via-cyan-600 to-blue-900" />
+      {/* ── WHY CHOOSE → CTA TRANSITION ── */}
+      <WhyChooseCtaTransition />
       {/* ── CTA ── */}
       <section
         ref={ctaRef}
