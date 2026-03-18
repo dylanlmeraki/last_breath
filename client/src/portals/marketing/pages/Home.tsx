@@ -628,17 +628,17 @@ export default function Home() {
         />
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
-            <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 p-6 sm:p-8 lg:p-10 border border-slate-100" data-testid="card-why-choose">
+            <div>
               <AnimatedSection direction="up" ease="tween" blur>
                 <div className="text-center">
                   <h2
-                    className="text-slate-900 mb-3 sm:mb-4 text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight leading-tight"
+                    className="text-slate-900 mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight leading-tight"
                     data-testid="text-why-title"
                   >
                     Why Pacific Engineering?
                   </h2>
-                  <div className="bg-gradient-to-r from-cyan-100 via-blue-500 to-cyan-100 w-16 sm:w-24 h-1 rounded-full mx-auto my-4 sm:my-6" />
-                  <p className="text-slate-700 mb-6 sm:mb-8 text-base sm:text-lg lg:text-xl leading-relaxed max-w-xl mx-auto">
+                  <div className="bg-gradient-to-r from-cyan-100 to-cyan-100 via-blue-500 my-5 sm:my-8 w-24 sm:w-36 h-1 sm:h-1 rounded-full mx-auto ml-[232px] mr-[232px] pl-[54px] pr-[54px]" />
+                  <p className="text-slate-700 mb-6 sm:mb-10 text-base sm:text-lg lg:text-xl leading-relaxed max-w-xl mx-auto">
                     With over 40 years of experience in full-scale civil
                     engineering and construction contracting, we deliver
                     comprehensive solutions keeping projects on track with
@@ -647,7 +647,7 @@ export default function Home() {
                 </div>
               </AnimatedSection>
 
-              <div className="space-y-4 sm:space-y-5 mb-6 sm:mb-8 w-full">
+              <div className="space-y-4 sm:space-y-6 lg:space-y-8 mb-8 sm:mb-12 w-full">
                 {[
                   {
                     icon: Award,
@@ -683,11 +683,11 @@ export default function Home() {
                     }
                   >
                     <div className="flex-shrink-0 w-11 sm:w-14">
-                      <div className="w-11 h-11 sm:w-14 sm:h-14 bg-slate-50 rounded-lg sm:rounded-xl flex items-center justify-center shadow-sm sm:shadow-md border border-cyan-100">
+                      <div className="w-11 h-11 sm:w-14 sm:h-14 bg-white rounded-lg sm:rounded-xl flex items-center justify-center shadow-sm sm:shadow-md border border-cyan-100">
                         <item.icon className="w-5 h-5 sm:w-7 sm:h-7 text-cyan-600" />
                       </div>
                     </div>
-                    <div className="text-left flex-1">
+                    <div className="text-center flex-1">
                       <h3 className="text-slate-900 mb-1 sm:mb-2 text-base sm:text-lg lg:text-xl font-bold tracking-wide">
                         {item.title}
                       </h3>
@@ -695,6 +695,10 @@ export default function Home() {
                         {item.desc}
                       </p>
                     </div>
+                    <div
+                      className="flex-shrink-0 w-11 sm:w-14"
+                      aria-hidden="true"
+                    />
                   </motion.div>
                 ))}
               </div>
@@ -720,7 +724,7 @@ export default function Home() {
                 </Link>
                 <Link
                   to={createPageUrl("About")}
-                  className="group flex-1 inline-flex items-center justify-center gap-2 text-slate-800 font-bold tracking-tight text-base px-6 py-3.5 sm:py-4 rounded-sm sm:rounded-lg bg-slate-50 border-2 border-slate-300 hover:border-slate-400 shadow-md hover:shadow-lg transition-all duration-300 active:scale-[0.97] hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:outline-none"
+                  className="group flex-1 inline-flex items-center justify-center gap-2 text-slate-800 font-bold tracking-tight text-base px-6 py-3.5 sm:py-4 rounded-sm sm:rounded-lg bg-white border-2 border-slate-300 hover:border-slate-400 shadow-md hover:shadow-lg transition-all duration-300 active:scale-[0.97] hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:outline-none border-t-[#94a3b800] border-r-[#94a3b800] border-b-[#94a3b800] border-l-[#94a3b800]"
                   data-testid="link-about-team"
                 >
                   <Users className="w-5 h-5" /> About Our Team
