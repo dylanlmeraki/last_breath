@@ -500,7 +500,7 @@ export default function Home() {
         </div>
       </section>
       <SectionDivider variant="angled" from="light" to="dark" />
-      <section className="pt-12 pb-0 sm:pt-16 md:pt-20 lg:pt-24 px-4 sm:px-6 bg-slate-900 relative overflow-hidden" data-testid="section-cta">
+      <section className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 bg-slate-900 relative overflow-hidden" data-testid="section-cta">
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1541888082416-a711bc141c2c?w=1600')] bg-cover bg-center opacity-[0.06]" />
         <div className="absolute inset-0 bg-gradient-to-b from-slate-900/70 to-slate-950/90" />
         <BlueprintGrid />
