@@ -883,7 +883,7 @@ export default function Home() {
         </div>
       </section>
       {/* ── WHY → CTA DIAGONAL GRADIENT BAR ── */}
-      <div className="relative w-full bg-slate-900" style={{ height: "clamp(30px,4vw,60px)", marginBottom: "-1px" }}>
+      <div className="relative w-full bg-slate-900 text-[#2828d1e6]" style={{ height: "clamp(30px,4vw,60px)", marginBottom: "-1px" }}>
         <svg className="absolute inset-0 w-full h-full pointer-events-none" preserveAspectRatio="none" viewBox="0 0 1440 60" fill="none">
           <line x1="1440" y1="0" x2="0" y2="60" stroke="url(#why-cta-bar)" strokeWidth="3" />
           <defs>
