@@ -665,7 +665,7 @@ export default function Home() {
             ease="tween"
           >
             <h2
-              className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 sm:mb-6 tracking-tight mb-[44px]"
+              className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 sm:mb-6 tracking-tight pt-[0px] pb-[0px] mb-[42px]"
               data-testid="text-services-title"
             >
               Consulting Engineers & Contractors
