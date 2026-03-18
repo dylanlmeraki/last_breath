@@ -264,24 +264,22 @@ function ServiceCard({ svc, idx, reducedMotion }: { svc: typeof SERVICES[number]
 
 function HeroServicesTransition() {
   return (
-    <div className="relative w-full overflow-hidden" style={{ height: "72px", marginTop: "-1px", marginBottom: "-1px" }}>
+    <div className="relative w-full overflow-hidden" style={{ height: "32px", marginTop: "-1px", marginBottom: "-1px" }}>
       <div className="absolute inset-0 bg-gradient-to-b from-slate-950 to-white" />
-      <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(rgba(6,182,212,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.04)_1px,transparent_1px)] bg-[size:24px_24px] opacity-60" />
-      <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 1440 72" fill="none">
-        <line x1="0" y1="36" x2="1440" y2="36" stroke="url(#hero-svc-dim)" strokeWidth="1.5" />
-        {[120, 360, 600, 840, 1080, 1320].map((x) => (
+      <div className="absolute inset-0 pointer-events-none opacity-20 bg-[linear-gradient(rgba(6,182,212,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.03)_1px,transparent_1px)] bg-[size:24px_24px]" />
+      <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 1440 32" fill="none">
+        <line x1="0" y1="16" x2="1440" y2="16" stroke="url(#hero-svc-dim)" strokeWidth="1" />
+        {[240, 480, 720, 960, 1200].map((x) => (
           <g key={x}>
-            <line x1={x} y1="30" x2={x} y2="42" stroke="url(#hero-svc-dim)" strokeWidth="1" />
-            <line x1={x - 4} y1="30" x2={x + 4} y2="30" stroke="url(#hero-svc-dim)" strokeWidth="0.8" />
-            <line x1={x - 4} y1="42" x2={x + 4} y2="42" stroke="url(#hero-svc-dim)" strokeWidth="0.8" />
+            <line x1={x} y1="12" x2={x} y2="20" stroke="url(#hero-svc-dim)" strokeWidth="0.6" />
           </g>
         ))}
         <defs>
           <linearGradient id="hero-svc-dim" x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
             <stop stopColor="#3b82f6" stopOpacity="0" />
-            <stop offset="0.15" stopColor="#3b82f6" stopOpacity="0.5" />
-            <stop offset="0.5" stopColor="#06b6d4" stopOpacity="0.8" />
-            <stop offset="0.85" stopColor="#3b82f6" stopOpacity="0.5" />
+            <stop offset="0.2" stopColor="#3b82f6" stopOpacity="0.2" />
+            <stop offset="0.5" stopColor="#06b6d4" stopOpacity="0.35" />
+            <stop offset="0.8" stopColor="#3b82f6" stopOpacity="0.2" />
             <stop offset="1" stopColor="#3b82f6" stopOpacity="0" />
           </linearGradient>
         </defs>
@@ -292,30 +290,26 @@ function HeroServicesTransition() {
 
 function ServicesWhyChooseTransition() {
   return (
-    <div className="relative w-full overflow-hidden" style={{ height: "40px", marginTop: "-1px", marginBottom: "-1px" }}>
+    <div className="relative w-full overflow-hidden" style={{ height: "20px", marginTop: "-1px", marginBottom: "-1px" }}>
       <div className="absolute inset-0 bg-gradient-to-b from-white to-slate-100" />
-      <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 1440 40" fill="none">
-        <line x1="0" y1="20" x2="1440" y2="20" stroke="url(#svc-why-beam)" strokeWidth="1.5" />
+      <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 1440 20" fill="none">
+        <line x1="0" y1="10" x2="1440" y2="10" stroke="url(#svc-why-beam)" strokeWidth="0.8" />
         <g>
-          <line x1="40" y1="14" x2="40" y2="26" stroke="url(#svc-why-beam)" strokeWidth="1.2" />
-          <line x1="36" y1="14" x2="44" y2="14" stroke="url(#svc-why-beam)" strokeWidth="1" />
-          <line x1="36" y1="26" x2="44" y2="26" stroke="url(#svc-why-beam)" strokeWidth="1" />
-          <line x1="36" y1="20" x2="40" y2="14" stroke="url(#svc-why-beam)" strokeWidth="0.8" />
-          <line x1="36" y1="20" x2="40" y2="26" stroke="url(#svc-why-beam)" strokeWidth="0.8" />
+          <line x1="60" y1="6" x2="60" y2="14" stroke="url(#svc-why-beam)" strokeWidth="0.6" />
+          <line x1="57" y1="6" x2="63" y2="6" stroke="url(#svc-why-beam)" strokeWidth="0.5" />
+          <line x1="57" y1="14" x2="63" y2="14" stroke="url(#svc-why-beam)" strokeWidth="0.5" />
         </g>
         <g>
-          <line x1="1400" y1="14" x2="1400" y2="26" stroke="url(#svc-why-beam)" strokeWidth="1.2" />
-          <line x1="1396" y1="14" x2="1404" y2="14" stroke="url(#svc-why-beam)" strokeWidth="1" />
-          <line x1="1396" y1="26" x2="1404" y2="26" stroke="url(#svc-why-beam)" strokeWidth="1" />
-          <line x1="1404" y1="20" x2="1400" y2="14" stroke="url(#svc-why-beam)" strokeWidth="0.8" />
-          <line x1="1404" y1="20" x2="1400" y2="26" stroke="url(#svc-why-beam)" strokeWidth="0.8" />
+          <line x1="1380" y1="6" x2="1380" y2="14" stroke="url(#svc-why-beam)" strokeWidth="0.6" />
+          <line x1="1377" y1="6" x2="1383" y2="6" stroke="url(#svc-why-beam)" strokeWidth="0.5" />
+          <line x1="1377" y1="14" x2="1383" y2="14" stroke="url(#svc-why-beam)" strokeWidth="0.5" />
         </g>
         <defs>
           <linearGradient id="svc-why-beam" x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
             <stop stopColor="#3b82f6" stopOpacity="0" />
-            <stop offset="0.15" stopColor="#3b82f6" stopOpacity="0.4" />
-            <stop offset="0.5" stopColor="#06b6d4" stopOpacity="0.7" />
-            <stop offset="0.85" stopColor="#3b82f6" stopOpacity="0.4" />
+            <stop offset="0.2" stopColor="#3b82f6" stopOpacity="0.15" />
+            <stop offset="0.5" stopColor="#06b6d4" stopOpacity="0.3" />
+            <stop offset="0.8" stopColor="#3b82f6" stopOpacity="0.15" />
             <stop offset="1" stopColor="#3b82f6" stopOpacity="0" />
           </linearGradient>
         </defs>
@@ -326,17 +320,17 @@ function ServicesWhyChooseTransition() {
 
 function WhyChooseCtaTransition() {
   return (
-    <div className="relative w-full overflow-hidden" style={{ height: "72px", marginTop: "-1px", marginBottom: "-1px" }}>
-      <div className="absolute inset-0 bg-gradient-to-b from-slate-100 via-slate-400 to-slate-900" />
-      <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(rgba(6,182,212,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.05)_1px,transparent_1px)] bg-[size:24px_24px]" style={{ mask: "linear-gradient(to bottom, transparent 20%, black 80%)", WebkitMask: "linear-gradient(to bottom, transparent 20%, black 80%)" }} />
-      <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 1440 72" fill="none">
-        <line x1="0" y1="36" x2="1440" y2="36" stroke="url(#why-cta-line)" strokeWidth="2" />
+    <div className="relative w-full overflow-hidden" style={{ height: "36px", marginTop: "-1px", marginBottom: "-1px" }}>
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-100 via-slate-500/80 to-slate-900" />
+      <div className="absolute inset-0 pointer-events-none opacity-30 bg-[linear-gradient(rgba(6,182,212,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.03)_1px,transparent_1px)] bg-[size:24px_24px]" style={{ mask: "linear-gradient(to bottom, transparent 30%, black 90%)", WebkitMask: "linear-gradient(to bottom, transparent 30%, black 90%)" }} />
+      <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 1440 36" fill="none">
+        <line x1="0" y1="18" x2="1440" y2="18" stroke="url(#why-cta-line)" strokeWidth="1" />
         <defs>
           <linearGradient id="why-cta-line" x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
             <stop stopColor="#06b6d4" stopOpacity="0" />
-            <stop offset="0.2" stopColor="#06b6d4" stopOpacity="0.6" />
-            <stop offset="0.5" stopColor="#3b82f6" stopOpacity="0.9" />
-            <stop offset="0.8" stopColor="#06b6d4" stopOpacity="0.6" />
+            <stop offset="0.2" stopColor="#06b6d4" stopOpacity="0.2" />
+            <stop offset="0.5" stopColor="#3b82f6" stopOpacity="0.35" />
+            <stop offset="0.8" stopColor="#06b6d4" stopOpacity="0.2" />
             <stop offset="1" stopColor="#06b6d4" stopOpacity="0" />
           </linearGradient>
         </defs>
