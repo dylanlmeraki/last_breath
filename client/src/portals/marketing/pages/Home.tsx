@@ -16,6 +16,8 @@ import {
   Droplets,
   Zap,
   TrendingUp,
+  MapPin,
+  Clock,
 } from "lucide-react";
 import AnimatedSection from "../components/AnimatedSection";
 import SEO from "../components/SEO";
@@ -276,6 +278,73 @@ function DiagonalHatching() {
       }}
       aria-hidden="true"
     />
+  );
+}
+
+function StructuralBeamReveal() {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, amount: 0.5 });
+  const rm = typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  return (
+    <div ref={ref} className="hidden sm:flex items-center justify-center h-10 relative pointer-events-none select-none" aria-hidden="true">
+      <style>{`
+        @keyframes beam-draw { 0% { transform: scaleX(0); } 100% { transform: scaleX(1); } }
+        @keyframes tick-fade { 0% { opacity: 0; transform: scaleY(0); } 100% { opacity: 0.3; transform: scaleY(1); } }
+        @media (prefers-reduced-motion: reduce) { [data-beam], [data-tick] { animation: none !important; opacity: 0.2 !important; transform: none !important; } }
+      `}</style>
+      <div
+        data-beam
+        className="absolute h-px bg-gradient-to-r from-transparent via-slate-400 to-transparent"
+        style={{
+          width: "60%",
+          animation: inView && !rm ? "beam-draw 1.2s cubic-bezier(0.22,1,0.36,1) forwards" : undefined,
+          transform: inView || rm ? "scaleX(1)" : "scaleX(0)",
+          opacity: 0.2,
+        }}
+      />
+      {[...Array(11)].map((_, i) => (
+        <div
+          key={i}
+          data-tick
+          className="absolute bg-slate-400"
+          style={{
+            width: "1px",
+            height: i % 5 === 0 ? "10px" : "5px",
+            left: `${20 + i * 6}%`,
+            top: "50%",
+            transformOrigin: "top center",
+            animation: inView && !rm ? `tick-fade 0.4s ${0.6 + i * 0.05}s cubic-bezier(0.22,1,0.36,1) forwards` : undefined,
+            opacity: inView && rm ? 0.2 : inView ? undefined : 0,
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+
+function LineSweep() {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, amount: 0.5 });
+  const rm = typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  return (
+    <div ref={ref} className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+      <style>{`
+        @keyframes line-sweep { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+        @media (prefers-reduced-motion: reduce) { [data-sweep] { animation: none !important; opacity: 0 !important; } }
+      `}</style>
+      {inView && !rm && (
+        <div
+          data-sweep
+          className="absolute inset-y-0 w-1/3"
+          style={{
+            background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent)",
+            animation: "line-sweep 1.5s cubic-bezier(0.22,1,0.36,1) forwards",
+          }}
+        />
+      )}
+    </div>
   );
 }
 
@@ -550,7 +619,7 @@ export default function Home() {
       {/* ── HERO → SERVICES TRANSITION ── */}
       <div className="relative w-full" style={{ marginTop: "-1px" }} data-testid="divider-hero-services">
         <div className="h-1 bg-gradient-to-r from-slate-800 via-blue-600 to-slate-800" />
-        <div className="h-[3px]" style={{ background: "linear-gradient(to right, #1e293b, #0e7490 20%, #06b6d4 35%, #f97316 50%, #06b6d4 65%, #0e7490 80%, #1e293b)" }} />
+        <div className="h-[3px]" style={{ background: "linear-gradient(to right, #1e293b, #0e7490 20%, #06b6d4 35%, #22d3ee 50%, #06b6d4 65%, #0e7490 80%, #1e293b)" }} />
         <div className="h-px bg-gradient-to-r from-slate-300 via-cyan-200 to-slate-300" />
       </div>
       {/* ── SERVICES ── */}
@@ -565,6 +634,7 @@ export default function Home() {
           aria-hidden="true"
         />
         <div className="max-w-7xl mx-auto">
+          <StructuralBeamReveal />
           <AnimatedSection
             direction="up"
             className="text-center mb-10 sm:mb-14 lg:mb-20"
@@ -573,13 +643,22 @@ export default function Home() {
             ease="tween"
           >
             <h2
-              className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 sm:mb-6 tracking-tight pt-[0px] pb-[0px] mb-[42px]"
+              className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 mb-6 sm:mb-8 tracking-tight"
               data-testid="text-services-title"
             >
               Consulting Engineers & Contractors
             </h2>
-            <div className="w-32 sm:w-54 h-1 sm:h-1 bg-gradient-to-r from-cyan-100 to-cyan-100 via-blue-500 mx-auto mb-4 sm:mb-8 rounded-full pl-[216px] pr-[216px]" />
+            <div className="w-20 sm:w-32 h-1 bg-gradient-to-r from-cyan-200 via-blue-500 to-cyan-200 mx-auto mb-6 sm:mb-8 rounded-full" />
             <p className="sm:text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto text-[22px]">Full-scale civil and structural engineering and construction plans developed and implemented by our teams of in-house Engineers, QSD/QSPs, and construction experts. Helping you ensure on-time, on budget, full compliance, and with maximum creative outlook for your project. Keep everything on track.</p>
+            <div className="flex flex-wrap items-center justify-center gap-x-3 sm:gap-x-5 gap-y-2 mt-5 sm:mt-6 text-slate-400 text-xs sm:text-sm tracking-wide font-medium" data-testid="trust-badges-services">
+              <span className="inline-flex items-center gap-1.5"><MapPin className="w-3.5 h-3.5 text-cyan-500" />SF Bay Area</span>
+              <span className="text-slate-300">·</span>
+              <span className="inline-flex items-center gap-1.5"><Shield className="w-3.5 h-3.5 text-cyan-500" />Licensed PE / QSD / QSP</span>
+              <span className="text-slate-300">·</span>
+              <span className="inline-flex items-center gap-1.5"><Award className="w-3.5 h-3.5 text-cyan-500" />Class A & B Contractor</span>
+              <span className="text-slate-300">·</span>
+              <span className="inline-flex items-center gap-1.5"><Clock className="w-3.5 h-3.5 text-cyan-500" />40+ Years</span>
+            </div>
           </AnimatedSection>
 
           <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 max-w-6xl mx-auto">
@@ -615,9 +694,10 @@ export default function Home() {
         </div>
       </section>
       {/* ── SERVICES → WHY CHOOSE TRANSITION ── */}
-      <div className="relative w-full" style={{ marginTop: "2px" }} data-testid="divider-services-whychoose">
-        <div className="h-px bg-gradient-to-r from-slate-200 via-blue-200 to-slate-200 border-t-[2px] border-r-[2px] border-b-[2px] border-l-[2px] border-t-[#e5e7eb] border-r-[#e5e7eb] border-b-[#e5e7eb] border-l-[#e5e7eb] opacity-[0]" />
-        <div className="h-2" style={{ background: "linear-gradient(to right, #e2e8f0, #3b82f6 25%, #06b6d4 50%, #3b82f6 75%, #e2e8f0)" }} />
+      <div className="relative w-full" data-testid="divider-services-whychoose">
+        <div className="h-2 relative overflow-hidden" style={{ background: "linear-gradient(to right, #e2e8f0, #3b82f6 25%, #06b6d4 50%, #3b82f6 75%, #e2e8f0)" }}>
+          <LineSweep />
+        </div>
         <div className="h-px bg-gradient-to-r from-slate-200 via-cyan-100 to-slate-200" />
       </div>
       {/* ── WHY CHOOSE ── */}
@@ -632,7 +712,7 @@ export default function Home() {
         />
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
-            <div>
+            <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 p-6 sm:p-8 lg:p-10 border border-slate-100">
               <AnimatedSection direction="up" ease="tween" blur>
                 <div className="text-center">
                   <h2
@@ -641,7 +721,7 @@ export default function Home() {
                   >
                     Why Pacific Engineering?
                   </h2>
-                  <div className="bg-gradient-to-r from-cyan-100 to-cyan-100 via-blue-500 my-5 sm:my-8 w-24 sm:w-36 h-1 sm:h-1 rounded-full mx-auto ml-[232px] mr-[232px] pl-[54px] pr-[54px]" />
+                  <div className="w-20 sm:w-32 h-1 bg-gradient-to-r from-cyan-200 via-blue-500 to-cyan-200 mx-auto my-5 sm:my-8 rounded-full" />
                   <p className="text-slate-700 mb-6 sm:mb-10 text-base sm:text-lg lg:text-xl leading-relaxed max-w-xl mx-auto">
                     With over 40 years of experience in full-scale civil
                     engineering and construction contracting, we deliver
@@ -686,12 +766,12 @@ export default function Home() {
                           }
                     }
                   >
-                    <div className="flex-shrink-0 w-11 sm:w-14">
-                      <div className="w-11 h-11 sm:w-14 sm:h-14 bg-white rounded-lg sm:rounded-xl flex items-center justify-center shadow-sm sm:shadow-md border border-cyan-100">
+                    <div className="flex-shrink-0">
+                      <div className="w-11 h-11 sm:w-14 sm:h-14 bg-slate-50 rounded-lg sm:rounded-xl flex items-center justify-center shadow-sm sm:shadow-md border border-cyan-100">
                         <item.icon className="w-5 h-5 sm:w-7 sm:h-7 text-cyan-600" />
                       </div>
                     </div>
-                    <div className="text-center flex-1">
+                    <div className="text-left flex-1">
                       <h3 className="text-slate-900 mb-1 sm:mb-2 text-base sm:text-lg lg:text-xl font-bold tracking-wide">
                         {item.title}
                       </h3>
@@ -699,10 +779,6 @@ export default function Home() {
                         {item.desc}
                       </p>
                     </div>
-                    <div
-                      className="flex-shrink-0 w-11 sm:w-14"
-                      aria-hidden="true"
-                    />
                   </motion.div>
                 ))}
               </div>
@@ -728,7 +804,7 @@ export default function Home() {
                 </Link>
                 <Link
                   to={createPageUrl("About")}
-                  className="group flex-1 inline-flex items-center justify-center gap-2 text-slate-800 font-bold tracking-tight text-base px-6 py-3.5 sm:py-4 rounded-sm sm:rounded-lg bg-white border-2 border-slate-300 hover:border-slate-400 shadow-md hover:shadow-lg transition-all duration-300 active:scale-[0.97] hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:outline-none border-t-[#94a3b800] border-r-[#94a3b800] border-b-[#94a3b800] border-l-[#94a3b800]"
+                  className="group flex-1 inline-flex items-center justify-center gap-2 text-slate-800 font-bold tracking-tight text-base px-6 py-3.5 sm:py-4 rounded-sm sm:rounded-lg bg-white border-2 border-slate-300 hover:border-slate-400 shadow-md hover:shadow-lg transition-all duration-300 active:scale-[0.97] hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:outline-none"
                   data-testid="link-about-team"
                 >
                   <Users className="w-5 h-5" /> About Our Team
@@ -791,7 +867,7 @@ export default function Home() {
       {/* ── WHY CHOOSE → CTA TRANSITION ── */}
       <div className="relative w-full" style={{ marginTop: "1px" }} data-testid="divider-whychoose-cta">
         <div className="h-px bg-gradient-to-r from-slate-200 via-slate-300 to-slate-200" />
-        <div className="h-2 pb-[0px] mb-[-1px] opacity-[0.72]" style={{ background: "linear-gradient(to right, #475569, #1e40af 20%, #0891b2 40%, #ea580c 50%, #0891b2 60%, #1e40af 80%, #475569)" }} />
+        <div className="h-2 opacity-[0.72]" style={{ background: "linear-gradient(to right, #475569, #1e40af 20%, #0891b2 40%, #06b6d4 50%, #0891b2 60%, #1e40af 80%, #475569)" }} />
         <div className="h-[3px] bg-gradient-to-r from-slate-700 via-blue-900 to-slate-700" />
         <div className="h-px bg-gradient-to-r from-slate-800 via-slate-900 to-slate-800" />
       </div>
