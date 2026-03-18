@@ -10,9 +10,7 @@ import {
   Phone,
   PhoneCall,
   Users,
-  Star,
   Award,
-  Building2,
   Ruler,
   Droplets,
   MapPin,
@@ -407,28 +405,7 @@ export default function Home() {
           </AnimatedSection>
         </div>
       </section>
-      <SectionDivider variant="angled" from="light" to="dark" />
-      <section className="py-8 sm:py-12 md:py-16 px-4 sm:px-6 bg-slate-900 overflow-hidden" data-testid="section-trust-badges">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6">
-            {[
-              { icon: Shield, label: "Licensed PE/QSD/QSP", value: "Certified" },
-              { icon: Building2, label: "Class A & B", value: "Contractor" },
-              { icon: MapPin, label: "Bay Area", value: "40+ Years" },
-              { icon: Star, label: "Client Rating", value: "5-Star" },
-            ].map((badge, idx) => (
-              <AnimatedSection key={badge.label} direction="up" delay={idx * 0.1}>
-                <div className="text-center p-3 sm:p-6 rounded-xl border border-white/[0.06] bg-white/[0.03] hover:bg-white/[0.06] transition-colors" data-testid={`trust-${badge.label.toLowerCase().replace(/\s+/g, "-")}`}>
-                  <badge.icon className="w-6 h-6 sm:w-8 sm:h-8 text-cyan-400 mx-auto mb-2 sm:mb-3" />
-                  <div className="text-white font-bold text-lg sm:text-xl lg:text-2xl mb-0.5">{badge.value}</div>
-                  <div className="text-slate-400 text-xs sm:text-sm font-medium">{badge.label}</div>
-                </div>
-              </AnimatedSection>
-            ))}
-          </div>
-        </div>
-      </section>
-      <SectionDivider variant="gradient" from="dark" to="light" />
+      <SectionDivider variant="angled" from="light" to="light" flip />
       <section className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 bg-cyan-50/40 relative overflow-hidden" data-testid="section-why-choose">
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
@@ -502,18 +479,20 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <SectionDivider variant="angled" from="light" to="dark" />
-      <section className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 bg-slate-900 relative overflow-hidden" data-testid="section-cta">
+      <section className="relative bg-slate-900 overflow-hidden" data-testid="section-cta">
         <div className="absolute inset-0 hidden sm:block opacity-30">
-          <img src={bayBridgeImg} alt="" className="w-full h-full object-cover" />
+          <img src={bayBridgeImg} alt="" className="w-full h-full object-cover object-top" />
         </div>
         <div className="absolute inset-0 bg-slate-900/50 hidden sm:block mix-blend-multiply" />
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-900/80 to-slate-950/95 sm:from-slate-900/30 sm:to-slate-950/50" />
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-900/60 to-slate-950/95 sm:from-slate-900/20 sm:to-slate-950/60" />
+        <div className="absolute top-0 left-0 right-0 h-16 sm:h-24 bg-gradient-to-b from-slate-900 to-transparent" />
         <BlueprintGrid />
+        <div className="relative z-10">
+          <SectionDivider variant="angled" from="light" to="dark" />
+        </div>
 
-        <div className="relative z-10 max-w-4xl mx-auto text-center">
+        <div className="relative z-10 max-w-4xl mx-auto text-center px-4 sm:px-6 py-8 sm:py-12 md:py-16 lg:py-20">
           <AnimatedSection direction="up">
-            <p className="text-cyan-400 font-bold uppercase tracking-widest text-xs sm:text-sm mb-3 sm:mb-4">Ready to move?</p>
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-white mb-5 sm:mb-8 tracking-tight leading-[1.08]" data-testid="text-cta-title">
               Get Your Project<br className="sm:hidden" /> on Track
             </h2>

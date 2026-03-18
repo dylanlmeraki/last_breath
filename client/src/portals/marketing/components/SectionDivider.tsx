@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 
 type DividerVariant = "gradient" | "angled" | "blueprint";
 
@@ -34,8 +34,10 @@ export default function SectionDivider({
   flip = false,
 }: SectionDividerProps) {
   const { ref, inView } = useInView(0.1);
+  const uid = useId();
 
   if (variant === "angled") {
+    const gradId = `angled-grad-${uid.replace(/:/g, "")}`;
     const topColor = from === "dark" ? "#0f172a" : "#ffffff";
     const bottomColor = to === "dark" ? "#0f172a" : to === "light" ? "#ffffff" : "#f8fafc";
     return (
@@ -60,7 +62,7 @@ export default function SectionDivider({
           <polygon points="0,28 1440,0 1440,60 0,60" fill={bottomColor} />
           <line
             x1="0" y1="28" x2="1440" y2="0"
-            stroke="url(#angled-line-grad)"
+            stroke={`url(#${gradId})`}
             strokeWidth="1.5"
             strokeOpacity="0.5"
             style={{
@@ -70,7 +72,7 @@ export default function SectionDivider({
             }}
           />
           <defs>
-            <linearGradient id="angled-line-grad" x1="0" y1="28" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
+            <linearGradient id={gradId} x1="0" y1="28" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
               <stop stopColor="#3b82f6" stopOpacity="0.1" />
               <stop offset="0.2" stopColor="#3b82f6" stopOpacity="0.8" />
               <stop offset="0.5" stopColor="#06b6d4" stopOpacity="0.9" />

@@ -247,9 +247,22 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
                   <div className="text-xs text-cyan-400 tracking-wide font-medium">Consulting Engineers & Contractors</div>
                 </div>
               </div>
-              <p className="text-sm text-gray-300 leading-relaxed border-l-4 border-cyan-500 pl-4 font-medium">
-                Full-scale civil and structural engineering and construction services across the San Francisco Bay Area.
+              <p className="text-sm text-gray-300 leading-relaxed border-l-4 border-cyan-500 pl-4 font-medium mb-5">
+                Pacific Engineering & Construction Inc. provides full-scale civil and structural engineering, construction consulting, and plan implementation in a vertically integrated business model working on projects of all sizes from residential remodels to public utility and infrastructure projects. Through decades of deep in-field knowledge and network fostering and growth - Pacific Engineering & Construction truly has earned its polished and professional reputation.
               </p>
+              <div className="flex items-center gap-3 mb-3">
+                <a
+                  href="https://www.linkedin.com/in/a-mark-waldman-814b119"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center border border-white/10 hover:border-cyan-500/50 hover:bg-white/10 transition-all"
+                  aria-label="LinkedIn"
+                  data-testid="link-linkedin-footer"
+                >
+                  <SiLinkedin className="w-4 h-4 text-gray-400" />
+                </a>
+              </div>
+              <p className="text-xs text-gray-500 font-medium">Contractor Lic. #: 1351235425</p>
             </div>
 
             <div>
@@ -280,23 +293,23 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
             <div>
               <h4 className="font-bold text-base uppercase tracking-wider text-cyan-400 mb-5 text-center border-b border-cyan-500/20 pb-3">Contact</h4>
               <ul className="space-y-3">
-                <li className="flex flex-col items-center gap-1.5 text-gray-300 group">
-                  <div className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center border border-white/10 group-hover:border-cyan-500/50 transition-colors">
+                <li className="flex items-center gap-3 text-gray-300 group">
+                  <div className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center border border-white/10 group-hover:border-cyan-500/50 transition-colors flex-shrink-0">
                     <Phone className="w-4 h-4 text-cyan-400" />
                   </div>
                   <a href="tel:+14156894428" className="hover:text-cyan-400 transition-colors text-sm font-medium">(415)-689-4428</a>
                 </li>
-                <li className="flex flex-col items-center gap-1.5 text-gray-300 group">
-                  <div className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center border border-white/10 group-hover:border-cyan-500/50 transition-colors">
+                <li className="flex items-center gap-3 text-gray-300 group">
+                  <div className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center border border-white/10 group-hover:border-cyan-500/50 transition-colors flex-shrink-0">
                     <Mail className="w-4 h-4 text-cyan-400" />
                   </div>
-                  <a href="mailto:amwaldman@sbcglobal.net" className="hover:text-cyan-400 transition-colors break-all text-sm font-medium text-center">amwaldman@sbcglobal.net</a>
+                  <a href="mailto:amwaldman@sbcglobal.net" className="hover:text-cyan-400 transition-colors break-all text-sm font-medium">amwaldman@sbcglobal.net</a>
                 </li>
-                <li className="flex flex-col items-center gap-1.5 text-gray-300 group">
+                <li className="flex items-center gap-3 text-gray-300 group">
                   <div className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center border border-white/10 group-hover:border-cyan-500/50 transition-colors flex-shrink-0">
                     <MapPin className="w-4 h-4 text-cyan-400" />
                   </div>
-                  <span className="text-sm font-medium text-center">470 3rd St.<br />San Francisco, CA 94107</span>
+                  <span className="text-sm font-medium">470 3rd St.<br />San Francisco, CA 94107</span>
                 </li>
               </ul>
             </div>
