@@ -61,26 +61,6 @@ export default function SectionDivider({
             d="M0 60C240 20 480 100 720 60C960 20 1200 100 1440 60V120H0V60Z"
             fill={bottomColor}
           />
-          <path
-            d="M0 60C240 20 480 100 720 60C960 20 1200 100 1440 60"
-            stroke="url(#divider-gradient)"
-            strokeWidth="2"
-            strokeOpacity="0.6"
-            style={{
-              strokeDasharray: 2000,
-              strokeDashoffset: inView ? 0 : 2000,
-              transition: "stroke-dashoffset 2s ease-out 0.3s",
-            }}
-          />
-          <defs>
-            <linearGradient id="divider-gradient" x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
-              <stop stopColor="#06b6d4" stopOpacity="0" />
-              <stop offset="0.2" stopColor="#06b6d4" />
-              <stop offset="0.5" stopColor="#3b82f6" />
-              <stop offset="0.8" stopColor="#f97316" stopOpacity="0.6" />
-              <stop offset="1" stopColor="#f97316" stopOpacity="0" />
-            </linearGradient>
-          </defs>
         </svg>
       </div>
     );
@@ -93,39 +73,44 @@ export default function SectionDivider({
       <div
         ref={ref}
         className={`relative w-full overflow-hidden ${className}`}
-        style={{ height: "clamp(30px, 4vw, 60px)", marginTop: "-1px", marginBottom: "-1px" }}
+        style={{ height: "clamp(40px, 5vw, 80px)", marginTop: "-1px", marginBottom: "-1px" }}
         data-testid="section-divider-angled"
       >
         <svg
-          viewBox="0 0 1440 60"
+          viewBox="0 0 1440 80"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
           preserveAspectRatio="none"
           className={`absolute inset-0 w-full h-full ${flip ? "rotate-180" : ""}`}
           style={{
             opacity: inView ? 1 : 0,
-            transition: "opacity 0.6s ease-out",
+            transition: "opacity 0.8s ease-out",
           }}
         >
-          <rect width="1440" height="60" fill={topColor} />
-          <polygon points="0,30 1440,0 1440,60 0,60" fill={bottomColor} />
-          <line
-            x1="0" y1="30" x2="1440" y2="0"
-            stroke="url(#angled-gradient)"
-            strokeWidth="2"
-            strokeOpacity="0.5"
+          <rect width="1440" height="80" fill={topColor} />
+          <path
+            d={`M0,32 C360,8 720,56 1080,24 C1260,12 1380,16 1440,20 L1440,80 L0,80 Z`}
+            fill={bottomColor}
+          />
+          <path
+            d={`M0,32 C360,8 720,56 1080,24 C1260,12 1380,16 1440,20`}
+            stroke="url(#angled-grad-smooth)"
+            strokeWidth="1.5"
+            strokeOpacity="0.4"
+            fill="none"
             style={{
-              strokeDasharray: 1500,
-              strokeDashoffset: inView ? 0 : 1500,
-              transition: "stroke-dashoffset 1.5s ease-out 0.2s",
+              strokeDasharray: 2000,
+              strokeDashoffset: inView ? 0 : 2000,
+              transition: "stroke-dashoffset 2s ease-out 0.3s",
             }}
           />
           <defs>
-            <linearGradient id="angled-gradient" x1="0" y1="30" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
-              <stop stopColor="#06b6d4" stopOpacity="0.1" />
-              <stop offset="0.3" stopColor="#06b6d4" />
-              <stop offset="0.7" stopColor="#3b82f6" />
-              <stop offset="1" stopColor="#f97316" stopOpacity="0.3" />
+            <linearGradient id="angled-grad-smooth" x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
+              <stop stopColor="#06b6d4" stopOpacity="0" />
+              <stop offset="0.15" stopColor="#06b6d4" stopOpacity="0.6" />
+              <stop offset="0.5" stopColor="#3b82f6" stopOpacity="0.5" />
+              <stop offset="0.85" stopColor="#06b6d4" stopOpacity="0.6" />
+              <stop offset="1" stopColor="#06b6d4" stopOpacity="0" />
             </linearGradient>
           </defs>
         </svg>
@@ -145,7 +130,7 @@ export default function SectionDivider({
           <div
             className="h-px w-full"
             style={{
-              background: "linear-gradient(90deg, transparent, rgba(6,182,212,0.4) 20%, rgba(59,130,246,0.5) 50%, rgba(249,115,22,0.3) 80%, transparent)",
+              background: "linear-gradient(90deg, transparent, rgba(6,182,212,0.3) 20%, rgba(59,130,246,0.4) 50%, rgba(6,182,212,0.3) 80%, transparent)",
               transform: inView ? "scaleX(1)" : "scaleX(0)",
               transition: "transform 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.1s",
               transformOrigin: "left center",
@@ -158,8 +143,8 @@ export default function SectionDivider({
               key={i}
               className="w-1.5 h-1.5 rounded-full"
               style={{
-                background: i === 1 ? "#f97316" : "#06b6d4",
-                opacity: inView ? 1 : 0,
+                background: i === 1 ? "#3b82f6" : "#06b6d4",
+                opacity: inView ? 0.7 : 0,
                 transform: inView ? "scale(1) rotate(45deg)" : "scale(0) rotate(0deg)",
                 transition: `all 0.5s cubic-bezier(0.22, 1, 0.36, 1) ${0.6 + i * 0.15}s`,
               }}
@@ -180,7 +165,7 @@ export default function SectionDivider({
       <div
         className="absolute inset-0"
         style={{
-          background: "linear-gradient(90deg, #06b6d4, #3b82f6, #f97316)",
+          background: "linear-gradient(90deg, transparent, #06b6d4 20%, #3b82f6 50%, #06b6d4 80%, transparent)",
           transform: inView ? "scaleX(1)" : "scaleX(0)",
           transition: "transform 1s cubic-bezier(0.22, 1, 0.36, 1)",
           transformOrigin: "left center",
@@ -189,7 +174,7 @@ export default function SectionDivider({
       <div
         className="absolute inset-0"
         style={{
-          background: "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.4) 50%, transparent 100%)",
+          backgroundImage: "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%)",
           backgroundSize: "200% 100%",
           animation: inView ? "pe-divider-shimmer 3s ease-in-out infinite" : "none",
         }}

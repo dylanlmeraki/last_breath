@@ -1,7 +1,8 @@
 import { useState, useEffect, ReactNode } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { createPageUrl } from "../lib/utils";
-import { Menu, X, Phone, Mail, MapPin, ChevronDown, PhoneCall } from "lucide-react";
+import { Menu, X, Phone, Mail, MapPin, ChevronDown, PhoneCall, Send } from "lucide-react";
+import { SiLinkedin } from "react-icons/si";
 import ChatBot from "../components/ChatBot";
 import BackToTop from "../components/BackToTop";
 import FooterBackground from "../components/FooterBackground";
@@ -227,7 +228,8 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
       <main className="pt-20">
         {children}
       </main>
-      <footer className="relative bg-slate-900 text-white overflow-hidden border-t-4 border-cyan-500">
+      <footer className="relative bg-slate-900 text-white overflow-hidden">
+        <div className="h-1 bg-gradient-to-r from-blue-600 via-cyan-600 to-blue-600" />
         <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900" />
         <div className="absolute inset-0 bg-gradient-to-tr from-cyan-900/20 via-transparent to-orange-900/15" />
         <FooterBackground />
@@ -245,67 +247,97 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
                   <div className="text-xs text-cyan-400 tracking-wide font-medium">Consulting Engineers & Contractors</div>
                 </div>
               </div>
-              <p className="text-sm text-gray-300/90 leading-relaxed border-l-4 border-cyan-500 pl-4">
+              <p className="text-sm text-gray-300 leading-relaxed border-l-4 border-cyan-500 pl-4 font-medium">
                 Full-scale civil and structural engineering and construction services across the San Francisco Bay Area.
               </p>
             </div>
 
             <div>
-              <h4 className="font-semibold text-sm uppercase tracking-wider text-cyan-400 mb-4 text-center">Services</h4>
-              <ul className="space-y-2 text-center">
+              <h4 className="font-bold text-base uppercase tracking-wider text-cyan-400 mb-5 text-center border-b border-cyan-500/20 pb-3">Services</h4>
+              <ul className="space-y-2.5 text-center">
                 {servicesItems.map((item) => (
                   <li key={item.path}>
-                    <Link to={item.path} className="text-sm text-gray-400 hover:text-cyan-400 transition-colors">{item.name}</Link>
+                    <Link to={item.path} className="text-sm text-gray-300 hover:text-cyan-400 transition-colors font-medium">{item.name}</Link>
                   </li>
                 ))}
               </ul>
             </div>
 
             <div>
-              <h4 className="font-semibold text-sm uppercase tracking-wider text-cyan-400 mb-4 text-center">Company</h4>
-              <ul className="space-y-2 text-center">
+              <h4 className="font-bold text-base uppercase tracking-wider text-cyan-400 mb-5 text-center border-b border-cyan-500/20 pb-3">Company</h4>
+              <ul className="space-y-2.5 text-center">
                 {aboutItems.map((item) => (
                   <li key={item.path}>
-                    <Link to={item.path} className="text-sm text-gray-400 hover:text-cyan-400 transition-colors">{item.name}</Link>
+                    <Link to={item.path} className="text-sm text-gray-300 hover:text-cyan-400 transition-colors font-medium">{item.name}</Link>
                   </li>
                 ))}
                 <li>
-                  <Link to={createPageUrl("Contact")} className="text-sm text-gray-400 hover:text-cyan-400 transition-colors">Contact Us</Link>
+                  <Link to={createPageUrl("Contact")} className="text-sm text-gray-300 hover:text-cyan-400 transition-colors font-medium">Contact Us</Link>
                 </li>
               </ul>
             </div>
 
             <div>
-              <h4 className="font-semibold text-sm uppercase tracking-wider text-cyan-400 mb-4 text-center">Contact</h4>
+              <h4 className="font-bold text-base uppercase tracking-wider text-cyan-400 mb-5 text-center border-b border-cyan-500/20 pb-3">Contact</h4>
               <ul className="space-y-3">
-                <li className="flex items-center gap-3 text-gray-300 group">
+                <li className="flex flex-col items-center gap-1.5 text-gray-300 group">
                   <div className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center border border-white/10 group-hover:border-cyan-500/50 transition-colors">
                     <Phone className="w-4 h-4 text-cyan-400" />
                   </div>
-                  <a href="tel:+14156894428" className="hover:text-cyan-400 transition-colors text-sm">(415)-689-4428</a>
+                  <a href="tel:+14156894428" className="hover:text-cyan-400 transition-colors text-sm font-medium">(415)-689-4428</a>
                 </li>
-                <li className="flex items-center gap-3 text-gray-300 group">
+                <li className="flex flex-col items-center gap-1.5 text-gray-300 group">
                   <div className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center border border-white/10 group-hover:border-cyan-500/50 transition-colors">
                     <Mail className="w-4 h-4 text-cyan-400" />
                   </div>
-                  <a href="mailto:amwaldman@sbcglobal.net" className="hover:text-cyan-400 transition-colors break-all text-sm">amwaldman@sbcglobal.net</a>
+                  <a href="mailto:amwaldman@sbcglobal.net" className="hover:text-cyan-400 transition-colors break-all text-sm font-medium text-center">amwaldman@sbcglobal.net</a>
                 </li>
-                <li className="flex items-start gap-3 text-gray-300 group">
+                <li className="flex flex-col items-center gap-1.5 text-gray-300 group">
                   <div className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center border border-white/10 group-hover:border-cyan-500/50 transition-colors flex-shrink-0">
                     <MapPin className="w-4 h-4 text-cyan-400" />
                   </div>
-                  <span className="text-sm">470 3rd St.<br />San Francisco, CA 94107</span>
+                  <span className="text-sm font-medium text-center">470 3rd St.<br />San Francisco, CA 94107</span>
                 </li>
               </ul>
             </div>
           </div>
 
+          <div className="mb-10 max-w-md mx-auto">
+            <p className="text-center text-sm text-gray-400 font-medium mb-3">Stay updated with project insights & industry news</p>
+            <form onSubmit={(e) => e.preventDefault()} className="flex gap-0 rounded-full overflow-hidden border border-white/10 focus-within:border-cyan-500/50 transition-colors bg-white/5" data-testid="form-newsletter">
+              <input
+                type="email"
+                placeholder="Enter your email"
+                className="flex-1 bg-transparent text-sm text-white placeholder:text-gray-500 px-5 py-3 outline-none font-medium"
+                data-testid="input-newsletter-email"
+              />
+              <button
+                type="submit"
+                className="px-5 py-3 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white transition-all flex items-center gap-2 text-sm font-bold"
+                data-testid="button-newsletter-subscribe"
+              >
+                Subscribe
+                <Send className="w-4 h-4" />
+              </button>
+            </form>
+          </div>
+
           <div className="pt-8 border-t border-white/10">
-            <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-400">
+            <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-400 font-medium">
               <p>&copy; {new Date().getFullYear()} Pacific Engineering. All rights reserved.</p>
-              <div className="flex gap-6">
+              <div className="flex items-center gap-6">
                 <a href="#" className="hover:text-cyan-400 transition-colors">Privacy Policy</a>
                 <a href="#" className="hover:text-cyan-400 transition-colors">Terms of Service</a>
+                <a
+                  href="https://www.linkedin.com/in/a-mark-waldman-814b119"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center border border-white/10 hover:border-cyan-500/50 hover:bg-white/10 transition-all"
+                  aria-label="LinkedIn"
+                  data-testid="link-linkedin"
+                >
+                  <SiLinkedin className="w-4 h-4 text-gray-400 hover:text-cyan-400" />
+                </a>
               </div>
             </div>
           </div>

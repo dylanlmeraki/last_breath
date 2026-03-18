@@ -296,10 +296,10 @@ export default function Home() {
                       Consulting Engineers & Contractors
                     </p>
 
-                    <div className="flex flex-col sm:flex-row gap-3 sm:gap-5 justify-center items-center mb-5 sm:mb-6">
+                    <div className="flex flex-col sm:flex-row gap-3 sm:gap-6 justify-center items-center mb-5 sm:mb-6">
                       <Link
                         to={createPageUrl("Consultation")}
-                        className="w-full sm:w-auto px-8 py-4 bg-orange-600 hover:bg-orange-500 text-white font-bold uppercase tracking-wider rounded-sm sm:rounded-xl flex items-center justify-center gap-3 shadow-[0_8px_25px_rgba(249,115,22,0.4)] transition-all hover:-translate-y-1 active:scale-[0.97]"
+                        className="w-full sm:w-auto px-10 sm:px-12 py-4 sm:py-[18px] bg-orange-600 hover:bg-orange-500 text-white font-bold tracking-tight text-base sm:text-lg rounded-sm sm:rounded-full flex items-center justify-center gap-3 shadow-[0_8px_25px_rgba(249,115,22,0.4)] transition-all hover:-translate-y-1 active:scale-[0.97]"
                         data-testid="link-hero-quote"
                       >
                         <PhoneCall className="w-5 h-5" />
@@ -307,7 +307,7 @@ export default function Home() {
                       </Link>
                       <Link
                         to={createPageUrl("ServicesOverview")}
-                        className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold uppercase tracking-wider rounded-sm sm:rounded-xl flex items-center justify-center gap-3 shadow-[0_8px_25px_rgba(6,182,212,0.3)] transition-all hover:-translate-y-1 active:scale-[0.97]"
+                        className="w-full sm:w-auto px-10 sm:px-12 py-4 sm:py-[18px] bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold tracking-tight text-base sm:text-lg rounded-sm sm:rounded-full flex items-center justify-center gap-3 shadow-[0_8px_25px_rgba(6,182,212,0.3)] transition-all hover:-translate-y-1 active:scale-[0.97]"
                         data-testid="link-hero-consultation"
                       >
                         Our Services
@@ -351,7 +351,7 @@ export default function Home() {
       <SectionDivider variant="gradient" from="dark" to="light" />
       <section className="py-12 sm:py-16 md:py-20 lg:py-28 px-4 sm:px-6 bg-white" data-testid="section-services">
         <div className="max-w-7xl mx-auto">
-          <AnimatedSection direction="up" className="text-center mb-10 sm:mb-14 lg:mb-20">
+          <AnimatedSection direction="up" className="text-center mb-10 sm:mb-14 lg:mb-20" parallax>
             <p className="text-cyan-600 font-bold uppercase tracking-widest text-xs sm:text-sm mb-3 sm:mb-4">What We Do</p>
             <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 mb-4 sm:mb-6 tracking-tight" data-testid="text-services-title">
               Consulting Engineers & Contractors
@@ -480,7 +480,7 @@ export default function Home() {
               </div>
             </AnimatedSection>
 
-            <AnimatedSection direction="right" delay={0.2} className="mt-4 lg:mt-0">
+            <AnimatedSection direction="right" delay={0.2} className="mt-4 lg:mt-0" parallax>
               <div className="relative px-0 sm:px-4 lg:px-8">
                 <div className="aspect-[4/3] rounded-xl sm:rounded-2xl overflow-hidden shadow-lg sm:shadow-2xl border-2 sm:border-4 border-white bg-slate-200">
                   <img
@@ -504,10 +504,11 @@ export default function Home() {
       </section>
       <SectionDivider variant="angled" from="light" to="dark" />
       <section className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 bg-slate-900 relative overflow-hidden" data-testid="section-cta">
-        <div className="absolute inset-0 hidden sm:block">
-          <img src={bayBridgeImg} alt="" className="w-full h-full object-cover opacity-[0.12]" />
+        <div className="absolute inset-0 hidden sm:block opacity-30">
+          <img src={bayBridgeImg} alt="" className="w-full h-full object-cover" />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-900/70 to-slate-950/90 sm:from-slate-900/40 sm:to-slate-950/60" />
+        <div className="absolute inset-0 bg-slate-900/50 hidden sm:block mix-blend-multiply" />
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-900/80 to-slate-950/95 sm:from-slate-900/30 sm:to-slate-950/50" />
         <BlueprintGrid />
 
         <div className="relative z-10 max-w-4xl mx-auto text-center">
@@ -520,16 +521,16 @@ export default function Home() {
               Engineering, inspections, construction, and stormwater — one team, one call. We respond same-day to keep your timeline intact.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-8 sm:mb-12">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-8 justify-center items-center mb-8 sm:mb-12">
               <Link
                 to={createPageUrl("Consultation")}
-                className="w-full sm:w-auto px-8 sm:px-10 py-4 sm:py-5 bg-orange-600 hover:bg-orange-500 text-white font-bold uppercase tracking-wider rounded-sm sm:rounded-lg flex items-center justify-center gap-3 shadow-[0_8px_25px_rgba(249,115,22,0.4)] transition-all hover:-translate-y-1 active:scale-[0.97]"
+                className="w-full sm:w-auto px-10 sm:px-14 py-4 sm:py-[18px] bg-orange-600 hover:bg-orange-500 text-white font-bold tracking-tight text-base sm:text-lg rounded-sm sm:rounded-full flex items-center justify-center gap-3 shadow-[0_8px_25px_rgba(249,115,22,0.4)] transition-all hover:-translate-y-1 active:scale-[0.97]"
                 data-testid="link-cta-quote"
               >
                 <PhoneCall className="w-5 h-5 sm:w-6 sm:h-6" />
-                Request a Quote
+                Free Consultation
               </Link>
-              <a href="tel:+14156894428" className="w-full sm:w-auto px-8 sm:px-10 py-4 sm:py-5 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold uppercase tracking-wider rounded-sm sm:rounded-lg flex items-center justify-center gap-3 shadow-[0_8px_25px_rgba(6,182,212,0.3)] transition-all hover:-translate-y-1 active:scale-[0.97]" data-testid="link-cta-call">
+              <a href="tel:+14156894428" className="w-full sm:w-auto px-10 sm:px-14 py-4 sm:py-[18px] bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold tracking-tight text-base sm:text-lg rounded-sm sm:rounded-full flex items-center justify-center gap-3 shadow-[0_8px_25px_rgba(6,182,212,0.3)] transition-all hover:-translate-y-1 active:scale-[0.97]" data-testid="link-cta-call">
                 <Phone className="w-5 h-5 sm:w-6 sm:h-6" /> (415) 689-4428
               </a>
             </div>

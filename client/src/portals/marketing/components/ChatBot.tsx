@@ -112,7 +112,7 @@ function getIntentResponse(intent: ChatIntent, entities: Record<string, string>)
 
 export default function ChatBot() {
   const navigate = useNavigate();
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(() => typeof window !== "undefined" && window.innerWidth >= 640);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [showCallOverlay, setShowCallOverlay] = useState(false);

@@ -1,5 +1,5 @@
 import { useRef, ReactNode } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
 
 interface AnimatedSectionProps {
   children: ReactNode;
@@ -8,6 +8,7 @@ interface AnimatedSectionProps {
   delay?: number;
   duration?: number;
   threshold?: number;
+  parallax?: boolean;
 }
 
 export default function AnimatedSection({
@@ -17,9 +18,18 @@ export default function AnimatedSection({
   delay = 0,
   duration = 0.6,
   threshold = 0.2,
+  parallax = false,
 }: AnimatedSectionProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: threshold });
+
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], [20, -20]);
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.85, 1, 1, 0.85]);
 
   const variants = {
     hidden: {
@@ -43,6 +53,21 @@ export default function AnimatedSection({
       },
     },
   };
+
+  if (parallax) {
+    return (
+      <motion.div
+        ref={ref}
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+        variants={variants}
+        style={{ y, opacity }}
+        className={className}
+      >
+        {children}
+      </motion.div>
+    );
+  }
 
   return (
     <motion.div
