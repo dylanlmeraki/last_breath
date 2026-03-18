@@ -606,7 +606,7 @@ export default function Home() {
         </div>
       </motion.section>
       {/* ── HERO → SERVICES DIVIDER ── */}
-      <HeroServicesDivider />
+      <div className="w-full h-px bg-gradient-to-r from-cyan-50 via-orange-300 to-cyan-50" style={{ backgroundImage: "linear-gradient(to right, #ecfeff, #fdba74 25%, #3b82f6 50%, #fdba74 75%, #ecfeff)" }} />
       {/* ── SERVICES ── */}
       <section className="py-12 sm:py-16 md:py-20 lg:py-28 px-4 sm:px-6 bg-white relative" data-testid="section-services">
         <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-slate-900/[0.06] to-transparent pointer-events-none z-[1]" aria-hidden="true" />
