@@ -895,7 +895,8 @@ export default function Home() {
           <AnimatedGridBackground />
         </div>
 
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[400px] bg-cyan-500/[0.06] rounded-full blur-[120px] pointer-events-none z-[3]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[400px] bg-cyan-500/[0.06] rounded-full blur-[120px] pointer-events-none z-[3] animate-[cta-glow-pulse_6s_ease-in-out_infinite]" />
+        <style>{`@keyframes cta-glow-pulse { 0%, 100% { opacity: 1; transform: translate(-50%, -50%) scale(1); } 50% { opacity: 0.7; transform: translate(-50%, -50%) scale(1.08); } } @media (prefers-reduced-motion: reduce) { .animate-\\[cta-glow-pulse_6s_ease-in-out_infinite\\] { animation: none !important; } }`}</style>
 
         <div className="relative z-10 max-w-4xl mx-auto text-center px-4 sm:px-6 py-12 sm:py-16 md:py-20 lg:py-24">
           <motion.h2
