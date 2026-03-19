@@ -502,11 +502,11 @@ export default function Home() {
                 <div className="absolute -inset-px bg-gradient-to-r from-cyan-500/5 via-blue-500/3 to-cyan-500/5 rounded-2xl sm:rounded-3xl blur-sm hidden sm:block" />
 
                 <div className="relative bg-slate-950/30 sm:bg-slate-950/40 lg:bg-slate-950/35 backdrop-blur-[6px] rounded-lg sm:rounded-xl border border-white/[0.06] shadow-2xl overflow-hidden">
-                  <div className="h-0.5 sm:h-2 bg-gradient-to-r from-blue-600/80 via-cyan-500/80 to-blue-500/80" />
+                  <div className="h-0.5 sm:h-1.5 bg-gradient-to-r from-blue-600/80 via-cyan-500/80 to-blue-500/80" />
 
-                  <div className="px-5 py-8 sm:p-10 md:p-12 lg:p-16">
+                  <div className="px-5 py-6 sm:px-8 sm:py-8 md:px-10 md:py-10 lg:px-14 lg:py-12">
                     <motion.h1
-                      className="text-white font-bold tracking-tight leading-[1.08] text-[1.75rem] sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl mb-3 sm:mb-5"
+                      className="text-white font-bold tracking-tight leading-[1.08] text-[1.75rem] sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl mb-2 sm:mb-3"
                       data-testid="text-hero-title"
                       {...entrance({ y: 30 }, 0.8, 0.2)}
                     >
@@ -518,7 +518,7 @@ export default function Home() {
                     </motion.h1>
 
                     <motion.div
-                      className="flex items-center justify-center gap-4 my-6 sm:my-8 md:my-10"
+                      className="flex items-center justify-center gap-4 my-4 sm:my-5 md:my-6"
                       {...entrance({ scaleX: 0 }, 0.6, 0.5)}
                     >
                       <div className="h-px w-16 sm:w-24 bg-gradient-to-r from-transparent to-cyan-500" />
@@ -527,7 +527,7 @@ export default function Home() {
                     </motion.div>
 
                     <motion.p
-                      className="text-slate-300/90 mx-auto font-light tracking-wide text-sm sm:text-lg md:text-xl lg:text-2xl mb-6 sm:mb-8 max-w-2xl"
+                      className="text-slate-300/90 mx-auto font-light tracking-wide text-sm sm:text-lg md:text-xl lg:text-2xl mb-4 sm:mb-5 max-w-2xl"
                       data-testid="text-hero-subtitle"
                       {...entrance({ y: 20 }, 0.7, 0.6)}
                     >
@@ -535,7 +535,7 @@ export default function Home() {
                     </motion.p>
 
                     <motion.div
-                      className="flex flex-col sm:flex-row gap-3 sm:gap-6 justify-center items-center mb-5 sm:mb-6"
+                      className="flex flex-col sm:flex-row gap-3 sm:gap-5 justify-center items-center mb-4 sm:mb-5"
                       {...entrance({ y: 20 }, 0.7, 0.75)}
                     >
                       <Link
@@ -544,20 +544,20 @@ export default function Home() {
                         data-testid="link-hero-quote"
                       >
                         <PhoneCall className="w-5 h-5" />
-                        Request a Quote
+                        Review Project Scope
                       </Link>
                       <Link
                         to={createPageUrl("ServicesOverview")}
                         className="w-full sm:w-auto px-10 sm:px-12 py-4 sm:py-[18px] text-white font-bold tracking-tight text-base sm:text-lg rounded-sm sm:rounded-full flex items-center justify-center gap-3 shadow-[0_8px_25px_rgba(6,182,212,0.3)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_35px_rgba(6,182,212,0.45)] active:scale-[0.97] [background:radial-gradient(ellipse_at_center,#0891b2,#3b82f6)] hover:[background:radial-gradient(ellipse_at_center,#06b6d4,#2563eb)]"
                         data-testid="link-hero-consultation"
                       >
-                        Our Services
+                        What we Offer
                         <ArrowRight className="w-5 h-5" />
                       </Link>
                     </motion.div>
 
                     <motion.p
-                      className="text-slate-400/80 text-xs sm:text-sm md:text-base tracking-wide mb-8 sm:mb-12"
+                      className="text-slate-400/80 text-xs sm:text-sm md:text-base tracking-wide mb-5 sm:mb-8"
                       data-testid="text-hero-trust"
                       {...entrance({}, 0.6, 0.9)}
                     >
@@ -565,7 +565,7 @@ export default function Home() {
                       expertise
                     </motion.p>
 
-                    <div className="grid grid-cols-3 gap-2 sm:gap-4 md:gap-6">
+                    <div className="grid grid-cols-3 gap-2 sm:gap-3 md:gap-5">
                       {[
                         {
                           content: <AnimatedCounter target={40} suffix="+" />,
@@ -589,7 +589,7 @@ export default function Home() {
                       ].map((stat, i) => (
                         <motion.div
                           key={stat.testId}
-                          className="group relative rounded-lg sm:rounded-xl bg-white/[0.04] border border-white/[0.08] hover:border-cyan-500/30 transition-all duration-300 hover:bg-white/[0.07] p-3 sm:p-5 md:p-6 flex flex-col items-center justify-center"
+                          className="group relative rounded-lg sm:rounded-xl bg-white/[0.04] border border-white/[0.08] hover:border-cyan-500/30 transition-all duration-300 hover:bg-white/[0.07] p-3 sm:p-4 md:p-5 flex flex-col items-center justify-center"
                           data-testid={stat.testId}
                           {...entrance({ y: 30 }, 0.6, 1.0 + i * 0.1)}
                         >
@@ -689,7 +689,7 @@ export default function Home() {
               className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 whitespace-nowrap text-white font-bold tracking-tight text-base sm:text-lg px-10 sm:px-14 py-4 sm:py-[18px] rounded-sm sm:rounded-full shadow-[0_8px_25px_rgba(6,182,212,0.3)] hover:shadow-[0_12px_35px_rgba(6,182,212,0.45)] hover:-translate-y-1 active:scale-[0.97] transition-all duration-300 focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:outline-none [background:radial-gradient(ellipse_at_center,#0891b2,#3b82f6)] hover:[background:radial-gradient(ellipse_at_center,#06b6d4,#2563eb)]"
               data-testid="link-view-all-services"
             >
-              View All Services
+              View Capabilities
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
             </Link>
           </AnimatedSection>

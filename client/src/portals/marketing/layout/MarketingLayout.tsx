@@ -75,15 +75,17 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
     <div className="marketing-portal min-h-screen bg-white overflow-x-hidden">
       <header className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${isScrolled ? "bg-slate-900/95 backdrop-blur-sm shadow-xl" : "bg-slate-900 shadow-xl"}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-[2px] pb-[2px]">
-          <div className="flex items-center justify-between h-20">
+          <div className={`flex items-center justify-between transition-all duration-300 ${isScrolled ? "h-14" : "h-20"}`}>
             <Link to={createPageUrl("Home")} className="flex items-center gap-3 group" data-testid="link-logo">
               <div className="relative">
                 <div className="absolute inset-0 bg-white rounded-md opacity-10 group-hover:opacity-20 transition-opacity" />
-                <img src="/images/pe-logo.png" alt="Pacific Engineering Logo" className="rounded-md h-14 w-14 object-contain relative z-10" />
+                <img src="/images/pe-logo.png" alt="Pacific Engineering Logo" className={`rounded-md object-contain relative z-10 transition-all duration-300 ${isScrolled ? "h-10 w-10" : "h-14 w-14"}`} />
               </div>
               <div className="min-w-0 hidden sm:block">
-                <div className="font-bold text-white tracking-tight sm:text-lg lg:text-xl xl:text-[24px] truncate text-[20px]">Pacific Engineering & Construction Inc.</div>
-                <div className="font-medium text-blue-200 tracking-wide hidden sm:block text-[14px]">Consulting Engineers & Contractors</div>
+                <div className={`font-bold text-white tracking-tight truncate transition-all duration-300 ${isScrolled ? "text-[15px] sm:text-base lg:text-lg" : "sm:text-lg lg:text-xl xl:text-[24px] text-[20px]"}`}>
+                  {isScrolled ? "Pacific Engineering" : "Pacific Engineering & Construction Inc."}
+                </div>
+                <div className={`font-medium text-blue-200 tracking-wide hidden sm:block transition-all duration-300 ${isScrolled ? "text-[12px]" : "text-[14px]"}`}>Consulting Engineers & Contractors</div>
               </div>
             </Link>
 
