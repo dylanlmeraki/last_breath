@@ -906,7 +906,7 @@ export default function Home() {
 
         <div className="relative z-10 max-w-4xl mx-auto text-center px-4 sm:px-6 py-12 sm:py-16 md:py-20 lg:py-24">
           <motion.h2
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white mb-5 sm:mb-8 tracking-tight leading-[1.08] font-bold"
+            className="sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white mb-5 sm:mb-8 tracking-tight font-bold text-[64px]"
             style={{ textShadow: "0 0 40px rgba(6,182,212,0.15), 0 0 80px rgba(6,182,212,0.08)" }}
             data-testid="text-cta-title"
             initial={rm ? { opacity: 1 } : { opacity: 0, y: 40, filter: "blur(8px)" }}
