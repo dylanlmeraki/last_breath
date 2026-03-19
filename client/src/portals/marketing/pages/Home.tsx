@@ -623,18 +623,14 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
-      {/* ── HERO → STATS TRANSITION ── */}
-      <div className="relative w-full" style={{ marginTop: "-1px" }} data-testid="divider-hero-stats">
-        <div className="h-2 bg-gradient-to-r from-slate-800 via-blue-600 to-slate-800" />
-        <div className="h-[3px]" style={{ background: "linear-gradient(to right, #1e293b, #0e7490 20%, #06b6d4 35%, #22d3ee 50%, #06b6d4 65%, #0e7490 80%, #1e293b)" }} />
-        <div className="h-px bg-gradient-to-r from-slate-200 via-cyan-200 to-slate-200" />
-      </div>
-      {/* ── BY THE NUMBERS ── */}
+      {/* ── BY THE NUMBERS (seamless with hero) ── */}
       <section
-        className="relative py-6 sm:py-8 px-4 sm:px-6 bg-slate-100 overflow-hidden"
+        className="relative py-6 sm:py-8 px-4 sm:px-6 bg-slate-900 overflow-hidden"
+        style={{ marginTop: "-1px" }}
         data-testid="section-stats"
       >
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(6,182,212,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.02)_1px,transparent_1px)] bg-[size:60px_60px] pointer-events-none" />
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(6,182,212,0.018)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.018)_1px,transparent_1px)] bg-[size:48px_48px] pointer-events-none" />
+        <div className="absolute inset-x-0 top-0 h-12 bg-gradient-to-b from-slate-950/30 to-transparent pointer-events-none" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[200px] bg-cyan-500/[0.03] rounded-full blur-[100px] pointer-events-none" />
 
         <div className="max-w-5xl mx-auto relative z-10">
@@ -647,12 +643,12 @@ export default function Home() {
             ].map((stat, i) => (
               <AnimatedSection direction="up" delay={i * 0.08} key={stat.key}>
                 <div className="relative group" data-testid={`card-stat-${stat.key}`}>
-                  <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/[0.06] to-blue-500/[0.06] rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <div className="relative bg-white/80 backdrop-blur-sm border border-slate-200/80 rounded-lg p-4 sm:p-5 hover:border-cyan-400/30 hover:shadow-md transition-all duration-300">
-                    <div className="text-2xl sm:text-3xl md:text-4xl font-bold mb-1 bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent" data-testid={`text-stat-value-${stat.key}`}>
+                  <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/[0.05] to-blue-500/[0.05] rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="relative bg-white/[0.04] backdrop-blur-sm border border-white/[0.08] rounded-lg p-4 sm:p-5 hover:border-cyan-500/20 transition-all duration-300">
+                    <div className="text-2xl sm:text-3xl md:text-4xl font-bold mb-1 bg-gradient-to-r from-cyan-400 via-blue-400 to-cyan-400 bg-clip-text text-transparent" data-testid={`text-stat-value-${stat.key}`}>
                       {stat.prefix || ""}<AnimatedCounter target={stat.target} suffix={stat.suffix} />
                     </div>
-                    <div className="text-sm sm:text-base text-slate-800 font-bold tracking-tight mb-0.5" data-testid={`text-stat-label-${stat.key}`}>{stat.label}</div>
+                    <div className="text-sm sm:text-base text-slate-200 font-bold tracking-tight mb-0.5" data-testid={`text-stat-label-${stat.key}`}>{stat.label}</div>
                     <p className="text-slate-500 text-[11px] sm:text-xs" data-testid={`text-stat-sub-${stat.key}`}>{stat.sub}</p>
                   </div>
                 </div>
@@ -663,7 +659,8 @@ export default function Home() {
       </section>
       {/* ── STATS → SERVICES TRANSITION ── */}
       <div className="relative w-full" data-testid="divider-stats-services">
-        <div className="h-px bg-gradient-to-r from-slate-200 via-cyan-300 to-slate-200" />
+        <div className="h-1.5" style={{ background: "linear-gradient(to right, #1e293b, #2563eb 30%, #06b6d4 50%, #2563eb 70%, #1e293b)" }} />
+        <div className="h-px bg-gradient-to-r from-slate-300 via-cyan-200 to-slate-300" />
       </div>
       {/* ── SERVICES ── */}
       <section
