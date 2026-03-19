@@ -165,7 +165,7 @@ export default function ServicesOverview() {
                 <Card className="h-full hover:shadow-2xl transition-all duration-300 overflow-hidden border border-slate-200 bg-white cursor-pointer group-hover:-translate-y-2 rounded-md">
                   <div className="h-1.5 bg-gradient-to-r from-blue-600 to-cyan-500" />
                   <div className="p-8 flex flex-col items-center text-center">
-                    <div className="bg-slate-100 rounded-md w-20 h-20 flex items-center justify-center mb-6 group-hover:bg-gradient-to-br group-hover:from-blue-400 group-hover:to-blue-600 group-hover:shadow-lg group-hover:shadow-blue-500/40 transition-all duration-300">
+                    <div className="bg-slate-100 rounded-md w-20 h-20 flex items-center justify-center mb-6 group-hover:bg-gradient-to-br group-hover:from-blue-400 group-hover:to-blue-600 group-hover:shadow-lg transition-all duration-300">
                       <FileText className="w-10 h-10 text-slate-700 group-hover:text-white transition-colors" />
                     </div>
                     <h3 className="text-slate-900 text-2xl font-bold mb-4 uppercase tracking-wide">Stormwater Planning</h3>
@@ -199,7 +199,7 @@ export default function ServicesOverview() {
                 <Card className="h-full hover:shadow-2xl transition-all duration-300 overflow-hidden border border-slate-200 bg-white cursor-pointer group-hover:-translate-y-2 rounded-md">
                   <div className="h-1.5 bg-gradient-to-r from-cyan-500 to-teal-500" />
                   <div className="p-8 flex flex-col items-center text-center">
-                    <div className="bg-slate-100 rounded-md w-20 h-20 flex items-center justify-center mb-6 group-hover:bg-gradient-to-br group-hover:from-cyan-300 group-hover:to-cyan-600 group-hover:shadow-lg group-hover:shadow-cyan-500/40 transition-all duration-300">
+                    <div className="bg-slate-100 rounded-md w-20 h-20 flex items-center justify-center mb-6 group-hover:bg-gradient-to-br group-hover:from-cyan-300 group-hover:to-cyan-600 group-hover:shadow-lg transition-all duration-300">
                       <Shield className="w-10 h-10 text-slate-700 group-hover:text-white transition-colors" />
                     </div>
                     <h3 className="text-slate-900 text-2xl font-bold mb-4 uppercase tracking-wide">Construction Service</h3>
@@ -233,7 +233,7 @@ export default function ServicesOverview() {
                 <Card className="h-full hover:shadow-2xl transition-all duration-300 overflow-hidden border border-slate-200 bg-white cursor-pointer group-hover:-translate-y-2 rounded-md">
                   <div className="h-1.5 bg-gradient-to-r from-teal-500 to-cyan-500" />
                   <div className="p-8 flex flex-col items-center text-center">
-                    <div className="bg-slate-100 rounded-md w-20 h-20 flex items-center justify-center mb-6 group-hover:bg-gradient-to-br group-hover:from-teal-300 group-hover:to-teal-600 group-hover:shadow-lg group-hover:shadow-teal-500/40 transition-all duration-300">
+                    <div className="bg-slate-100 rounded-md w-20 h-20 flex items-center justify-center mb-6 group-hover:bg-gradient-to-br group-hover:from-teal-300 group-hover:to-teal-600 group-hover:shadow-lg transition-all duration-300">
                       <ClipboardCheck className="w-10 h-10 text-slate-700 group-hover:text-white transition-colors" />
                     </div>
                     <h3 className="text-slate-900 text-2xl font-bold mb-4 uppercase tracking-wide">Inspections & Testing</h3>
@@ -268,7 +268,7 @@ export default function ServicesOverview() {
                 <Card className="h-full hover:shadow-2xl transition-all duration-300 overflow-hidden border border-slate-200 bg-white cursor-pointer group-hover:-translate-y-2 rounded-md">
                   <div className="h-1.5 bg-gradient-to-r from-sky-500 to-blue-600" />
                   <div className="p-8 flex flex-col items-center text-center">
-                    <div className="bg-slate-100 rounded-md w-20 h-20 flex items-center justify-center mb-6 group-hover:bg-gradient-to-br group-hover:from-sky-300 group-hover:to-blue-600 group-hover:shadow-lg group-hover:shadow-blue-500/40 transition-all duration-300">
+                    <div className="bg-slate-100 rounded-md w-20 h-20 flex items-center justify-center mb-6 group-hover:bg-gradient-to-br group-hover:from-sky-300 group-hover:to-blue-600 group-hover:shadow-lg transition-all duration-300">
                       <ClipboardCheck className="w-10 h-10 text-slate-700 group-hover:text-white transition-colors" />
                     </div>
                     <h3 className="text-slate-900 text-2xl font-bold mb-4 uppercase tracking-wide">Engineering Consulting</h3>

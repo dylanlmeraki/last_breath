@@ -117,7 +117,7 @@ export default function Services() {
                 
                 <div className="order-1 lg:order-2 p-8 lg:p-12">
                   <div className="flex flex-col items-center text-center mb-10">
-                    <div className="bg-gradient-to-br from-blue-400 to-blue-600 rounded-md w-16 h-16 flex items-center justify-center mb-6 shadow-lg shadow-blue-500/40">
+                    <div className="bg-gradient-to-br from-blue-400 to-blue-600 rounded-md w-16 h-16 flex items-center justify-center mb-6 shadow-lg">
                       <FileText className="w-8 h-8 text-white" />
                     </div>
                     <div>
@@ -186,7 +186,7 @@ export default function Services() {
               <div className="grid lg:grid-cols-2 gap-0">
                 <div className="p-8 lg:p-12">
                   <div className="flex flex-col items-center text-center mb-10">
-                    <div className="bg-gradient-to-br from-cyan-300 to-cyan-600 rounded-md w-16 h-16 flex items-center justify-center mb-6 shadow-lg shadow-cyan-500/40">
+                    <div className="bg-gradient-to-br from-cyan-300 to-cyan-600 rounded-md w-16 h-16 flex items-center justify-center mb-6 shadow-lg">
                       <Shield className="w-8 h-8 text-white" />
                     </div>
                     <div>

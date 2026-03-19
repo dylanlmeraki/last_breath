@@ -116,7 +116,7 @@ export default function InspectionsTesting() {
               <Card className="group hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 overflow-hidden border border-slate-200 bg-white rounded-md h-full" data-testid="card-stormwater-testing">
                 <div className="h-2 bg-gradient-to-r from-blue-600 to-cyan-500" />
                 <div className="p-8 flex flex-col items-center">
-                  <div className="bg-gradient-to-br from-blue-400 to-blue-600 mx-auto my-6 rounded-md w-16 h-16 flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg shadow-blue-500/40">
+                  <div className="bg-gradient-to-br from-blue-400 to-blue-600 mx-auto my-6 rounded-md w-16 h-16 flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
                     <Droplets className="w-8 h-8 text-white" />
                   </div>
                   <h3 className="text-slate-900 mx-auto my-4 text-2xl font-bold text-center tracking-tight">Stormwater Testing & Inspections</h3>
@@ -144,7 +144,7 @@ export default function InspectionsTesting() {
               <Card className="group hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 overflow-hidden border border-slate-200 bg-white rounded-md h-full" data-testid="card-materials-testing">
                 <div className="h-2 bg-gradient-to-r from-cyan-500 to-teal-500" />
                 <div className="p-8 flex flex-col items-center">
-                  <div className="bg-gradient-to-br from-cyan-300 to-cyan-600 mx-auto my-6 rounded-md w-16 h-16 flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg shadow-cyan-500/40">
+                  <div className="bg-gradient-to-br from-cyan-300 to-cyan-600 mx-auto my-6 rounded-md w-16 h-16 flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
                     <FlaskConical className="w-8 h-8 text-white" />
                   </div>
                   <h3 className="text-slate-900 mx-auto my-4 text-2xl font-bold text-center tracking-tight">Materials Sampling & Testing</h3>
@@ -172,7 +172,7 @@ export default function InspectionsTesting() {
               <Card className="group hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 overflow-hidden border border-slate-200 bg-white rounded-md h-full" data-testid="card-structural-inspections">
                 <div className="h-2 bg-gradient-to-r from-teal-500 to-cyan-500" />
                 <div className="p-8 flex flex-col items-center">
-                  <div className="bg-gradient-to-br from-teal-300 to-teal-600 mx-auto my-6 rounded-md w-16 h-16 flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg shadow-teal-500/40">
+                  <div className="bg-gradient-to-br from-teal-300 to-teal-600 mx-auto my-6 rounded-md w-16 h-16 flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
                     <Beaker className="w-8 h-8 text-white" />
                   </div>
                   <h3 className="text-slate-900 mx-auto my-4 text-2xl font-bold text-center tracking-tight">Structural Systems Inspections</h3>
@@ -200,7 +200,7 @@ export default function InspectionsTesting() {
               <Card className="group hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 overflow-hidden border border-slate-200 bg-white rounded-md h-full" data-testid="card-environmental-compliance">
                 <div className="h-2 bg-gradient-to-r from-blue-500 to-cyan-500" />
                 <div className="p-8 flex flex-col items-center">
-                  <div className="bg-gradient-to-br from-blue-400 to-cyan-600 mx-auto my-6 rounded-md w-16 h-16 flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg shadow-cyan-500/40">
+                  <div className="bg-gradient-to-br from-blue-400 to-cyan-600 mx-auto my-6 rounded-md w-16 h-16 flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
                     <ShieldCheck className="w-8 h-8 text-white" />
                   </div>
                   <h3 className="text-slate-900 mx-auto my-4 text-2xl font-bold text-center tracking-tight">Environmental Compliance</h3>

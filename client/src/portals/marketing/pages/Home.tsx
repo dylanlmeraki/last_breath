@@ -187,7 +187,7 @@ const colorMap = {
     checkHover: "group-hover:text-teal-400", cardBgHover: "group-hover:bg-teal-50/40", h: "h-1.5",
     glowColor: "rgba(20,184,166,0.18)",
     gradient: "linear-gradient(to right, #a7f3d0, #6ee7b7, #5eead4, #22d3ee)",
-    iconShadow: "group-hover:shadow-lg group-hover:shadow-teal-500/40",
+    iconShadow: "group-hover:shadow-lg",
   },
   cyanteal: {
     bg: "bg-slate-100", hoverBg: "group-hover:from-cyan-500 group-hover:to-blue-500",
@@ -196,7 +196,7 @@ const colorMap = {
     checkHover: "group-hover:text-blue-400", cardBgHover: "group-hover:bg-blue-50/40", h: "h-1.5",
     glowColor: "rgba(59,130,246,0.18)",
     gradient: "linear-gradient(to right, #22d3ee, #06b6d4, #0ea5e9, #2563eb)",
-    iconShadow: "group-hover:shadow-lg group-hover:shadow-blue-500/40",
+    iconShadow: "group-hover:shadow-lg",
   },
 };
 
