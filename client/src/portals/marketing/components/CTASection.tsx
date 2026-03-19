@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion, useReducedMotion } from "framer-motion";
-import { CheckCircle, Phone, PhoneCall } from "lucide-react";
+import { CheckCircle, Phone, PhoneCall, ArrowUpRight } from "lucide-react";
 import { createPageUrl } from "../lib/utils";
 import AnimatedGridBackground from "./AnimatedGridBackground";
 
@@ -103,11 +103,19 @@ export default function CTASection({
           )}
           <a
             href="tel:+14156894428"
-            className="w-full sm:w-auto px-10 sm:px-14 py-4 sm:py-[18px] text-white font-bold tracking-tight text-base sm:text-lg rounded-sm sm:rounded-full flex items-center justify-center gap-3 shadow-[0_4px_12px_rgba(6,182,212,0.12)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_35px_rgba(6,182,212,0.45)] active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:outline-none [background:radial-gradient(ellipse_at_center,#0891b2,#3b82f6)] hover:[background:radial-gradient(ellipse_at_center,#06b6d4,#2563eb)]"
-            data-testid={`link-${testIdPrefix}-call`}
+            className="w-full sm:hidden px-10 py-4 text-white font-bold tracking-tight text-base rounded-sm flex items-center justify-center gap-3 shadow-[0_4px_12px_rgba(6,182,212,0.12)] transition-all duration-300 active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:outline-none [background:radial-gradient(ellipse_at_center,#0891b2,#3b82f6)]"
+            data-testid={`link-${testIdPrefix}-call-mobile`}
           >
-            <Phone className="w-5 h-5 sm:w-6 sm:h-6" /> (415) 689-4428
+            <Phone className="w-5 h-5" /> (415) 689-4428
           </a>
+          <Link
+            to={createPageUrl("Contact")}
+            className="hidden sm:flex w-auto px-14 py-[18px] text-white font-bold tracking-tight text-lg rounded-full items-center justify-center gap-3 shadow-[0_4px_12px_rgba(6,182,212,0.12)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_35px_rgba(6,182,212,0.45)] active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:outline-none [background:radial-gradient(ellipse_at_center,#0891b2,#3b82f6)] hover:[background:radial-gradient(ellipse_at_center,#06b6d4,#2563eb)]"
+            data-testid={`link-${testIdPrefix}-contact`}
+          >
+            Get in Touch
+            <ArrowUpRight className="w-5 h-5" />
+          </Link>
         </motion.div>
 
         <div className="flex flex-wrap justify-center gap-x-4 sm:gap-x-8 gap-y-2 sm:gap-y-3 text-slate-300 text-xs sm:text-sm font-medium">
