@@ -83,7 +83,7 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
               </div>
               <div className="min-w-0 hidden sm:block">
                 <div className="font-bold text-white tracking-tight sm:text-lg lg:text-xl xl:text-[24px] truncate text-[20px]">Pacific Engineering & Construction Inc.</div>
-                <div className="text-xs font-medium text-blue-200 tracking-wide hidden sm:block">Consulting Engineers & Contractors</div>
+                <div className="font-medium text-blue-200 tracking-wide hidden sm:block text-[14px]">Consulting Engineers & Contractors</div>
               </div>
             </Link>
 
