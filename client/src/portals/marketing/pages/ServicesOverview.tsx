@@ -310,38 +310,38 @@ export default function ServicesOverview() {
             <div className="w-20 sm:w-32 h-1 bg-gradient-to-r from-cyan-200 via-blue-500 to-cyan-200 mx-auto rounded-full"></div>
           </AnimatedSection>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-3 sm:gap-4">
             <AnimatedSection direction="up" delay={0.1}>
-              <div className="bg-white border border-slate-200 rounded-md p-8 text-center group hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
-                <div className="bg-gradient-to-br from-blue-400 to-blue-700 rounded-md w-16 h-16 flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform">
-                  <Shield className="w-8 h-8 text-white" />
+              <div className="bg-white border border-slate-200 rounded-md px-5 py-5 sm:px-6 sm:py-6 text-center group hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
+                <div className="bg-gradient-to-br from-blue-400 to-blue-700 rounded-md w-11 h-11 sm:w-12 sm:h-12 flex items-center justify-center mx-auto mb-3 sm:mb-4 shadow-lg group-hover:scale-110 transition-transform">
+                  <Shield className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-3 uppercase tracking-wide">Licensed & Certified</h3>
-                <p className="text-slate-600 leading-relaxed font-light">
+                <h3 className="text-base sm:text-lg font-bold text-slate-900 mb-1.5 sm:mb-2 uppercase tracking-wide">Licensed & Certified</h3>
+                <p className="text-slate-600 leading-relaxed font-light text-sm">
                   Professional Engineers, QSD/QSPs, and contractors with California licenses and certifications
                 </p>
               </div>
             </AnimatedSection>
 
             <AnimatedSection direction="up" delay={0.2}>
-              <div className="bg-white border border-slate-200 rounded-md p-8 text-center group hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
-                <div className="bg-gradient-to-br from-cyan-400 to-cyan-700 rounded-md w-16 h-16 flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform">
-                  <Building2 className="w-8 h-8 text-white" />
+              <div className="bg-white border border-slate-200 rounded-md px-5 py-5 sm:px-6 sm:py-6 text-center group hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
+                <div className="bg-gradient-to-br from-cyan-400 to-cyan-700 rounded-md w-11 h-11 sm:w-12 sm:h-12 flex items-center justify-center mx-auto mb-3 sm:mb-4 shadow-lg group-hover:scale-110 transition-transform">
+                  <Building2 className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-3 uppercase tracking-wide">Integrated Solutions</h3>
-                <p className="text-slate-600 leading-relaxed font-light">
+                <h3 className="text-base sm:text-lg font-bold text-slate-900 mb-1.5 sm:mb-2 uppercase tracking-wide">Integrated Solutions</h3>
+                <p className="text-slate-600 leading-relaxed font-light text-sm">
                   Seamless coordination across engineering, construction, and compliance for streamlined projects
                 </p>
               </div>
             </AnimatedSection>
 
             <AnimatedSection direction="up" delay={0.3}>
-              <div className="bg-white border border-slate-200 rounded-md p-8 text-center group hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
-                <div className="bg-gradient-to-br from-teal-400 to-teal-700 rounded-md w-16 h-16 flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform">
-                  <ClipboardCheck className="w-8 h-8 text-white" />
+              <div className="bg-white border border-slate-200 rounded-md px-5 py-5 sm:px-6 sm:py-6 text-center group hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
+                <div className="bg-gradient-to-br from-teal-400 to-teal-700 rounded-md w-11 h-11 sm:w-12 sm:h-12 flex items-center justify-center mx-auto mb-3 sm:mb-4 shadow-lg group-hover:scale-110 transition-transform">
+                  <ClipboardCheck className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-3 uppercase tracking-wide">Bay Area Experts</h3>
-                <p className="text-slate-600 leading-relaxed font-light">
+                <h3 className="text-base sm:text-lg font-bold text-slate-900 mb-1.5 sm:mb-2 uppercase tracking-wide">Bay Area Experts</h3>
+                <p className="text-slate-600 leading-relaxed font-light text-sm">
                   Deep knowledge of local jurisdictions, regulations, and conditions across the region
                 </p>
               </div>
