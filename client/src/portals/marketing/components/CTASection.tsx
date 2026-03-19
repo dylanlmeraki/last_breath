@@ -66,7 +66,7 @@ export default function CTASection({
           {headline}
         </motion.h2>
         <motion.p
-          className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-200 mb-8 sm:mb-12 leading-relaxed font-light max-w-3xl mx-auto"
+          className="sm:text-lg md:text-xl lg:text-2xl text-slate-200 mb-8 sm:mb-12 font-light max-w-3xl mx-auto text-[20px]"
           initial={rm ? { opacity: 1 } : { opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
