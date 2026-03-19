@@ -61,10 +61,10 @@ export default function Services() {
         </div>
         <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-600/80 via-cyan-500/80 to-blue-500/80" />
       </section>
-      <section className="py-16 px-6 bg-slate-50 border-b border-slate-200">
+      <section className="py-16 px-6 bg-slate-50 border-b border-slate-200 pt-[24px] pb-[24px]">
         <div className="max-w-7xl mx-auto">
           <AnimatedSection direction="up">
-            <div className="grid md:grid-cols-4 gap-6">
+            <div className="grid md:grid-cols-4 gap-2">
               <div className="bg-white border border-slate-200 rounded-md p-6 text-center group hover:-translate-y-1 hover:shadow-xl transition-all duration-300" data-testid="stat-compliance-rate">
                 <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-700 rounded-md flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform">
                   <Droplets className="w-6 h-6 text-white" />
@@ -132,9 +132,9 @@ export default function Services() {
                     <h4 className="text-xl font-bold text-slate-900 mb-6 uppercase tracking-wide text-center">What We Do</h4>
                     <div className="w-20 sm:w-32 h-1 bg-gradient-to-r from-cyan-200 via-blue-500 to-cyan-200 mx-auto mb-6 rounded-full"></div>
                     <div className="space-y-4">
-                      <div className="bg-slate-50 p-6 rounded-md border border-slate-100 hover:border-blue-300 transition-colors">
-                        <h5 className="font-bold text-slate-900 mb-2 uppercase tracking-wide text-center">Permit Coverage</h5>
-                        <p className="text-sm text-slate-600 leading-relaxed text-center">Verify CGP/NPDES applicability, complete NOI/permit filings, and define compliance responsibilities up front.</p>
+                      <div className="bg-slate-50 p-6 rounded-md border border-slate-100 hover:border-blue-300 transition-colors text-center group">
+                        <h5 className="font-bold text-slate-900 mb-2 uppercase tracking-wide group-hover:text-blue-600 transition-colors">Permit Coverage</h5>
+                        <p className="text-sm text-slate-600 leading-relaxed">Verify CGP/NPDES applicability, complete NOI/permit filings, and define compliance responsibilities up front.</p>
                       </div>
 
                       <div className="bg-slate-50 p-6 rounded-md border border-slate-100 hover:border-blue-300 transition-colors text-center group">
