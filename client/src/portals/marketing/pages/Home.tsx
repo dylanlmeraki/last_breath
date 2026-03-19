@@ -130,7 +130,7 @@ const SERVICES = [
   {
     icon: HardHat,
     title: "Construction Service",
-    desc: "We are fully licensed and ready to take on any and all work from residential additions, multi-unit residential, commercial mixed-use, up to public and governmental infrastructure.",
+    desc: "Field-driven construction support for site improvements, utility work, rehabilitation, and phased project delivery. We help teams move work forward with constructable planning, disciplined coordination, and execution aligned with real Bay Area field conditions.",
     items: ["Class A License", "Class B License", "Infrastructure & Public Works", "Residential, Commercial, and Municipal Infrastructure"],
     color: "darkblue" as const,
     page: "Construction",
@@ -138,7 +138,7 @@ const SERVICES = [
   {
     icon: Compass,
     title: "Engineering Consulting",
-    desc: "Professional engineering expertise across civil and structural disciplines, providing innovative solutions and implementation to meet the unique needs of your project - from large-scale infrastructure to single family residential additions.",
+    desc: "Civil and structural engineering support shaped by constructability, site realities, and jurisdictional requirements. Our approach helps bridge the gap between design intent, approvals, and what it actually takes to deliver the work.",
     items: ["Civil Engineering Consulting", "Structural Consulting", "Site Assessment & Design", "Development Management & Support"],
     color: "bluecyan" as const,
     page: "StructuralEngineering",
@@ -146,7 +146,7 @@ const SERVICES = [
   {
     icon: ClipboardCheck,
     title: "Inspections & Testing",
-    desc: "Thorough inspections to ensure ongoing compliance with recommendation and implementation of areas for improvement.",
+    desc: "Inspection, observation, testing coordination, and quality documentation to support compliance, accountability, and closeout. We help teams maintain clear records and dependable field communication throughout active project delivery.",
     items: ["Structural Systems Inspections", "Stormwater Testing and Inspections", "Materials Sampling & Testing", "Environmental Compliance"],
     color: "cyan" as const,
     page: "InspectionsTesting",
@@ -154,7 +154,7 @@ const SERVICES = [
   {
     icon: Droplets,
     title: "Stormwater Planning",
-    desc: "Custom plans from initial assessments, tailored practical BMP designs, and full local, state, and federal regulatory compliance assurance and permitting walkthroughs.",
+    desc: "Stormwater planning and compliance support for projects that require practical drainage thinking, permit awareness, and coordinated documentation. We help teams address erosion control, runoff strategy, and submittal-related requirements with clarity.",
     items: ["In-house PE/QSD/QSP site assessment", "BMP design and maintenance", "Clear documentation with action items", "Full local, state, and Federal compliance assurance"],
     color: "cyanteal" as const,
     page: "Services",
@@ -741,18 +741,18 @@ export default function Home() {
                 {[
                   {
                     icon: BookOpen,
-                    title: "EXPERT KNOWLEDGE",
-                    desc: "Complete understanding of federal, state, and local stormwater regulations.",
+                    title: "ENGINEERING + FIELD-REALITY",
+                    desc: "Planning informed by how work actually gets built.",
                   },
                   {
                     icon: TrendingUp,
-                    title: "PROVEN TRACK RECORD",
-                    desc: "100% client satisfaction across 2.5K+ successful projects.",
+                    title: "BAY AREA JURISDICTIONAL FAMILIARITY",
+                    desc: "Stronger coordination across local permitting and project conditions.",
                   },
                   {
                     icon: Zap,
-                    title: "RESPONSIVE SERVICE",
-                    desc: "Quick turnaround times and dedicated project support to keep you moving.",
+                    title: "COMPLIANCE-MINDED DELIVERY",
+                    desc: "Stormwater, inspections, and documentation handled with discipline.",
                   },
                 ].map((item, i) => (
                   <motion.div
@@ -906,7 +906,7 @@ export default function Home() {
 
         <div className="relative z-10 max-w-4xl mx-auto text-center px-4 sm:px-6 py-12 sm:py-16 md:py-20 lg:py-24">
           <motion.h2
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-white mb-5 sm:mb-8 tracking-tight leading-[1.08]"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white mb-5 sm:mb-8 tracking-tight leading-[1.08] font-bold"
             style={{ textShadow: "0 0 40px rgba(6,182,212,0.15), 0 0 80px rgba(6,182,212,0.08)" }}
             data-testid="text-cta-title"
             initial={rm ? { opacity: 1 } : { opacity: 0, y: 40, filter: "blur(8px)" }}
@@ -916,8 +916,8 @@ export default function Home() {
               rm ? { duration: 0 } : { duration: 0.7, ease: [0.22, 1, 0.36, 1] }
             }
           >
-            Get Your Project
-            <br className="sm:hidden" /> on Track
+            Partner with Us
+            <br className="sm:hidden" />
           </motion.h2>
           <motion.p
             className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-200 mb-8 sm:mb-12 leading-relaxed font-light max-w-3xl mx-auto"
@@ -951,14 +951,14 @@ export default function Home() {
               data-testid="link-cta-quote"
             >
               <PhoneCall className="w-5 h-5 sm:w-6 sm:h-6" />
-              Free Consultation
+              Talk to our Team
             </Link>
             <a
               href="tel:+14156894428"
               className="w-full sm:w-auto px-10 sm:px-14 py-4 sm:py-[18px] text-white font-bold tracking-tight text-base sm:text-lg rounded-sm sm:rounded-full flex items-center justify-center gap-3 shadow-[0_4px_12px_rgba(6,182,212,0.12)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_35px_rgba(6,182,212,0.45)] active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:outline-none [background:radial-gradient(ellipse_at_center,#0891b2,#3b82f6)] hover:[background:radial-gradient(ellipse_at_center,#06b6d4,#2563eb)]"
               data-testid="link-cta-call"
             >
-              <Phone className="w-5 h-5 sm:w-6 sm:h-6" /> (415) 689-4428
+              <Phone className="w-5 h-5 sm:w-6 sm:h-6" /> Get in Touch
             </a>
           </motion.div>
 
