@@ -589,7 +589,7 @@ export default function Home() {
       </div>
       {/* ── WHAT DRIVES US ── */}
       <section
-        className="relative py-16 sm:py-20 md:py-24 px-4 sm:px-6 bg-slate-950 overflow-hidden"
+        className="relative py-16 sm:py-20 md:py-24 px-4 sm:px-6 bg-slate-950 overflow-hidden pt-[32px] pb-[32px]"
         data-testid="section-values"
       >
         <div className="absolute inset-0 bg-[linear-gradient(rgba(6,182,212,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.015)_1px,transparent_1px)] bg-[size:48px_48px] pointer-events-none" />
