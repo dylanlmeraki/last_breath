@@ -760,13 +760,6 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-br from-blue-950/30 via-transparent to-cyan-950/20 pointer-events-none" />
 
         <div className="max-w-6xl mx-auto relative z-10">
-          <AnimatedSection direction="up" className="text-center mb-12 sm:mb-16">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 tracking-tight" data-testid="text-values-title">
-              What Drives Us
-            </h2>
-            <div className="w-20 sm:w-32 h-1 bg-gradient-to-r from-cyan-200 via-blue-500 to-cyan-200 mx-auto rounded-full" />
-          </AnimatedSection>
-
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
             {[
               { icon: Award, title: "Technical Excellence", desc: "Precision engineering, rigorous testing, and PE-certified work that stands up to scrutiny and performs as designed", gradient: "from-blue-400 to-blue-600", key: "excellence" },
