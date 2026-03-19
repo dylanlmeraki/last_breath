@@ -163,40 +163,28 @@ const SERVICES = [
 
 const colorMap = {
   darkblue: {
-    bg: "bg-slate-100", hoverBg: "group-hover:from-amber-400 group-hover:to-orange-500",
-    icon: "text-slate-700", check: "text-amber-500", border: "from-amber-500 to-orange-500",
-    titleHover: "group-hover:text-amber-600", textHover: "group-hover:text-amber-600/80",
-    checkHover: "group-hover:text-amber-500", cardBgHover: "group-hover:bg-amber-50/40", h: "h-1.5",
-    glowColor: "rgba(245,158,11,0.18)",
+    cardBgHover: "group-hover:bg-blue-50/30", h: "h-1.5",
+    glowColor: "rgba(14,165,233,0.18)",
     gradient: "linear-gradient(to right, #3b82f6, #0ea5e9, #06b6d4, #22d3ee)",
-    iconShadow: "group-hover:shadow-lg group-hover:shadow-amber-500/40",
+    checkColor: "#0ea5e9",
   },
   bluecyan: {
-    bg: "bg-slate-100", hoverBg: "group-hover:from-lime-400 group-hover:to-emerald-500",
-    icon: "text-slate-700", check: "text-emerald-500", border: "from-lime-500 to-emerald-500",
-    titleHover: "group-hover:text-emerald-500", textHover: "group-hover:text-emerald-600/80",
-    checkHover: "group-hover:text-emerald-400", cardBgHover: "group-hover:bg-emerald-50/40", h: "h-1.5",
+    cardBgHover: "group-hover:bg-emerald-50/30", h: "h-1.5",
     glowColor: "rgba(16,185,129,0.18)",
     gradient: "linear-gradient(to right, #22d3ee, #5eead4, #6ee7b7, #86efac)",
-    iconShadow: "group-hover:shadow-lg group-hover:shadow-emerald-500/40",
+    checkColor: "#5eead4",
   },
   cyan: {
-    bg: "bg-slate-100", hoverBg: "group-hover:from-teal-400 group-hover:to-cyan-500",
-    icon: "text-slate-700", check: "text-teal-500", border: "from-teal-500 to-cyan-500",
-    titleHover: "group-hover:text-teal-500", textHover: "group-hover:text-teal-600/80",
-    checkHover: "group-hover:text-teal-400", cardBgHover: "group-hover:bg-teal-50/40", h: "h-1.5",
+    cardBgHover: "group-hover:bg-teal-50/30", h: "h-1.5",
     glowColor: "rgba(20,184,166,0.18)",
     gradient: "linear-gradient(to right, #86efac, #5eead4, #22d3ee, #06b6d4)",
-    iconShadow: "group-hover:shadow-lg",
+    checkColor: "#22d3ee",
   },
   cyanteal: {
-    bg: "bg-slate-100", hoverBg: "group-hover:from-cyan-500 group-hover:to-blue-500",
-    icon: "text-slate-700", check: "text-blue-500", border: "from-cyan-500 to-blue-500",
-    titleHover: "group-hover:text-blue-500", textHover: "group-hover:text-blue-500/80",
-    checkHover: "group-hover:text-blue-400", cardBgHover: "group-hover:bg-blue-50/40", h: "h-1.5",
+    cardBgHover: "group-hover:bg-blue-50/30", h: "h-1.5",
     glowColor: "rgba(59,130,246,0.18)",
     gradient: "linear-gradient(to right, #06b6d4, #0ea5e9, #3b82f6, #3b82f6)",
-    iconShadow: "group-hover:shadow-lg",
+    checkColor: "#0ea5e9",
   },
 };
 
@@ -251,17 +239,17 @@ function ServiceCard({ svc, idx, reducedMotion }: { svc: typeof SERVICES[number]
         >
           <div className={c.h} style={{ background: c.gradient }} />
           <div className="p-5 sm:p-8 lg:p-10 flex flex-col items-center text-center">
-            <div className={`${c.bg} rounded-md w-14 h-14 sm:w-20 sm:h-20 lg:w-24 lg:h-24 flex items-center justify-center mb-4 sm:mb-6 lg:mb-8 group-hover:bg-gradient-to-br ${c.hoverBg} ${c.iconShadow} transition-all duration-300`}>
-              <Icon className={`w-7 h-7 sm:w-10 sm:h-10 lg:w-12 lg:h-12 ${c.icon} group-hover:text-white transition-colors`} />
+            <div className="rounded-md w-14 h-14 sm:w-20 sm:h-20 lg:w-24 lg:h-24 flex items-center justify-center mb-4 sm:mb-6 lg:mb-8 shadow-lg transition-all duration-300" style={{ background: c.gradient }}>
+              <Icon className="w-7 h-7 sm:w-10 sm:h-10 lg:w-12 lg:h-12 text-white" />
             </div>
-            <h3 className={`text-slate-900 ${c.titleHover} text-lg sm:text-xl lg:text-2xl font-bold mb-2 sm:mb-4 uppercase tracking-wider transition-colors`}>
+            <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-2 sm:mb-4 uppercase tracking-wider bg-clip-text text-transparent" style={{ backgroundImage: c.gradient }}>
               {svc.title}
             </h3>
             <p className="text-slate-600 mb-4 sm:mb-6 lg:mb-8 leading-relaxed text-sm sm:text-base lg:text-lg">{svc.desc}</p>
             <ul className="space-y-2 sm:space-y-3 w-full">
               {svc.items.map((item, i) => (
-                <li key={i} className={`flex items-center justify-center gap-2 sm:gap-3 text-slate-600 ${c.textHover} transition-colors`}>
-                  <CheckCircle className={`w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0 ${c.check} ${c.checkHover} transition-colors`} />
+                <li key={i} className="flex items-center justify-center gap-2 sm:gap-3 text-slate-600 transition-colors">
+                  <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" style={{ color: c.checkColor }} />
                   <span className="font-medium text-sm sm:text-base">{item}</span>
                 </li>
               ))}
