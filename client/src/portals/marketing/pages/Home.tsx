@@ -168,36 +168,40 @@ const colorMap = {
     icon: "text-slate-700", check: "text-blue-500", border: "from-blue-500 to-sky-500",
     titleHover: "group-hover:text-blue-600", textHover: "group-hover:text-blue-600/80",
     checkHover: "group-hover:text-sky-500", cardBgHover: "group-hover:bg-blue-50/40", h: "h-1.5",
-    glowColor: "rgba(14,165,233,0.18)",
+    shadowColor: "rgba(30,58,138,0.22)",
     gradient: "linear-gradient(to right, #3b82f6, #0ea5e9, #06b6d4, #22d3ee)",
-    iconShadow: "group-hover:shadow-lg group-hover:shadow-blue-500/40",
+    iconGradient: "linear-gradient(135deg, #60a5fa 0%, #3b82f6 40%, #1d4ed8 100%)",
+    icon3dShadow: "0 6px 16px -2px rgba(29,78,216,0.5), 0 2px 6px -1px rgba(29,78,216,0.3), inset 0 1px 1px rgba(255,255,255,0.25)",
   },
   bluecyan: {
     bg: "bg-slate-100", hoverBg: "group-hover:from-cyan-400 group-hover:to-teal-500",
     icon: "text-slate-700", check: "text-teal-500", border: "from-cyan-500 to-teal-500",
     titleHover: "group-hover:text-teal-600", textHover: "group-hover:text-teal-600/80",
     checkHover: "group-hover:text-teal-400", cardBgHover: "group-hover:bg-teal-50/40", h: "h-1.5",
-    glowColor: "rgba(20,184,166,0.18)",
+    shadowColor: "rgba(13,148,136,0.22)",
     gradient: "linear-gradient(to right, #22d3ee, #5eead4, #2dd4bf, #14b8a6)",
-    iconShadow: "group-hover:shadow-lg group-hover:shadow-teal-500/40",
+    iconGradient: "linear-gradient(135deg, #5eead4 0%, #14b8a6 40%, #0d9488 100%)",
+    icon3dShadow: "0 6px 16px -2px rgba(13,148,136,0.5), 0 2px 6px -1px rgba(13,148,136,0.3), inset 0 1px 1px rgba(255,255,255,0.25)",
   },
   cyan: {
     bg: "bg-slate-100", hoverBg: "group-hover:from-teal-400 group-hover:to-cyan-500",
     icon: "text-slate-700", check: "text-teal-500", border: "from-teal-500 to-cyan-500",
     titleHover: "group-hover:text-teal-600", textHover: "group-hover:text-teal-600/80",
     checkHover: "group-hover:text-cyan-400", cardBgHover: "group-hover:bg-teal-50/40", h: "h-1.5",
-    glowColor: "rgba(20,184,166,0.18)",
+    shadowColor: "rgba(13,148,136,0.22)",
     gradient: "linear-gradient(to right, #14b8a6, #2dd4bf, #22d3ee, #06b6d4)",
-    iconShadow: "group-hover:shadow-lg group-hover:shadow-teal-500/40",
+    iconGradient: "linear-gradient(135deg, #2dd4bf 0%, #14b8a6 40%, #0f766e 100%)",
+    icon3dShadow: "0 6px 16px -2px rgba(15,118,110,0.5), 0 2px 6px -1px rgba(15,118,110,0.3), inset 0 1px 1px rgba(255,255,255,0.25)",
   },
   cyanteal: {
     bg: "bg-slate-100", hoverBg: "group-hover:from-cyan-500 group-hover:to-blue-500",
     icon: "text-slate-700", check: "text-cyan-600", border: "from-cyan-500 to-blue-500",
     titleHover: "group-hover:text-cyan-600", textHover: "group-hover:text-cyan-600/80",
     checkHover: "group-hover:text-blue-400", cardBgHover: "group-hover:bg-cyan-50/40", h: "h-1.5",
-    glowColor: "rgba(6,182,212,0.18)",
+    shadowColor: "rgba(8,145,178,0.22)",
     gradient: "linear-gradient(to right, #06b6d4, #0ea5e9, #3b82f6, #3b82f6)",
-    iconShadow: "group-hover:shadow-lg group-hover:shadow-cyan-500/40",
+    iconGradient: "linear-gradient(135deg, #22d3ee 0%, #0891b2 40%, #0e7490 100%)",
+    icon3dShadow: "0 6px 16px -2px rgba(14,116,144,0.5), 0 2px 6px -1px rgba(14,116,144,0.3), inset 0 1px 1px rgba(255,255,255,0.25)",
   },
 };
 
@@ -206,6 +210,7 @@ function ServiceCard({ svc, idx, reducedMotion }: { svc: typeof SERVICES[number]
   const Icon = svc.icon;
   const ref = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
+  const iconRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
   const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
@@ -216,8 +221,8 @@ function ServiceCard({ svc, idx, reducedMotion }: { svc: typeof SERVICES[number]
     const x = (e.clientX - rect.left) / rect.width - 0.5;
     const y = (e.clientY - rect.top) / rect.height - 0.5;
     el.style.transform = `translateY(-0.5rem) rotateX(${y * -6}deg) rotateY(${x * 6}deg)`;
-    el.style.boxShadow = `0 20px 40px -12px ${c.glowColor}, 0 8px 20px -8px rgba(0,0,0,0.08)`;
-  }, [c.glowColor, reducedMotion]);
+    el.style.boxShadow = `0 25px 50px -12px ${c.shadowColor}, 0 12px 24px -8px rgba(0,0,0,0.12), 0 4px 8px -2px rgba(0,0,0,0.06)`;
+  }, [c.shadowColor, reducedMotion]);
 
   const handleMouseLeave = useCallback(() => {
     const el = cardRef.current;
@@ -243,7 +248,7 @@ function ServiceCard({ svc, idx, reducedMotion }: { svc: typeof SERVICES[number]
       <Link to={createPageUrl(svc.page)} className="block group h-full" data-testid={`link-${svc.title.toLowerCase().replace(/\s+/g, "-")}`}>
         <div
           ref={cardRef}
-          className={`h-full bg-white ${c.cardBgHover} rounded-md shadow-md sm:shadow-lg group-hover:shadow-2xl border border-slate-200 group-hover:border-slate-300 group-hover:-translate-y-2 transition-all duration-500 overflow-hidden cursor-pointer`}
+          className={`h-full bg-white ${c.cardBgHover} rounded-md shadow-md sm:shadow-lg border border-slate-200 group-hover:border-slate-300 group-hover:-translate-y-2 transition-all duration-500 overflow-hidden cursor-pointer`}
           style={{
             transition: reducedMotion ? "border-color 0.5s ease, background-color 0.5s ease" : "transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s ease, border-color 0.5s ease, background-color 0.5s ease",
           }}
@@ -252,8 +257,18 @@ function ServiceCard({ svc, idx, reducedMotion }: { svc: typeof SERVICES[number]
         >
           <div className={c.h} style={{ background: c.gradient }} />
           <div className="p-5 sm:p-8 lg:p-10 flex flex-col items-center text-center">
-            <div className={`${c.bg} rounded-md w-14 h-14 sm:w-20 sm:h-20 lg:w-24 lg:h-24 flex items-center justify-center mb-4 sm:mb-6 lg:mb-8 group-hover:bg-gradient-to-br ${c.hoverBg} ${c.iconShadow} transition-all duration-300`}>
-              <Icon className={`w-7 h-7 sm:w-10 sm:h-10 lg:w-12 lg:h-12 ${c.icon} group-hover:text-white transition-colors`} />
+            <div
+              ref={iconRef}
+              className={`${c.bg} rounded-md w-14 h-14 sm:w-20 sm:h-20 lg:w-24 lg:h-24 flex items-center justify-center mb-4 sm:mb-6 lg:mb-8 transition-all duration-300 relative`}
+              style={{}}
+            >
+              <div
+                className="absolute inset-0 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                style={{ background: c.iconGradient, boxShadow: c.icon3dShadow }}
+              />
+              <div className="absolute inset-0 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-b from-white/20 via-transparent to-black/10" />
+              <Icon className={`relative z-10 w-7 h-7 sm:w-10 sm:h-10 lg:w-12 lg:h-12 ${c.icon} group-hover:text-white transition-colors duration-300`} style={{ filter: "var(--icon-drop)" }} />
+              <style>{`.group:hover [data-icon-3d] { --icon-drop: drop-shadow(0 1px 2px rgba(0,0,0,0.3)); }`}</style>
             </div>
             <h3 className={`text-slate-900 ${c.titleHover} text-lg sm:text-xl lg:text-2xl font-bold mb-2 sm:mb-4 uppercase tracking-wider transition-colors`}>
               {svc.title}
