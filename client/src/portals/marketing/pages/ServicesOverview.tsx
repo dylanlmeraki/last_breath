@@ -1,110 +1,18 @@
 import { Link } from "react-router-dom";
 import { createPageUrl } from "../lib/utils";
 import {
-  Droplets,
-  HardHat,
   ClipboardCheck,
   Building2,
   Shield,
-  BadgeCheck,
-  ArrowRight,
-  CheckCircle2,
-  Sparkles,
-  FileText,
-  CheckCircle,
 } from "lucide-react";
-import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import AnimatedSection from "../components/AnimatedSection";
+import { ServiceCardsGrid } from "../components/ServiceCards";
 import SEO from "../components/SEO";
 import AnimatedGridBackground from "../components/AnimatedGridBackground";
 import BlueprintBackground from "../components/BlueprintBackground";
 import CTASection from "../components/CTASection";
-import type { LucideIcon } from "lucide-react";
-
-interface ServiceItem {
-  id: number;
-  title: string;
-  description: string;
-  icon: LucideIcon;
-  gradient: string;
-  bgGradient: string;
-  link: string;
-  features: string[];
-}
 
 export default function ServicesOverview() {
-  const services: ServiceItem[] = [
-  {
-    id: 1,
-    title: "Stormwater Planning (SWPPP)",
-    description: "Comprehensive stormwater pollution prevention plans developed by certified QSDs and Professional Engineers.",
-    icon: Droplets,
-    gradient: "from-blue-500 to-cyan-500",
-    bgGradient: "from-blue-50 to-cyan-50",
-    link: "Services",
-    features: [
-    "QSD/QSP Services",
-    "Site Assessment & Analysis",
-    "BMP Design & Implementation",
-    "Regulatory Compliance"]
-  },
-  {
-    id: 2,
-    title: "Construction Services",
-    description: "Full-scale construction expertise with Class A & B licenses for infrastructure and residential projects.",
-    icon: HardHat,
-    gradient: "from-cyan-500 to-teal-500",
-    bgGradient: "from-cyan-50 to-teal-50",
-    link: "Construction",
-    features: [
-    "Class A & B Licensed",
-    "Public Infrastructure",
-    "Commercial & Residential",
-    "Project Management"]
-  },
-  {
-    id: 3,
-    title: "Inspections & Testing",
-    description: "Certified testing and sampling services ensuring code compliance and project quality across all phases.",
-    icon: ClipboardCheck,
-    gradient: "from-teal-500 to-cyan-500",
-    bgGradient: "from-teal-50 to-cyan-50",
-    link: "InspectionsTesting",
-    features: [
-    "Stormwater Testing",
-    "Materials Testing",
-    "Soil & Geotechnical",
-    "Lab Coordination"]
-  },
-  {
-    id: 4,
-    title: "Structural Engineering",
-    description: "Licensed PE-certified structural design, analysis, and seismic retrofit services for all project types.",
-    icon: Building2,
-    gradient: "from-sky-500 to-blue-500",
-    bgGradient: "from-sky-50 to-blue-50",
-    link: "StructuralEngineering",
-    features: [
-    "Seismic Retrofits",
-    "Foundation Design",
-    "Structural Analysis",
-    "Building Design"]
-  },
-  {
-    id: 5,
-    title: "Special Inspections",
-    description: "PE-backed verification services for structural materials, welding, seismic systems, and building envelope.",
-    icon: BadgeCheck,
-    gradient: "from-blue-500 to-cyan-600",
-    bgGradient: "from-blue-50 to-cyan-50",
-    link: "SpecialInspections",
-    features: [
-    "Structural Materials",
-    "Welding Inspection",
-    "Seismic Systems",
-    "Building Envelope"]
-  }];
 
   return (
     <div className="min-h-screen bg-slate-50" data-testid="page-services-overview">
@@ -159,145 +67,8 @@ export default function ServicesOverview() {
             </p>
           </AnimatedSection>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto mb-32">
-            <Link to={createPageUrl("Services")} className="block group h-full" data-testid="link-services-stormwater">
-              <AnimatedSection direction="left" delay={0.1} className="h-full">
-                <Card className="h-full hover:shadow-2xl transition-all duration-300 overflow-hidden border border-slate-200 bg-white cursor-pointer group-hover:-translate-y-2 rounded-md">
-                  <div className="h-1.5 bg-gradient-to-r from-blue-600 to-cyan-500" />
-                  <div className="p-8 flex flex-col items-center text-center">
-                    <div className="bg-slate-100 rounded-md w-20 h-20 flex items-center justify-center mb-6 group-hover:bg-gradient-to-br group-hover:from-blue-400 group-hover:to-blue-600 group-hover:shadow-lg transition-all duration-300">
-                      <FileText className="w-10 h-10 text-slate-700 group-hover:text-white transition-colors" />
-                    </div>
-                    <h3 className="text-slate-900 text-2xl font-bold mb-4 uppercase tracking-wide">Stormwater Planning</h3>
-                    <p className="text-slate-600 mb-8 leading-relaxed">Custom plans from initial assessments, tailored practical BMP designs, and full local, state, and federal regulatory compliance assurance and permitting walkthroughs.
-                    </p>
-                    <ul className="space-y-4 w-full flex flex-col items-center">
-                      <li className="flex items-center justify-center gap-3 text-slate-700 max-w-md">
-                        <CheckCircle className="w-5 h-5 text-blue-600 flex-shrink-0" />
-                        <span className="font-medium text-center group-hover:text-blue-600 transition-colors">In-house PE/QSD/QSP site assessment</span>
-                      </li>
-                      <li className="flex items-center justify-center gap-3 text-slate-700 max-w-md">
-                        <CheckCircle className="w-5 h-5 text-blue-600 flex-shrink-0" />
-                        <span className="font-medium text-center group-hover:text-blue-600 transition-colors">BMP design and maintenance</span>
-                      </li>
-                      <li className="flex items-center justify-center gap-3 text-slate-700 max-w-md">
-                        <CheckCircle className="w-5 h-5 text-blue-600 flex-shrink-0" />
-                        <span className="font-medium text-center group-hover:text-blue-600 transition-colors">Clear documentation with action items</span>
-                      </li>
-                      <li className="flex items-center justify-center gap-3 text-slate-700 max-w-md">
-                        <CheckCircle className="w-5 h-5 text-blue-600 flex-shrink-0" />
-                        <span className="font-medium text-center group-hover:text-blue-600 transition-colors">Full local, state, and Federal compliance assurance</span>
-                      </li>
-                    </ul>
-                  </div>
-                </Card>
-              </AnimatedSection>
-            </Link>
+          <ServiceCardsGrid />
 
-            <Link to={createPageUrl("Construction")} className="block group h-full" data-testid="link-services-construction">
-              <AnimatedSection direction="right" delay={0.2} className="h-full">
-                <Card className="h-full hover:shadow-2xl transition-all duration-300 overflow-hidden border border-slate-200 bg-white cursor-pointer group-hover:-translate-y-2 rounded-md">
-                  <div className="h-1.5 bg-gradient-to-r from-cyan-500 to-teal-500" />
-                  <div className="p-8 flex flex-col items-center text-center">
-                    <div className="bg-slate-100 rounded-md w-20 h-20 flex items-center justify-center mb-6 group-hover:bg-gradient-to-br group-hover:from-cyan-300 group-hover:to-cyan-600 group-hover:shadow-lg transition-all duration-300">
-                      <Shield className="w-10 h-10 text-slate-700 group-hover:text-white transition-colors" />
-                    </div>
-                    <h3 className="text-slate-900 text-2xl font-bold mb-4 uppercase tracking-wide">Construction Service</h3>
-                    <p className="text-slate-600 mb-8 leading-relaxed">We are fully licensed and ready to take on any and all work from residential additions, multi-unit residential, commercial mixed-use, up to public and governmental infrastructure.
-                    </p>
-                    <ul className="space-y-4 w-full flex flex-col items-center">
-                      <li className="flex items-center justify-center gap-3 text-slate-700 max-w-md">
-                        <CheckCircle className="w-5 h-5 text-cyan-600 flex-shrink-0" />
-                        <span className="font-medium text-center group-hover:text-cyan-600 transition-colors">Class A License</span>
-                      </li>
-                      <li className="flex items-center justify-center gap-3 text-slate-700 max-w-md">
-                        <CheckCircle className="w-5 h-5 text-cyan-600 flex-shrink-0" />
-                        <span className="font-medium text-center group-hover:text-cyan-600 transition-colors">Class B License</span>
-                      </li>
-                      <li className="flex items-center justify-center gap-3 text-slate-700 max-w-md">
-                        <CheckCircle className="w-5 h-5 text-cyan-600 flex-shrink-0" />
-                        <span className="font-medium text-center group-hover:text-cyan-600 transition-colors">Infrastructure & Public Works</span>
-                      </li>
-                      <li className="flex items-center justify-center gap-3 text-slate-700 max-w-md">
-                        <CheckCircle className="w-5 h-5 text-cyan-600 flex-shrink-0" />
-                        <span className="font-medium text-center group-hover:text-cyan-600 transition-colors">Residential, Commercial, and Municipal Infrastructure</span>
-                      </li>
-                    </ul>
-                  </div>
-                </Card>
-              </AnimatedSection>
-            </Link>
-
-            <Link to={createPageUrl("InspectionsTesting")} className="block group h-full" data-testid="link-services-inspections">
-              <AnimatedSection direction="left" delay={0.3} className="h-full">
-                <Card className="h-full hover:shadow-2xl transition-all duration-300 overflow-hidden border border-slate-200 bg-white cursor-pointer group-hover:-translate-y-2 rounded-md">
-                  <div className="h-1.5 bg-gradient-to-r from-teal-500 to-cyan-500" />
-                  <div className="p-8 flex flex-col items-center text-center">
-                    <div className="bg-slate-100 rounded-md w-20 h-20 flex items-center justify-center mb-6 group-hover:bg-gradient-to-br group-hover:from-teal-300 group-hover:to-teal-600 group-hover:shadow-lg transition-all duration-300">
-                      <ClipboardCheck className="w-10 h-10 text-slate-700 group-hover:text-white transition-colors" />
-                    </div>
-                    <h3 className="text-slate-900 text-2xl font-bold mb-4 uppercase tracking-wide">Inspections & Testing</h3>
-                    <p className="text-slate-600 mb-8 leading-relaxed">Thorough inspections to ensure ongoing compliance with recommendation and implementation of areas for improvement.
-
-                    </p>
-                    <ul className="space-y-4 w-full flex flex-col items-center">
-                      <li className="flex items-center justify-center gap-3 text-slate-700 max-w-md">
-                        <CheckCircle className="w-5 h-5 text-teal-600 flex-shrink-0" />
-                        <span className="font-medium text-center group-hover:text-teal-600 transition-colors">Structural Systems Inspections</span>
-                      </li>
-                      <li className="flex items-center justify-center gap-3 text-slate-700 max-w-md">
-                        <CheckCircle className="w-5 h-5 text-teal-600 flex-shrink-0" />
-                        <span className="font-medium text-center group-hover:text-teal-600 transition-colors">Stormwater Testing and Inspections</span>
-                      </li>
-                      <li className="flex items-center justify-center gap-3 text-slate-700 max-w-md">
-                        <CheckCircle className="w-5 h-5 text-teal-600 flex-shrink-0" />
-                        <span className="font-medium text-center group-hover:text-teal-600 transition-colors">Materials Sampling & Testing</span>
-                      </li>
-                      <li className="flex items-center justify-center gap-3 text-slate-700 max-w-md">
-                        <CheckCircle className="w-5 h-5 text-teal-600 flex-shrink-0" />
-                        <span className="font-medium text-center group-hover:text-teal-600 transition-colors">Environmental Compliance</span>
-                      </li>
-                    </ul>
-                  </div>
-                </Card>
-              </AnimatedSection>
-            </Link>
-            
-            <Link to={createPageUrl("StructuralEngineering")} className="block group h-full" data-testid="link-services-engineering">
-              <AnimatedSection direction="right" delay={0.4} className="h-full">
-                <Card className="h-full hover:shadow-2xl transition-all duration-300 overflow-hidden border border-slate-200 bg-white cursor-pointer group-hover:-translate-y-2 rounded-md">
-                  <div className="h-1.5 bg-gradient-to-r from-sky-500 to-blue-600" />
-                  <div className="p-8 flex flex-col items-center text-center">
-                    <div className="bg-slate-100 rounded-md w-20 h-20 flex items-center justify-center mb-6 group-hover:bg-gradient-to-br group-hover:from-sky-300 group-hover:to-blue-600 group-hover:shadow-lg transition-all duration-300">
-                      <ClipboardCheck className="w-10 h-10 text-slate-700 group-hover:text-white transition-colors" />
-                    </div>
-                    <h3 className="text-slate-900 text-2xl font-bold mb-4 uppercase tracking-wide">Engineering Consulting</h3>
-                    <p className="text-slate-600 mb-8 leading-relaxed">Professional engineering expertise across civil and structural disciplines, providing innovative solutions and implementation to meet the unique needs of your project - from large-scale infrastructure to single family residential additions.
-
-                    </p>
-                    <ul className="space-y-4 w-full flex flex-col items-center">
-                      <li className="flex items-center justify-center gap-3 text-slate-700 max-w-md">
-                        <CheckCircle className="w-5 h-5 text-blue-600 flex-shrink-0" />
-                        <span className="font-medium text-center group-hover:text-blue-600 transition-colors">Civil Engineering Consulting</span>
-                      </li>
-                      <li className="flex items-center justify-center gap-3 text-slate-700 max-w-md">
-                        <CheckCircle className="w-5 h-5 text-blue-600 flex-shrink-0" />
-                        <span className="font-medium text-center group-hover:text-blue-600 transition-colors">Structural Consulting</span>
-                      </li>
-                      <li className="flex items-center justify-center gap-3 text-slate-700 max-w-md">
-                        <CheckCircle className="w-5 h-5 text-blue-600 flex-shrink-0" />
-                        <span className="font-medium text-center group-hover:text-blue-600 transition-colors">Site Assessment & Design</span>
-                      </li>
-                      <li className="flex items-center justify-center gap-3 text-slate-700 max-w-md">
-                        <CheckCircle className="w-5 h-5 text-blue-600 flex-shrink-0" />
-                        <span className="font-medium text-center group-hover:text-blue-600 transition-colors">Development Management & Support</span>
-                      </li>
-                    </ul>
-                  </div>
-                </Card>
-              </AnimatedSection>
-            </Link>
-          </div>
         </div>
       </section>
 
