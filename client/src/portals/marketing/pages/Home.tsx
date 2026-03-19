@@ -717,13 +717,6 @@ export default function Home() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-cyan-500/[0.04] rounded-full blur-[120px] pointer-events-none" />
 
         <div className="max-w-6xl mx-auto relative z-10">
-          <AnimatedSection direction="up" className="text-center mb-12 sm:mb-16">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 tracking-tight" data-testid="text-stats-title">
-              By the Numbers
-            </h2>
-            <div className="w-20 sm:w-32 h-1 bg-gradient-to-r from-cyan-200 via-blue-500 to-cyan-200 mx-auto rounded-full" />
-          </AnimatedSection>
-
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 text-center">
             {[
               { target: 40, suffix: "+", label: "Years", sub: "Combined experience", key: "years" },
