@@ -82,7 +82,7 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
                 <img src="/images/pe-logo.png" alt="Pacific Engineering Logo" className="rounded-md h-14 w-14 object-contain relative z-10" />
               </div>
               <div className="min-w-0 hidden sm:block">
-                <div className="font-bold text-white tracking-tight text-base sm:text-lg lg:text-xl xl:text-[24px] truncate">Pacific Engineering & Construction Inc.</div>
+                <div className="font-bold text-white tracking-tight sm:text-lg lg:text-xl xl:text-[24px] truncate text-[20px]">Pacific Engineering & Construction Inc.</div>
                 <div className="text-xs font-medium text-blue-200 tracking-wide hidden sm:block">Consulting Engineers & Contractors</div>
               </div>
             </Link>
