@@ -709,7 +709,7 @@ export default function Home() {
       </div>
       {/* ── BY THE NUMBERS ── */}
       <section
-        className="relative py-16 sm:py-20 md:py-24 px-4 sm:px-6 bg-slate-900 overflow-hidden"
+        className="relative py-16 sm:py-20 md:py-24 px-4 sm:px-6 bg-slate-900 overflow-hidden pt-[32px] pb-[32px]"
         data-testid="section-stats"
       >
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-[0.06] pointer-events-none" />
