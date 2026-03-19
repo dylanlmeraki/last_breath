@@ -20,6 +20,7 @@ import {
   Target,
 } from "lucide-react";
 import AnimatedSection from "../components/AnimatedSection";
+import AnimatedCounter from "../components/AnimatedCounter";
 import { ServiceCardsGrid } from "../components/ServiceCards";
 import SEO from "../components/SEO";
 import ParticleField from "../components/ParticleField";
@@ -28,43 +29,6 @@ import BlueprintBackground from "../components/BlueprintBackground";
 import AnimatedGridBackground from "../components/AnimatedGridBackground";
 import bayBridgeImg from "@assets/bay-bridge-sunrise_1773821710974.jpg";
 
-function useInViewOnce(threshold = 0.15) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [inView, setInView] = useState(false);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) { setInView(true); obs.disconnect(); } },
-      { threshold }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, [threshold]);
-  return { ref, inView };
-}
-
-function AnimatedCounter({ target, suffix = "", duration = 2000 }: { target: number; suffix?: string; duration?: number }) {
-  const { ref, inView } = useInViewOnce(0.3);
-  const [count, setCount] = useState(0);
-  const reducedMotion = typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  useEffect(() => {
-    if (!inView) return;
-    if (reducedMotion) { setCount(target); return; }
-    const startTime = performance.now();
-    let rafId: number;
-    const animate = (now: number) => {
-      const elapsed = now - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      setCount(Math.round(eased * target));
-      if (progress < 1) rafId = requestAnimationFrame(animate);
-    };
-    rafId = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(rafId);
-  }, [inView, target, duration, reducedMotion]);
-  return <span ref={ref}>{inView ? `${count.toLocaleString()}${suffix}` : `0${suffix}`}</span>;
-}
 
 function BlueprintGrid() {
   return (
@@ -543,49 +507,12 @@ export default function Home() {
           />
         </div>
       </section>
-      {/* ── SERVICES → STATS TRANSITION ── */}
-      <div className="relative w-full" data-testid="divider-services-stats">
+      {/* ── SERVICES → VALUES TRANSITION ── */}
+      <div className="relative w-full" data-testid="divider-services-values">
         <div className="h-1.5 relative overflow-hidden" style={{ background: "linear-gradient(to right, #e2e8f0, #3b82f6 25%, #06b6d4 50%, #3b82f6 75%, #e2e8f0)" }}>
           <LineSweep />
         </div>
         <div className="h-px bg-gradient-to-r from-slate-200 via-cyan-200 to-slate-200" />
-      </div>
-      {/* ── BY THE NUMBERS ── */}
-      <section
-        className="relative py-16 sm:py-20 md:py-24 px-4 sm:px-6 bg-slate-900 overflow-hidden pt-[24px] pb-[24px]"
-        data-testid="section-stats"
-      >
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-[0.06] pointer-events-none" />
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/40 via-transparent to-slate-950/40 pointer-events-none" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-cyan-500/[0.04] rounded-full blur-[120px] pointer-events-none" />
-
-        <div className="max-w-6xl mx-auto relative z-10">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 text-center">
-            {[
-              { target: 40, suffix: "+", label: "Years", sub: "Combined experience", key: "years" },
-              { target: 2500, suffix: "+", label: "Projects", sub: "Successfully completed", key: "projects" },
-              { target: 100, suffix: "%", label: "Compliance", sub: "Track record", key: "compliance" },
-              { target: 5, suffix: "B+", label: "Project Value", sub: "Total construction value", prefix: "$", key: "value" },
-            ].map((stat, i) => (
-              <AnimatedSection direction="up" delay={i * 0.1} key={stat.key}>
-                <div className="relative group" data-testid={`card-stat-${stat.key}`}>
-                  <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/[0.08] to-blue-500/[0.08] rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <div className="relative bg-white/[0.03] backdrop-blur-sm border border-white/[0.06] rounded-xl p-6 sm:p-8 hover:border-cyan-500/20 transition-all duration-300">
-                    <div className="text-3xl sm:text-4xl md:text-5xl font-bold mb-2 bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent" data-testid={`text-stat-value-${stat.key}`}>
-                      {stat.prefix || ""}<AnimatedCounter target={stat.target} suffix={stat.suffix} />
-                    </div>
-                    <div className="text-base sm:text-lg text-white font-bold tracking-tight mb-1" data-testid={`text-stat-label-${stat.key}`}>{stat.label}</div>
-                    <p className="text-slate-400 text-xs sm:text-sm" data-testid={`text-stat-sub-${stat.key}`}>{stat.sub}</p>
-                  </div>
-                </div>
-              </AnimatedSection>
-            ))}
-          </div>
-        </div>
-      </section>
-      {/* ── STATS → VALUES TRANSITION ── */}
-      <div className="relative w-full" data-testid="divider-stats-values">
-        <div className="h-[3px]" style={{ background: "linear-gradient(to right, #0f172a, #0e7490 20%, #06b6d4 35%, #22d3ee 50%, #06b6d4 65%, #0e7490 80%, #0f172a)" }} />
       </div>
       {/* ── WHAT DRIVES US ── */}
       <section

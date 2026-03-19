@@ -3,6 +3,7 @@ import { createPageUrl } from "../lib/utils";
 import { Award, Users, Target, Shield, ArrowRight, Building2, HardHat, ClipboardCheck, FileText, CheckCircle } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import AnimatedSection from "../components/AnimatedSection";
+import AnimatedCounter from "../components/AnimatedCounter";
 import { ServiceCardsGrid } from "../components/ServiceCards";
 import SEO from "../components/SEO";
 import AnimatedGridBackground from "../components/AnimatedGridBackground";
@@ -213,26 +214,39 @@ in a timely manner.
         </div>
       </section>
 
-      <section className="py-20 px-6 bg-slate-900 text-white relative overflow-hidden" data-testid="section-stats">
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 pointer-events-none"></div>
+      <section
+        className="relative py-16 sm:py-20 md:py-24 px-4 sm:px-6 bg-slate-900 overflow-hidden"
+        data-testid="section-stats"
+      >
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-[0.06] pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/40 via-transparent to-slate-950/40 pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-cyan-500/[0.04] rounded-full blur-[120px] pointer-events-none" />
+
         <div className="max-w-6xl mx-auto relative z-10">
-          <AnimatedSection direction="up" className="text-center mb-16">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 tracking-tight" data-testid="text-stats-title">
+          <AnimatedSection direction="up" className="text-center mb-10">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 tracking-tight text-white" data-testid="text-stats-title">
               By the Numbers
             </h2>
             <div className="w-20 sm:w-32 h-1 bg-gradient-to-r from-cyan-200 via-blue-500 to-cyan-200 mx-auto rounded-full"></div>
           </AnimatedSection>
-          <div className="grid md:grid-cols-4 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-gray-700">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 text-center">
             {[
-              { val: "40+", label: "Years", sub: "Combined experience" },
-              { val: "2,500+", label: "Projects", sub: "Successfully completed" },
-              { val: "100%", label: "Compliance", sub: "Track record" },
-              { val: "$5B+", label: "Project Value", sub: "Total construction value" }
+              { target: 40, suffix: "+", label: "Years", sub: "Combined experience", key: "years" },
+              { target: 2500, suffix: "+", label: "Projects", sub: "Successfully completed", key: "projects" },
+              { target: 100, suffix: "%", label: "Compliance", sub: "Track record", key: "compliance" },
+              { target: 5, suffix: "B+", label: "Project Value", sub: "Total construction value", prefix: "$", key: "value" },
             ].map((stat, i) => (
-              <AnimatedSection direction="up" delay={i * 0.1} key={i} className="pt-8 md:pt-0">
-                <div className="text-3xl sm:text-5xl font-bold text-blue-500 mb-2" data-testid={`text-stat-value-${i}`}>{stat.val}</div>
-                <div className="text-xl text-white font-bold tracking-tight">{stat.label}</div>
-                <p className="text-gray-400 mt-2 text-sm">{stat.sub}</p>
+              <AnimatedSection direction="up" delay={i * 0.1} key={stat.key}>
+                <div className="relative group" data-testid={`card-stat-${stat.key}`}>
+                  <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/[0.08] to-blue-500/[0.08] rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="relative bg-white/[0.03] backdrop-blur-sm border border-white/[0.06] rounded-xl p-6 sm:p-8 hover:border-cyan-500/20 transition-all duration-300">
+                    <div className="text-3xl sm:text-4xl md:text-5xl font-bold mb-2 bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent" data-testid={`text-stat-value-${stat.key}`}>
+                      {stat.prefix || ""}<AnimatedCounter target={stat.target} suffix={stat.suffix} />
+                    </div>
+                    <div className="text-base sm:text-lg text-white font-bold tracking-tight mb-1" data-testid={`text-stat-label-${stat.key}`}>{stat.label}</div>
+                    <p className="text-slate-400 text-xs sm:text-sm" data-testid={`text-stat-sub-${stat.key}`}>{stat.sub}</p>
+                  </div>
+                </div>
               </AnimatedSection>
             ))}
           </div>
