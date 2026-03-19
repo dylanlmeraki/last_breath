@@ -163,36 +163,40 @@ const SERVICES = [
 
 const colorMap = {
   darkblue: {
-    bg: "bg-amber-50", hoverBg: "group-hover:from-amber-400 group-hover:to-orange-500",
-    icon: "text-amber-600", check: "text-amber-500", border: "from-amber-500 to-orange-500",
+    bg: "bg-slate-100", hoverBg: "group-hover:from-amber-400 group-hover:to-orange-500",
+    icon: "text-slate-700", check: "text-amber-500", border: "from-amber-500 to-orange-500",
     titleHover: "group-hover:text-amber-600", textHover: "group-hover:text-amber-600/80",
-    checkHover: "group-hover:text-amber-500", cardBgHover: "group-hover:bg-amber-50/40", h: "h-[5px]",
-    glowColor: "rgba(245,158,11,0.15)",
+    checkHover: "group-hover:text-amber-500", cardBgHover: "group-hover:bg-amber-50/40", h: "h-1.5",
+    glowColor: "rgba(245,158,11,0.18)",
     gradient: "linear-gradient(to right, #f59e0b, #f9a825, #fbbf24, #fde68a)",
+    iconShadow: "group-hover:shadow-lg group-hover:shadow-amber-500/40",
   },
   bluecyan: {
-    bg: "bg-emerald-50", hoverBg: "group-hover:from-lime-400 group-hover:to-emerald-500",
-    icon: "text-emerald-600", check: "text-emerald-500", border: "from-lime-500 to-emerald-500",
+    bg: "bg-slate-100", hoverBg: "group-hover:from-lime-400 group-hover:to-emerald-500",
+    icon: "text-slate-700", check: "text-emerald-500", border: "from-lime-500 to-emerald-500",
     titleHover: "group-hover:text-emerald-500", textHover: "group-hover:text-emerald-600/80",
-    checkHover: "group-hover:text-emerald-400", cardBgHover: "group-hover:bg-emerald-50/40", h: "h-[5px]",
-    glowColor: "rgba(16,185,129,0.15)",
+    checkHover: "group-hover:text-emerald-400", cardBgHover: "group-hover:bg-emerald-50/40", h: "h-1.5",
+    glowColor: "rgba(16,185,129,0.18)",
     gradient: "linear-gradient(to right, #fde68a, #d9f99d, #bbf7d0, #a7f3d0)",
+    iconShadow: "group-hover:shadow-lg group-hover:shadow-emerald-500/40",
   },
   cyan: {
-    bg: "bg-teal-50", hoverBg: "group-hover:from-teal-400 group-hover:to-cyan-500",
-    icon: "text-teal-600", check: "text-teal-500", border: "from-teal-500 to-cyan-500",
+    bg: "bg-slate-100", hoverBg: "group-hover:from-teal-400 group-hover:to-cyan-500",
+    icon: "text-slate-700", check: "text-teal-500", border: "from-teal-500 to-cyan-500",
     titleHover: "group-hover:text-teal-500", textHover: "group-hover:text-teal-600/80",
-    checkHover: "group-hover:text-teal-400", cardBgHover: "group-hover:bg-teal-50/40", h: "h-[5px]",
-    glowColor: "rgba(20,184,166,0.15)",
+    checkHover: "group-hover:text-teal-400", cardBgHover: "group-hover:bg-teal-50/40", h: "h-1.5",
+    glowColor: "rgba(20,184,166,0.18)",
     gradient: "linear-gradient(to right, #a7f3d0, #6ee7b7, #5eead4, #22d3ee)",
+    iconShadow: "group-hover:shadow-lg group-hover:shadow-teal-500/40",
   },
   cyanteal: {
-    bg: "bg-cyan-50", hoverBg: "group-hover:from-cyan-500 group-hover:to-blue-500",
-    icon: "text-cyan-700", check: "text-blue-500", border: "from-cyan-500 to-blue-500",
+    bg: "bg-slate-100", hoverBg: "group-hover:from-cyan-500 group-hover:to-blue-500",
+    icon: "text-slate-700", check: "text-blue-500", border: "from-cyan-500 to-blue-500",
     titleHover: "group-hover:text-blue-500", textHover: "group-hover:text-blue-500/80",
-    checkHover: "group-hover:text-blue-400", cardBgHover: "group-hover:bg-blue-50/40", h: "h-[5px]",
-    glowColor: "rgba(59,130,246,0.15)",
+    checkHover: "group-hover:text-blue-400", cardBgHover: "group-hover:bg-blue-50/40", h: "h-1.5",
+    glowColor: "rgba(59,130,246,0.18)",
     gradient: "linear-gradient(to right, #22d3ee, #06b6d4, #0ea5e9, #2563eb)",
+    iconShadow: "group-hover:shadow-lg group-hover:shadow-blue-500/40",
   },
 };
 
@@ -210,7 +214,7 @@ function ServiceCard({ svc, idx, reducedMotion }: { svc: typeof SERVICES[number]
     const rect = el.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width - 0.5;
     const y = (e.clientY - rect.top) / rect.height - 0.5;
-    el.style.transform = `rotateX(${y * -6}deg) rotateY(${x * 6}deg)`;
+    el.style.transform = `translateY(-0.5rem) rotateX(${y * -6}deg) rotateY(${x * 6}deg)`;
     el.style.boxShadow = `0 20px 40px -12px ${c.glowColor}, 0 8px 20px -8px rgba(0,0,0,0.08)`;
   }, [c.glowColor, reducedMotion]);
 
@@ -238,7 +242,7 @@ function ServiceCard({ svc, idx, reducedMotion }: { svc: typeof SERVICES[number]
       <Link to={createPageUrl(svc.page)} className="block group h-full" data-testid={`link-${svc.title.toLowerCase().replace(/\s+/g, "-")}`}>
         <div
           ref={cardRef}
-          className={`h-full bg-white ${c.cardBgHover} rounded-md sm:rounded-lg shadow-md sm:shadow-lg group-hover:shadow-2xl border border-slate-100 group-hover:border-slate-200 transition-all duration-500 overflow-hidden cursor-pointer`}
+          className={`h-full bg-white ${c.cardBgHover} rounded-md shadow-md sm:shadow-lg group-hover:shadow-2xl border border-slate-200 group-hover:border-slate-300 group-hover:-translate-y-2 transition-all duration-500 overflow-hidden cursor-pointer`}
           style={{
             transition: reducedMotion ? "border-color 0.5s ease, background-color 0.5s ease" : "transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s ease, border-color 0.5s ease, background-color 0.5s ease",
           }}
@@ -247,7 +251,7 @@ function ServiceCard({ svc, idx, reducedMotion }: { svc: typeof SERVICES[number]
         >
           <div className={c.h} style={{ background: c.gradient }} />
           <div className="p-5 sm:p-8 lg:p-10 flex flex-col items-center text-center">
-            <div className={`${c.bg} rounded-xl sm:rounded-2xl w-14 h-14 sm:w-20 sm:h-20 lg:w-24 lg:h-24 flex items-center justify-center mb-4 sm:mb-6 lg:mb-8 group-hover:bg-gradient-to-br ${c.hoverBg} group-hover:shadow-lg transition-all duration-300`}>
+            <div className={`${c.bg} rounded-md w-14 h-14 sm:w-20 sm:h-20 lg:w-24 lg:h-24 flex items-center justify-center mb-4 sm:mb-6 lg:mb-8 group-hover:bg-gradient-to-br ${c.hoverBg} ${c.iconShadow} transition-all duration-300`}>
               <Icon className={`w-7 h-7 sm:w-10 sm:h-10 lg:w-12 lg:h-12 ${c.icon} group-hover:text-white transition-colors`} />
             </div>
             <h3 className={`text-slate-900 ${c.titleHover} text-lg sm:text-xl lg:text-2xl font-bold mb-2 sm:mb-4 uppercase tracking-wider transition-colors`}>
@@ -626,7 +630,7 @@ export default function Home() {
       </div>
       {/* ── SERVICES ── */}
       <section
-        className="py-12 sm:py-16 md:py-20 lg:py-28 px-4 sm:px-6 bg-white relative pt-[84px] pb-[84px]"
+        className="py-12 sm:py-16 md:py-20 lg:py-28 px-4 sm:px-6 bg-slate-50 relative pt-[84px] pb-[84px]"
         data-testid="section-services"
       >
         <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(rgba(6,182,212,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.02)_1px,transparent_1px)] bg-[size:60px_60px]" aria-hidden="true" />
