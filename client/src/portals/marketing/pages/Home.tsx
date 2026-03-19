@@ -649,12 +649,12 @@ export default function Home() {
             ease="tween"
           >
             <h2
-              className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 mb-6 sm:mb-8 tracking-tight"
+              className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 sm:mb-8 tracking-tight mb-[44px]"
               data-testid="text-services-title"
             >
               Consulting Engineers & Contractors
             </h2>
-            <div className="w-20 sm:w-32 h-1 bg-gradient-to-r from-cyan-200 via-blue-500 to-cyan-200 mx-auto mb-6 sm:mb-8 rounded-full pl-[244px] pr-[244px]" />
+            <div className="w-20 sm:w-32 h-1 bg-gradient-to-r from-cyan-50 via-blue-600 to-cyan-50 mx-auto mb-6 sm:mb-8 rounded-full pl-[244px] pr-[244px]" />
             <p className="sm:text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto text-[22px]">Full-scale civil and structural engineering and construction plans developed and implemented by our teams of in-house Engineers, QSD/QSPs, and construction experts. Helping you ensure on-time, on budget, full compliance, and with maximum creative outlook for your project. Keep everything on track.</p>
             <div className="flex flex-wrap items-center justify-center gap-x-3 sm:gap-x-5 gap-y-2 mt-5 sm:mt-6 text-slate-400 text-xs sm:text-sm tracking-wide font-medium" data-testid="trust-badges-services">
               <span className="inline-flex items-center gap-1.5"><MapPin className="w-3.5 h-3.5 text-cyan-500" />SF Bay Area</span>
