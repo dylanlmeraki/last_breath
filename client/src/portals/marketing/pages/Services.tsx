@@ -130,11 +130,11 @@ export default function Services() {
                   
                   <div className="space-y-4 mb-8">
                     <h4 className="text-xl font-bold text-slate-900 mb-6 uppercase tracking-wide text-center">What We Do</h4>
-                    
+                    <div className="w-20 sm:w-32 h-1 bg-gradient-to-r from-cyan-200 via-blue-500 to-cyan-200 mx-auto mb-6 rounded-full"></div>
                     <div className="space-y-4">
                       <div className="bg-slate-50 p-6 rounded-md border border-slate-100 hover:border-blue-300 transition-colors">
                         <h5 className="font-bold text-slate-900 mb-2 uppercase tracking-wide text-center">Permit Coverage</h5>
-                        <p className="text-sm text-slate-600 leading-relaxed">Verify CGP/NPDES applicability, complete NOI/permit filings, and define compliance responsibilities up front.</p>
+                        <p className="text-sm text-slate-600 leading-relaxed text-center">Verify CGP/NPDES applicability, complete NOI/permit filings, and define compliance responsibilities up front.</p>
                       </div>
 
                       <div className="bg-slate-50 p-6 rounded-md border border-slate-100 hover:border-blue-300 transition-colors text-center group">
@@ -199,7 +199,7 @@ export default function Services() {
                   
                   <div className="space-y-4 mb-8">
                     <h4 className="text-xl font-bold text-slate-900 mb-6 uppercase tracking-wide text-center">What We Do</h4>
-                    
+                    <div className="w-20 sm:w-32 h-1 bg-gradient-to-r from-cyan-200 via-blue-500 to-cyan-200 mx-auto mb-6 rounded-full"></div>
                     <div className="space-y-4">
                       <div className="bg-slate-50 p-6 rounded-md border border-slate-100 hover:border-cyan-300 transition-colors text-center group">
                         <h5 className="font-bold text-slate-900 mb-2 uppercase tracking-wide group-hover:text-cyan-600 transition-colors">Implement SWPPP from QSDs</h5>
@@ -317,7 +317,7 @@ export default function Services() {
             </p>
           </AnimatedSection>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-4">
             <AnimatedSection direction="up" delay={0.1}>
               <div className="bg-white border border-slate-200 rounded-md p-8 text-center group hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
                 <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-700 rounded-md flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform">
