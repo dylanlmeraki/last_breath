@@ -9,6 +9,7 @@ import AnimatedSection from "../components/AnimatedSection";
 import SEO from "../components/SEO";
 import AnimatedGridBackground from "../components/AnimatedGridBackground";
 import BlueprintBackground from "../components/BlueprintBackground";
+import CTASection from "../components/CTASection";
 
 interface GalleryProject {
   id: string;
@@ -298,26 +299,13 @@ export default function ProjectGallery() {
         </div>
       </section>
 
-      <section className="py-20 px-6 bg-slate-900 border-t-4 border-blue-600 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 pointer-events-none"></div>
-        <div className="max-w-4xl mx-auto text-center relative z-10">
-          <AnimatedSection direction="up">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-6 tracking-tight">
-              Ready to Start Your Project?
-            </h2>
-            <p className="text-xl text-blue-100 mb-10 leading-relaxed font-light">
-              Let's discuss how we can bring the same level of excellence and compliance to your construction project.
-            </p>
-            
-            <Link to={createPageUrl("Contact")} data-testid="link-contact-cta">
-              <Button size="lg" className="bg-white text-blue-600 px-10 py-7 text-lg font-bold tracking-tight rounded-md shadow-lg transition-all duration-300 group">
-                Get in Touch
-                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-              </Button>
-            </Link>
-          </AnimatedSection>
-        </div>
-      </section>
+      <CTASection
+        headline="Ready to Start Your Project?"
+        body="Let's discuss how we can bring the same level of excellence and compliance to your construction project."
+        primaryButtonText="Get Your Project Moving"
+        primaryButtonLink={createPageUrl("Consultation")}
+        testIdPrefix="gallery-cta"
+      />
     </div>
   );
 }

@@ -2,12 +2,12 @@ import { Link } from "react-router-dom";
 import { createPageUrl } from "../lib/utils";
 import { Beaker, CheckCircle, Droplets, FlaskConical, ArrowRight, Target, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { ShinyButton } from "../components/ShinyButton";
 import { Card } from "@/components/ui/card";
 import AnimatedSection from "../components/AnimatedSection";
 import SEO from "../components/SEO";
 import AnimatedGridBackground from "../components/AnimatedGridBackground";
 import BlueprintBackground from "../components/BlueprintBackground";
+import CTASection from "../components/CTASection";
 
 export default function InspectionsTesting() {
   return (
@@ -258,36 +258,13 @@ export default function InspectionsTesting() {
         </div>
       </section>
 
-      <section className="py-24 px-6 bg-slate-900 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 pointer-events-none"></div>
-        <div className="max-w-4xl mx-auto text-center relative z-10">
-          <AnimatedSection direction="up">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-6 tracking-tight">
-              Stay On Time & In Compliance
-            </h2>
-            <p className="text-xl text-blue-100 mb-12 leading-relaxed font-light">
-              We have you covered - from stormwater compliance, engineered structural materials verification, or environmental analysis and assessments.
-            </p>
-            <Link to={createPageUrl("Consultation")} data-testid="link-inspections-consultation">
-              <ShinyButton
-                className="group inline-flex items-center justify-center gap-2 whitespace-nowrap text-blue-900 font-bold tracking-tight text-lg px-10 py-7 rounded-md shadow-xl hover:shadow-blue-500/30 hover:-translate-y-1 active:scale-95 transition-all duration-300 bg-white"
-                style={{
-                  "--shiny-cta-bg": "#ffffff",
-                  "--shiny-cta-bg-subtle": "rgba(191, 219, 254, 0.5)",
-                  "--shiny-cta-fg": "#0f172a",
-                  "--shiny-cta-highlight": "#2563eb",
-                  "--shiny-cta-highlight-subtle": "#93c5fd",
-                  "--shiny-cta-shadow": "rgba(59, 130, 246, 0.35)",
-                  "--shiny-cta-glow": "rgba(59, 130, 246, 0.45)",
-                }}
-              >
-                Begin Inspections Consultation
-                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-              </ShinyButton>
-            </Link>
-          </AnimatedSection>
-        </div>
-      </section>
+      <CTASection
+        headline="Stay On Time & In Compliance"
+        body="We have you covered - from stormwater compliance, engineered structural materials verification, or environmental analysis and assessments."
+        primaryButtonText="Book Your Inspection Now"
+        primaryButtonLink={createPageUrl("Consultation")}
+        testIdPrefix="inspections-testing-cta"
+      />
     </div>
   );
 }

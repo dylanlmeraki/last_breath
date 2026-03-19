@@ -9,6 +9,7 @@ import AnimatedSection from "../components/AnimatedSection";
 import SEO from "../components/SEO";
 import AnimatedGridBackground from "../components/AnimatedGridBackground";
 import BlueprintBackground from "../components/BlueprintBackground";
+import CTASection from "../components/CTASection";
 
 export default function Services() {
   const [isInfoExpanded, setIsInfoExpanded] = useState(false);
@@ -355,31 +356,13 @@ export default function Services() {
           </div>
         </div>
       </section>
-      <section className="py-24 px-6 bg-slate-900 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 pointer-events-none"></div>
-        <div className="max-w-4xl mx-auto text-center relative z-10">
-          <AnimatedSection direction="up">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-6 tracking-tight">
-              Need Stormwater Planning?
-            </h2>
-            <p className="text-xl text-blue-100 mb-12 leading-relaxed font-light">
-              Every project is unique. Let's discuss your specific requirements and determine if a SWPPP is needed for your site.
-            </p>
-            
-        <div className="flex justify-center mt-8">
-          <Link to={createPageUrl("Consultation")} data-testid="link-get-consultation">
-            <ShinyButton
-              className="group inline-flex items-center justify-center gap-2 whitespace-nowrap text-white font-bold tracking-tight text-lg px-10 py-7 rounded-md shadow-lg hover:shadow-blue-500/60 hover:-translate-y-1 active:scale-95 transition-all duration-300"
-              style={consultationShinyVars}
-            >
-              Talk to an Expert
-              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-            </ShinyButton>
-          </Link>
-        </div>
-          </AnimatedSection>
-        </div>
-      </section>
+      <CTASection
+        headline="Need Stormwater Planning?"
+        body="Every project is unique. Let's discuss your specific requirements and determine if a SWPPP is needed for your site."
+        primaryButtonText="Get Your SWPPP Started"
+        primaryButtonLink={createPageUrl("Consultation")}
+        testIdPrefix="stormwater-cta"
+      />
     </div>
   );
 }

@@ -6,7 +6,7 @@ import AnimatedSection from "../components/AnimatedSection";
 import SEO from "../components/SEO";
 import AnimatedGridBackground from "../components/AnimatedGridBackground";
 import BlueprintBackground from "../components/BlueprintBackground";
-import { ShinyButton } from "../components/ShinyButton";
+import CTASection from "../components/CTASection";
 
 export default function Construction() {
   return (
@@ -536,36 +536,13 @@ export default function Construction() {
         </div>
       </section>
 
-      <section className="py-24 px-6 bg-slate-900 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 pointer-events-none"></div>
-        <div className="max-w-4xl mx-auto text-center relative z-10">
-          <AnimatedSection direction="up">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-6 tracking-tight">
-              Let's Get Building
-            </h2>
-            <p className="text-xl text-blue-100 mb-12 leading-relaxed font-light">
-              Whether you're a Class A contractor with a neverending workload or a homeowner just trying to maximize your property value — we can help. Let's discuss how we can maximize your schedule and minimize your budget spend.
-            </p>
-            
-            <Link to={createPageUrl("SWPPPChecker")} data-testid="link-construction-cta">
-              <ShinyButton
-                className="group inline-flex items-center justify-center gap-2 whitespace-nowrap text-white font-bold tracking-tight text-lg px-10 py-7 rounded-md shadow-lg hover:shadow-blue-500/50 hover:-translate-y-1 active:scale-95 transition-all duration-300"
-                style={{
-                  "--shiny-cta-bg": "#0ea5e9",
-                  "--shiny-cta-bg-subtle": "rgba(14, 165, 233, 0.2)",
-                  "--shiny-cta-highlight": "#2563eb",
-                  "--shiny-cta-highlight-subtle": "#38bdf8",
-                  "--shiny-cta-shadow": "rgba(59, 130, 246, 0.4)",
-                  "--shiny-cta-glow": "rgba(59, 130, 246, 0.55)",
-                } as React.CSSProperties}
-              >
-                Free Construction Consultation
-                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-              </ShinyButton>
-            </Link>
-          </AnimatedSection>
-        </div>
-      </section>
+      <CTASection
+        headline="Let's Get Building"
+        body="Whether you're a Class A contractor with a neverending workload or a homeowner just trying to maximize your property value — we can help. Let's discuss how we can maximize your schedule and minimize your budget spend."
+        primaryButtonText="Start Your Build — Free Consult"
+        primaryButtonLink={createPageUrl("Consultation")}
+        testIdPrefix="construction-cta"
+      />
     </div>
   );
 }

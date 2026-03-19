@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import { createPageUrl } from "../lib/utils";
 import { Award, Users, Target, Shield, ArrowRight, Building2, HardHat, ClipboardCheck, FileText, CheckCircle } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import AnimatedSection from "../components/AnimatedSection";
 import SEO from "../components/SEO";
 import AnimatedGridBackground from "../components/AnimatedGridBackground";
 import BlueprintBackground from "../components/BlueprintBackground";
+import CTASection from "../components/CTASection";
 
 export default function About() {
   return (
@@ -392,27 +392,13 @@ in a timely manner.
         </div>
       </section>
 
-      <section className="py-20 px-6 bg-blue-600 relative overflow-hidden" data-testid="section-about-cta">
-        <div className="absolute inset-0 bg-blue-900/20 mix-blend-multiply"></div>
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/grid-me.png')] opacity-10 pointer-events-none"></div>
-        <div className="max-w-4xl mx-auto text-center relative z-10">
-          <AnimatedSection direction="up">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-6 tracking-tight" data-testid="text-about-cta-title">
-              We'd Love to Hear From You
-            </h2>
-            <p className="text-xl text-blue-100 mb-10 leading-relaxed font-light">
-              If you are a local engineering or construction professional, let's chat. Our in-house engineering and construction teams can help streamline your current or future projects and bring your ideas to life. 
-            </p>
-            
-            <Link to={createPageUrl("Contact")} data-testid="link-about-contact">
-              <Button size="lg" className="bg-white text-blue-600 hover:bg-gradient-to-r hover:from-white hover:to-blue-50 px-10 py-7 text-lg font-bold tracking-tight rounded-md inline-flex items-center justify-center gap-2 whitespace-nowrap transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1 active:scale-95 group">
-                Get in Contact
-                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-              </Button>
-            </Link>
-          </AnimatedSection>
-        </div>
-      </section>
+      <CTASection
+        headline="We'd Love to Hear From You"
+        body="If you are a local engineering or construction professional, let's chat. Our in-house engineering and construction teams can help streamline your current or future projects and bring your ideas to life."
+        primaryButtonText="Let's Talk About Your Project"
+        primaryButtonLink={createPageUrl("Contact")}
+        testIdPrefix="about-cta"
+      />
     </div>
   );
 }

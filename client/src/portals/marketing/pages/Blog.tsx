@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import AnimatedSection from "../components/AnimatedSection";
 import AnimatedGridBackground from "../components/AnimatedGridBackground";
 import BlueprintBackground from "../components/BlueprintBackground";
+import CTASection from "../components/CTASection";
 
 interface BlogPostData {
   id: string;
@@ -346,26 +347,13 @@ export default function Blog() {
         </AnimatedSection>
       </section>
 
-      <section className="py-24 px-6 bg-slate-900 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 pointer-events-none"></div>
-        <div className="max-w-4xl mx-auto text-center relative z-10">
-          <AnimatedSection direction="up">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-6 tracking-tight">
-              Have Questions?
-            </h2>
-            <p className="text-xl text-blue-100 mb-12 leading-relaxed font-light">
-              Our team is here to help you navigate compliance requirements and find the right solutions for your project.
-            </p>
-            
-            <Link to={createPageUrl("Contact")} data-testid="link-contact-cta">
-              <Button size="lg" className="bg-white text-blue-600 px-10 py-7 text-lg font-bold tracking-tight rounded-md shadow-xl transition-all duration-300 group">
-                Get in Touch
-                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-              </Button>
-            </Link>
-          </AnimatedSection>
-        </div>
-      </section>
+      <CTASection
+        headline="Have Questions?"
+        body="Our team is here to help you navigate compliance requirements and find the right solutions for your project."
+        primaryButtonText="Talk to Our Team"
+        primaryButtonLink={createPageUrl("Contact")}
+        testIdPrefix="blog-cta"
+      />
     </div>
   );
 }

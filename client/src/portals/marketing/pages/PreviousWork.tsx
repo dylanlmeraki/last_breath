@@ -9,6 +9,7 @@ import AnimatedSection from "../components/AnimatedSection";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import AnimatedGridBackground from "../components/AnimatedGridBackground";
 import BlueprintBackground from "../components/BlueprintBackground";
+import CTASection from "../components/CTASection";
 
 interface Project {
   id: number;
@@ -548,26 +549,13 @@ export default function PreviousWork() {
         </div>
       )}
 
-      <section className="py-24 px-6 bg-blue-600 relative overflow-hidden">
-        <div className="absolute inset-0 bg-blue-900/20 mix-blend-multiply"></div>
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/grid-me.png')] opacity-10 pointer-events-none"></div>
-        <div className="max-w-4xl mx-auto text-center relative z-10">
-          <AnimatedSection direction="up">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-6 tracking-tight">
-              Let's Build Your Next Project Together
-            </h2>
-            <p className="text-xl text-blue-100 mb-12 leading-relaxed font-light">
-              With over 20 years of experience and a proven track record of successful projects, we're ready to bring your vision to life
-            </p>
-            
-            <Link to={createPageUrl("Contact")} data-testid="link-start-project">
-              <Button size="lg" className="bg-white text-blue-600 hover:bg-slate-100 px-10 py-7 text-lg font-bold tracking-wider rounded-md shadow-xl hover:-translate-y-1 transition-all">
-                Start Your Project
-              </Button>
-            </Link>
-          </AnimatedSection>
-        </div>
-      </section>
+      <CTASection
+        headline="Let's Build Your Next Project Together"
+        body="With over 20 years of experience and a proven track record of successful projects, we're ready to bring your vision to life"
+        primaryButtonText="Start Your Next Project"
+        primaryButtonLink={createPageUrl("Consultation")}
+        testIdPrefix="previous-work-cta"
+      />
     </div>
   );
 }

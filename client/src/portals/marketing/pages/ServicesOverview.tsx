@@ -12,14 +12,13 @@ import {
   FileText,
   CheckCircle,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { ShinyButton } from "../components/ShinyButton";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import AnimatedSection from "../components/AnimatedSection";
 import SEO from "../components/SEO";
 import AnimatedGridBackground from "../components/AnimatedGridBackground";
 import BlueprintBackground from "../components/BlueprintBackground";
+import CTASection from "../components/CTASection";
 import type { LucideIcon } from "lucide-react";
 
 interface ServiceItem {
@@ -350,46 +349,13 @@ export default function ServicesOverview() {
         </div>
       </section>
 
-      <section className="py-24 px-6 bg-blue-600 relative overflow-hidden" data-testid="section-services-cta">
-        <div className="absolute inset-0 bg-blue-900/20 mix-blend-multiply"></div>
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/grid-me.png')] opacity-10 pointer-events-none"></div>
-        <div className="max-w-4xl mx-auto text-center relative z-10">
-          <AnimatedSection direction="up">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-6 tracking-tight" data-testid="text-services-cta-title">
-              Ready to Get Started?
-            </h2>
-            <p className="text-xl text-blue-100 mb-12 leading-relaxed font-light">
-              Let's discuss your project needs and how we can help ensure its success
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <Link to={createPageUrl("Contact")} data-testid="link-services-contact">
-                <Button size="lg" className="bg-white text-blue-600 hover:bg-gradient-to-r hover:from-white hover:to-blue-50 px-10 py-7 text-lg font-bold tracking-tight rounded-md shadow-xl hover:shadow-2xl hover:-translate-y-1 active:scale-95 transition-all duration-300 group">
-                  Get in Touch
-                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-                </Button>
-              </Link>
-              
-              <Link to={createPageUrl("Consultation")} data-testid="link-services-consultation">
-                <ShinyButton
-                  className="group inline-flex items-center justify-center gap-2 whitespace-nowrap text-white font-bold tracking-tight text-lg px-10 py-7 rounded-md shadow-lg hover:shadow-blue-500/60 hover:-translate-y-1 active:scale-95 transition-all duration-300"
-                  style={{
-                    "--shiny-cta-bg": "#0ea5e9",
-                    "--shiny-cta-bg-subtle": "rgba(14, 165, 233, 0.2)",
-                    "--shiny-cta-highlight": "#2563eb",
-                    "--shiny-cta-highlight-subtle": "#38bdf8",
-                    "--shiny-cta-shadow": "rgba(59, 130, 246, 0.4)",
-                    "--shiny-cta-glow": "rgba(56, 189, 248, 0.55)",
-                  }}
-                >
-                  Get Free Consultation
-                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-                </ShinyButton>
-              </Link>
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
+      <CTASection
+        headline="Ready to Get Started?"
+        body="Let's discuss your project needs and how we can help ensure its success"
+        primaryButtonText="Get Your Free Consultation"
+        primaryButtonLink={createPageUrl("Consultation")}
+        testIdPrefix="services-cta"
+      />
     </div>
   );
 }
