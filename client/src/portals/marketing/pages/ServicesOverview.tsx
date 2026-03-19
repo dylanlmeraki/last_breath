@@ -4,6 +4,8 @@ import {
   ClipboardCheck,
   Building2,
   Shield,
+  FileText,
+  Images,
 } from "lucide-react";
 import AnimatedSection from "../components/AnimatedSection";
 import { ServiceCardsGrid } from "../components/ServiceCards";
@@ -68,6 +70,25 @@ export default function ServicesOverview() {
           </AnimatedSection>
 
           <ServiceCardsGrid />
+
+          <AnimatedSection direction="up" delay={0.5} className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mt-10 sm:mt-14 max-w-xl mx-auto">
+            <Link
+              to={createPageUrl("ServicesOverview")}
+              className="group flex-1 inline-flex items-center justify-center gap-2 whitespace-nowrap text-white font-bold tracking-tight text-base px-6 py-3.5 sm:py-4 rounded-sm sm:rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 active:scale-[0.97] hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:outline-none [background:radial-gradient(ellipse_at_center,#0891b2,#3b82f6)] hover:[background:radial-gradient(ellipse_at_center,#06b6d4,#2563eb)]"
+              data-testid="link-scope-project"
+            >
+              <FileText className="w-5 h-5" />
+              Scope Your Project
+            </Link>
+            <Link
+              to={createPageUrl("ProjectGallery")}
+              className="group flex-1 inline-flex items-center justify-center gap-2 whitespace-nowrap text-white font-bold tracking-tight text-base px-6 py-3.5 sm:py-4 rounded-sm sm:rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 active:scale-[0.97] hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:outline-none [background:radial-gradient(ellipse_at_center,#0891b2,#3b82f6)] hover:[background:radial-gradient(ellipse_at_center,#06b6d4,#2563eb)]"
+              data-testid="link-portfolio"
+            >
+              <Images className="w-5 h-5" />
+              Portfolio
+            </Link>
+          </AnimatedSection>
 
         </div>
       </section>
