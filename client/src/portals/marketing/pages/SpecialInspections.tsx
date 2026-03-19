@@ -89,7 +89,7 @@ export default function SpecialInspections() {
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-6 tracking-tight">
               Comprehensive Special Inspections
             </h2>
-            <div className="w-16 h-1 bg-blue-600 mx-auto mb-6"></div>
+            <div className="w-20 sm:w-32 h-1 bg-gradient-to-r from-cyan-200 via-blue-500 to-cyan-200 mx-auto mb-6 rounded-full"></div>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto font-light">
               Inspections performed and certified by our team of in-house Professional Engineers (PEs) across all critical structural materials, systems, and components
             </p>
@@ -101,7 +101,7 @@ export default function SpecialInspections() {
                 <div className="h-2 bg-gradient-to-r from-blue-600 to-cyan-500" />
                 <div className="p-8">
                   <div className="flex flex-col md:flex-row items-center md:items-start gap-6 mb-8 text-center md:text-left">
-                    <div className="bg-blue-600 rounded-md w-16 h-16 flex items-center justify-center flex-shrink-0 shadow-md">
+                    <div className="bg-gradient-to-br from-blue-400 to-blue-700 rounded-md w-16 h-16 flex items-center justify-center flex-shrink-0 shadow-lg">
                       <ClipboardCheck className="w-8 h-8 text-white" />
                     </div>
                     <div>
@@ -133,7 +133,7 @@ export default function SpecialInspections() {
                 <div className="h-2 bg-gradient-to-r from-cyan-500 to-teal-500" />
                 <div className="p-8">
                   <div className="flex flex-col md:flex-row items-center md:items-start gap-6 mb-8 text-center md:text-left">
-                    <div className="bg-cyan-600 rounded-md w-16 h-16 flex items-center justify-center flex-shrink-0 shadow-md">
+                    <div className="bg-gradient-to-br from-cyan-400 to-cyan-700 rounded-md w-16 h-16 flex items-center justify-center flex-shrink-0 shadow-lg">
                       <Layers className="w-8 h-8 text-white" />
                     </div>
                     <div>
@@ -163,7 +163,7 @@ export default function SpecialInspections() {
                 <div className="h-2 bg-gradient-to-r from-teal-500 to-cyan-500" />
                 <div className="p-8">
                   <div className="flex flex-col md:flex-row items-center md:items-start gap-6 mb-8 text-center md:text-left">
-                    <div className="bg-teal-600 rounded-md w-16 h-16 flex items-center justify-center flex-shrink-0 shadow-md">
+                    <div className="bg-gradient-to-br from-teal-400 to-teal-700 rounded-md w-16 h-16 flex items-center justify-center flex-shrink-0 shadow-lg">
                       <Hammer className="w-8 h-8 text-white" />
                     </div>
                     <div>
@@ -192,7 +192,7 @@ export default function SpecialInspections() {
                 <div className="h-2 bg-gradient-to-r from-cyan-500 to-blue-500" />
                 <div className="p-8">
                   <div className="flex flex-col md:flex-row items-center md:items-start gap-6 mb-8 text-center md:text-left">
-                    <div className="bg-cyan-600 rounded-md w-16 h-16 flex items-center justify-center flex-shrink-0 shadow-md">
+                    <div className="bg-gradient-to-br from-cyan-400 to-cyan-700 rounded-md w-16 h-16 flex items-center justify-center flex-shrink-0 shadow-lg">
                       <Shield className="w-8 h-8 text-white" />
                     </div>
                     <div>
@@ -222,7 +222,7 @@ export default function SpecialInspections() {
                 <div className="h-2 bg-gradient-to-r from-blue-500 to-sky-500" />
                 <div className="p-8">
                   <div className="flex flex-col md:flex-row items-center md:items-start gap-6 mb-8 text-center md:text-left">
-                    <div className="bg-blue-600 rounded-md w-16 h-16 flex items-center justify-center flex-shrink-0 shadow-md">
+                    <div className="bg-gradient-to-br from-blue-400 to-blue-700 rounded-md w-16 h-16 flex items-center justify-center flex-shrink-0 shadow-lg">
                       <Target className="w-8 h-8 text-white" />
                     </div>
                     <div>
@@ -252,7 +252,7 @@ export default function SpecialInspections() {
                 <div className="h-2 bg-gradient-to-r from-sky-500 to-cyan-500" />
                 <div className="p-8">
                   <div className="flex flex-col md:flex-row items-center md:items-start gap-6 mb-8 text-center md:text-left">
-                    <div className="bg-sky-600 rounded-md w-16 h-16 flex items-center justify-center flex-shrink-0 shadow-md">
+                    <div className="bg-gradient-to-br from-sky-400 to-sky-700 rounded-md w-16 h-16 flex items-center justify-center flex-shrink-0 shadow-lg">
                       <HardHat className="w-8 h-8 text-white" />
                     </div>
                     <div>
@@ -281,7 +281,7 @@ export default function SpecialInspections() {
                 <div className="h-2 bg-gradient-to-r from-blue-500 to-cyan-600" />
                 <div className="p-8">
                   <div className="flex flex-col md:flex-row items-center md:items-start gap-6 mb-8 text-center md:text-left">
-                    <div className="bg-blue-600 rounded-md w-16 h-16 flex items-center justify-center flex-shrink-0 shadow-md">
+                    <div className="bg-gradient-to-br from-blue-400 to-blue-700 rounded-md w-16 h-16 flex items-center justify-center flex-shrink-0 shadow-lg">
                       <ClipboardCheck className="w-8 h-8 text-white" />
                     </div>
                     <div>
@@ -315,7 +315,7 @@ export default function SpecialInspections() {
             <div className="bg-gradient-to-br from-blue-50 via-cyan-50 to-teal-50 rounded-3xl p-12 border-2 border-blue-100">
               <div className="max-w-4xl mx-auto">
                 <div className="flex items-start gap-4 mb-6">
-                  <div className="bg-blue-600 rounded-xl w-12 h-12 flex items-center justify-center flex-shrink-0">
+                  <div className="bg-gradient-to-br from-blue-400 to-blue-700 rounded-md w-12 h-12 flex items-center justify-center flex-shrink-0 shadow-lg">
                     <Shield className="w-6 h-6 text-white" />
                   </div>
                   <div>
@@ -412,7 +412,7 @@ export default function SpecialInspections() {
 
             <div className="grid md:grid-cols-3 gap-8">
               <div className="text-center">
-                <div className="bg-blue-600 rounded-2xl w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                <div className="bg-gradient-to-br from-blue-400 to-blue-700 rounded-md w-16 h-16 flex items-center justify-center mx-auto mb-4 shadow-lg">
                   <Shield className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">PE-Certified Team</h3>
@@ -422,7 +422,7 @@ export default function SpecialInspections() {
               </div>
 
               <div className="text-center">
-                <div className="bg-cyan-600 rounded-2xl w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                <div className="bg-gradient-to-br from-cyan-400 to-cyan-700 rounded-md w-16 h-16 flex items-center justify-center mx-auto mb-4 shadow-lg">
                   <ClipboardCheck className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">Sealed Reports</h3>
@@ -432,7 +432,7 @@ export default function SpecialInspections() {
               </div>
 
               <div className="text-center">
-                <div className="bg-teal-600 rounded-2xl w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                <div className="bg-gradient-to-br from-teal-400 to-teal-700 rounded-md w-16 h-16 flex items-center justify-center mx-auto mb-4 shadow-lg">
                   <HardHat className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">Design Intent Verification</h3>

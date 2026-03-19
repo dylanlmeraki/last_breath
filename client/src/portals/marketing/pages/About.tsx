@@ -54,7 +54,7 @@ export default function About() {
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-6 tracking-tight" data-testid="text-who-we-are">
                 Who We Are
               </h2>
-              <div className="w-16 h-1.5 bg-gradient-to-r from-blue-600 to-cyan-500 mx-auto mb-8 rounded-full"></div>
+              <div className="w-20 sm:w-32 h-1 bg-gradient-to-r from-cyan-200 via-blue-500 to-cyan-200 mx-auto mb-8 rounded-full"></div>
             </AnimatedSection>
 
             <div className="grid lg:grid-cols-2 gap-12 items-start">
@@ -112,7 +112,7 @@ in a timely manner.
                 <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-4 tracking-tight" data-testid="text-what-we-do">
                   What We Do
                 </h2>
-                <div className="w-16 h-1.5 bg-gradient-to-r from-blue-600 to-cyan-500 mx-auto rounded-full"></div>
+                <div className="w-20 sm:w-32 h-1 bg-gradient-to-r from-cyan-200 via-blue-500 to-cyan-200 mx-auto rounded-full"></div>
               </AnimatedSection>
               
              <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
@@ -121,7 +121,7 @@ in a timely manner.
                   <Card className="h-full hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 overflow-hidden border border-slate-200 bg-white cursor-pointer rounded-md">
                     <div className="h-1.5 bg-gradient-to-r from-blue-600 to-cyan-500" />
                     <div className="p-8 flex flex-col items-center text-center">
-                      <div className="bg-gradient-to-br from-blue-400 to-blue-600 rounded-md w-20 h-20 flex items-center justify-center mb-6 shadow-lg shadow-blue-500/40 group-hover:scale-110 transition-transform">
+                      <div className="bg-gradient-to-br from-blue-400 to-blue-600 rounded-md w-20 h-20 flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform">
                         <FileText className="w-10 h-10 text-white" />
                       </div>
                       <h3 className="text-slate-900 text-2xl font-bold mb-4 uppercase tracking-wide">Stormwater Planning</h3>
@@ -155,7 +155,7 @@ in a timely manner.
                   <Card className="h-full hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 overflow-hidden border border-slate-200 bg-white cursor-pointer rounded-md">
                     <div className="h-1.5 bg-gradient-to-r from-cyan-500 to-teal-500" />
                     <div className="p-8 flex flex-col items-center text-center">
-                      <div className="bg-gradient-to-br from-cyan-300 to-cyan-600 rounded-md w-20 h-20 flex items-center justify-center mb-6 shadow-lg shadow-cyan-500/40 group-hover:scale-110 transition-transform">
+                      <div className="bg-gradient-to-br from-cyan-300 to-cyan-600 rounded-md w-20 h-20 flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform">
                         <Shield className="w-10 h-10 text-white" />
                       </div>
                       <h3 className="text-slate-900 text-2xl font-bold mb-4 uppercase tracking-wide">Construction Service</h3>
@@ -189,7 +189,7 @@ in a timely manner.
                   <Card className="h-full hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 overflow-hidden border border-slate-200 bg-white cursor-pointer rounded-md">
                     <div className="h-1.5 bg-gradient-to-r from-teal-500 to-cyan-500" />
                     <div className="p-8 flex flex-col items-center text-center">
-                      <div className="bg-gradient-to-br from-teal-300 to-teal-600 rounded-md w-20 h-20 flex items-center justify-center mb-6 shadow-lg shadow-teal-500/40 group-hover:scale-110 transition-transform">
+                      <div className="bg-gradient-to-br from-teal-300 to-teal-600 rounded-md w-20 h-20 flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform">
                         <ClipboardCheck className="w-10 h-10 text-white" />
                       </div>
                       <h3 className="text-slate-900 text-2xl font-bold mb-4 uppercase tracking-wide">Inspections & Testing</h3>
@@ -224,7 +224,7 @@ in a timely manner.
                   <Card className="h-full hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 overflow-hidden border border-slate-200 bg-white cursor-pointer rounded-md">
                     <div className="h-1.5 bg-gradient-to-r from-sky-500 to-blue-600" />
                     <div className="p-8 flex flex-col items-center text-center">
-                      <div className="bg-gradient-to-br from-sky-300 to-blue-600 rounded-md w-20 h-20 flex items-center justify-center mb-6 shadow-lg shadow-blue-500/40 group-hover:scale-110 transition-transform">
+                      <div className="bg-gradient-to-br from-sky-300 to-blue-600 rounded-md w-20 h-20 flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform">
                         <ClipboardCheck className="w-10 h-10 text-white" />
                       </div>
                       <h3 className="text-slate-900 text-2xl font-bold mb-4 uppercase tracking-wide">Engineering Consulting</h3>
@@ -295,13 +295,13 @@ in a timely manner.
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-6 tracking-tight" data-testid="text-values-title">
               What Drives Us
             </h2>
-            <div className="w-16 h-1.5 bg-gradient-to-r from-blue-600 to-cyan-500 mx-auto rounded-full"></div>
+            <div className="w-20 sm:w-32 h-1 bg-gradient-to-r from-cyan-200 via-blue-500 to-cyan-200 mx-auto rounded-full"></div>
           </AnimatedSection>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-0">
             <AnimatedSection direction="up" delay={0.1}>
               <Card className="p-8 text-center border-r border-slate-200 shadow-md bg-white hover:shadow-xl hover:-translate-y-1 transition-all h-full rounded-none first:rounded-l-xl last:rounded-r-xl">
-                <div className="bg-blue-600 w-16 h-16 rounded-md flex items-center justify-center mx-auto mb-6">
+                <div className="bg-gradient-to-br from-blue-400 to-blue-700 w-16 h-16 rounded-md flex items-center justify-center mx-auto mb-6 shadow-lg">
                   <Award className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-lg font-bold text-slate-900 mb-3 tracking-tight uppercase">Technical Excellence</h3>
@@ -313,7 +313,7 @@ in a timely manner.
 
             <AnimatedSection direction="up" delay={0.2}>
               <Card className="p-8 text-center border-r border-slate-200 shadow-md bg-white hover:shadow-xl hover:-translate-y-1 transition-all h-full rounded-none first:rounded-l-xl last:rounded-r-xl">
-                <div className="bg-cyan-600 w-16 h-16 rounded-md flex items-center justify-center mx-auto mb-6">
+                <div className="bg-gradient-to-br from-cyan-400 to-cyan-700 w-16 h-16 rounded-md flex items-center justify-center mx-auto mb-6 shadow-lg">
                   <Target className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-lg font-bold text-slate-900 mb-3 tracking-tight uppercase">Results-Focused</h3>
@@ -325,7 +325,7 @@ in a timely manner.
 
             <AnimatedSection direction="up" delay={0.3}>
               <Card className="p-8 text-center border-r border-slate-200 shadow-md bg-white hover:shadow-xl hover:-translate-y-1 transition-all h-full rounded-none first:rounded-l-xl last:rounded-r-xl">
-                <div className="bg-teal-600 w-16 h-16 rounded-md flex items-center justify-center mx-auto mb-6">
+                <div className="bg-gradient-to-br from-teal-400 to-teal-700 w-16 h-16 rounded-md flex items-center justify-center mx-auto mb-6 shadow-lg">
                   <Users className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-lg font-bold text-slate-900 mb-3 tracking-tight uppercase">Collaborative</h3>
@@ -337,7 +337,7 @@ in a timely manner.
 
             <AnimatedSection direction="up" delay={0.4}>
               <Card className="p-8 text-center shadow-md bg-white hover:shadow-xl hover:-translate-y-1 transition-all h-full rounded-none first:rounded-l-xl last:rounded-r-xl">
-                <div className="bg-blue-600 w-16 h-16 rounded-md flex items-center justify-center mx-auto mb-6">
+                <div className="bg-gradient-to-br from-blue-400 to-blue-700 w-16 h-16 rounded-md flex items-center justify-center mx-auto mb-6 shadow-lg">
                   <Shield className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-lg font-bold text-slate-900 mb-3 tracking-tight uppercase">Accountable</h3>
@@ -357,7 +357,7 @@ in a timely manner.
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 tracking-tight" data-testid="text-stats-title">
               By the Numbers
             </h2>
-            <div className="w-16 h-1.5 bg-gradient-to-r from-blue-600 to-cyan-500 mx-auto rounded-full"></div>
+            <div className="w-20 sm:w-32 h-1 bg-gradient-to-r from-cyan-200 via-blue-500 to-cyan-200 mx-auto rounded-full"></div>
           </AnimatedSection>
           <div className="grid md:grid-cols-4 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-gray-700">
             {[

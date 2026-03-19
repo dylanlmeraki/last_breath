@@ -50,19 +50,19 @@ export default function InspectionsTesting() {
         <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-600/80 via-cyan-500/80 to-blue-500/80" />
       </section>
 
-      <section className="py-20 px-6 bg-white border-b border-slate-200">
+      <section className="py-20 px-6 bg-slate-50 border-b border-slate-200">
         <div className="max-w-6xl mx-auto">
           <AnimatedSection direction="up" className="text-center mb-16">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-6 tracking-tight">
               What Makes Us Different
             </h2>
-            <div className="w-16 h-1 bg-blue-600 mx-auto"></div>
+            <div className="w-20 sm:w-32 h-1 bg-gradient-to-r from-cyan-200 via-blue-500 to-cyan-200 mx-auto rounded-full"></div>
           </AnimatedSection>
           
           <div className="grid md:grid-cols-3 gap-8">
             <AnimatedSection direction="up" delay={0.1}>
-              <div className="text-center group">
-                <div className="w-16 h-16 bg-blue-600 rounded-md flex items-center justify-center mx-auto mb-6 shadow-md group-hover:scale-110 transition-transform">
+              <div className="bg-white border border-slate-200 rounded-md p-8 text-center group hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
+                <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-700 rounded-md flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform">
                   <TrendingUp className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-xl font-bold text-slate-900 mb-3 uppercase tracking-wide">Fast Turnaround</h3>
@@ -73,8 +73,8 @@ export default function InspectionsTesting() {
             </AnimatedSection>
 
             <AnimatedSection direction="up" delay={0.2}>
-              <div className="text-center group">
-                <div className="w-16 h-16 bg-cyan-600 rounded-md flex items-center justify-center mx-auto mb-6 shadow-md group-hover:scale-110 transition-transform">
+              <div className="bg-white border border-slate-200 rounded-md p-8 text-center group hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
+                <div className="w-16 h-16 bg-gradient-to-br from-cyan-400 to-cyan-700 rounded-md flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform">
                   <BadgeCheck className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-xl font-bold text-slate-900 mb-3 uppercase tracking-wide">Certified & Accredited</h3>
@@ -85,8 +85,8 @@ export default function InspectionsTesting() {
             </AnimatedSection>
 
             <AnimatedSection direction="up" delay={0.3}>
-              <div className="text-center group">
-                <div className="w-16 h-16 bg-teal-600 rounded-md flex items-center justify-center mx-auto mb-6 shadow-md group-hover:scale-110 transition-transform">
+              <div className="bg-white border border-slate-200 rounded-md p-8 text-center group hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
+                <div className="w-16 h-16 bg-gradient-to-br from-teal-400 to-teal-700 rounded-md flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform">
                   <Target className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-xl font-bold text-slate-900 mb-3 uppercase tracking-wide">Clear Reporting</h3>
@@ -105,7 +105,7 @@ export default function InspectionsTesting() {
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-6 tracking-tight">
               Testing Services
             </h2>
-            <div className="w-16 h-1 bg-blue-600 mx-auto mb-6"></div>
+            <div className="w-20 sm:w-32 h-1 bg-gradient-to-r from-cyan-200 via-blue-500 to-cyan-200 mx-auto mb-6 rounded-full"></div>
             <p className="text-xl text-slate-600 max-w-2xl mx-auto font-light">
               We provide comprehensive and extensive testing keeping all facets of your project compliant and on track including stormwater, concrete, structural materials, foundational integrity, full environmental pollution panels and much more.
             </p>
@@ -242,7 +242,7 @@ export default function InspectionsTesting() {
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-6 tracking-tight"> 
               Testing That Matters
             </h2>
-            <div className="w-16 h-1 bg-blue-600 mx-auto mb-8"></div>
+            <div className="w-20 sm:w-32 h-1 bg-gradient-to-r from-cyan-200 via-blue-500 to-cyan-200 mx-auto mb-8 rounded-full"></div>
             <div className="space-y-6 text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed font-light">
               <p>
                 Managing necessary, mitigating, and anticipatory testing and sampling scheduling and compliance can be a headache especially when you've already got enough people to manage and a company to grow. However, proper testing ensures compliance and avoidance of costly mistakes down the line.

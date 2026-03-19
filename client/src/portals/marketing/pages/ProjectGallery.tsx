@@ -122,7 +122,7 @@ export default function ProjectGallery() {
           <AnimatedSection direction="up" delay={0.1}>
             <Card className="p-10 border-0 shadow-2xl bg-gradient-to-br from-white to-blue-50 border-t-4 border-blue-600 rounded-md">
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 bg-blue-600 rounded-md flex items-center justify-center shadow-md">
+                <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-700 rounded-md flex items-center justify-center shadow-lg">
                   <Award className="w-6 h-6 text-white" />
                 </div>
                 <h2 className="text-3xl font-bold text-slate-900 tracking-tight">Excellence Since 2001</h2>

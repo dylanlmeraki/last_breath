@@ -92,7 +92,7 @@ export default function Construction() {
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-6 tracking-tight">
               What We Build
             </h2>
-            <div className="w-16 h-1 bg-blue-600 mx-auto mb-6"></div>
+            <div className="w-20 sm:w-32 h-1 bg-gradient-to-r from-cyan-200 via-blue-500 to-cyan-200 mx-auto mb-6 rounded-full"></div>
             <p className="text-xl text-slate-600 max-w-2xl mx-auto font-light">
                   Our in-house team of Engineering and Construction experts are here to help you develop and implement all of your project ideas - keeping you on-time, within-budget, and in full compliance allowing for your maximum creative output.
             </p>
@@ -104,7 +104,7 @@ export default function Construction() {
                   <div className="h-2 bg-gradient-to-r from-blue-600 to-cyan-500" />
                   <div className="p-8">
                     <div className="flex flex-col items-center text-center mb-10">
-                      <div className="bg-gradient-to-br from-blue-400 to-blue-700 rounded-md w-16 h-16 flex items-center justify-center mb-6 shadow-lg shadow-blue-500/40">
+                      <div className="bg-gradient-to-br from-blue-400 to-blue-700 rounded-md w-16 h-16 flex items-center justify-center mb-6 shadow-lg">
                         <HardHat className="w-8 h-8 text-white" />
                       </div>
                       <div>
@@ -136,7 +136,7 @@ export default function Construction() {
                   <div className="h-2 bg-gradient-to-r from-cyan-500 to-teal-500" />
                   <div className="p-8">
                     <div className="flex flex-col items-center text-center mb-10">
-                      <div className="bg-gradient-to-br from-cyan-400 to-cyan-700 rounded-md w-16 h-16 flex items-center justify-center mb-6 shadow-lg shadow-cyan-500/40">
+                      <div className="bg-gradient-to-br from-cyan-400 to-cyan-700 rounded-md w-16 h-16 flex items-center justify-center mb-6 shadow-lg">
                         <Building2 className="w-8 h-8 text-white" />
                       </div>
                       <div>
@@ -168,7 +168,7 @@ export default function Construction() {
                   <div className="h-2 bg-gradient-to-r from-teal-500 to-green-500" />
                   <div className="p-8">
                     <div className="flex flex-col items-center text-center mb-10">
-                      <div className="bg-gradient-to-br from-teal-400 to-teal-700 rounded-md w-16 h-16 flex items-center justify-center mb-6 shadow-lg shadow-teal-500/40">
+                      <div className="bg-gradient-to-br from-teal-400 to-teal-700 rounded-md w-16 h-16 flex items-center justify-center mb-6 shadow-lg">
                         <Wrench className="w-8 h-8 text-white" />
                       </div>
                       <div>
@@ -198,7 +198,7 @@ export default function Construction() {
                   <div className="h-2 bg-gradient-to-r from-green-500 to-blue-500" />
                   <div className="p-8">
                     <div className="flex flex-col items-center text-center mb-10">
-                      <div className="bg-gradient-to-br from-green-400 to-green-700 rounded-md w-16 h-16 flex items-center justify-center mb-6 shadow-lg shadow-green-500/40">
+                      <div className="bg-gradient-to-br from-green-400 to-green-700 rounded-md w-16 h-16 flex items-center justify-center mb-6 shadow-lg">
                         <Layers className="w-8 h-8 text-white" />
                       </div>
                       <div>
@@ -230,7 +230,7 @@ export default function Construction() {
             <div className="max-w-7xl mx-auto">
             <AnimatedSection direction="up" className="text-center mb-16">
             <h3 className="text-slate-900 mb-4 text-4xl font-bold tracking-tight">Projects Brought to Life</h3>
-            <div className="w-16 h-1 bg-blue-600 mx-auto"></div>
+            <div className="w-20 sm:w-32 h-1 bg-gradient-to-r from-cyan-200 via-blue-500 to-cyan-200 mx-auto rounded-full"></div>
             </AnimatedSection>
             <div className="p-8 grid md:grid-cols-3 gap-6">
               <Card className="p-6 bg-gradient-to-br from-blue-50 to-cyan-50 border-0 shadow-lg" data-testid="card-residential-dev">
@@ -493,13 +493,13 @@ export default function Construction() {
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-6 tracking-tight">
               What Makes Us Different
             </h2>
-            <div className="w-16 h-1 bg-blue-600 mx-auto"></div>
+            <div className="w-20 sm:w-32 h-1 bg-gradient-to-r from-cyan-200 via-blue-500 to-cyan-200 mx-auto rounded-full"></div>
           </AnimatedSection>
 
           <div className="grid md:grid-cols-3 gap-8">
             <AnimatedSection direction="up" delay={0.1}>
-              <div className="text-center group" data-testid="card-engineering-bg">
-                <div className="bg-gradient-to-br from-blue-400 to-blue-700 rounded-md w-16 h-16 flex items-center justify-center mx-auto mb-6 shadow-lg shadow-blue-500/40 group-hover:scale-110 transition-transform">
+              <div className="bg-white border border-slate-200 rounded-md p-8 text-center group hover:-translate-y-1 hover:shadow-xl transition-all duration-300" data-testid="card-engineering-bg">
+                <div className="bg-gradient-to-br from-blue-400 to-blue-700 rounded-md w-16 h-16 flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform">
                   <HardHat className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-xl font-bold text-slate-900 mb-3 uppercase tracking-wide">Engineering Background</h3>
@@ -510,8 +510,8 @@ export default function Construction() {
             </AnimatedSection>
 
             <AnimatedSection direction="up" delay={0.2}>
-              <div className="text-center group" data-testid="card-own-equipment">
-                <div className="bg-gradient-to-br from-cyan-400 to-cyan-700 rounded-md w-16 h-16 flex items-center justify-center mx-auto mb-6 shadow-lg shadow-cyan-500/40 group-hover:scale-110 transition-transform">
+              <div className="bg-white border border-slate-200 rounded-md p-8 text-center group hover:-translate-y-1 hover:shadow-xl transition-all duration-300" data-testid="card-own-equipment">
+                <div className="bg-gradient-to-br from-cyan-400 to-cyan-700 rounded-md w-16 h-16 flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform">
                   <Truck className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-xl font-bold text-slate-900 mb-3 uppercase tracking-wide">Own Equipment & Crews</h3>
@@ -522,8 +522,8 @@ export default function Construction() {
             </AnimatedSection>
 
             <AnimatedSection direction="up" delay={0.3}>
-              <div className="text-center group" data-testid="card-on-time">
-                <div className="bg-gradient-to-br from-teal-400 to-teal-700 rounded-md w-16 h-16 flex items-center justify-center mx-auto mb-6 shadow-lg shadow-teal-500/40 group-hover:scale-110 transition-transform">
+              <div className="bg-white border border-slate-200 rounded-md p-8 text-center group hover:-translate-y-1 hover:shadow-xl transition-all duration-300" data-testid="card-on-time">
+                <div className="bg-gradient-to-br from-teal-400 to-teal-700 rounded-md w-16 h-16 flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform">
                   <Users className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-xl font-bold text-slate-900 mb-3 uppercase tracking-wide">On-Time Performance</h3>

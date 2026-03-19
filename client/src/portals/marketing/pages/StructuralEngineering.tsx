@@ -86,7 +86,7 @@ export default function StructuralEngineering() {
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-6 tracking-tight">
               Our Engineering Services
             </h2>
-            <div className="w-16 h-1 bg-blue-600 mx-auto mb-6"></div>
+            <div className="w-20 sm:w-32 h-1 bg-gradient-to-r from-cyan-200 via-blue-500 to-cyan-200 mx-auto mb-6 rounded-full"></div>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto font-light">
               Pacific Engineering & Construction Inc. provides end-to-end engineering consulting services across public, private, and industrial sectors. Our team integrates design, analysis, field verification, and construction-phase support to deliver solutions that meet regulatory standards, reduce project risk, and accelerate execution.
             </p>
@@ -98,7 +98,7 @@ export default function StructuralEngineering() {
                 <div className="h-2 bg-gradient-to-r from-blue-600 to-cyan-500" />
                 <div className="p-8">
                   <div className="flex flex-col items-center text-center mb-10">
-                    <div className="bg-gradient-to-br from-blue-400 to-blue-700 rounded-md w-16 h-16 flex items-center justify-center mb-6 shadow-lg shadow-blue-500/40">
+                    <div className="bg-gradient-to-br from-blue-400 to-blue-700 rounded-md w-16 h-16 flex items-center justify-center mb-6 shadow-lg">
                       <Building2 className="w-8 h-8 text-white" />  
                     </div>
                     <div>
@@ -141,7 +141,7 @@ export default function StructuralEngineering() {
                 <div className="h-2 bg-gradient-to-r from-cyan-500 to-teal-500" />
                 <div className="p-8">
                   <div className="flex flex-col items-center text-center mb-10">
-                    <div className="bg-gradient-to-br from-cyan-400 to-cyan-700 rounded-md w-16 h-16 flex items-center justify-center mb-6 shadow-lg shadow-cyan-500/40">
+                    <div className="bg-gradient-to-br from-cyan-400 to-cyan-700 rounded-md w-16 h-16 flex items-center justify-center mb-6 shadow-lg">
                       <Layers className="w-8 h-8 text-white"/>                      
                     </div>
                     <div>
@@ -188,13 +188,13 @@ export default function StructuralEngineering() {
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-6 tracking-tight">
               What Makes Us Different
             </h2>
-            <div className="w-16 h-1 bg-blue-600 mx-auto"></div>
+            <div className="w-20 sm:w-32 h-1 bg-gradient-to-r from-cyan-200 via-blue-500 to-cyan-200 mx-auto rounded-full"></div>
           </AnimatedSection>
           
           <div className="grid md:grid-cols-3 gap-8">
             <AnimatedSection direction="up" delay={0.1}>
-              <div className="text-center group">
-                <div className="bg-gradient-to-br from-blue-400 to-blue-700 rounded-md w-16 h-16 flex items-center justify-center mx-auto mb-6 shadow-lg shadow-blue-500/40 group-hover:scale-110 transition-transform">
+              <div className="bg-white border border-slate-200 rounded-md p-8 text-center group hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
+                <div className="bg-gradient-to-br from-blue-400 to-blue-700 rounded-md w-16 h-16 flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform">
                   <Building2 className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-xl font-bold text-slate-900 mb-3 uppercase tracking-wide">Licensed in California</h3>
@@ -205,8 +205,8 @@ export default function StructuralEngineering() {
             </AnimatedSection>
 
             <AnimatedSection direction="up" delay={0.2}>
-              <div className="text-center group">
-                <div className="bg-gradient-to-br from-cyan-400 to-cyan-700 rounded-md w-16 h-16 flex items-center justify-center mx-auto mb-6 shadow-lg shadow-cyan-500/40 group-hover:scale-110 transition-transform">
+              <div className="bg-white border border-slate-200 rounded-md p-8 text-center group hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
+                <div className="bg-gradient-to-br from-cyan-400 to-cyan-700 rounded-md w-16 h-16 flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform">
                   <PenTool className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-xl font-bold text-slate-900 mb-3 uppercase tracking-wide">Designed for Efficiency</h3>
@@ -217,8 +217,8 @@ export default function StructuralEngineering() {
             </AnimatedSection>
 
             <AnimatedSection direction="up" delay={0.3}>
-              <div className="text-center group">
-                <div className="bg-gradient-to-br from-teal-400 to-teal-700 rounded-md w-16 h-16 flex items-center justify-center mx-auto mb-6 shadow-lg shadow-teal-500/40 group-hover:scale-110 transition-transform">
+              <div className="bg-white border border-slate-200 rounded-md p-8 text-center group hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
+                <div className="bg-gradient-to-br from-teal-400 to-teal-700 rounded-md w-16 h-16 flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform">
                   <Layers className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-xl font-bold text-slate-900 mb-3 uppercase tracking-wide">Complete Compliance Guidance</h3>

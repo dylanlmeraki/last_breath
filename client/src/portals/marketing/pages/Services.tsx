@@ -61,36 +61,36 @@ export default function Services() {
         </div>
         <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-600/80 via-cyan-500/80 to-blue-500/80" />
       </section>
-      <section className="py-16 px-6 bg-white border-b border-slate-200">
+      <section className="py-16 px-6 bg-slate-50 border-b border-slate-200">
         <div className="max-w-7xl mx-auto">
           <AnimatedSection direction="up">
-            <div className="grid md:grid-cols-4 gap-8">
-              <div className="text-center group" data-testid="stat-compliance-rate">
-                <div className="w-16 h-16 bg-blue-600 rounded-md flex items-center justify-center mx-auto mb-4 shadow-md group-hover:scale-110 transition-transform">
+            <div className="grid md:grid-cols-4 gap-6">
+              <div className="bg-white border border-slate-200 rounded-md p-6 text-center group hover:-translate-y-1 hover:shadow-xl transition-all duration-300" data-testid="stat-compliance-rate">
+                <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-700 rounded-md flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform">
                   <Droplets className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="text-2xl font-bold text-slate-900 mb-2">100%</h3>
                 <p className="text-slate-600">Compliance Rate</p>
               </div>
               
-              <div className="text-center group" data-testid="stat-projects-completed">
-                <div className="w-16 h-16 bg-cyan-600 rounded-md flex items-center justify-center mx-auto mb-4 shadow-md group-hover:scale-110 transition-transform">
+              <div className="bg-white border border-slate-200 rounded-md p-6 text-center group hover:-translate-y-1 hover:shadow-xl transition-all duration-300" data-testid="stat-projects-completed">
+                <div className="w-16 h-16 bg-gradient-to-br from-cyan-400 to-cyan-700 rounded-md flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform">
                   <ClipboardCheck className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="text-2xl font-bold text-slate-900 mb-2">500+</h3>
                 <p className="text-slate-600">Projects Completed</p>
               </div>
               
-              <div className="text-center group" data-testid="stat-support">
-                <div className="w-16 h-16 bg-teal-600 rounded-md flex items-center justify-center mx-auto mb-4 shadow-md group-hover:scale-110 transition-transform">
+              <div className="bg-white border border-slate-200 rounded-md p-6 text-center group hover:-translate-y-1 hover:shadow-xl transition-all duration-300" data-testid="stat-support">
+                <div className="w-16 h-16 bg-gradient-to-br from-teal-400 to-teal-700 rounded-md flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform">
                   <Users className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="text-2xl font-bold text-slate-900 mb-2">24/7</h3>
                 <p className="text-slate-600">Support Available</p>
               </div>
               
-              <div className="text-center group" data-testid="stat-turnaround">
-                <div className="w-16 h-16 bg-green-600 rounded-md flex items-center justify-center mx-auto mb-4 shadow-md group-hover:scale-110 transition-transform">
+              <div className="bg-white border border-slate-200 rounded-md p-6 text-center group hover:-translate-y-1 hover:shadow-xl transition-all duration-300" data-testid="stat-turnaround">
+                <div className="w-16 h-16 bg-gradient-to-br from-green-400 to-green-700 rounded-md flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform">
                   <Zap className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="text-2xl font-bold text-slate-900 mb-2">Fast</h3>
@@ -263,7 +263,7 @@ export default function Services() {
               <div className="flex items-start justify-between gap-4">
                 <div className="flex items-start gap-4 flex-1">
                   <div className="flex-shrink-0">
-                    <div className="w-12 h-12 bg-blue-600 rounded-md flex items-center justify-center shadow-md">
+                    <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-700 rounded-md flex items-center justify-center shadow-lg">
                       <Info className="w-6 h-6 text-white" />
                     </div>
                   </div>
@@ -305,13 +305,13 @@ export default function Services() {
           </AnimatedSection>
         </div>
       </section>
-      <section className="py-20 px-6 bg-white border-t border-slate-200">
+      <section className="py-20 px-6 bg-slate-50 border-t border-slate-200">
         <div className="max-w-6xl mx-auto">
           <AnimatedSection direction="up" className="text-center mb-16">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-6 tracking-tight">
               Why Choose Pacific Engineering
             </h2>
-            <div className="w-16 h-1 bg-blue-600 mx-auto mb-6"></div>
+            <div className="w-20 sm:w-32 h-1 bg-gradient-to-r from-cyan-200 via-blue-500 to-cyan-200 mx-auto mb-6 rounded-full"></div>
             <p className="text-xl text-slate-600 max-w-2xl mx-auto font-light">
               We deliver more than compliance — we deliver confidence and peace of mind
             </p>
@@ -319,8 +319,8 @@ export default function Services() {
 
           <div className="grid md:grid-cols-3 gap-8">
             <AnimatedSection direction="up" delay={0.1}>
-              <div className="text-center group">
-                <div className="w-16 h-16 bg-blue-600 rounded-md flex items-center justify-center mx-auto mb-6 shadow-md group-hover:scale-110 transition-transform">
+              <div className="bg-white border border-slate-200 rounded-md p-8 text-center group hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
+                <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-700 rounded-md flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform">
                   <ClipboardCheck className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-xl font-bold text-slate-900 mb-3 uppercase tracking-wide">PE-Certified Team</h3>
@@ -331,8 +331,8 @@ export default function Services() {
             </AnimatedSection>
 
             <AnimatedSection direction="up" delay={0.2}>
-              <div className="text-center group">
-                <div className="w-16 h-16 bg-cyan-600 rounded-md flex items-center justify-center mx-auto mb-6 shadow-md group-hover:scale-110 transition-transform">
+              <div className="bg-white border border-slate-200 rounded-md p-8 text-center group hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
+                <div className="w-16 h-16 bg-gradient-to-br from-cyan-400 to-cyan-700 rounded-md flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform">
                   <Zap className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-xl font-bold text-slate-900 mb-3 uppercase tracking-wide">Fast Turnaround</h3>
@@ -343,8 +343,8 @@ export default function Services() {
             </AnimatedSection>
 
             <AnimatedSection direction="up" delay={0.3}>
-              <div className="text-center group">
-                <div className="w-16 h-16 bg-teal-600 rounded-md flex items-center justify-center mx-auto mb-6 shadow-md group-hover:scale-110 transition-transform">
+              <div className="bg-white border border-slate-200 rounded-md p-8 text-center group hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
+                <div className="w-16 h-16 bg-gradient-to-br from-teal-400 to-teal-700 rounded-md flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform">
                   <Users className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-xl font-bold text-slate-900 mb-3 uppercase tracking-wide">Compliance Expertise</h3>

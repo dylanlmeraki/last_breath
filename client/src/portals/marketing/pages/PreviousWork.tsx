@@ -256,7 +256,7 @@ export default function PreviousWork() {
             <AnimatedSection direction="left" delay={0.2}>
               <div className="bg-slate-50 p-8 rounded-xl border border-slate-100 shadow-lg hover:shadow-xl transition-shadow h-full" data-testid="card-capabilities">
                 <div className="flex items-center gap-4 mb-6">
-                  <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center shadow-lg">
+                  <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-700 rounded-md flex items-center justify-center shadow-lg">
                     <Layers className="w-6 h-6 text-white" />
                   </div>
                   <h3 className="text-2xl font-bold text-slate-900 tracking-wide">Core Capabilities</h3>

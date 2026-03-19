@@ -245,7 +245,7 @@ export default function Blog() {
                     <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-6 tracking-tight">
                       Latest Articles
                     </h2>
-                    <div className="w-16 h-1 bg-blue-600 mx-auto"></div>
+                    <div className="w-20 sm:w-32 h-1 bg-gradient-to-r from-cyan-200 via-blue-500 to-cyan-200 mx-auto rounded-full"></div>
                   </AnimatedSection>
                   
                   <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -327,7 +327,7 @@ export default function Blog() {
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-6 tracking-tight">
               Stay Informed
             </h2>
-            <div className="w-16 h-1 bg-blue-600 mx-auto mb-8"></div>
+            <div className="w-20 sm:w-32 h-1 bg-gradient-to-r from-cyan-200 via-blue-500 to-cyan-200 mx-auto mb-8 rounded-full"></div>
             <p className="text-xl text-slate-600 mb-8 leading-relaxed font-light">
               Subscribe to receive the latest updates on compliance regulations, best practices, and industry insights delivered to your inbox.
             </p>
