@@ -12,12 +12,14 @@ import {
   PhoneCall,
   Users,
   Award,
-  Ruler,
+  Compass,
+  HardHat,
   Droplets,
   Zap,
   TrendingUp,
   MapPin,
-  Clock,
+  History,
+  BookOpen,
 } from "lucide-react";
 import AnimatedSection from "../components/AnimatedSection";
 import SEO from "../components/SEO";
@@ -126,7 +128,7 @@ function ScrollProgress() {
 
 const SERVICES = [
   {
-    icon: Shield,
+    icon: HardHat,
     title: "Construction Service",
     desc: "We are fully licensed and ready to take on any and all work from residential additions, multi-unit residential, commercial mixed-use, up to public and governmental infrastructure.",
     items: ["Class A License", "Class B License", "Infrastructure & Public Works", "Residential, Commercial, and Municipal Infrastructure"],
@@ -134,7 +136,7 @@ const SERVICES = [
     page: "Construction",
   },
   {
-    icon: Ruler,
+    icon: Compass,
     title: "Engineering Consulting",
     desc: "Professional engineering expertise across civil and structural disciplines, providing innovative solutions and implementation to meet the unique needs of your project - from large-scale infrastructure to single family residential additions.",
     items: ["Civil Engineering Consulting", "Structural Consulting", "Site Assessment & Design", "Development Management & Support"],
@@ -657,7 +659,7 @@ export default function Home() {
               <span className="text-slate-300">·</span>
               <span className="inline-flex items-center gap-1.5"><Award className="w-3.5 h-3.5 text-cyan-500" />Class A & B Contractor</span>
               <span className="text-slate-300">·</span>
-              <span className="inline-flex items-center gap-1.5"><Clock className="w-3.5 h-3.5 text-cyan-500" />40+ Years</span>
+              <span className="inline-flex items-center gap-1.5"><History className="w-3.5 h-3.5 text-cyan-500" />40+ Years</span>
             </div>
           </AnimatedSection>
 
@@ -734,7 +736,7 @@ export default function Home() {
               <div className="space-y-4 sm:space-y-6 lg:space-y-8 mb-8 sm:mb-12 w-full">
                 {[
                   {
-                    icon: Award,
+                    icon: BookOpen,
                     title: "EXPERT KNOWLEDGE",
                     desc: "Complete understanding of federal, state, and local stormwater regulations.",
                   },

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { createPageUrl } from "../lib/utils";
-import { Beaker, CheckCircle, Droplets, FlaskConical, ArrowRight, Target, TrendingUp } from "lucide-react";
+import { Beaker, CheckCircle, BadgeCheck, ShieldCheck, Droplets, FlaskConical, ArrowRight, Target, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import AnimatedSection from "../components/AnimatedSection";
@@ -75,7 +75,7 @@ export default function InspectionsTesting() {
             <AnimatedSection direction="up" delay={0.2}>
               <div className="text-center group">
                 <div className="w-16 h-16 bg-cyan-600 rounded-md flex items-center justify-center mx-auto mb-6 shadow-md group-hover:scale-110 transition-transform">
-                  <CheckCircle className="w-8 h-8 text-white" />
+                  <BadgeCheck className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-xl font-bold text-slate-900 mb-3 uppercase tracking-wide">Certified & Accredited</h3>
                 <p className="text-slate-600 leading-relaxed font-light">
@@ -201,7 +201,7 @@ export default function InspectionsTesting() {
                 <div className="h-2 bg-gradient-to-r from-blue-500 to-cyan-500" />
                 <div className="p-8 flex flex-col items-center">
                   <div className="bg-gradient-to-br from-blue-400 to-cyan-600 mx-auto my-6 rounded-md w-16 h-16 flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg shadow-cyan-500/40">
-                    <CheckCircle className="w-8 h-8 text-white" />
+                    <ShieldCheck className="w-8 h-8 text-white" />
                   </div>
                   <h3 className="text-slate-900 mx-auto my-4 text-2xl font-bold text-center tracking-tight">Environmental Compliance</h3>
                   <p className="text-slate-600 mb-8 text-center leading-relaxed">

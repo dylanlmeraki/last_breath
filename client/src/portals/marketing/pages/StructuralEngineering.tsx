@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { createPageUrl } from "../lib/utils";
-import { Building2, Ruler, PenTool, Layers, ArrowRight, CheckCircle, Target, TrendingUp } from "lucide-react";
+import { Building2, PenTool, Layers, ArrowRight, CheckCircle, Target, TrendingUp } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import AnimatedSection from "../components/AnimatedSection";
 import SEO from "../components/SEO";
