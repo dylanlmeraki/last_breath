@@ -23,8 +23,8 @@ import AnimatedSection from "../components/AnimatedSection";
 import AnimatedCounter from "../components/AnimatedCounter";
 import { ServiceCardsGrid } from "../components/ServiceCards";
 import SEO from "../components/SEO";
-import ParticleField from "../components/ParticleField";
-import FloatingElements from "../components/FloatingElements";
+import HomeProofRail from "../components/HomeProofRail";
+import HomeProjectEvidence from "../components/HomeProjectEvidence";
 import BlueprintBackground from "../components/BlueprintBackground";
 import AnimatedGridBackground from "../components/AnimatedGridBackground";
 import bayBridgeImg from "@assets/bay-bridge-sunrise_1773821710974.jpg";
@@ -39,6 +39,7 @@ function BlueprintGrid() {
   );
 }
 
+/**
 function FloatingParticles() {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none hidden md:block">
@@ -57,7 +58,7 @@ function FloatingParticles() {
       <style>{`@keyframes pe-float { 0% { transform: translateY(0px) scale(1); opacity: 0.3; } 100% { transform: translateY(-30px) scale(1.5); opacity: 0.6; } } @media (prefers-reduced-motion: reduce) { .pe-float, [style*="pe-float"] { animation: none !important; } }`}</style>
     </div>
   );
-}
+} **/
 
 function MobileStickyBar() {
   return (
@@ -297,12 +298,6 @@ export default function Home() {
           className="hidden sm:block z-[1] opacity-30"
         />
         <BlueprintBackground className="z-[2] opacity-70" />
-        <ParticleField
-          className="z-[3] opacity-15 hidden md:block"
-          particleCount={35}
-        />
-        <FloatingElements className="z-[4] opacity-60" />
-        <FloatingParticles />
 
         <div className="absolute top-1/3 left-1/5 w-64 md:w-96 h-64 md:h-96 bg-cyan-500/8 rounded-full blur-[100px] md:blur-[140px] pointer-events-none z-[1]" />
         <div className="absolute bottom-1/4 right-1/5 w-48 md:w-80 h-48 md:h-80 bg-orange-500/5 rounded-full blur-[80px] md:blur-[120px] pointer-events-none z-[1]" />
