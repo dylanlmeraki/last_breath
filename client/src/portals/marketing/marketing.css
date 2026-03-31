@@ -1,87 +1,911 @@
 .marketing-portal {
-  --marketing-primary: #3F4555;
-  --marketing-accent: #0F172A;
-  --marketing-bg: #FFFFFF;
-  --marketing-cyan: #06B6D4;
-  --marketing-orange: #F97316;
+  /* --------------------------------------------------------------------------
+     Pacific Engineering marketing theme
+     Drop-in foundation for homepage, project evidence, proof rail, gallery,
+     CTA sections, and general marketing pages.
+     -------------------------------------------------------------------------- */
+
+  /* Brand core */
+  --pe-navy: #161D30;
+  --pe-navy-2: #1B2540;
+  --pe-navy-3: #243252;
+  --pe-blue: #2253DA;
+  --pe-blue-light: #387CF3;
+  --pe-blue-bright: #2F8BFF;
+  --pe-cyan: #0DA7E7;
+  --pe-cyan-teal: #0CB7D6;
+  --pe-teal: #13C5A5;
+
+  /* Warm accents */
+  --pe-orange: #F5751F;
+  --pe-orange-bright: #FF9A3D;
+  --pe-amber: #FFD08A;
+
+  /* Surfaces */
+  --pe-surface: #FFFFFF;
+  --pe-surface-2: #F7FAFC;
+  --pe-surface-3: #EEF3F8;
+  --pe-surface-dark: #11182B;
+  --pe-surface-dark-2: #16203A;
+  --pe-surface-dark-3: #1C2845;
+
+  /* Text */
+  --pe-text: #0F172A;
+  --pe-text-soft: #334155;
+  --pe-text-muted: #64748B;
+  --pe-text-inverse: #F8FAFC;
+  --pe-text-inverse-soft: rgba(248, 250, 252, 0.78);
+  --pe-text-inverse-muted: rgba(248, 250, 252, 0.58);
+
+  /* Borders */
+  --pe-border: rgba(22, 29, 48, 0.10);
+  --pe-border-strong: rgba(22, 29, 48, 0.16);
+  --pe-border-dark: rgba(255, 255, 255, 0.12);
+  --pe-border-dark-strong: rgba(255, 255, 255, 0.18);
+
+  /* Status */
+  --pe-status-active: var(--pe-blue);
+  --pe-status-completed: var(--pe-teal);
+  --pe-status-ongoing: var(--pe-orange);
+  --pe-status-warning: var(--pe-amber);
+
+  /* Shadows */
+  --pe-shadow-sm: 0 6px 18px rgba(15, 23, 42, 0.08);
+  --pe-shadow-md: 0 18px 44px rgba(15, 23, 42, 0.12);
+  --pe-shadow-lg: 0 28px 70px rgba(15, 23, 42, 0.18);
+  --pe-shadow-dark-sm: 0 10px 28px rgba(2, 8, 23, 0.24);
+  --pe-shadow-dark-md: 0 22px 54px rgba(2, 8, 23, 0.34);
+
+  /* Radius */
+  --pe-radius-xs: 10px;
+  --pe-radius-sm: 14px;
+  --pe-radius-md: 18px;
+  --pe-radius-lg: 24px;
+  --pe-radius-xl: 32px;
+  --pe-radius-pill: 999px;
+
+  /* Layout */
+  --pe-container: 1280px;
+  --pe-container-wide: 1360px;
+  --pe-space-1: 0.25rem;
+  --pe-space-2: 0.5rem;
+  --pe-space-3: 0.75rem;
+  --pe-space-4: 1rem;
+  --pe-space-5: 1.25rem;
+  --pe-space-6: 1.5rem;
+  --pe-space-8: 2rem;
+  --pe-space-10: 2.5rem;
+  --pe-space-12: 3rem;
+  --pe-space-16: 4rem;
+  --pe-space-20: 5rem;
+  --pe-space-24: 6rem;
+  --pe-header-offset: 96px;
+
+  color: var(--pe-text);
+  background: var(--pe-surface);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-.marketing-portal .blueprint-grid {
-  background-image:
-    linear-gradient(rgba(6, 182, 212, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(6, 182, 212, 0.06) 1px, transparent 1px);
-  background-size: 40px 40px;
+.marketing-portal,
+.marketing-portal *,
+.marketing-portal *::before,
+.marketing-portal *::after {
+  box-sizing: border-box;
 }
 
-.marketing-portal .gradient-text {
-  background: linear-gradient(135deg, #06B6D4, #F97316);
+.marketing-portal {
+  isolation: isolate;
+}
+
+.marketing-portal section[id] {
+  scroll-margin-top: var(--pe-header-offset);
+}
+
+.marketing-portal :focus-visible {
+  outline: 2px solid var(--pe-cyan);
+  outline-offset: 2px;
+}
+
+.marketing-portal ::selection {
+  background: rgba(13, 167, 231, 0.18);
+  color: var(--pe-text);
+}
+
+.marketing-portal img,
+.marketing-portal picture,
+.marketing-portal video,
+.marketing-portal canvas,
+.marketing-portal svg {
+  display: block;
+  max-width: 100%;
+}
+
+.marketing-portal a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.marketing-portal button,
+.marketing-portal input,
+.marketing-portal textarea,
+.marketing-portal select {
+  font: inherit;
+}
+
+/* --------------------------------------------------------------------------
+   Layout helpers
+   -------------------------------------------------------------------------- */
+
+.marketing-portal .pe-container,
+.marketing-portal .pe-container-wide {
+  width: min(100% - 2rem, var(--pe-container));
+  margin-inline: auto;
+}
+
+.marketing-portal .pe-container-wide {
+  width: min(100% - 2rem, var(--pe-container-wide));
+}
+
+.marketing-portal .pe-section {
+  position: relative;
+  padding-block: clamp(4rem, 7vw, 7rem);
+}
+
+.marketing-portal .pe-section-tight {
+  padding-block: clamp(2.5rem, 4.5vw, 4rem);
+}
+
+.marketing-portal .pe-stack > * + * {
+  margin-top: var(--pe-space-6);
+}
+
+.marketing-portal .pe-stack-sm > * + * {
+  margin-top: var(--pe-space-4);
+}
+
+.marketing-portal .pe-grid-2,
+.marketing-portal .pe-grid-3,
+.marketing-portal .pe-grid-4 {
+  display: grid;
+  gap: clamp(1rem, 2vw, 2rem);
+}
+
+.marketing-portal .pe-grid-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.marketing-portal .pe-grid-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.marketing-portal .pe-grid-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+/* --------------------------------------------------------------------------
+   Typography
+   -------------------------------------------------------------------------- */
+
+.marketing-portal .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--pe-blue);
+}
+
+.marketing-portal .eyebrow::before {
+  content: "";
+  width: 2.25rem;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.72;
+}
+
+.marketing-portal .eyebrow.warm {
+  color: var(--pe-orange);
+}
+
+.marketing-portal .eyebrow.cool {
+  color: var(--pe-cyan);
+}
+
+.marketing-portal .pe-heading-1,
+.marketing-portal .pe-heading-2,
+.marketing-portal .pe-heading-3,
+.marketing-portal .pe-heading-4 {
+  margin: 0;
+  color: var(--pe-text);
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+}
+
+.marketing-portal .pe-heading-1 {
+  font-size: clamp(2.75rem, 6vw, 5.3rem);
+  font-weight: 800;
+}
+
+.marketing-portal .pe-heading-2 {
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  font-weight: 800;
+}
+
+.marketing-portal .pe-heading-3 {
+  font-size: clamp(1.35rem, 2vw, 2rem);
+  font-weight: 700;
+}
+
+.marketing-portal .pe-heading-4 {
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.marketing-portal .pe-lead {
+  margin: 0;
+  font-size: clamp(1.05rem, 1.3vw, 1.35rem);
+  line-height: 1.75;
+  color: var(--pe-text-soft);
+  max-width: 52rem;
+}
+
+.marketing-portal .pe-copy {
+  margin: 0;
+  color: var(--pe-text-soft);
+  line-height: 1.72;
+}
+
+.marketing-portal .pe-muted {
+  color: var(--pe-text-muted);
+}
+
+.marketing-portal .pe-inverse,
+.marketing-portal .pe-inverse .pe-heading-1,
+.marketing-portal .pe-inverse .pe-heading-2,
+.marketing-portal .pe-inverse .pe-heading-3,
+.marketing-portal .pe-inverse .pe-heading-4 {
+  color: var(--pe-text-inverse);
+}
+
+.marketing-portal .pe-inverse .pe-lead,
+.marketing-portal .pe-inverse .pe-copy {
+  color: var(--pe-text-inverse-soft);
+}
+
+.marketing-portal .gradient-text-cool {
+  background: linear-gradient(135deg, var(--pe-blue), var(--pe-cyan), var(--pe-blue-light));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-.marketing-portal .glow-cyan {
-  box-shadow: 0 0 20px rgba(6, 182, 212, 0.3);
+.marketing-portal .gradient-text-warm {
+  background: linear-gradient(135deg, var(--pe-orange), var(--pe-orange-bright), var(--pe-amber));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-.marketing-portal .glow-orange {
-  box-shadow: 0 0 20px rgba(249, 115, 22, 0.3);
+/* --------------------------------------------------------------------------
+   Backgrounds and blueprint helpers
+   -------------------------------------------------------------------------- */
+
+.marketing-portal .section-surface {
+  background: linear-gradient(180deg, var(--pe-surface-2) 0%, var(--pe-surface) 100%);
 }
 
-@keyframes marketing-float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
+.marketing-portal .section-surface-soft {
+  background: var(--pe-surface-2);
 }
 
-@keyframes marketing-pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(6, 182, 212, 0.2); }
-  50% { box-shadow: 0 0 40px rgba(6, 182, 212, 0.4); }
+.marketing-portal .section-surface-solid {
+  background: var(--pe-surface);
 }
 
-@keyframes marketing-slide-up {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.marketing-portal .animate-float {
-  animation: marketing-float 6s ease-in-out infinite;
-}
-
-.marketing-portal .animate-pulse-glow {
-  animation: marketing-pulse-glow 3s ease-in-out infinite;
-}
-
-.marketing-portal .animate-slide-up {
-  animation: marketing-slide-up 0.6s ease-out forwards;
+.marketing-portal .section-surface-dark {
+  background:
+    radial-gradient(circle at top left, rgba(47, 139, 255, 0.12), transparent 34%),
+    linear-gradient(180deg, var(--pe-surface-dark) 0%, var(--pe-surface-dark-2) 100%);
 }
 
 .marketing-portal .hero-gradient {
-  background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0F172A 100%);
+  background:
+    radial-gradient(circle at 18% 14%, rgba(13, 167, 231, 0.16), transparent 30%),
+    radial-gradient(circle at 82% 24%, rgba(245, 117, 31, 0.12), transparent 28%),
+    linear-gradient(135deg, #101729 0%, #17213a 45%, #101729 100%);
 }
 
-.marketing-portal .section-gradient {
-  background: linear-gradient(180deg, #F8FAFC 0%, #FFFFFF 100%);
+.marketing-portal .blueprint-grid {
+  background-image:
+    linear-gradient(rgba(13, 167, 231, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(13, 167, 231, 0.035) 1px, transparent 1px);
+  background-size: 48px 48px;
 }
 
-@keyframes pe-glow-pulse-orange {
-  0%, 100% { box-shadow: 0 8px 32px -8px rgba(234, 88, 12, 0.25), inset 0 0 0 1px rgba(251, 146, 60, 0.08); }
-  50% { box-shadow: 0 8px 40px -4px rgba(249, 115, 22, 0.4), inset 0 0 0 1px rgba(251, 146, 60, 0.15); }
+.marketing-portal .blueprint-grid-fine {
+  background-image:
+    linear-gradient(rgba(13, 167, 231, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(13, 167, 231, 0.018) 1px, transparent 1px);
+  background-size: 12px 12px;
 }
 
-@keyframes pe-glow-pulse-cyan {
-  0%, 100% { box-shadow: 0 8px 32px -8px rgba(6, 182, 212, 0.15), inset 0 0 0 1px rgba(34, 211, 238, 0.06); }
-  50% { box-shadow: 0 8px 40px -4px rgba(6, 182, 212, 0.3), inset 0 0 0 1px rgba(34, 211, 238, 0.12); }
+.marketing-portal .technical-frame {
+  position: relative;
 }
 
-.pe-glow-orange {
-  animation: pe-glow-pulse-orange 4s ease-in-out infinite;
+.marketing-portal .technical-frame::before,
+.marketing-portal .technical-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border: 1px solid rgba(13, 167, 231, 0.10);
+  border-radius: inherit;
 }
 
-.pe-glow-cyan {
-  animation: pe-glow-pulse-cyan 4s ease-in-out infinite;
+.marketing-portal .technical-frame::after {
+  inset: 10px;
+  border-color: rgba(13, 167, 231, 0.06);
 }
 
-.pe-glow-orange:hover,
-.pe-glow-cyan:hover {
-  animation: none;
+/* --------------------------------------------------------------------------
+   Buttons and links
+   -------------------------------------------------------------------------- */
+
+.marketing-portal .pe-button,
+.marketing-portal .pe-button-secondary,
+.marketing-portal .pe-button-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  min-height: 3rem;
+  padding: 0.9rem 1.2rem;
+  border-radius: var(--pe-radius-pill);
+  font-weight: 700;
+  line-height: 1;
+  transition:
+    transform 180ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 180ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 180ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 180ms cubic-bezier(0.22, 1, 0.36, 1),
+    color 180ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.marketing-portal .pe-button:hover,
+.marketing-portal .pe-button-secondary:hover,
+.marketing-portal .pe-button-ghost:hover {
+  transform: translateY(-1px);
+}
+
+.marketing-portal .pe-button {
+  color: white;
+  background: linear-gradient(135deg, var(--pe-orange), var(--pe-orange-bright));
+  box-shadow: 0 18px 34px rgba(245, 117, 31, 0.24);
+}
+
+.marketing-portal .pe-button:hover {
+  box-shadow: 0 22px 40px rgba(245, 117, 31, 0.30);
+}
+
+.marketing-portal .pe-button-secondary {
+  color: white;
+  background: linear-gradient(135deg, var(--pe-blue), var(--pe-blue-bright));
+  box-shadow: 0 18px 34px rgba(34, 83, 218, 0.24);
+}
+
+.marketing-portal .pe-button-secondary:hover {
+  box-shadow: 0 22px 40px rgba(34, 83, 218, 0.30);
+}
+
+.marketing-portal .pe-button-ghost {
+  color: var(--pe-text);
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid var(--pe-border);
+  backdrop-filter: blur(14px);
+}
+
+.marketing-portal .pe-link-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: var(--pe-blue);
+  font-weight: 700;
+}
+
+.marketing-portal .pe-link-inline:hover {
+  color: var(--pe-blue-light);
+}
+
+/* --------------------------------------------------------------------------
+   Card helpers
+   -------------------------------------------------------------------------- */
+
+.marketing-portal .pe-card {
+  background: var(--pe-surface);
+  border: 1px solid var(--pe-border);
+  border-radius: var(--pe-radius-lg);
+  box-shadow: var(--pe-shadow-sm);
+  transition:
+    transform 180ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 180ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 180ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.marketing-portal .pe-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--pe-shadow-md);
+  border-color: var(--pe-border-strong);
+}
+
+.marketing-portal .pe-card-dark {
+  background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.02) 100%);
+  border: 1px solid var(--pe-border-dark);
+  border-radius: var(--pe-radius-lg);
+  box-shadow: var(--pe-shadow-dark-sm);
+  backdrop-filter: blur(12px);
+}
+
+.marketing-portal .pe-card-pad {
+  padding: clamp(1.25rem, 2vw, 2rem);
+}
+
+.marketing-portal .pe-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.1rem;
+  padding: 0.35rem 0.8rem;
+  border-radius: var(--pe-radius-pill);
+  background: var(--pe-surface-2);
+  border: 1px solid var(--pe-border);
+  color: var(--pe-text-soft);
+  font-size: 0.86rem;
+  font-weight: 600;
+}
+
+.marketing-portal .pe-pill-dot::before {
+  content: "";
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.marketing-portal .status-active {
+  color: var(--pe-status-active);
+}
+
+.marketing-portal .status-completed {
+  color: var(--pe-status-completed);
+}
+
+.marketing-portal .status-ongoing {
+  color: var(--pe-status-ongoing);
+}
+
+/* --------------------------------------------------------------------------
+   Proof rail
+   -------------------------------------------------------------------------- */
+
+.marketing-portal .proof-rail {
+  position: relative;
+  margin-top: clamp(-2rem, -3vw, -1rem);
+  z-index: 2;
+}
+
+.marketing-portal .proof-rail-inner {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 0;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.56);
+  border-radius: var(--pe-radius-xl);
+  box-shadow: var(--pe-shadow-lg);
+  backdrop-filter: blur(18px);
+  overflow: hidden;
+}
+
+.marketing-portal .proof-item {
+  position: relative;
+  min-height: 120px;
+  padding: 1.15rem 1rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.45rem;
+  background: linear-gradient(180deg, rgba(247,250,252,0.76) 0%, rgba(255,255,255,0.96) 100%);
+}
+
+.marketing-portal .proof-item + .proof-item {
+  border-left: 1px solid var(--pe-border);
+}
+
+.marketing-portal .proof-item-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  color: var(--pe-blue);
+  background: linear-gradient(135deg, rgba(34, 83, 218, 0.10), rgba(13, 167, 231, 0.10));
+  box-shadow: inset 0 0 0 1px rgba(34, 83, 218, 0.08);
+}
+
+.marketing-portal .proof-item-value {
+  font-size: 1.1rem;
+  font-weight: 800;
+  line-height: 1.15;
+  color: var(--pe-text);
+}
+
+.marketing-portal .proof-item-label {
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--pe-text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   Project evidence block
+   -------------------------------------------------------------------------- */
+
+.marketing-portal .project-evidence {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  gap: clamp(1.25rem, 2vw, 2rem);
+  align-items: stretch;
+}
+
+.marketing-portal .project-rotator {
+  display: grid;
+  gap: 1rem;
+}
+
+.marketing-portal .project-snippet {
+  position: relative;
+  display: grid;
+  gap: 0.9rem;
+  padding: 1.2rem 1.2rem 1.15rem;
+  border-radius: 20px;
+  border: 1px solid var(--pe-border);
+  background: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(247,250,252,0.98) 100%);
+  box-shadow: var(--pe-shadow-sm);
+}
+
+.marketing-portal .project-snippet.is-active {
+  border-color: rgba(34, 83, 218, 0.16);
+  box-shadow: var(--pe-shadow-md);
+}
+
+.marketing-portal .project-snippet-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.marketing-portal .project-snippet-title {
+  margin: 0;
+  font-size: 1.18rem;
+  line-height: 1.25;
+  font-weight: 800;
+  color: var(--pe-text);
+}
+
+.marketing-portal .project-snippet-meta,
+.marketing-portal .project-snippet-proof {
+  margin: 0;
+  color: var(--pe-text-soft);
+  line-height: 1.65;
+}
+
+.marketing-portal .project-snippet-proof {
+  font-weight: 600;
+}
+
+.marketing-portal .project-snippet-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.marketing-portal .project-map-card {
+  position: relative;
+  min-height: 560px;
+  overflow: hidden;
+}
+
+.marketing-portal .project-map-shell {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(247,250,252,0.94) 0%, rgba(238,243,248,0.98) 100%),
+    radial-gradient(circle at 30% 35%, rgba(13, 167, 231, 0.09), transparent 30%),
+    radial-gradient(circle at 75% 70%, rgba(245, 117, 31, 0.08), transparent 28%);
+}
+
+.marketing-portal .project-map-grid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.65;
+}
+
+.marketing-portal .project-map-marker {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 3px solid white;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.18);
+}
+
+.marketing-portal .project-map-marker.active {
+  transform: scale(1.18);
+  z-index: 2;
+}
+
+.marketing-portal .project-map-marker.completed {
+  background: var(--pe-status-completed);
+}
+
+.marketing-portal .project-map-marker.ongoing {
+  background: var(--pe-status-ongoing);
+}
+
+.marketing-portal .project-map-marker.current {
+  background: var(--pe-status-active);
+}
+
+.marketing-portal .project-map-legend {
+  position: absolute;
+  left: 1rem;
+  right: 1rem;
+  bottom: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.9rem 1rem;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.88);
+  border: 1px solid rgba(255,255,255,0.54);
+  backdrop-filter: blur(14px);
+  box-shadow: var(--pe-shadow-sm);
+}
+
+.marketing-portal .project-map-legend-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  color: var(--pe-text-soft);
+  font-size: 0.9rem;
+}
+
+.marketing-portal .project-map-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.marketing-portal .project-map-legend-item::before {
+  content: "";
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.marketing-portal .project-map-caption {
+  color: var(--pe-text-muted);
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   Featured work and gallery cards
+   -------------------------------------------------------------------------- */
+
+.marketing-portal .featured-work-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 1.8vw, 1.5rem);
+}
+
+.marketing-portal .project-card {
+  overflow: hidden;
+}
+
+.marketing-portal .project-card-media {
+  aspect-ratio: 16 / 10;
+  background: linear-gradient(135deg, var(--pe-surface-3), var(--pe-surface-2));
+}
+
+.marketing-portal .project-card-body {
+  padding: 1.1rem 1.15rem 1.2rem;
+  display: grid;
+  gap: 0.65rem;
+}
+
+.marketing-portal .project-card-title {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--pe-text);
+}
+
+.marketing-portal .project-card-location {
+  color: var(--pe-text-muted);
+  font-size: 0.94rem;
+}
+
+/* --------------------------------------------------------------------------
+   Testimonial and CTA helpers
+   -------------------------------------------------------------------------- */
+
+.marketing-portal .testimonial-shell {
+  max-width: 64rem;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.marketing-portal .testimonial-card {
+  padding: clamp(1.5rem, 3vw, 2.6rem);
+}
+
+.marketing-portal .testimonial-quote {
+  margin: 0;
+  font-size: clamp(1.2rem, 2vw, 1.8rem);
+  line-height: 1.6;
+  color: var(--pe-text-inverse);
+  font-style: italic;
+}
+
+.marketing-portal .testimonial-meta {
+  margin-top: 1.25rem;
+  color: var(--pe-text-inverse-soft);
+  line-height: 1.55;
+}
+
+.marketing-portal .cta-band {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--pe-radius-xl);
+  background:
+    radial-gradient(circle at top right, rgba(47, 139, 255, 0.14), transparent 30%),
+    radial-gradient(circle at bottom left, rgba(245, 117, 31, 0.12), transparent 30%),
+    linear-gradient(135deg, var(--pe-surface-dark) 0%, var(--pe-surface-dark-2) 100%);
+  border: 1px solid var(--pe-border-dark);
+  box-shadow: var(--pe-shadow-dark-md);
+}
+
+.marketing-portal .cta-band-inner {
+  padding: clamp(1.6rem, 3vw, 2.6rem);
+}
+
+/* --------------------------------------------------------------------------
+   Forms
+   -------------------------------------------------------------------------- */
+
+.marketing-portal .pe-input,
+.marketing-portal .pe-select,
+.marketing-portal .pe-textarea {
+  width: 100%;
+  border: 1px solid var(--pe-border);
+  background: var(--pe-surface);
+  color: var(--pe-text);
+  border-radius: 16px;
+  padding: 0.9rem 1rem;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.7);
+  transition: border-color 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
+}
+
+.marketing-portal .pe-input::placeholder,
+.marketing-portal .pe-select::placeholder,
+.marketing-portal .pe-textarea::placeholder {
+  color: var(--pe-text-muted);
+}
+
+.marketing-portal .pe-input:focus,
+.marketing-portal .pe-select:focus,
+.marketing-portal .pe-textarea:focus {
+  outline: none;
+  border-color: rgba(13, 167, 231, 0.42);
+  box-shadow: 0 0 0 4px rgba(13, 167, 231, 0.10);
+}
+
+/* --------------------------------------------------------------------------
+   Motion
+   -------------------------------------------------------------------------- */
+
+@keyframes pe-float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes pe-pulse-cyan {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(13, 167, 231, 0.18); }
+  50% { box-shadow: 0 0 0 10px rgba(13, 167, 231, 0); }
+}
+
+.marketing-portal .animate-float-soft {
+  animation: pe-float 7s ease-in-out infinite;
+}
+
+.marketing-portal .animate-pulse-cyan {
+  animation: pe-pulse-cyan 2.8s ease-in-out infinite;
+}
+
+/* --------------------------------------------------------------------------
+   Responsive
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 1200px) {
+  .marketing-portal .proof-rail-inner {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .marketing-portal .proof-item:nth-child(4) {
+    border-left: 0;
+  }
+
+  .marketing-portal .project-evidence {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 960px) {
+  .marketing-portal .pe-grid-2,
+  .marketing-portal .pe-grid-3,
+  .marketing-portal .pe-grid-4,
+  .marketing-portal .featured-work-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .marketing-portal .pe-container,
+  .marketing-portal .pe-container-wide {
+    width: min(100% - 1.25rem, var(--pe-container));
+  }
+
+  .marketing-portal .proof-rail {
+    margin-top: 0;
+  }
+
+  .marketing-portal .proof-rail-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .marketing-portal .proof-item + .proof-item {
+    border-left: 0;
+    border-top: 1px solid var(--pe-border);
+  }
+
+  .marketing-portal .project-map-card {
+    min-height: 420px;
+  }
+
+  .marketing-portal .pe-grid-2,
+  .marketing-portal .pe-grid-3,
+  .marketing-portal .pe-grid-4,
+  .marketing-portal .featured-work-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marketing-portal *,
+  .marketing-portal *::before,
+  .marketing-portal *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
