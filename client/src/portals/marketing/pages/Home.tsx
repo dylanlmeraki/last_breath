@@ -440,6 +440,10 @@ export default function Home() {
         <div className="h-[3px]" style={{ background: "linear-gradient(to right, #1e293b, #0e7490 20%, #06b6d4 35%, #22d3ee 50%, #06b6d4 65%, #0e7490 80%, #1e293b)" }} />
         <div className="h-px bg-gradient-to-r from-slate-300 via-cyan4200 to-slate-300" />
       </div>
+
+    <HomeProofRail />
+    <HomeProjectEvidence />
+      
       {/* ── SERVICES ── */}
       <section
         className="py-12 sm:py-16 md:py-20 lg:py-28 px-4 sm:px-6 bg-slate-50 relative pt-[84px] pb-[84px]"
