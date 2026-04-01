@@ -1,0 +1,50 @@
+last_breath-active-platform/
+├── package.json
+├── tsconfig.json
+├── vite.config.ts
+├── attached_assets/
+├── client/
+│   └── src/
+│       ├── components/
+│       │   └── shared/
+│       ├── hooks/
+│       ├── lib/
+│       └── portals/
+│           ├── marketing/
+│           │   ├── MarketingApp.tsx
+│           │   ├── marketing.css
+│           │   ├── data/
+│           │   │   ├── proofRailItems.ts
+│           │   │   ├── homeProjectSnippets.ts
+│           │   │   └── projectMarkers.ts
+│           │   ├── components/
+│           │   │   ├── HomeProofRail.tsx
+│           │   │   ├── HomeProjectEvidence.tsx
+│           │   │   ├── ProjectSnippetRotator.tsx
+│           │   │   ├── ProjectMiniMap.tsx
+│           │   │   └── ... other marketing components
+│           │   ├── layout/
+│           │   ├── lib/
+│           │   └── pages/
+│           ├── client/
+│           │   ├── ClientApp.tsx
+│           │   ├── components/
+│           │   ├── layout/
+│           │   ├── lib/
+│           │   └── pages/
+│           └── internal/
+│               ├── InternalApp.tsx
+│               ├── layout/
+│               └── pages/
+├── server/
+│   ├── index.ts
+│   ├── routes.ts
+│   ├── auth.ts
+│   ├── db.ts
+│   ├── storage.ts
+│   ├── static.ts
+│   ├── vite.ts
+│   ├── seed-admin.ts
+│   └── emails/
+└── shared/
+    └── schema.ts

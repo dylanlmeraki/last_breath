@@ -1,0 +1,143 @@
+import express, { type Request, Response, NextFunction } from "express";
+import cookieParser from "cookie-parser";
+import helmet from "helmet";
+import cors from "cors";
+import { registerRoutes } from "./routes";
+import { serveStatic } from "./static";
+import { createServer } from "http";
+import { authMiddleware } from "./auth";
+
+const app = express();
+const httpServer = createServer(app);
+
+declare module "http" {
+  interface IncomingMessage {
+    rawBody: unknown;
+  }
+}
+
+const isProduction = process.env.NODE_ENV === "production";
+
+const allowedOrigins = isProduction
+  ? [
+      "https://pacificengineeringsf.com",
+      "https://www.pacificengineeringsf.com",
+      "https://internal.pacificengineeringsf.com",
+      "https://portal.pacificengineeringsf.com",
+    ]
+  : [/localhost/, /\.repl\.co$/, /\.repl\.dev$/, /\.replit\.dev$/];
+
+app.use(
+  cors({
+    origin: allowedOrigins,
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
+
+app.use(
+  helmet({
+    contentSecurityPolicy: false,
+    crossOriginEmbedderPolicy: false,
+  })
+);
+
+app.use(cookieParser());
+
+app.use(
+  express.json({
+    limit: "10mb",
+    verify: (req, _res, buf) => {
+      req.rawBody = buf;
+    },
+  })
+);
+
+app.use(express.urlencoded({ extended: false }));
+
+app.use(authMiddleware);
+
+app.use((req, _res, next) => {
+  const hostname = req.hostname || req.headers.host || "";
+  if (hostname.startsWith("internal.")) {
+    (req as any).portalMode = "internal";
+  } else if (hostname.startsWith("portal.")) {
+    (req as any).portalMode = "client";
+  } else {
+    (req as any).portalMode = "unknown";
+  }
+  next();
+});
+
+export function log(message: string, source = "express") {
+  const formattedTime = new Date().toLocaleTimeString("en-US", {
+    hour: "numeric",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: true,
+  });
+
+  console.log(`${formattedTime} [${source}] ${message}`);
+}
+
+app.use((req, res, next) => {
+  const start = Date.now();
+  const path = req.path;
+  let capturedJsonResponse: Record<string, any> | undefined = undefined;
+
+  const originalResJson = res.json;
+  res.json = function (bodyJson, ...args) {
+    capturedJsonResponse = bodyJson;
+    return originalResJson.apply(res, [bodyJson, ...args]);
+  };
+
+  res.on("finish", () => {
+    const duration = Date.now() - start;
+    if (path.startsWith("/api")) {
+      let logLine = `${req.method} ${path} ${res.statusCode} in ${duration}ms`;
+      if (capturedJsonResponse) {
+        logLine += ` :: ${JSON.stringify(capturedJsonResponse)}`;
+      }
+
+      log(logLine);
+    }
+  });
+
+  next();
+});
+
+(async () => {
+  await registerRoutes(httpServer, app);
+
+  app.use((err: any, _req: Request, res: Response, next: NextFunction) => {
+    const status = err.status || err.statusCode || 500;
+    const message = err.message || "Internal Server Error";
+
+    console.error("Internal Server Error:", err);
+
+    if (res.headersSent) {
+      return next(err);
+    }
+
+    return res.status(status).json({ message });
+  });
+
+  if (process.env.NODE_ENV === "production") {
+    serveStatic(app);
+  } else {
+    const { setupVite } = await import("./vite");
+    await setupVite(httpServer, app);
+  }
+
+  const port = parseInt(process.env.PORT || "5000", 10);
+  httpServer.listen(
+    {
+      port,
+      host: "0.0.0.0",
+    },
+    () => {
+      log(`serving on port ${port}`);
+    }
+  );
+})();
