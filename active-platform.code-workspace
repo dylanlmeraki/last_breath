@@ -1,57 +1,57 @@
 {
-  "folders": [
-    {
-      "path": ".",
-      "name": "repo-root (config only)"
-    },
-    {
-      "path": "attached_assets",
-      "name": "attached_assets"
-    },
-    {
-      "path": "client/src/components/shared",
-      "name": "shared-components"
-    },
-    {
-      "path": "client/src/hooks",
-      "name": "hooks"
-    },
-    {
-      "path": "client/src/lib",
-      "name": "client-lib"
-    },
-    {
-      "path": "client/src/portals/marketing",
-      "name": "marketing"
-    },
-    {
-      "path": "client/src/portals/client",
-      "name": "client-portal"
-    },
-    {
-      "path": "client/src/portals/internal",
-      "name": "internal-portal"
-    },
-    {
-      "path": "server",
-      "name": "server"
-    },
-    {
-      "path": "shared",
-      "name": "shared"
-    }
-  ],
-  "settings": {
-    "files.exclude": {
-      "**/node_modules": true,
-      "**/dist": true,
-      "**/.git": true,
-      "artifacts/**": true
-    },
-    "search.exclude": {
-      "**/node_modules": true,
-      "**/dist": true,
-      "artifacts/**": true
-    }
-  }
+	"folders": [
+		{
+			"path": ".",
+			"name": "repo-root (config only)"
+		},
+		{
+			"path": "attached_assets",
+			"name": "attached_assets"
+		},
+		{
+			"path": "client/src/components/shared",
+			"name": "shared-components"
+		},
+		{
+			"path": "client/src/hooks",
+			"name": "hooks"
+		},
+		{
+			"path": "client/src/lib",
+			"name": "client-lib"
+		},
+		{
+			"path": "client/src/portals/marketing",
+			"name": "marketing"
+		},
+		{
+			"path": "client/src/portals/client",
+			"name": "client-portal"
+		},
+		{
+			"path": "client/src/portals/internal",
+			"name": "internal-portal"
+		},
+		{
+			"path": "server",
+			"name": "server"
+		},
+		{
+			"path": "shared",
+			"name": "shared"
+		}
+	],
+	"settings": {
+		"files.exclude": {
+			"**/node_modules": true,
+			"**/dist": true,
+			"**/.git": true,
+			"artifacts/**": true
+		},
+		"search.exclude": {
+			"**/node_modules": true,
+			"**/dist": true,
+			"artifacts/**": true
+		},
+	}
 }

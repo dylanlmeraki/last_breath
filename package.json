@@ -8,6 +8,7 @@
     "build": "tsx script/build.ts",
     "start": "NODE_ENV=production node dist/index.cjs",
     "check": "tsc",
+    "conductor": "node node_modules/tsx/dist/cli.mjs mcp-conductor.ts",
     "db:push": "drizzle-kit push",
     "seed:admin": "tsx server/seed-admin.ts"
   },

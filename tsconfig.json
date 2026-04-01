@@ -1,5 +1,5 @@
 {
-  "include": ["client/src/**/*", "shared/**/*", "server/**/*"],
+  "include": ["client/src/**/*", "shared/**/*", "server/**/*", "mcp-conductor.ts", "mcp-client.ts", "github-parser.ts", "design-spec-generator.ts", "figma-orchestrator.ts", "playwright-validator.ts", "github-reporter.ts"],
   "exclude": ["node_modules", "build", "dist", "**/*.test.ts"],
   "compilerOptions": {
     "incremental": true,
