@@ -15,6 +15,11 @@ const ARGON2_OPTIONS = {
 
 const SESSION_DURATION_MS = 30 * 24 * 60 * 60 * 1000;
 
+function getParam(value: string | string[] | undefined): string {
+  if (Array.isArray(value)) return value[0] ?? "";
+  return value ?? "";
+}
+
 function generateSessionId(): string {
   return randomBytes(32).toString("hex");
 }
@@ -852,7 +857,7 @@ inviteRouter.post("/team", requireAuth, async (req: Request, res: Response) => {
 
 inviteRouter.get("/validate/:token", async (req: Request, res: Response) => {
   try {
-    const { token } = req.params;
+    const token = getParam(req.params.token);
 
     const internalInvite = await storage.getInternalInviteByToken(token);
     if (internalInvite) {
@@ -915,8 +920,9 @@ inviteRouter.get("/client", requireAuth, async (req: Request, res: Response) => 
 
 inviteRouter.delete("/:id", requireAuth, async (req: Request, res: Response) => {
   try {
-    await storage.updateEntity("internal-invites", req.params.id, { status: "revoked" }).catch(() => null);
-    await storage.updateEntity("client-invites", req.params.id, { status: "revoked" }).catch(() => null);
+    const inviteId = getParam(req.params.id);
+    await storage.updateEntity("internal-invites", inviteId, { status: "revoked" }).catch(() => null);
+    await storage.updateEntity("client-invites", inviteId, { status: "revoked" }).catch(() => null);
     return res.json({ success: true });
   } catch (error) {
     return res.status(500).json({ error: "Failed to revoke invite" });
@@ -967,7 +973,7 @@ usersRouter.put("/:id", requireAdmin, async (req: Request, res: Response) => {
       return res.status(400).json({ error: "No valid fields to update" });
     }
 
-    const updated = await storage.updateUser(req.params.id, updateData);
+    const updated = await storage.updateUser(getParam(req.params.id), updateData);
     if (!updated) {
       return res.status(404).json({ error: "User not found" });
     }
@@ -980,12 +986,13 @@ usersRouter.put("/:id", requireAdmin, async (req: Request, res: Response) => {
 
 usersRouter.delete("/:id", requireAdmin, async (req: Request, res: Response) => {
   try {
-    if (req.params.id === req.user!.id) {
+    const userId = getParam(req.params.id);
+    if (userId === req.user!.id) {
       return res.status(400).json({ error: "Cannot delete your own account" });
     }
 
-    await storage.updateUser(req.params.id, { status: "disabled" });
-    await storage.deleteUserSessions(req.params.id);
+    await storage.updateUser(userId, { status: "disabled" });
+    await storage.deleteUserSessions(userId);
     return res.json({ success: true });
   } catch (error) {
     return res.status(500).json({ error: "Failed to disable user" });

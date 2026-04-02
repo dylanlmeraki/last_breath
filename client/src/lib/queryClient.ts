@@ -1,1 +1,1 @@
-../portals/lib/queryClient.ts
+export * from "../portals/lib/queryClient";

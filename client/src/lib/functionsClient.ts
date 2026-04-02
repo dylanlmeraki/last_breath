@@ -1,1 +1,1 @@
-../portals/lib/functionsClient.ts
+export * from "../portals/lib/functionsClient";

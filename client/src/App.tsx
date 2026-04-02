@@ -1,6 +1,6 @@
 import * as React from "react";
 import { lazy, Suspense, useMemo } from "react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "./portals/lib/queryClient";
 import { Toaster } from "@/components/ui/toaster";
@@ -43,7 +43,14 @@ function AppRouter() {
     return (
       <Suspense fallback={<LoadingScreen />}>
         <Routes>
-          <Route path="/*" element={<InternalApp />} />
+          <Route
+            path="/*"
+            element={
+              <AuthProviderBoundary>
+                <InternalApp />
+              </AuthProviderBoundary>
+            }
+          />
         </Routes>
       </Suspense>
     );
@@ -53,7 +60,14 @@ function AppRouter() {
     return (
       <Suspense fallback={<LoadingScreen />}>
         <Routes>
-          <Route path="/*" element={<ClientApp />} />
+          <Route
+            path="/*"
+            element={
+              <AuthProviderBoundary>
+                <ClientApp />
+              </AuthProviderBoundary>
+            }
+          />
         </Routes>
       </Suspense>
     );
@@ -72,15 +86,29 @@ function AppRouter() {
   return (
     <Suspense fallback={<LoadingScreen />}>
       <Routes>
-        <Route path="/internal/*" element={<InternalApp />} />
-        <Route path="/portal/*" element={<ClientApp />} />
+        <Route
+          path="/internal/*"
+          element={
+            <AuthProviderBoundary>
+              <InternalApp />
+            </AuthProviderBoundary>
+          }
+        />
+        <Route
+          path="/portal/*"
+          element={
+            <AuthProviderBoundary>
+              <ClientApp />
+            </AuthProviderBoundary>
+          }
+        />
         <Route path="/*" element={<MarketingApp />} />
       </Routes>
     </Suspense>
   );
 }
 
-function AuthWrapper({ children }: { children: React.ReactNode }) {
+function AuthProviderBoundary({ children }: { children: React.ReactNode }) {
   const auth = useAuthProvider();
   return <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>;
 }
@@ -89,14 +117,12 @@ function App() {
   return (
     <ErrorBoundary>
       <QueryClientProvider client={queryClient}>
-        <AuthWrapper>
-          <TooltipProvider>
-            <BrowserRouter>
-              <Toaster />
-              <AppRouter />
-            </BrowserRouter>
-          </TooltipProvider>
-        </AuthWrapper>
+        <TooltipProvider>
+          <BrowserRouter>
+            <Toaster />
+            <AppRouter />
+          </BrowserRouter>
+        </TooltipProvider>
       </QueryClientProvider>
     </ErrorBoundary>
   );

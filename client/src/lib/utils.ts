@@ -1,1 +1,1 @@
-../portals/lib/utils.ts
+export * from "../portals/lib/utils";

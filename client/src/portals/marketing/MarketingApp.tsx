@@ -49,6 +49,7 @@ export default function MarketingApp() {
           <Route path="/construction" element={<Construction />} />
           <Route path="/project-gallery" element={<ProjectGallery />} />
           <Route path="/project/:slug" element={<ProjectDetail />} />
+          <Route path="/projects/:slug" element={<ProjectDetail />} />
           <Route path="/previous-work" element={<PreviousWork />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />

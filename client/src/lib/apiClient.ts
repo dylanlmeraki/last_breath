@@ -1,1 +1,1 @@
-../portals/lib/apiClient.ts
+export * from "../portals/lib/apiClient";

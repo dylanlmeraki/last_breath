@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { createPageUrl } from "../lib/utils";
+import { sendMarketingChatbotMessage } from "../lib/stubApi";
 
 const STORAGE_KEY = "peci_chatbot_state_v2";
 const PHONE = "+14156894428";
@@ -115,6 +116,9 @@ export default function ChatBot() {
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [conversationId, setConversationId] = useState<string | undefined>(
+    undefined,
+  );
   const [showCallOverlay, setShowCallOverlay] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const autoOpenedRef = useRef(false);
@@ -249,23 +253,24 @@ export default function ChatBot() {
     if (intent === "urgent") setShowCallOverlay(true);
 
     try {
-      const res = await fetch("/api/chatbot", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: userMsg.content, context: memory }),
+      const data = await sendMarketingChatbotMessage({
+        message: userMsg.content,
+        context: { ...memory },
+        conversationId,
       });
-      const data = await res.json();
+      setConversationId(data.conversationId);
 
       let responseText: string;
       let actions: string[] = [];
 
-      if (data.source === "fallback" || !data.response) {
+      if (!data.response) {
         responseText = getIntentResponse(intent, { ...memory, ...entities } as Record<string, string>);
         if (intent === "swppp" || intent === "consult") actions = ["Schedule Consultation"];
         else if (intent === "contact" || intent === "urgent") actions = ["Call Now", "Contact Us"];
         else actions = ["Schedule Consultation", "Our Services"];
       } else {
         responseText = data.response;
+        actions = data.suggestedActions ?? [];
       }
 
       const assistantMsg: ChatMessage = {
@@ -290,6 +295,7 @@ export default function ChatBot() {
   const clearHistory = () => {
     setMessages([WELCOME_MSG]);
     setMemory({ projectType: null, location: null, timeline: null, agency: null });
+    setConversationId(undefined);
   };
 
   const iconStyle: React.CSSProperties = dragPos

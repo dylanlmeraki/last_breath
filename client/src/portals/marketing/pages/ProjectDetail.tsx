@@ -11,6 +11,7 @@ import { Label } from "@/components/ui/label";
 import AnimatedSection from "../components/AnimatedSection";
 import SEO from "../components/SEO";
 import useEmblaCarousel from 'embla-carousel-react';
+import { fetchMarketingJson, submitMarketingIntake } from "../lib/stubApi";
 
 interface GalleryProject {
   id: string;
@@ -43,12 +44,13 @@ export default function ProjectDetail() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [submissionMessage, setSubmissionMessage] = useState("");
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
   const [selectedIndex, setSelectedIndex] = useState(0);
 
-  const { data: project, isLoading } = useQuery<GalleryProject>({
+  const { data: project, isLoading } = useQuery<GalleryProject | undefined>({
     queryKey: ["/api/gallery-projects/slug", slug],
-    queryFn: () => fetch("/api/gallery-projects/slug/" + slug).then(r => r.json()),
+    queryFn: () => fetchMarketingJson<GalleryProject>("/api/gallery-projects/slug/" + slug),
     enabled: !!slug,
   });
 
@@ -96,19 +98,23 @@ export default function ProjectDetail() {
     setIsSubmitting(true);
 
     try {
-      await fetch("/api/form-submissions", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          company: formData.company,
-          project_type: "project-inquiry",
-          message: `Project Inquiry: ${project.title}\n\n${formData.message}`,
-        }),
+      const response = await submitMarketingIntake({
+        submissionType: "projectInquiry",
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        company: formData.company,
+        projectType: project.slug,
+        serviceInterest: project.services?.[0],
+        message: `Project Inquiry: ${project.title}\n\n${formData.message}`,
+        context: {
+          projectSlug: project.slug,
+          projectTitle: project.title,
+          location: project.location,
+        },
       });
 
+      setSubmissionMessage(response.nextStepMessage);
       setSubmitted(true);
       setFormData({ name: "", email: "", phone: "", company: "", message: "" });
     } catch (error) {
@@ -126,7 +132,7 @@ export default function ProjectDetail() {
         keywords={`${project.category}, ${project.services?.join(', ')}, ${project.location}, engineering project`}
         image={project.images?.[0]}
         type="article"
-        url={`/projects/${project.slug}`}
+        url={`/project/${project.slug}`}
       />
       
       <section className="py-6 px-6 bg-white border-b border-slate-200">
@@ -325,12 +331,15 @@ export default function ProjectDetail() {
                       <div className="w-16 h-16 bg-green-100 rounded-md flex items-center justify-center mx-auto mb-4">
                         <CheckCircle className="w-8 h-8 text-green-600" />
                       </div>
-                      <p className="text-slate-700 font-medium mb-2">Thank you for your inquiry!</p>
-                      <p className="text-sm text-slate-600">We'll get back to you within 24 hours.</p>
+                      <p className="text-slate-700 font-medium mb-2">Thank you for your inquiry.</p>
+                      <p className="text-sm text-slate-600">{submissionMessage}</p>
                       <Button 
                         variant="outline" 
                         size="sm"
-                        onClick={() => setSubmitted(false)}
+                        onClick={() => {
+                          setSubmitted(false);
+                          setSubmissionMessage("");
+                        }}
                         className="mt-4"
                         data-testid="button-send-another"
                       >

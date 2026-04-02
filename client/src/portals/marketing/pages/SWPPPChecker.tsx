@@ -13,6 +13,7 @@ import { format } from "date-fns";
 import SEO from "../components/SEO";
 import AnimatedGridBackground from "../components/AnimatedGridBackground";
 import BlueprintBackground from "../components/BlueprintBackground";
+import { submitMarketingIntake } from "../lib/stubApi";
 
 interface AddressEntry {
   addressLine: string;
@@ -46,6 +47,7 @@ export default function Consultation() {
   const [uploadedFiles, setUploadedFiles] = useState<{ name: string; url: string }[]>([]);
   const [validationErrors, setValidationErrors] = useState<Record<string, string | undefined>>({});
   const [submittedData, setSubmittedData] = useState<SubmittedData | null>(null);
+  const [submissionMessage, setSubmissionMessage] = useState("");
   const [isInfoExpanded, setIsInfoExpanded] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -154,19 +156,26 @@ More than 5 locations: ${moreThanFive || 'N/A'}
 Additional Details: ${additionalDetails || 'None'}
 Files Attached: ${uploadedFiles.length}`;
 
-      await fetch("/api/form-submissions", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          company: formData.company,
-          project_type: "consultation",
-          message,
-        }),
+      const response = await submitMarketingIntake({
+        submissionType: "consultation",
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        company: formData.company,
+        serviceInterest: formData.serviceInterest,
+        projectType: "consultation",
+        message,
+        attachments: uploadedFiles.map((file) => file.name),
+        context: {
+          locations: addresses,
+          moreThanFive,
+          preferredContactDate: preferredContactDate?.toISOString(),
+          additionalDetails,
+          page: "consultation",
+        },
       });
 
+      setSubmissionMessage(response.nextStepMessage);
       setSubmittedData({
         locations: addresses.filter(a => a.addressLine || a.county),
         service: serviceLabel,
@@ -613,8 +622,10 @@ Files Attached: ${uploadedFiles.length}`;
                       <Calendar
                         mode="single"
                         selected={preferredContactDate}
-                        onSelect={setPreferredContactDate}
-                        disabled={(date) => date < new Date()}
+                        onSelect={(value) =>
+                          setPreferredContactDate(value as Date | undefined)
+                        }
+                        disabled={(date: Date) => date < new Date()}
                         initialFocus
                       />
                     </PopoverContent>
@@ -653,9 +664,9 @@ Files Attached: ${uploadedFiles.length}`;
                       </div>
 
                       <div className="bg-blue-50 border border-blue-200 rounded-md p-4 mb-6">
-                        <p className="text-blue-900 font-bold mb-1">Estimated Response Time</p>
+                        <p className="text-blue-900 font-bold mb-1">Next Step</p>
                         <p className="text-blue-700 text-sm">
-                          Our team typically responds within <strong>24-48 hours</strong> during business days. For urgent matters, call (415)-689-4428.
+                          {submissionMessage}
                         </p>
                       </div>
 
@@ -663,7 +674,7 @@ Files Attached: ${uploadedFiles.length}`;
                         Thank you for your inquiry. A member of our team will review your submission and reach out to discuss your project needs.
                       </p>
                       <Button 
-                        onClick={() => { setSubmitted(false); setSubmittedData(null); }} 
+                        onClick={() => { setSubmitted(false); setSubmittedData(null); setSubmissionMessage(""); }} 
                         variant="outline"
                         className="border-slate-300 text-slate-700 rounded-md uppercase tracking-wide font-bold"
                         data-testid="button-submit-another"

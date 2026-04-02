@@ -5,6 +5,26 @@ import { storage } from "./storage";
 import { authRouter, inviteRouter, usersRouter, requireAuth, requireAdmin, requireClient, requireInternalUser, optionalAuth } from "./auth";
 import { entityTableMap } from "@shared/schema";
 import { sendEmail, sendNotificationEmail, sendTemplatedEmail, interpolateTemplate, renderTemplatePreview } from "./email";
+import {
+  createMarketingChatbotReply,
+  filterMarketingEntity,
+  getMarketingBlogPostBySlug,
+  getMarketingEntityById,
+  getMarketingGalleryProjectBySlug,
+  listMarketingEntity,
+  submitMarketingIntake,
+} from "./marketingStubService";
+
+function getParam(value: string | string[] | undefined): string {
+  if (Array.isArray(value)) return value[0] ?? "";
+  return value ?? "";
+}
+
+function isMarketingEntityName(
+  entityName: string,
+): entityName is "blog-posts" | "gallery-projects" {
+  return entityName === "blog-posts" || entityName === "gallery-projects";
+}
 
 function createEntityRouter(entityName: string, authMiddleware: any = requireAuth) {
   const router = Router();
@@ -34,7 +54,7 @@ function createEntityRouter(entityName: string, authMiddleware: any = requireAut
 
   router.get("/:id", authMiddleware, async (req: Request, res: Response) => {
     try {
-      const record = await storage.getEntityById(entityName, req.params.id);
+      const record = await storage.getEntityById(entityName, getParam(req.params.id));
       if (!record) {
         return res.status(404).json({ error: `${entityName} not found` });
       }
@@ -85,7 +105,7 @@ function createEntityRouter(entityName: string, authMiddleware: any = requireAut
 
   router.put("/:id", authMiddleware, async (req: Request, res: Response) => {
     try {
-      const record = await storage.updateEntity(entityName, req.params.id, req.body);
+      const record = await storage.updateEntity(entityName, getParam(req.params.id), req.body);
       if (!record) {
         return res.status(404).json({ error: `${entityName} not found` });
       }
@@ -98,7 +118,7 @@ function createEntityRouter(entityName: string, authMiddleware: any = requireAut
 
   router.delete("/:id", authMiddleware, async (req: Request, res: Response) => {
     try {
-      const deleted = await storage.deleteEntity(entityName, req.params.id);
+      const deleted = await storage.deleteEntity(entityName, getParam(req.params.id));
       if (!deleted) {
         return res.status(404).json({ error: `${entityName} not found` });
       }
@@ -136,6 +156,12 @@ export async function registerRoutes(
       try {
         const sort = req.query.sort as string | undefined;
         const limit = req.query.limit ? parseInt(req.query.limit as string, 10) : 50;
+
+        if (isMarketingEntityName(entityName)) {
+          const records = listMarketingEntity(entityName, sort, limit);
+          return res.json(records);
+        }
+
         const records = await storage.listEntity(entityName, sort, limit);
         return res.json(records);
       } catch (error: any) {
@@ -145,7 +171,13 @@ export async function registerRoutes(
 
     router.get("/:id", async (req: Request, res: Response) => {
       try {
-        const record = await storage.getEntityById(entityName, req.params.id);
+        if (isMarketingEntityName(entityName)) {
+          const record = getMarketingEntityById(entityName, getParam(req.params.id));
+          if (!record) return res.status(404).json({ error: `${entityName} not found` });
+          return res.json(record);
+        }
+
+        const record = await storage.getEntityById(entityName, getParam(req.params.id));
         if (!record) return res.status(404).json({ error: `${entityName} not found` });
         return res.json(record);
       } catch (error: any) {
@@ -156,6 +188,12 @@ export async function registerRoutes(
     router.post("/filter", async (req: Request, res: Response) => {
       try {
         const { query, sort, limit } = req.body;
+
+        if (isMarketingEntityName(entityName)) {
+          const records = filterMarketingEntity(entityName, query || {}, sort, limit);
+          return res.json(records);
+        }
+
         const records = await storage.filterEntity(entityName, query || {}, sort, limit);
         return res.json(records);
       } catch (error: any) {
@@ -175,7 +213,7 @@ export async function registerRoutes(
 
     router.put("/:id", requireAuth, async (req: Request, res: Response) => {
       try {
-        const record = await storage.updateEntity(entityName, req.params.id, req.body);
+        const record = await storage.updateEntity(entityName, getParam(req.params.id), req.body);
         if (!record) return res.status(404).json({ error: `${entityName} not found` });
         return res.json(record);
       } catch (error: any) {
@@ -185,7 +223,7 @@ export async function registerRoutes(
 
     router.delete("/:id", requireAuth, async (req: Request, res: Response) => {
       try {
-        const deleted = await storage.deleteEntity(entityName, req.params.id);
+        const deleted = await storage.deleteEntity(entityName, getParam(req.params.id));
         if (!deleted) return res.status(404).json({ error: `${entityName} not found` });
         return res.status(204).send();
       } catch (error: any) {
@@ -201,7 +239,7 @@ export async function registerRoutes(
 
   app.get("/api/blog-posts/slug/:slug", async (req: Request, res: Response) => {
     try {
-      const post = await storage.getBlogPostBySlug(req.params.slug);
+      const post = getMarketingBlogPostBySlug(getParam(req.params.slug));
       if (!post) return res.status(404).json({ error: "Blog post not found" });
       return res.json(post);
     } catch (error) {
@@ -211,9 +249,9 @@ export async function registerRoutes(
 
   app.get("/api/gallery-projects/slug/:slug", async (req: Request, res: Response) => {
     try {
-      const records = await storage.filterEntity("gallery-projects", { slug: req.params.slug }, undefined, 1);
-      if (!records || records.length === 0) return res.status(404).json({ error: "Gallery project not found" });
-      return res.json(records[0]);
+      const project = getMarketingGalleryProjectBySlug(getParam(req.params.slug));
+      if (!project) return res.status(404).json({ error: "Gallery project not found" });
+      return res.json(project);
     } catch (error) {
       return res.status(500).json({ error: "Failed to fetch gallery project" });
     }
@@ -221,13 +259,11 @@ export async function registerRoutes(
 
   app.post("/api/chatbot", async (req: Request, res: Response) => {
     try {
-      const { message, context } = req.body;
-      if (!message) return res.status(400).json({ error: "Message is required" });
-      return res.json({
-        response: "Thank you for your interest in Pacific Engineering & Construction. Our team specializes in civil and structural engineering, SWPPP/stormwater planning, construction services, and special inspections across the Bay Area. For specific project inquiries, please visit our Contact page or call us directly. How can I help you today?",
-        source: "fallback"
-      });
-    } catch (error) {
+      return res.json(createMarketingChatbotReply(req.body));
+    } catch (error: any) {
+      if (error.message === "Message is required") {
+        return res.status(400).json({ error: error.message });
+      }
       return res.status(500).json({ error: "Chatbot error" });
     }
   });
@@ -236,15 +272,12 @@ export async function registerRoutes(
 
   formSubmissionsRouter.post("/", async (req: Request, res: Response) => {
     try {
-      const data = {
-        ...req.body,
-        created_by: req.user?.email || "anonymous",
-        source: req.body.source || "website",
-      };
-      const record = await storage.createEntity("form-submissions", data);
-      return res.status(201).json(record);
+      return res.status(201).json(submitMarketingIntake(req.body));
     } catch (error: any) {
       console.error("[routes] POST /form-submissions error:", error);
+      if (error.message?.includes("required")) {
+        return res.status(400).json({ error: error.message });
+      }
       return res.status(500).json({ error: "Failed to submit form" });
     }
   });
@@ -262,7 +295,7 @@ export async function registerRoutes(
 
   formSubmissionsRouter.get("/:id", requireAuth, async (req: Request, res: Response) => {
     try {
-      const record = await storage.getEntityById("form-submissions", req.params.id);
+      const record = await storage.getEntityById("form-submissions", getParam(req.params.id));
       if (!record) return res.status(404).json({ error: "Form submission not found" });
       return res.json(record);
     } catch (error) {
@@ -272,7 +305,7 @@ export async function registerRoutes(
 
   formSubmissionsRouter.put("/:id", requireAuth, async (req: Request, res: Response) => {
     try {
-      const record = await storage.updateEntity("form-submissions", req.params.id, req.body);
+      const record = await storage.updateEntity("form-submissions", getParam(req.params.id), req.body);
       if (!record) return res.status(404).json({ error: "Form submission not found" });
       return res.json(record);
     } catch (error) {
@@ -300,7 +333,7 @@ export async function registerRoutes(
   app.use("/api/audit-logs", createEntityRouter("audit-logs", requireAdmin));
   app.get("/api/notifications/unread/:email", requireAuth, async (req: Request, res: Response) => {
     try {
-      const notifications = await storage.getUnreadNotifications(req.params.email);
+      const notifications = await storage.getUnreadNotifications(getParam(req.params.email));
       return res.json(notifications);
     } catch (error) {
       return res.status(500).json({ error: "Failed to fetch notifications" });
@@ -309,7 +342,7 @@ export async function registerRoutes(
 
   app.put("/api/notifications/:id/read", requireAuth, async (req: Request, res: Response) => {
     try {
-      const notification = await storage.markNotificationRead(req.params.id);
+      const notification = await storage.markNotificationRead(getParam(req.params.id));
       if (!notification) return res.status(404).json({ error: "Notification not found" });
       return res.json(notification);
     } catch (error) {
@@ -331,7 +364,7 @@ export async function registerRoutes(
   app.use("/api/notifications", createEntityRouter("notifications"));
   app.get("/api/client-invites/validate/:token", async (req: Request, res: Response) => {
     try {
-      const invite = await storage.getClientInviteByToken(req.params.token);
+      const invite = await storage.getClientInviteByToken(getParam(req.params.token));
       if (!invite) return res.status(404).json({ error: "Invalid or expired invite" });
       if (new Date(invite.expires_at) < new Date()) {
         return res.status(410).json({ error: "Invite has expired" });
@@ -374,7 +407,7 @@ export async function registerRoutes(
       const { to } = req.body;
       if (!to) return res.status(400).json({ error: "Recipient email (to) is required" });
 
-      const template = await storage.getEntityById("email-templates", req.params.id);
+      const template = await storage.getEntityById("email-templates", getParam(req.params.id));
       if (!template) return res.status(404).json({ error: "Template not found" });
 
       const sampleVars: Record<string, any> = {

@@ -10,6 +10,7 @@ import AnimatedSection from "../components/AnimatedSection";
 import SEO from "../components/SEO";
 import AnimatedGridBackground from "../components/AnimatedGridBackground";
 import BlueprintBackground from "../components/BlueprintBackground";
+import { submitMarketingIntake } from "../lib/stubApi";
 
 interface ContactFormData {
   name: string;
@@ -89,6 +90,7 @@ export default function Contact() {
   const [uploadedFiles, setUploadedFiles] = useState<UploadedFile[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [submissionMessage, setSubmissionMessage] = useState("");
   const [validationErrors, setValidationErrors] = useState<ValidationErrors>({});
   const [touchedFields, setTouchedFields] = useState<TouchedFields>({});
 
@@ -168,21 +170,22 @@ export default function Contact() {
     setIsSubmitting(true);
 
     try {
-      await fetch("/api/form-submissions", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          company: formData.company,
-          serviceInterest: formData.serviceInterest,
-          projectType: formData.projectType,
-          message: formData.message,
-          attachments: uploadedFiles.map(f => f.name),
-        }),
+      const response = await submitMarketingIntake({
+        submissionType: "contact",
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        company: formData.company,
+        serviceInterest: formData.serviceInterest,
+        projectType: formData.projectType,
+        message: formData.message,
+        attachments: uploadedFiles.map(f => f.name),
+        context: {
+          page: "contact",
+        },
       });
 
+      setSubmissionMessage(response.nextStepMessage);
       setSubmitted(true);
       setFormData({
         name: "",
@@ -257,9 +260,12 @@ export default function Contact() {
                       Message Sent Successfully!
                     </h3>
                     <p className="text-slate-600 mb-6">
-                      Thank you for contacting us. We'll get back to you within 24 hours.
+                      {submissionMessage}
                     </p>
-                    <Button onClick={() => setSubmitted(false)} variant="outline" className="border-slate-300 text-slate-700 hover:bg-gradient-to-r hover:from-slate-50 hover:to-slate-100 rounded-md uppercase tracking-wide font-bold" data-testid="button-send-another">
+                    <Button onClick={() => {
+                      setSubmitted(false);
+                      setSubmissionMessage("");
+                    }} variant="outline" className="border-slate-300 text-slate-700 hover:bg-gradient-to-r hover:from-slate-50 hover:to-slate-100 rounded-md uppercase tracking-wide font-bold" data-testid="button-send-another">
                       Send Another Message
                     </Button>
                   </div> :

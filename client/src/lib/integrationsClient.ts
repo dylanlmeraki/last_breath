@@ -1,1 +1,1 @@
-../portals/lib/integrationsClient.ts
+export * from "../portals/lib/integrationsClient";

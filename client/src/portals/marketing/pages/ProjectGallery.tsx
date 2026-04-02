@@ -1,80 +1,113 @@
-import { useState, useMemo } from "react";
+export { default } from "./ProjectGalleryRecovered";
+
+/*
+import { useCallback, useDeferredValue, useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { createPageUrl } from "../lib/utils";
 import { useQuery } from "@tanstack/react-query";
-import { ArrowRight, MapPin, Filter, Award, CheckCircle, X, Loader2 } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
+import { ArrowRight, Filter, Loader2, MapPin, X } from "lucide-react";
+import type { MarketingGalleryProject } from "@shared/marketing-content";
+import { createPageUrl } from "../lib/utils";
+import { fetchMarketingJson } from "../lib/stubApi";
 import AnimatedSection from "../components/AnimatedSection";
 import SEO from "../components/SEO";
 import AnimatedGridBackground from "../components/AnimatedGridBackground";
 import BlueprintBackground from "../components/BlueprintBackground";
 import CTASection from "../components/CTASection";
+import ProjectGalleryMap from "../components/ProjectGalleryMap";
 
-interface GalleryProject {
-  id: string;
-  title: string;
-  slug: string;
-  description: string;
+type GalleryFilters = {
   category: string;
-  county: string;
+  service: string;
   location: string;
-  date: string;
-  image: string;
-  images: string[];
-  services: string[];
-  agencies?: string[];
-  scope?: string;
-  client_name?: string;
-  contact_name?: string;
-  budget?: string;
+};
+
+const DEFAULT_FILTERS: GalleryFilters = {
+  category: "all",
+  service: "all",
+  location: "all",
+};
+
+function statusLabel(status: MarketingGalleryProject["status"]): string {
+  switch (status) {
+    case "ongoing":
+      return "Ongoing";
+    case "completed":
+      return "Completed";
+    default:
+      return "Featured";
+  }
 }
+*/
 
 export default function ProjectGallery() {
-  const [filters, setFilters] = useState({
-    category: "all",
-    service: "all",
-    location: "all"
-  });
+  const [filters, setFilters] = useState<GalleryFilters>(DEFAULT_FILTERS);
+  const [selectedSlug, setSelectedSlug] = useState<string | undefined>();
+  const deferredFilters = useDeferredValue(filters);
 
-  const { data: projects = [], isLoading } = useQuery<GalleryProject[]>({
+  const { data: projects = [], isLoading } = useQuery<MarketingGalleryProject[]>({
     queryKey: ["/api/gallery-projects"],
+    queryFn: () =>
+      fetchMarketingJson<MarketingGalleryProject[]>("/api/gallery-projects").then(
+        (data) => data ?? [],
+      ),
   });
 
-  const categories = useMemo(() => {
-    const unique = Array.from(new Set(projects.map((p: GalleryProject) => p.category).filter(Boolean)));
-    return [
-      { value: "all", label: "All Categories" },
-      ...unique.map(cat => ({ value: cat, label: cat }))
-    ];
-  }, [projects]);
+  const categories = useMemo(
+    () => ["all", ...new Set(projects.map((project) => project.category).filter(Boolean))],
+    [projects],
+  );
 
-  const serviceTypes = useMemo(() => {
-    const unique = Array.from(new Set(projects.flatMap((p: GalleryProject) => p.services || []).filter(Boolean)));
-    return [
-      { value: "all", label: "All Services" },
-      ...unique.map(service => ({ value: service, label: service }))
-    ];
-  }, [projects]);
+  const serviceTypes = useMemo(
+    () => ["all", ...new Set(projects.flatMap((project) => project.services).filter(Boolean))],
+    [projects],
+  );
 
-  const locations = useMemo(() => {
-    const unique = Array.from(new Set(projects.map((p: GalleryProject) => p.county).filter(Boolean)));
-    return [
-      { value: "all", label: "All Locations" },
-      ...unique.map(county => ({ value: county, label: county }))
-    ];
-  }, [projects]);
+  const locations = useMemo(
+    () => ["all", ...new Set(projects.map((project) => project.county).filter(Boolean))],
+    [projects],
+  );
 
-  const filteredProjects = projects.filter((p: GalleryProject) => {
-    const categoryMatch = filters.category === "all" || p.category === filters.category;
-    const locationMatch = filters.location === "all" || p.county === filters.location;
-    const serviceMatch = filters.service === "all" || (p.services && p.services.some(s => s === filters.service));
-    return categoryMatch && locationMatch && serviceMatch;
-  });
+  const filteredProjects = useMemo(
+    () =>
+      projects.filter((project) => {
+        const categoryMatch =
+          deferredFilters.category === "all" || project.category === deferredFilters.category;
+        const locationMatch =
+          deferredFilters.location === "all" || project.county === deferredFilters.location;
+        const serviceMatch =
+          deferredFilters.service === "all" ||
+          project.services.includes(deferredFilters.service);
 
-  const handleFilterChange = (key: string, value: string) => {
-    setFilters(prev => ({ ...prev, [key]: value }));
+        return categoryMatch && locationMatch && serviceMatch;
+      }),
+    [projects, deferredFilters],
+  );
+
+  useEffect(() => {
+    if (!filteredProjects.length) {
+      setSelectedSlug(undefined);
+      return;
+    }
+
+    if (!selectedSlug || !filteredProjects.some((project) => project.slug === selectedSlug)) {
+      setSelectedSlug(filteredProjects[0].slug);
+    }
+  }, [filteredProjects, selectedSlug]);
+
+  const selectedProject =
+    filteredProjects.find((project) => project.slug === selectedSlug) ?? filteredProjects[0];
+
+  const handleFilterChange = (key: keyof GalleryFilters, value: string) => {
+    setFilters((current) => ({ ...current, [key]: value }));
   };
+
+  const clearFilters = () => {
+    setFilters(DEFAULT_FILTERS);
+  };
+
+  const handleSelectProject = useCallback((slug: string) => {
+    setSelectedSlug(slug);
+  }, []);
 
   return (
     <div className="min-h-screen bg-slate-50" data-testid="project-gallery-page">
@@ -232,7 +265,7 @@ export default function ProjectGallery() {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredProjects.map((project: GalleryProject, index: number) => (
                 <AnimatedSection key={project.id} direction="up" delay={index * 0.05}>
-                  <Link to={`/projects/${project.slug}`} data-testid={`link-project-${project.slug}`}>
+                  <Link to={`/project/${project.slug}`} data-testid={`link-project-${project.slug}`}>
                     <Card
                       className="group overflow-hidden border border-slate-200 shadow-md transition-all duration-300 cursor-pointer rounded-md bg-white h-full"
                     >

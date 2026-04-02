@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import AnimatedSection from "../components/AnimatedSection";
 import ReactMarkdown from "react-markdown";
+import { fetchMarketingJson } from "../lib/stubApi";
 
 interface BlogPostData {
   id: string;
@@ -29,9 +30,9 @@ interface BlogPostData {
 export default function BlogPost() {
   const { slug } = useParams<{ slug: string }>();
 
-  const { data: post, isLoading } = useQuery<BlogPostData>({
+  const { data: post, isLoading } = useQuery<BlogPostData | undefined>({
     queryKey: ["/api/blog-posts/slug", slug],
-    queryFn: () => fetch("/api/blog-posts/slug/" + slug).then(r => r.json()),
+    queryFn: () => fetchMarketingJson<BlogPostData>("/api/blog-posts/slug/" + slug),
     enabled: !!slug,
   });
 
@@ -103,7 +104,7 @@ export default function BlogPost() {
   return (
     <div className="min-h-screen bg-slate-50" data-testid="blog-post-page">
       <Helmet>
-        <title>{post.seo_optimized_title || post.title} | Pacific Engineering Blog</title>
+        <title>{`${post.seo_optimized_title || post.title} | Pacific Engineering Blog`}</title>
         <meta name="description" content={post.meta_description || post.excerpt} />
         <meta name="keywords" content={post.keywords?.join(", ") || post.tags?.join(", ") || ""} />
         
