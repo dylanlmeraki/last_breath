@@ -31,7 +31,7 @@ export default function CTASection({
   return (
     <section className="relative bg-slate-900 overflow-hidden" data-testid={`section-${testIdPrefix}`}>
       {backgroundImage && (
-        <div className="absolute inset-0 hidden sm:block opacity-80">
+        <div className="absolute inset-0 hidden opacity-80 sm:block">
           <img
             src={backgroundImage}
             alt=""
@@ -41,7 +41,7 @@ export default function CTASection({
         </div>
       )}
       {backgroundImage && (
-        <div className="absolute inset-0 bg-slate-900/50 hidden sm:block mix-blend-multiply" />
+        <div className="absolute inset-0 hidden bg-slate-900/50 mix-blend-multiply sm:block" />
       )}
       <div className="absolute inset-0 bg-gradient-to-b from-slate-900/60 to-slate-950/95 sm:from-slate-900/20 sm:to-slate-950/60" />
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -51,8 +51,7 @@ export default function CTASection({
       <div className="absolute inset-0 opacity-[0.12] pointer-events-none z-[2]" aria-hidden="true">
         <AnimatedGridBackground />
       </div>
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[400px] bg-cyan-500/[0.06] rounded-full blur-[120px] pointer-events-none z-[3] animate-[cta-glow-pulse_6s_ease-in-out_infinite]" />
-      <style>{`@keyframes cta-glow-pulse { 0%, 100% { opacity: 1; transform: translate(-50%, -50%) scale(1); } 50% { opacity: 0.7; transform: translate(-50%, -50%) scale(1.08); } } @media (prefers-reduced-motion: reduce) { .animate-\\[cta-glow-pulse_6s_ease-in-out_infinite\\] { animation: none !important; } }`}</style>
+      <div className="pe-cta-glow-pulse absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[400px] bg-cyan-500/[0.06] rounded-full blur-[120px] pointer-events-none z-[3]" />
       <div className="relative z-10 max-w-4xl mx-auto text-center px-4 sm:px-6 py-12 sm:py-16 md:py-20 lg:py-24">
         <motion.h2
           className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white mb-5 sm:mb-8 tracking-tight leading-[1.08] font-bold"
@@ -103,14 +102,14 @@ export default function CTASection({
           )}
           <a
             href="tel:+14156894428"
-            className="w-full sm:hidden px-10 py-4 text-white font-bold tracking-tight text-base rounded-sm flex items-center justify-center gap-3 shadow-[0_4px_12px_rgba(6,182,212,0.12)] transition-all duration-300 active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:outline-none [background:radial-gradient(ellipse_at_center,#0891b2,#3b82f6)]"
+            className="flex w-full items-center justify-center gap-3 rounded-sm px-10 py-4 text-base font-bold tracking-tight text-white shadow-[0_4px_12px_rgba(6,182,212,0.12)] transition-all duration-300 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 sm:hidden [background:radial-gradient(ellipse_at_center,#0891b2,#3b82f6)]"
             data-testid={`link-${testIdPrefix}-call-mobile`}
           >
             <Phone className="w-5 h-5" /> (415) 689-4428
           </a>
           <Link
             to={createPageUrl("Contact")}
-            className="hidden sm:flex w-auto px-14 py-[18px] text-white font-bold tracking-tight text-lg rounded-full items-center justify-center gap-3 shadow-[0_4px_12px_rgba(6,182,212,0.12)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_35px_rgba(6,182,212,0.45)] active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:outline-none [background:radial-gradient(ellipse_at_center,#0891b2,#3b82f6)] hover:[background:radial-gradient(ellipse_at_center,#06b6d4,#2563eb)]"
+            className="hidden w-auto items-center justify-center gap-3 rounded-full px-14 py-[18px] text-lg font-bold tracking-tight text-white shadow-[0_4px_12px_rgba(6,182,212,0.12)] transition-all duration-300 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 hover:-translate-y-1 hover:shadow-[0_12px_35px_rgba(6,182,212,0.45)] sm:flex [background:radial-gradient(ellipse_at_center,#0891b2,#3b82f6)] hover:[background:radial-gradient(ellipse_at_center,#06b6d4,#2563eb)]"
             data-testid={`link-${testIdPrefix}-contact`}
           >
             Get in Touch

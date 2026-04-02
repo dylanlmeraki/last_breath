@@ -228,7 +228,7 @@ export default function ProjectDetail() {
                   )}
                 </div>
                 
-                <div id="overview" className="mb-10 scroll-mt-24">
+                <div id="overview" className="pe-scroll-anchor mb-10">
                   <h2 className="text-2xl font-bold text-slate-900 mb-4 uppercase tracking-wide">Project Overview</h2>
                   <p className="text-slate-600 text-lg leading-relaxed" data-testid="text-project-description">
                     {project.description}
@@ -236,7 +236,7 @@ export default function ProjectDetail() {
                 </div>
                 
                 {project.scope && (
-                  <div id="scope" className="mb-10 scroll-mt-24">
+                  <div id="scope" className="pe-scroll-anchor mb-10">
                     <h2 className="text-2xl font-bold text-slate-900 mb-4 uppercase tracking-wide">Scope of Work</h2>
                     <div className="bg-slate-50 border-l-4 border-blue-600 p-6 rounded-r-md">
                       <p className="text-slate-700 leading-relaxed">
@@ -247,7 +247,7 @@ export default function ProjectDetail() {
                 )}
 
                 {project.client_name && (
-                  <div id="client" className="mb-10 scroll-mt-24">
+                  <div id="client" className="pe-scroll-anchor mb-10">
                     <h2 className="text-2xl font-bold text-slate-900 mb-4 uppercase tracking-wide">Client Information</h2>
                     <Card className="p-6 border border-slate-200 bg-white rounded-md shadow-sm">
                       <div className="space-y-3">
@@ -274,7 +274,7 @@ export default function ProjectDetail() {
               </AnimatedSection>
             </div>
             
-            <div className="lg:sticky lg:top-24 lg:self-start space-y-6">
+            <div className="space-y-6 lg:sticky lg:self-start pe-sticky-under-header">
               <AnimatedSection direction="right" delay={0.2}>
                 <Card className="p-6 border border-slate-200 bg-slate-50 rounded-md shadow-md">
                   <h3 className="text-sm font-bold text-slate-900 mb-4 uppercase tracking-wider">Quick Navigation</h3>
@@ -294,7 +294,7 @@ export default function ProjectDetail() {
                   </div>
                 </Card>
                 
-                <Card id="services" className="p-6 border border-slate-200 bg-white rounded-md shadow-md scroll-mt-24">
+                <Card id="services" className="pe-scroll-anchor rounded-md border border-slate-200 bg-white p-6 shadow-md">
                   <h3 className="text-sm font-bold text-slate-900 mb-4 uppercase tracking-wider">Services Provided</h3>
                   <div className="space-y-2">
                     {project.services?.map((service: string, idx: number) => (
@@ -428,7 +428,10 @@ export default function ProjectDetail() {
       </section>
 
       <section className="py-20 px-6 bg-slate-900 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 pointer-events-none"></div>
+        <div
+          className="absolute inset-0 opacity-10 pointer-events-none"
+          style={{ backgroundImage: "url('https://www.transparenttextures.com/patterns/carbon-fibre.png')" }}
+        ></div>
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <AnimatedSection direction="up">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-6 tracking-tight">

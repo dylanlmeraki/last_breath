@@ -1,4 +1,4 @@
-import { useRef, ReactNode, Children, isValidElement } from "react";
+import { useEffect, useRef, useState, ReactNode, Children, isValidElement } from "react";
 import { motion, useInView, useScroll, useTransform, useReducedMotion, type Variants } from "framer-motion";
 
 interface AnimatedSectionProps {
@@ -53,9 +53,25 @@ export default function AnimatedSection({
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, amount: threshold });
   const prefersReducedMotion = useReducedMotion();
+  const [isSmallViewport, setIsSmallViewport] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const mediaQuery = window.matchMedia("(max-width: 767px)");
+    const updateViewportMode = () => setIsSmallViewport(mediaQuery.matches);
+
+    updateViewportMode();
+    mediaQuery.addEventListener("change", updateViewportMode);
+
+    return () => {
+      mediaQuery.removeEventListener("change", updateViewportMode);
+    };
+  }, []);
 
   const safeBlur = blur && !prefersReducedMotion;
-  const dist = prefersReducedMotion ? 0 : 1;
+  const yDist = prefersReducedMotion ? 0 : 1;
+  const xDist = prefersReducedMotion || isSmallViewport ? 0 : 1;
 
   const baseTransition = ease === "spring"
     ? { type: "spring" as const, stiffness: 100, damping: 20, mass: 1, delay, duration }
@@ -76,8 +92,8 @@ export default function AnimatedSection({
               key={i}
               initial={{
                 opacity: 0,
-                y: (direction === "up" ? 40 : direction === "down" ? -40 : 0) * dist,
-                x: (direction === "left" ? 40 : direction === "right" ? -40 : 0) * dist,
+                y: (direction === "up" ? 40 : direction === "down" ? -40 : 0) * yDist,
+                x: (direction === "left" ? 40 : direction === "right" ? -40 : 0) * xDist,
                 scale: prefersReducedMotion ? 1 : 0.97,
                 filter: safeBlur ? "blur(8px)" : "blur(0px)",
               }}
@@ -101,8 +117,8 @@ export default function AnimatedSection({
   const variants = {
     hidden: {
       opacity: 0,
-      y: (direction === "up" ? 60 : direction === "down" ? -60 : 0) * dist,
-      x: (direction === "left" ? 60 : direction === "right" ? -60 : 0) * dist,
+      y: (direction === "up" ? 60 : direction === "down" ? -60 : 0) * yDist,
+      x: (direction === "left" ? 60 : direction === "right" ? -60 : 0) * xDist,
       scale: prefersReducedMotion ? 1 : 0.95,
       filter: safeBlur ? "blur(10px)" : "blur(0px)",
     },

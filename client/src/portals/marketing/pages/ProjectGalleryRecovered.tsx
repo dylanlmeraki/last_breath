@@ -120,7 +120,7 @@ export default function ProjectGalleryRecovered() {
           gridSize={40}
           triggerInterval={500}
           animationDuration={2500}
-          className="hidden sm:block opacity-30"
+          className="hidden opacity-30 sm:block"
         />
         <BlueprintBackground className="z-[2] opacity-50" />
         <div className="pe-container-wide relative z-[5] py-20 sm:py-24 lg:py-28">

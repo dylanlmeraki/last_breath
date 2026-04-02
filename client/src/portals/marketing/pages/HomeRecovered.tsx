@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { motion, useReducedMotion, useScroll, useSpring } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import {
   ArrowRight,
   Award,
@@ -52,61 +52,17 @@ const VALUE_CARDS = [
   },
 ] as const;
 
-function ScrollProgress() {
-  const { scrollYProgress } = useScroll();
-  const prefersReducedMotion = useReducedMotion();
-  const scaleX = useSpring(scrollYProgress, { stiffness: 220, damping: 34 });
-
-  return (
-    <motion.div
-      className="fixed left-0 right-0 top-20 z-50 h-[2px] origin-left bg-gradient-to-r from-blue-500 via-cyan-400 to-blue-500"
-      style={{ scaleX: prefersReducedMotion ? scrollYProgress : scaleX }}
-    />
-  );
-}
-
-function MobileStickyBar() {
-  return (
-    <div
-      className="fixed bottom-0 left-0 right-0 z-40 flex gap-3 border-t border-white/10 bg-slate-950/95 px-4 py-3 backdrop-blur-md shadow-[0_-10px_30px_rgba(0,0,0,0.5)] sm:hidden"
-      style={{ paddingBottom: "max(0.75rem, env(safe-area-inset-bottom))" }}
-      data-testid="mobile-sticky-bar"
-    >
-      <a
-        href="tel:+14156894428"
-        className="flex flex-1 items-center justify-center gap-2 rounded-sm bg-white/10 py-3 text-sm font-bold text-white transition-colors active:bg-white/20"
-        data-testid="btn-sticky-call"
-      >
-        Call Now
-      </a>
-      <Link
-        to={createPageUrl("Consultation")}
-        className="flex flex-1 items-center justify-center gap-2 rounded-sm bg-orange-600 py-3 text-sm font-bold text-white shadow-md transition-colors active:bg-orange-500"
-        data-testid="btn-sticky-quote"
-      >
-        Get Quote
-      </Link>
-    </div>
-  );
-}
-
 export default function HomeRecovered() {
   const prefersReducedMotion = useReducedMotion();
 
   return (
-    <div
-      className="min-h-screen bg-white antialiased pb-[4.5rem] sm:pb-0"
-      data-testid="page-home"
-    >
+    <div className="min-h-screen bg-white antialiased" data-testid="page-home">
       <SEO
         title="Pacific Engineering & Construction Inc. - Consulting Engineers and Contractors"
         description="Bay Area engineering, inspections, stormwater compliance, and construction-minded coordination for project teams that need practical delivery support."
         keywords="Pacific Engineering, Bay Area engineering, stormwater compliance, special inspections, structural engineering, construction coordination"
         url="/"
       />
-
-      <ScrollProgress />
-      <MobileStickyBar />
 
       <section
         className="relative isolate overflow-hidden bg-slate-950"
@@ -129,110 +85,100 @@ export default function HomeRecovered() {
           gridSize={40}
           triggerInterval={500}
           animationDuration={2500}
-          className="hidden sm:block opacity-30"
+          className="hidden opacity-30 sm:block"
         />
         <BlueprintBackground className="opacity-60" />
 
-        <div className="relative z-10 pe-container-wide py-20 sm:py-24 lg:py-28">
-          <div className="max-w-3xl pe-stack-sm pe-inverse">
-            <span className="eyebrow warm text-orange-300">
-              Bay Area Field-Proven Partner
-            </span>
-            <motion.h1
-              className="pe-heading-1 text-white"
-              initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, y: 28 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.7 }}
-            >
-              Pacific Engineering and Construction.
-            </motion.h1>
-            <motion.p
-              className="pe-lead text-slate-200"
-              initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, y: 22 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={
-                prefersReducedMotion ? { duration: 0 } : { duration: 0.7, delay: 0.08 }
-              }
-            >
-              Engineering, inspections, stormwater compliance, and construction-minded
-              coordination shaped around how Bay Area projects actually move from scope
-              through field execution.
-            </motion.p>
-          </div>
-
-          <motion.div
-            className="mt-8 flex flex-col gap-3 sm:flex-row"
-            initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={
-              prefersReducedMotion ? { duration: 0 } : { duration: 0.65, delay: 0.16 }
-            }
-          >
-            <Link to={createPageUrl("Consultation")} className="pe-button">
-              <PhoneCall className="h-5 w-5" />
-              Review Project Scope
-            </Link>
-            <Link to={createPageUrl("ServicesOverview")} className="pe-button-secondary">
-              Explore Services
-              <ArrowRight className="h-5 w-5" />
-            </Link>
-          </motion.div>
-
-          <div className="mt-8 flex flex-wrap gap-4 text-sm text-slate-200">
-            {HERO_TRUST_POINTS.map((point) => (
-              <div key={point} className="inline-flex items-center gap-2">
-                <CheckCircle2 className="h-4 w-4 text-cyan-300" />
-                <span>{point}</span>
+        <div className="relative z-10 pe-container-wide py-16 sm:py-20 lg:py-24">
+          <div className="home-hero-shell">
+            <div className="home-hero-copy pe-inverse">
+              <div className="max-w-3xl pe-stack-sm">
+                <span className="eyebrow warm text-orange-300">
+                  Bay Area Field-Proven Partner
+                </span>
+                <motion.h1
+                  className="pe-heading-1 text-white"
+                  initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, y: 28 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.7 }}
+                >
+                  Pacific Engineering and Construction.
+                </motion.h1>
+                <motion.p
+                  className="pe-lead text-slate-200"
+                  initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, y: 22 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={
+                    prefersReducedMotion ? { duration: 0 } : { duration: 0.7, delay: 0.08 }
+                  }
+                >
+                  Engineering, inspections, stormwater compliance, and
+                  construction-minded coordination shaped around how Bay Area
+                  projects actually move from scope through field execution.
+                </motion.p>
               </div>
-            ))}
-          </div>
 
-          <AnimatedSection className="mt-10 sm:mt-12" direction="up" delay={0.18}>
-            <div className="grid gap-4 md:grid-cols-3">
-              <div className="rounded-2xl border border-white/15 bg-white/5 p-5 backdrop-blur-sm">
-                <p className="text-3xl font-bold text-white sm:text-4xl">
-                  <AnimatedCounter target={40} suffix="+" />
-                </p>
-                <p className="mt-1 text-sm font-semibold uppercase tracking-wide text-cyan-200">
-                  Years of Bay Area experience
-                </p>
-              </div>
-              <div className="rounded-2xl border border-white/15 bg-white/5 p-5 backdrop-blur-sm">
-                <p className="text-3xl font-bold text-white sm:text-4xl">
-                  <AnimatedCounter target={2500} suffix="+" />
-                </p>
-                <p className="mt-1 text-sm font-semibold uppercase tracking-wide text-cyan-200">
-                  Projects supported
-                </p>
-              </div>
-              <div className="rounded-2xl border border-white/15 bg-white/5 p-5 backdrop-blur-sm">
-                <p className="text-3xl font-bold text-white sm:text-4xl">PE / QSD / QSP</p>
-                <p className="mt-1 text-sm font-semibold uppercase tracking-wide text-cyan-200">
-                  In-house technical coverage
-                </p>
+              <motion.div
+                className="home-hero-actions mt-8 flex flex-col gap-3 sm:flex-row"
+                initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={
+                  prefersReducedMotion ? { duration: 0 } : { duration: 0.65, delay: 0.16 }
+                }
+              >
+                <Link to={createPageUrl("Consultation")} className="pe-button">
+                  <PhoneCall className="h-5 w-5" />
+                  Review Project Scope
+                </Link>
+                <Link to={createPageUrl("ServicesOverview")} className="pe-button-secondary">
+                  Explore Services
+                  <ArrowRight className="h-5 w-5" />
+                </Link>
+              </motion.div>
+
+              <div className="home-hero-trust mt-8 flex flex-wrap gap-4 text-sm text-slate-200">
+                {HERO_TRUST_POINTS.map((point) => (
+                  <div key={point} className="inline-flex items-center gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-cyan-300" />
+                    <span>{point}</span>
+                  </div>
+                ))}
               </div>
             </div>
-          </AnimatedSection>
+
+            <AnimatedSection className="home-hero-metrics-wrap" direction="up" delay={0.18}>
+              <div className="home-hero-metrics">
+                <div className="home-hero-metric-card">
+                  <p className="text-3xl font-bold text-white sm:text-4xl">
+                    <AnimatedCounter target={40} suffix="+" />
+                  </p>
+                  <p className="mt-1 text-sm font-semibold uppercase tracking-wide text-cyan-200">
+                    Years of Bay Area experience
+                  </p>
+                </div>
+                <div className="home-hero-metric-card">
+                  <p className="text-3xl font-bold text-white sm:text-4xl">
+                    <AnimatedCounter target={2500} suffix="+" />
+                  </p>
+                  <p className="mt-1 text-sm font-semibold uppercase tracking-wide text-cyan-200">
+                    Projects supported
+                  </p>
+                </div>
+                <div className="home-hero-metric-card">
+                  <p className="text-3xl font-bold text-white sm:text-4xl">PE / QSD / QSP</p>
+                  <p className="mt-1 text-sm font-semibold uppercase tracking-wide text-cyan-200">
+                    In-house technical coverage
+                  </p>
+                </div>
+              </div>
+            </AnimatedSection>
+          </div>
         </div>
       </section>
 
       <HomeProofRail />
 
-      <section className="pe-section section-surface-solid">
-        <div className="pe-container-wide pe-stack">
-          <div className="pe-stack-sm" style={{ maxWidth: "58rem" }}>
-            <span className="eyebrow cool">Project Evidence</span>
-            <h2 className="pe-heading-2">
-              Trust should show up before the sales pitch.
-            </h2>
-            <p className="pe-lead">
-              Real Bay Area work, practical scope, and delivery context surfaced early
-              so first-time visitors understand how Pacific actually operates.
-            </p>
-          </div>
-          <HomeProjectEvidence />
-        </div>
-      </section>
+      <HomeProjectEvidence />
 
       <section className="pe-section pe-section-tight section-surface-soft">
         <div className="pe-container-wide pe-stack">
@@ -240,7 +186,7 @@ export default function HomeRecovered() {
             <div className="pe-stack-sm" style={{ maxWidth: "50rem" }}>
               <span className="eyebrow">Selected Work</span>
               <h2 className="pe-heading-3">
-                A closer read on the kinds of projects Pacific supports.
+                A tighter read on the kinds of scopes Pacific supports.
               </h2>
             </div>
             <Link to={createPageUrl("ProjectGallery")} className="pe-link-inline">

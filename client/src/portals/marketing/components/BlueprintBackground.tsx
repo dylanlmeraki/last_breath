@@ -1,4 +1,5 @@
 
+import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 
 interface ArchitecturalLineProps {
@@ -207,14 +208,39 @@ interface BlueprintBackgroundProps {
   className?: string;
 }
 
+function StaticBlueprintLayers() {
+  return (
+    <>
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(6,182,212,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.03)_1px,transparent_1px)] bg-[size:24px_24px]" />
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(249,115,22,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(249,115,22,0.02)_1px,transparent_1px)] bg-[size:120px_120px]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_20%,rgba(6,182,212,0.06),transparent_50%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_80%,rgba(249,115,22,0.04),transparent_50%)]" />
+    </>
+  );
+}
+
 const BlueprintBackground: React.FC<BlueprintBackgroundProps> = ({ className = "" }) => {
   const prefersReducedMotion = useReducedMotion();
+  const [isSmallViewport, setIsSmallViewport] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const mediaQuery = window.matchMedia("(max-width: 767px)");
+    const updateViewportMode = () => setIsSmallViewport(mediaQuery.matches);
+
+    updateViewportMode();
+    mediaQuery.addEventListener("change", updateViewportMode);
+
+    return () => {
+      mediaQuery.removeEventListener("change", updateViewportMode);
+    };
+  }, []);
 
   if (prefersReducedMotion) {
     return (
       <div className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`}>
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(6,182,212,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.03)_1px,transparent_1px)] bg-[size:24px_24px]" />
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(249,115,22,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(249,115,22,0.02)_1px,transparent_1px)] bg-[size:120px_120px]" />
+        <StaticBlueprintLayers />
       </div>
     );
   }
@@ -284,38 +310,37 @@ const BlueprintBackground: React.FC<BlueprintBackgroundProps> = ({ className = "
 
   return (
     <div className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`}>
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(6,182,212,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.03)_1px,transparent_1px)] bg-[size:24px_24px]" />
-      
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(249,115,22,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(249,115,22,0.02)_1px,transparent_1px)] bg-[size:120px_120px]" />
-      
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_20%,rgba(6,182,212,0.06),transparent_50%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_80%,rgba(249,115,22,0.04),transparent_50%)]" />
+      <StaticBlueprintLayers />
 
-      {architecturalPaths.map((line, i) => (
-        <ArchitecturalLine
-          key={`arch-line-${i}`}
-          path={line.path}
-          delay={line.delay}
-          duration={line.duration}
-          fromSide={line.fromSide}
-          type={line.type}
-          strokeWidth={line.strokeWidth}
-          opacity={line.opacity}
-        />
-      ))}
+      {!isSmallViewport && (
+        <div className="absolute inset-0">
+          {architecturalPaths.map((line, i) => (
+            <ArchitecturalLine
+              key={`arch-line-${i}`}
+              path={line.path}
+              delay={line.delay}
+              duration={line.duration}
+              fromSide={line.fromSide}
+              type={line.type}
+              strokeWidth={line.strokeWidth}
+              opacity={line.opacity}
+            />
+          ))}
 
-      {architecturalElements.map((element, i) => (
-        <ArchitecturalElement
-          key={`arch-element-${i}`}
-          type={element.type}
-          position={element.position}
-          size={element.size}
-          delay={element.delay}
-          duration={element.duration}
-          fromSide={element.fromSide}
-          opacity={element.opacity}
-        />
-      ))}
+          {architecturalElements.map((element, i) => (
+            <ArchitecturalElement
+              key={`arch-element-${i}`}
+              type={element.type}
+              position={element.position}
+              size={element.size}
+              delay={element.delay}
+              duration={element.duration}
+              fromSide={element.fromSide}
+              opacity={element.opacity}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

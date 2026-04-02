@@ -14,10 +14,19 @@ type MarketingEntityName = "blog-posts" | "gallery-projects";
 type MarketingRecord = MarketingBlogPost | MarketingGalleryProject;
 type RecordQuery = Record<string, unknown>;
 
+function toMarketingGalleryProjectListItem(
+  project: MarketingGalleryProject,
+): MarketingGalleryProject {
+  return {
+    ...project,
+    images: project.image ? [project.image] : [],
+  };
+}
+
 function getCollection(entityName: MarketingEntityName): MarketingRecord[] {
   return entityName === "blog-posts"
     ? [...marketingBlogPosts]
-    : [...marketingGalleryProjects];
+    : marketingGalleryProjects.map(toMarketingGalleryProjectListItem);
 }
 
 function normalizeComparable(value: unknown): string {

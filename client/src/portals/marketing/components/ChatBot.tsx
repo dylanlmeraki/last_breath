@@ -111,6 +111,18 @@ function getIntentResponse(intent: ChatIntent, entities: Record<string, string>)
   }
 }
 
+function readMarketingBottomOffset(variableName: string, fallback: number): number {
+  if (typeof window === "undefined") return fallback;
+
+  const portalRoot = document.querySelector(".marketing-portal");
+  if (!(portalRoot instanceof HTMLElement)) return fallback;
+
+  const rawValue = window.getComputedStyle(portalRoot).getPropertyValue(variableName).trim();
+  const parsed = Number.parseFloat(rawValue);
+
+  return Number.isFinite(parsed) ? parsed : fallback;
+}
+
 export default function ChatBot() {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
@@ -134,8 +146,10 @@ export default function ChatBot() {
     return saved?.memory || { projectType: null, location: null, timeline: null, agency: null };
   });
 
-  const getBaseBottom = () => typeof window !== "undefined" && window.innerWidth < 640 ? 80 : 24;
-  const [bottomOffset, setBottomOffset] = useState(getBaseBottom);
+  const [viewportWidth, setViewportWidth] = useState(() =>
+    typeof window === "undefined" ? 1280 : window.innerWidth,
+  );
+  const [scrollLift, setScrollLift] = useState(0);
   const [showPromptBubble, setShowPromptBubble] = useState(false);
   const hasClickedRef = useRef(false);
   const promptDismissedRef = useRef(false);
@@ -154,6 +168,12 @@ export default function ChatBot() {
   }, [messages]);
 
   useEffect(() => {
+    const handleResize = () => setViewportWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
     const handler = () => {
       const scrollY = window.scrollY;
       const docH = document.documentElement.scrollHeight;
@@ -161,12 +181,11 @@ export default function ChatBot() {
       const scrollPct = scrollY / Math.max(1, docH - winH);
 
       if (!isOpen) {
-        const base = getBaseBottom();
         if (scrollPct > 0.15) {
           const raisePx = Math.min(scrollPct * 0.3, 0.25) * winH;
-          setBottomOffset(base + raisePx);
+          setScrollLift(raisePx);
         } else {
-          setBottomOffset(base);
+          setScrollLift(0);
         }
 
         if (scrollPct > 0.92 && !hasClickedRef.current && !promptDismissedRef.current) {
@@ -298,9 +317,23 @@ export default function ChatBot() {
     setConversationId(undefined);
   };
 
+  const hasStickyDock = readMarketingBottomOffset("--pe-shell-has-sticky-dock", 0) >= 1;
+  const baseBottom = hasStickyDock
+    ? readMarketingBottomOffset("--pe-chatbot-mobile-bottom", 116)
+    : 24;
+  const panelBottom = hasStickyDock
+    ? readMarketingBottomOffset("--pe-chatbot-mobile-panel-bottom", 128)
+    : 24;
+
   const iconStyle: React.CSSProperties = dragPos
     ? { position: "fixed", left: dragPos.x, top: dragPos.y, bottom: "auto", right: "auto", zIndex: 60 }
-    : { position: "fixed", bottom: bottomOffset, right: 24, zIndex: 60, transition: isDragging ? "none" : "bottom 0.4s ease-out" };
+    : {
+        position: "fixed",
+        bottom: baseBottom + scrollLift,
+        right: 24,
+        zIndex: 60,
+        transition: isDragging ? "none" : "bottom 0.4s ease-out",
+      };
 
   return (
     <>
@@ -332,12 +365,15 @@ export default function ChatBot() {
           >
             <MessageCircle className="w-6 h-6" />
           </button>
-          <style>{`@keyframes bounce-gentle { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } } .animate-bounce-gentle { animation: bounce-gentle 2s ease-in-out infinite; }`}</style>
         </div>
       )}
 
       {isOpen && (
-        <div className="fixed bottom-[5.5rem] sm:bottom-6 right-6 z-[60] w-[calc(100vw-3rem)] sm:w-96 max-h-[min(500px,calc(100vh-7rem))] sm:max-h-[600px] flex flex-col" data-testid="chatbot-panel">
+        <div
+          className="fixed right-6 z-[60] flex max-h-[min(500px,calc(100vh-7rem))] w-[calc(100vw-3rem)] flex-col sm:w-96 sm:max-h-[600px]"
+          style={{ bottom: panelBottom }}
+          data-testid="chatbot-panel"
+        >
           <div className="rounded-xl shadow-2xl border border-gray-200 bg-white flex flex-col overflow-hidden max-h-[550px]">
             <div className="bg-slate-900 text-white px-4 py-3 flex items-center justify-between rounded-t-xl">
               <div className="flex items-center gap-2">

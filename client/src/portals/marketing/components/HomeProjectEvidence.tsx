@@ -56,15 +56,17 @@ export default function HomeProjectEvidence() {
   }, [activeItem, isAutoPaused]);
 
   return (
-    <section className="pe-section section-surface-soft">
+    <section className="pe-section pe-section-tight section-surface-solid">
       <div className="pe-container-wide pe-stack">
         <div className="pe-stack-sm" style={{ maxWidth: "56rem" }}>
-          <span className="eyebrow">Project Experience</span>
-          <h2 className="pe-heading-2">Selected Work Across Northern California</h2>
+          <span className="eyebrow cool">Project Evidence</span>
+          <h2 className="pe-heading-2">
+            Bay Area project proof tied to real delivery conditions.
+          </h2>
           <p className="pe-lead">
-            Representative infrastructure, institutional, and utility work showing
-            how Pacific supports constructability, compliance, and coordinated
-            delivery.
+            Representative infrastructure, institutional, and utility work surfaced
+            early so visitors can read Pacific through project conditions instead
+            of generic service labels.
           </p>
         </div>
 
@@ -121,7 +123,7 @@ export default function HomeProjectEvidence() {
 
         <div className="project-evidence-cta-row">
           <p className="project-evidence-cta-copy">
-            Tap a card or map marker to explore real project proof tied to field
+            Tap a card or map marker to review project proof tied to field
             conditions, permitting context, and delivery outcomes.
           </p>
           <Link to={createPageUrl("ProjectGallery")} className="pe-link-inline">

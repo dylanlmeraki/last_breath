@@ -150,8 +150,11 @@ export function ServiceCard({ svc, idx, reducedMotion }: { svc: typeof SERVICES[
                 style={{ background: c.iconGradient, boxShadow: c.icon3dShadow }}
               />
               <div className="absolute inset-0 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-b from-white/20 via-transparent to-black/10" />
-              <Icon className={`relative z-10 w-5 h-5 sm:w-7 sm:h-7 lg:w-8 lg:h-8 ${c.icon} group-hover:text-white transition-colors duration-300`} style={{ filter: "var(--icon-drop)" }} />
-              <style>{`.group:hover [data-icon-3d] { --icon-drop: drop-shadow(0 1px 2px rgba(0,0,0,0.3)); }`}</style>
+              <Icon
+                data-icon-3d
+                className={`relative z-10 w-5 h-5 sm:w-7 sm:h-7 lg:w-8 lg:h-8 ${c.icon} group-hover:text-white transition-colors duration-300`}
+                style={{ filter: "var(--icon-drop)" }}
+              />
             </div>
             <h3 className={`text-slate-900 ${c.titleHover} text-lg sm:text-xl lg:text-2xl font-bold mb-2 sm:mb-4 uppercase tracking-wider transition-colors`}>
               {svc.title}

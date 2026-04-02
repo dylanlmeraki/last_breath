@@ -5,9 +5,10 @@
   "license": "MIT",
   "scripts": {
     "dev": "tsx server/index.ts",
-    "build": "tsx build.ts",
+    "build": "node --max-old-space-size=4096 ./node_modules/tsx/dist/cli.mjs build.ts",
     "start": "node -e \"process.env.NODE_ENV='production'; require('./dist/index.cjs')\"",
     "check": "tsc",
+    "check:repo-hygiene": "node ./scripts/check-tracked-artifacts.cjs",
     "conductor": "node node_modules/tsx/dist/cli.mjs mcp-conductor.ts",
     "db:push": "drizzle-kit push",
     "seed:admin": "tsx server/seed-admin.ts"

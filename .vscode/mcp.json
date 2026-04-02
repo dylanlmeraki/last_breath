@@ -5,8 +5,8 @@
 			"url": "https://api.githubcopilot.com/mcp/"
 		},
 		"figma": {
-			"type": "http",
-			"url": "http://127.0.0.1:3845/mcp"
+			"url": "https://mcp.figma.com/mcp",
+			"type": "http"
 		},
 		"playwright": {
 			"type": "stdio",
@@ -36,13 +36,19 @@
 			"url": "https://public-api.animaapp.com/v1/mcp",
 			"gallery": "https://api.mcp.github.com",
 			"version": "1.0.0"
-		}
+		},
 	},
 	"inputs": [
 		{
 			"id": "CONTEXT7_API_KEY",
 			"type": "promptString",
 			"description": "Context7 API Key"
+		},
+		{
+			"id": "token",
+			"type": "promptString",
+			"description": "",
+			"password": true
 		}
 	]
 }

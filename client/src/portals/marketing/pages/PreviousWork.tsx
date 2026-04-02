@@ -200,7 +200,10 @@ export default function PreviousWork() {
     <div className="min-h-screen bg-slate-50" data-testid="page-previous-work">
       <section className="relative py-16 sm:py-24 md:py-32 px-4 sm:px-6 bg-slate-950 overflow-hidden">
         <div className="absolute inset-0 opacity-[0.6]">
-          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1600')] bg-cover bg-center" />
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: "url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1600')" }}
+          />
           <div className="absolute inset-0 bg-slate-900/60 mix-blend-multiply"></div>
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-slate-900/60 to-slate-950/90 opacity-30" />
@@ -300,7 +303,7 @@ export default function PreviousWork() {
         </div>
       </section>
 
-      <section className="sticky top-20 z-30 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm py-4 px-6" data-testid="section-filters">
+      <section className="sticky pe-sticky-under-header z-30 border-b border-slate-200 bg-white/95 px-6 py-4 shadow-sm backdrop-blur-md" data-testid="section-filters">
         <div className="max-w-7xl mx-auto flex flex-col xl:flex-row gap-4 justify-between items-center">
           
           <div className="flex flex-wrap items-center gap-3 w-full xl:w-auto">

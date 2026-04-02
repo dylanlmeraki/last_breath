@@ -9,6 +9,7 @@ import SEO from "../components/SEO";
 import AnimatedGridBackground from "../components/AnimatedGridBackground";
 import BlueprintBackground from "../components/BlueprintBackground";
 import CTASection from "../components/CTASection";
+import bayBridgeImg from "@assets/bay-bridge-sunrise_1773821710974.jpg";
 
 export default function About() {
   return (
@@ -21,7 +22,10 @@ export default function About() {
       />
       <section className="relative py-16 sm:py-24 md:py-32 px-4 sm:px-6 bg-slate-950 overflow-hidden" data-testid="section-about-hero">
         <div className="absolute inset-0 opacity-[0.6]">
-          <div className="absolute inset-0 bg-[url('/images/bay-area-cityscape.jpg')] bg-cover bg-center" />
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: `url(${bayBridgeImg})` }}
+          />
           <div className="absolute inset-0 bg-slate-900/60 mix-blend-multiply"></div>
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-slate-900/60 to-slate-950/90 opacity-30" />
@@ -93,7 +97,7 @@ in a timely manner.
                 </AnimatedSection>
 
                 <AnimatedSection direction="right" delay={0.2} className="relative lg:row-span-2">
-                <div className="aspect-[4/3] rounded-xl overflow-hidden shadow-2xl sticky top-24">
+                <div className="sticky pe-sticky-under-header aspect-[4/3] overflow-hidden rounded-xl shadow-2xl">
                   <img
                     src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800"
                     alt="Pacific Engineering team"
@@ -218,7 +222,10 @@ in a timely manner.
         className="relative py-16 sm:py-20 md:py-24 px-4 sm:px-6 bg-slate-900 overflow-hidden"
         data-testid="section-stats"
       >
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-[0.06] pointer-events-none" />
+        <div
+          className="absolute inset-0 opacity-[0.06] pointer-events-none"
+          style={{ backgroundImage: "url('https://www.transparenttextures.com/patterns/carbon-fibre.png')" }}
+        />
         <div className="absolute inset-0 bg-gradient-to-b from-slate-950/40 via-transparent to-slate-950/40 pointer-events-none" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-cyan-500/[0.04] rounded-full blur-[120px] pointer-events-none" />
 
