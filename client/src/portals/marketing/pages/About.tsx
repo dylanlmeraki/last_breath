@@ -1,259 +1,241 @@
 import { Link } from "react-router-dom";
+import { ArrowRight, Building2, ClipboardCheck, HardHat, Shield, Users } from "lucide-react";
 import { createPageUrl } from "../lib/utils";
-import { Award, Users, Target, Shield, ArrowRight, Building2, HardHat, ClipboardCheck, FileText, CheckCircle } from "lucide-react";
-import { Card } from "@/components/ui/card";
 import AnimatedSection from "../components/AnimatedSection";
-import AnimatedCounter from "../components/AnimatedCounter";
+import AboutTeamGrid from "../components/AboutTeamGrid";
 import { ServiceCardsGrid } from "../components/ServiceCards";
 import SEO from "../components/SEO";
 import CTASection from "../components/CTASection";
 import MarketingPageHero from "../components/MarketingPageHero";
 import bayBridgeImg from "@assets/bay-bridge-sunrise_1773821710974.jpg";
 
+const ABOUT_STATS = [
+  {
+    value: "Founded 2001",
+    label: "Long-running Bay Area delivery support",
+  },
+  {
+    value: "PE / QSD / QSP",
+    label: "In-house engineering and compliance depth",
+  },
+  {
+    value: "Class A & B",
+    label: "Contractor-backed field execution coverage",
+  },
+  {
+    value: "Public + Private",
+    label: "Infrastructure, civic, commercial, and utility scopes",
+  },
+] as const;
+
+const OPERATING_PRINCIPLES = [
+  {
+    icon: Building2,
+    title: "Engineering + construction in one workflow",
+    body: "Project teams work with one aligned group instead of separate silos for design, compliance, field support, and closeout.",
+  },
+  {
+    icon: ClipboardCheck,
+    title: "Documentation built for active delivery",
+    body: "Submittals, inspection records, and coordination notes are treated as project-control tools, not paperwork after the fact.",
+  },
+  {
+    icon: HardHat,
+    title: "Field conditions stay in the decision loop",
+    body: "Site logistics, sequencing, permitting realities, and contractor needs shape the technical response from the start.",
+  },
+  {
+    icon: Shield,
+    title: "Credentials that hold up under scrutiny",
+    body: "Pacific Engineering brings PE, QSD, QSP, surveying, inspection, and contractor perspective into the same delivery conversation.",
+  },
+  {
+    icon: Users,
+    title: "Clear communication across the full team",
+    body: "Owners, architects, agencies, contractors, and superintendents get direct answers and practical next steps without inflated language.",
+  },
+] as const;
+
 export default function About() {
   return (
     <div className="min-h-screen bg-slate-50" data-testid="page-about">
-      <SEO 
-        title="About Pacific Engineering - 20+ Years of Excellence | PECI"
-        description="Founded in 2001, Pacific Engineering & Construction Inc. delivers expert civil engineering, construction, and compliance services across California and Nevada. Meet our PE-certified team."
-        keywords="about pacific engineering, civil engineering company, construction firm bay area, PE certified engineers, engineering company history, PECI team"
+      <SEO
+        title="About Pacific Engineering & Construction Inc."
+        description="Pacific Engineering & Construction Inc. brings engineering, construction, inspections, surveying, and compliance support together for Bay Area and Northern California project teams."
+        keywords="Pacific Engineering about, Bay Area engineering team, construction leadership, PE certified engineers, project delivery support, Northern California engineering"
         url="/about"
       />
+
       <MarketingPageHero
         title="About Pacific Engineering"
-        description="Pacific Engineering & Construction Inc. brings engineering, compliance, and construction support together so project teams can move with clearer judgment, steadier coordination, and stronger field readiness."
+        description="Pacific Engineering & Construction Inc. supports Bay Area and Northern California project teams with engineering, surveying, inspections, stormwater compliance, and construction-minded coordination shaped by real field conditions."
         backgroundImage={bayBridgeImg}
+        eyebrow="Pacific Engineering"
         sectionTestId="section-about-hero"
         titleTestId="text-about-title"
       />
 
-      <section className="py-20 px-6 bg-white border-b border-slate-200 overflow-hidden" data-testid="section-company-story">
-        <div className="max-w-6xl mx-auto">
-          <div className="mb-20">
-            <AnimatedSection direction="up" className="text-center mb-12">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-6 tracking-tight" data-testid="text-who-we-are">
-                Who We Are
-              </h2>
-              <div className="w-20 sm:w-32 h-1 bg-gradient-to-r from-cyan-200 via-blue-500 to-cyan-200 mx-auto mb-8 rounded-full"></div>
+      <section className="pe-section pe-section-tight section-surface-solid" data-testid="section-company-story">
+        <div className="pe-container-wide pe-stack">
+          <div className="about-overview-grid pe-grid-2">
+            <AnimatedSection direction="left">
+              <div className="pe-stack-sm about-overview-copy">
+                <span className="eyebrow">Who We Are</span>
+                <h2 className="pe-heading-2">Engineering judgment built to stay useful in the field.</h2>
+                <p className="pe-lead">
+                  Founded in 2001, Pacific Engineering & Construction Inc. has supported civil,
+                  environmental, surveying, inspection, stormwater, and construction scopes across
+                  Bay Area and Northern California municipal, institutional, utility, waterfront,
+                  aviation, and private-sector projects.
+                </p>
+                <p className="pe-copy">
+                  The firm is structured around practical delivery support. That means design,
+                  compliance, field verification, coordination, and documentation stay connected so
+                  project teams can move through approvals, active work, and closeout with steadier
+                  judgment and fewer handoff gaps.
+                </p>
+                <p className="pe-copy">
+                  Pacific Engineering is not built around abstract promises. It is built around
+                  technical capability, contractor awareness, QA/QC discipline, and the kind of
+                  project fluency that comes from decades of wide-ranging field experience.
+                </p>
+              </div>
             </AnimatedSection>
 
-            <div className="grid grid-cols-1 gap-y-12 lg:grid-cols-2 lg:gap-x-12 items-start">
-              <AnimatedSection direction="left">
-                <div className="space-y-4 text-lg text-slate-700 leading-relaxed font-light text-center lg:text-left">
-                <p>
-                 Founded in 2001, Pacific Engineering &amp; Construction, Inc. (PECI) has applied its surveying and
-civil and environmental engineering, construction management, and infrastructure engineering
-capabilities to sites across California, and Nevada, PECI provides site civil engineering design
-and surveying services for municipal buildings, marinas, prisons, hospitals, schools,
-condominiums, casinos and new residential land developments. PECI has developed construction
-plans and specifications for site grading, paving, curb and gutter, and sidewalks, as well as water,
-sewer, and storm drain utilities. PECI staff has extensive construction management and
-construction administration experience. Master plans have been prepared for commercial, light
-industrial and residential developments in multiple communities in Northern California. Recent
-school projects that PECI has provided engineering services to include projects at the San
-Francisco International Airport and schools in Marin, San Francisco, Daly City, and
-Sacramento.</p>
-<p>PECI continuously strives to improve quality by providing quality control and quality assurance
-(QA/QC) on all deliverables and work products. Our firm has an established record of meeting
-project and schedule commitments. PECI's engineers and technicians have hands-on experience
-providing contract administration, as well as quality assurance/quality control monitoring and
-material testing on a variety of public and private sector projects. Our wide range of in-house
-capabilities enables us to provide high-quality, cost-effective services.</p>
-<p>PECI's provides professional surveying, mapping, G.I.S., G.P.S., 3-D laser scanning, and
-consulting services throughout California. Our staff has successfully completed projects of all
-sizes for both the private, municipal, and public sector.</p>
-<p>We are dedicated to providing our clients with quality surveying support for their projects.
-Whether it is a small boundary line dispute or providing mapping services to a large utility
-company, Pacific Engineering &amp; Construction, Inc. consistently delivers an economical product
-in a timely manner.
-                </p>
-                </div>
-                </AnimatedSection>
-
-                <AnimatedSection direction="right" delay={0.2} className="relative lg:row-span-2">
-                <div className="sticky pe-sticky-under-header aspect-[4/3] overflow-hidden rounded-xl shadow-2xl">
-                  <img
-                    src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800"
-                    alt="Pacific Engineering team"
-                    className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500"
-                    data-testid="img-team"
-                  />
-                </div>
-                <div className="hidden sm:block absolute -bottom-8 -right-8 bg-gradient-to-br from-blue-600 to-cyan-600 p-8 rounded-xl shadow-2xl max-w-xs border-4 border-white">
-                  <div className="text-white font-bold text-xl tracking-tight mb-2">Committed to Excellence</div>
-                  <div className="text-blue-100 text-sm">Since 2001</div>
-                </div>
-                </AnimatedSection>
-                </div>
-                </div>
-
-            <div className="mb-14">
-              <AnimatedSection direction="up" className="text-center mb-10">
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-4 tracking-tight" data-testid="text-what-we-do">
-                  What We Do
-                </h2>
-                <div className="w-20 sm:w-32 h-1 bg-gradient-to-r from-cyan-200 via-blue-500 to-cyan-200 mx-auto rounded-full"></div>
-              </AnimatedSection>
-
-              <ServiceCardsGrid />
-            </div>
-
-            <div className="grid grid-cols-1 gap-y-12 lg:grid-cols-2 lg:gap-x-12 items-center">
-              <AnimatedSection direction="left" className="order-2 lg:order-1">
-                <div className="aspect-[4/3] rounded-md overflow-hidden shadow-2xl border-4 border-slate-100">
-                  <img
-                    src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800"
-                    alt="Engineering and construction expertise"
-                    className="w-full h-full object-cover"
-                    data-testid="img-expertise"
-                  />
-                </div>
-              </AnimatedSection>
-              
-              <AnimatedSection direction="right" className="order-1 lg:order-2">
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-6 tracking-tight" data-testid="text-how-we-work">
-                  How We Work
-                </h2>
-                <div className="space-y-4 text-lg text-slate-700 leading-relaxed font-light">
-                  <p>
-                  Our in-house Professional Engineering and Construction teams operate as a unified team—tight, coordinated, and accountable. This integrated structure drives faster decisions, cleaner execution, and consistent technical accuracy on every project.
-                  </p>
-                  <p>
-                  We navigate local SF Bay Area, California, and Federal regulatory compliance standards with precision backed by long-standing relationships with architects, contractors, and construction professionals streamlining approvals and keep schedules on track.
-                </p>
-                  <p>
-                   When site issues surface, our teams identify them early and resolve them immediately. No bottlenecks, no unclear responsibility. We address it, document it, and keep the project moving.
-                   </p>
-                </div>
-              </AnimatedSection>
-            </div>
-          </div>
-        </section>
-      
-
-      <section className="py-20 px-6 bg-slate-50 border-b border-slate-200" data-testid="section-values">
-        <div className="max-w-6xl mx-auto">
-          <AnimatedSection direction="up" className="text-center mb-16">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-6 tracking-tight" data-testid="text-values-title">
-              What Drives Us
-            </h2>
-            <div className="w-20 sm:w-32 h-1 bg-gradient-to-r from-cyan-200 via-blue-500 to-cyan-200 mx-auto rounded-full"></div>
-          </AnimatedSection>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-0">
-            <AnimatedSection direction="up" delay={0.1}>
-              <Card className="p-8 text-center border-r border-slate-200 shadow-md bg-white hover:shadow-xl hover:-translate-y-1 transition-all h-full rounded-none first:rounded-l-xl last:rounded-r-xl">
-                <div className="bg-gradient-to-br from-blue-400 to-blue-700 w-16 h-16 rounded-md flex items-center justify-center mx-auto mb-6 shadow-lg">
-                  <Award className="w-8 h-8 text-white" />
-                </div>
-                <h3 className="text-lg font-bold text-slate-900 mb-3 tracking-tight uppercase">Technical Excellence</h3>
-                <p className="text-sm text-slate-600 leading-relaxed">
-                  Precision engineering, rigorous testing, and PE-certified work that stands up to scrutiny and performs as designed
-                </p>
-              </Card>
-            </AnimatedSection>
-
-            <AnimatedSection direction="up" delay={0.2}>
-              <Card className="p-8 text-center border-r border-slate-200 shadow-md bg-white hover:shadow-xl hover:-translate-y-1 transition-all h-full rounded-none first:rounded-l-xl last:rounded-r-xl">
-                <div className="bg-gradient-to-br from-cyan-400 to-cyan-700 w-16 h-16 rounded-md flex items-center justify-center mx-auto mb-6 shadow-lg">
-                  <Target className="w-8 h-8 text-white" />
-                </div>
-                <h3 className="text-lg font-bold text-slate-900 mb-3 tracking-tight uppercase">Results-Focused</h3>
-                <p className="text-sm text-slate-600 leading-relaxed">
-                  Delivering outcomes that matter — compliance achieved, structures built right, projects completed on schedule
-                </p>
-              </Card>
-            </AnimatedSection>
-
-            <AnimatedSection direction="up" delay={0.3}>
-              <Card className="p-8 text-center border-r border-slate-200 shadow-md bg-white hover:shadow-xl hover:-translate-y-1 transition-all h-full rounded-none first:rounded-l-xl last:rounded-r-xl">
-                <div className="bg-gradient-to-br from-teal-400 to-teal-700 w-16 h-16 rounded-md flex items-center justify-center mx-auto mb-6 shadow-lg">
-                  <Users className="w-8 h-8 text-white" />
-                </div>
-                <h3 className="text-lg font-bold text-slate-900 mb-3 tracking-tight uppercase">Collaborative</h3>
-                <p className="text-sm text-slate-600 leading-relaxed">
-                  Working closely with your team, communicating clearly, and coordinating seamlessly across all project phases
-                </p>
-              </Card>
-            </AnimatedSection>
-
-            <AnimatedSection direction="up" delay={0.4}>
-              <Card className="p-8 text-center shadow-md bg-white hover:shadow-xl hover:-translate-y-1 transition-all h-full rounded-none first:rounded-l-xl last:rounded-r-xl">
-                <div className="bg-gradient-to-br from-blue-400 to-blue-700 w-16 h-16 rounded-md flex items-center justify-center mx-auto mb-6 shadow-lg">
-                  <Shield className="w-8 h-8 text-white" />
-                </div>
-                <h3 className="text-lg font-bold text-slate-900 mb-3 tracking-tight uppercase">Accountable</h3>
-                <p className="text-sm text-slate-600 leading-relaxed">
-                  Taking ownership of our work, standing behind our designs, and delivering what we promise
-                </p>
-              </Card>
-            </AnimatedSection>
-          </div>
-        </div>
-      </section>
-
-      <section
-        className="relative py-16 sm:py-20 md:py-24 px-4 sm:px-6 bg-slate-900 overflow-hidden"
-        data-testid="section-stats"
-      >
-        <div
-          className="absolute inset-0 opacity-[0.06] pointer-events-none"
-          style={{ backgroundImage: "url('https://www.transparenttextures.com/patterns/carbon-fibre.png')" }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/40 via-transparent to-slate-950/40 pointer-events-none" />
-        <div className="absolute top-1/2 left-1/2 h-[300px] w-[calc(100vw-2rem)] max-w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-500/[0.04] blur-[120px] pointer-events-none" />
-
-        <div className="max-w-6xl mx-auto relative z-10">
-          <AnimatedSection direction="up" className="text-center mb-10">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 tracking-tight text-white" data-testid="text-stats-title">
-              By the Numbers
-            </h2>
-            <div className="w-20 sm:w-32 h-1 bg-gradient-to-r from-cyan-200 via-blue-500 to-cyan-200 mx-auto rounded-full"></div>
-          </AnimatedSection>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 text-center">
-            {[
-              { target: 40, suffix: "+", label: "Years", sub: "Combined experience", key: "years" },
-              { target: 2500, suffix: "+", label: "Projects", sub: "Successfully completed", key: "projects" },
-              { target: 100, suffix: "%", label: "Compliance", sub: "Track record", key: "compliance" },
-              { target: 5, suffix: "B+", label: "Project Value", sub: "Total construction value", prefix: "$", key: "value" },
-            ].map((stat, i) => (
-              <AnimatedSection direction="up" delay={i * 0.1} key={stat.key}>
-                <div className="relative group" data-testid={`card-stat-${stat.key}`}>
-                  <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/[0.08] to-blue-500/[0.08] rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <div className="relative bg-white/[0.03] backdrop-blur-sm border border-white/[0.06] rounded-xl p-6 sm:p-8 hover:border-cyan-500/20 transition-all duration-300">
-                    <div className="text-3xl sm:text-4xl md:text-5xl font-bold mb-2 bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent" data-testid={`text-stat-value-${stat.key}`}>
-                      {stat.prefix || ""}<AnimatedCounter target={stat.target} suffix={stat.suffix} />
+            <AnimatedSection direction="right">
+              <div className="about-overview-panel pe-card pe-card-pad">
+                <span className="eyebrow cool">Operating Snapshot</span>
+                <div className="about-stat-grid">
+                  {ABOUT_STATS.map((item) => (
+                    <div key={item.value} className="about-stat-card">
+                      <h3 className="about-stat-value">{item.value}</h3>
+                      <p className="about-stat-label">{item.label}</p>
                     </div>
-                    <div className="text-base sm:text-lg text-white font-bold tracking-tight mb-1" data-testid={`text-stat-label-${stat.key}`}>{stat.label}</div>
-                    <p className="text-slate-400 text-xs sm:text-sm" data-testid={`text-stat-sub-${stat.key}`}>{stat.sub}</p>
-                  </div>
+                  ))}
                 </div>
-              </AnimatedSection>
-            ))}
+                <Link to={createPageUrl("Consultation")} className="pe-link-inline">
+                  Review project scope
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </div>
+            </AnimatedSection>
           </div>
         </div>
       </section>
 
-      <section className="py-20 px-6 bg-white" data-testid="section-service-areas">
-        <div className="max-w-4xl mx-auto text-center">
-          <AnimatedSection direction="up">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-6 tracking-tight" data-testid="text-service-areas-title">
-              Serving the Bay Area
-            </h2>
-            <p className="text-xl text-slate-600 leading-relaxed mb-8 font-light">
-              Based in San Francisco, we provide engineering, inspection, testing, and construction services throughout the Bay Area. Our teams are familiar with local jurisdictional requirements across San Francisco, Oakland, San Jose, and surrounding counties — streamlining approvals and keeping your project moving forward.
+      <div className="pe-container-wide" aria-hidden="true">
+        <div className="pe-section-divider" />
+      </div>
+
+      <section className="pe-section pe-section-tight section-surface-soft" data-testid="section-team">
+        <div className="pe-container-wide pe-stack">
+          <div className="pe-stack-sm about-team-intro">
+            <span className="eyebrow cool">Our Team</span>
+            <h2 className="pe-heading-2">Meet the experts behind Pacific Engineering.</h2>
+            <p className="pe-lead">
+              Engineering, surveying, geology, construction supervision, estimating, and project
+              controls represented in one practical leadership bench so project teams can work with
+              people who understand both the technical scope and the way the job actually moves.
             </p>
-            <p className="text-lg text-slate-600 leading-relaxed font-light">
-              From hillside developments in Oakland to commercial projects in Silicon Valley, waterfront construction in San Francisco to infrastructure work in the East Bay — we bring local expertise and proven results to every project.
+          </div>
+          <AboutTeamGrid />
+        </div>
+      </section>
+
+      <div className="pe-container-wide" aria-hidden="true">
+        <div className="pe-section-divider" />
+      </div>
+
+      <section className="pe-section pe-section-tight section-surface-solid" data-testid="section-how-we-work">
+        <div className="pe-container-wide pe-grid-2 about-operating-grid">
+          <AnimatedSection direction="left">
+            <div className="pe-stack-sm">
+              <span className="eyebrow">How Pacific Engineering Works</span>
+              <h2 className="pe-heading-2">A delivery model shaped by schedule, documentation, and field conditions.</h2>
+              <p className="pe-lead">
+                Pacific Engineering keeps technical work close to the realities that affect cost,
+                sequencing, approvals, inspection readiness, and closeout. That gives project teams
+                clearer decision support earlier and keeps the work easier to act on once the site is active.
+              </p>
+              <p className="pe-copy">
+                Bay Area and Northern California jurisdictional familiarity, contractor-backed
+                coordination, and disciplined reporting are part of the operating model, not add-ons.
+              </p>
+            </div>
+          </AnimatedSection>
+
+          <AnimatedSection direction="right">
+            <div className="about-principles">
+              {OPERATING_PRINCIPLES.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <article key={item.title} className="about-principle-card pe-card">
+                    <div className="about-principle-icon">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <div className="about-principle-copy">
+                      <h3 className="about-principle-title">{item.title}</h3>
+                      <p className="about-principle-body">{item.body}</p>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      <section className="pe-section pe-section-tight section-surface-soft" data-testid="section-what-we-do">
+        <div className="pe-container-wide pe-stack">
+          <div className="pe-stack-sm" style={{ maxWidth: "54rem" }}>
+            <span className="eyebrow">What We Do</span>
+            <h2 className="pe-heading-2">Service coverage built around project delivery, not category language.</h2>
+            <p className="pe-lead">
+              Engineering consulting, construction support, inspections, and stormwater planning
+              kept in one connected service stack so scope, compliance, and execution stay aligned.
             </p>
+          </div>
+          <ServiceCardsGrid />
+        </div>
+      </section>
+
+      <section className="pe-section pe-section-tight section-surface-dark pe-inverse" data-testid="section-service-areas">
+        <div className="pe-container-wide pe-grid-2 about-region-grid">
+          <AnimatedSection direction="left">
+            <div className="pe-stack-sm">
+              <span className="eyebrow cool">Bay Area Coverage</span>
+              <h2 className="pe-heading-2 text-white">Regional familiarity that reduces friction once work is live.</h2>
+              <p className="pe-lead text-slate-300">
+                From San Francisco waterfront work to East Bay infrastructure, Silicon Valley
+                commercial scopes, and institutional projects across Northern California, Pacific
+                Engineering works with local permitting, inspection, sequencing, and closeout realities in mind.
+              </p>
+            </div>
+          </AnimatedSection>
+
+          <AnimatedSection direction="right">
+            <div className="about-region-list">
+              <div className="about-region-item">
+                <span className="about-region-label">Core geographies</span>
+                <p className="about-region-copy">San Francisco, East Bay, Peninsula, South Bay, and broader Northern California project corridors.</p>
+              </div>
+              <div className="about-region-item">
+                <span className="about-region-label">Typical scopes</span>
+                <p className="about-region-copy">Municipal facilities, utility work, aviation, institutional campuses, waterfront improvements, and private development support.</p>
+              </div>
+              <div className="about-region-item">
+                <span className="about-region-label">Typical value to the team</span>
+                <p className="about-region-copy">Clearer approvals, steadier documentation, faster field answers, and stronger alignment between technical decisions and real jobsite constraints.</p>
+              </div>
+            </div>
           </AnimatedSection>
         </div>
       </section>
 
       <CTASection
-        headline="We'd Love to Hear From You"
-        body="If you are a local engineering or construction professional, let's chat. Our in-house engineering and construction teams can help streamline your current or future projects and bring your ideas to life."
-        primaryButtonText="Let's Talk About Your Project"
+        headline="Need a practical engineering and construction partner?"
+        body="Pacific Engineering can review the scope, identify permitting or field coordination pressure points, and help the team decide on a workable next step."
+        primaryButtonText="Talk With Pacific Engineering"
         primaryButtonLink={createPageUrl("Contact")}
         testIdPrefix="about-cta"
       />
