@@ -14,6 +14,7 @@ export const homeProjectSnippets = marketingHomeEvidenceSlugs
     category: project.category,
     title: project.title,
     location: project.location,
+    image: project.image,
     meta: project.homeMeta,
     proof: project.homeProof,
     markerId: project.markerId,

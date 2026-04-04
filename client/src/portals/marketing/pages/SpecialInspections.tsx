@@ -4,9 +4,8 @@ import { ArrowRight, CheckCircle, Hammer, Layers, Shield, ClipboardCheck, HardHa
 import { Card } from "@/components/ui/card";
 import AnimatedSection from "../components/AnimatedSection";
 import SEO from "../components/SEO";
-import AnimatedGridBackground from "../components/AnimatedGridBackground";
-import BlueprintBackground from "../components/BlueprintBackground";
 import CTASection from "../components/CTASection";
+import MarketingPageHero from "../components/MarketingPageHero";
 
 export default function SpecialInspections() {
   return (
@@ -17,38 +16,13 @@ export default function SpecialInspections() {
         keywords="special inspections, PE certified inspections, structural inspections, welding inspections, concrete inspections, building code compliance, sealed reports"
         url="/special-inspections"
       />
-      <section className="relative py-16 sm:py-24 md:py-32 px-4 sm:px-6 bg-slate-950 overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.6]">
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: "url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1600')" }}
-          />
-          <div className="absolute inset-0 bg-slate-900/60 mix-blend-multiply"></div>
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-slate-900/60 to-slate-950/90 opacity-30" />
-        <div className="absolute inset-0 bg-gradient-to-r from-cyan-950/20 via-transparent to-blue-950/15 opacity-50" />
-        <AnimatedGridBackground baseOpacity={0.5} gridSize={40} triggerInterval={500} animationDuration={2500} className="hidden sm:block z-[1] opacity-30" />
-        <BlueprintBackground className="z-[2] opacity-50" />
-        <div className="absolute top-1/3 left-1/5 w-48 md:w-72 h-48 md:h-72 bg-cyan-500/8 rounded-full blur-[80px] md:blur-[120px] pointer-events-none z-[1]" />
-        <div className="absolute bottom-1/4 right-1/5 w-40 md:w-64 h-40 md:h-64 bg-blue-500/6 rounded-full blur-[60px] md:blur-[100px] pointer-events-none z-[1]" />
-
-        <div className="relative z-[5] max-w-5xl mx-auto text-center">
-          <AnimatedSection direction="up" blur>
-            <div className="relative">
-              <div className="absolute -inset-px bg-gradient-to-r from-cyan-500/5 via-blue-500/3 to-cyan-500/5 rounded-2xl blur-sm hidden sm:block" />
-              <div className="relative bg-slate-950/30 sm:bg-slate-950/40 backdrop-blur-[6px] rounded-lg sm:rounded-xl border border-white/[0.06] shadow-2xl overflow-hidden px-5 py-8 sm:p-10 md:p-12">
-                <div className="h-0.5 sm:h-1 bg-gradient-to-r from-blue-600/80 via-cyan-500/80 to-blue-500/80 absolute top-0 left-0 right-0" />
-                <h1 className="text-white mb-6 text-3xl font-bold sm:text-5xl md:text-6xl tracking-tight" data-testid="text-special-inspections-title">Special Inspections</h1>
-                <div className="w-20 sm:w-32 h-1 bg-gradient-to-r from-cyan-200 via-blue-500 to-cyan-200 mx-auto mb-8 rounded-full"></div>
-                <p className="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed font-light">
-                 Our Team of in-house Professional Engineers, and certified professionals with decades worth of combined experience are ready to perform any and all special inspections ensuring structural integrity and code compliance for critical building systems.
-                </p>
-              </div>
-            </div>
-          </AnimatedSection>
-        </div>
-        <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-600/80 via-cyan-500/80 to-blue-500/80" />
-      </section>
+      <MarketingPageHero
+        title="Special Inspections"
+        description="Pacific Engineering performs engineer-backed special inspections focused on structural integrity, documentation discipline, and code compliance for critical building systems."
+        backgroundImage="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1600"
+        sectionTestId="section-special-inspections-hero"
+        titleTestId="text-special-inspections-title"
+      />
 
       <section className="py-20 px-6 bg-white border-b border-slate-200">
         <div className="max-w-6xl mx-auto">
@@ -315,7 +289,7 @@ export default function SpecialInspections() {
       <AnimatedSection direction="up">
         <section className="py-20 px-6 bg-white">
           <div className="max-w-6xl mx-auto">
-            <div className="bg-gradient-to-br from-blue-50 via-cyan-50 to-teal-50 rounded-3xl p-12 border-2 border-blue-100">
+            <div className="rounded-md border border-slate-200 bg-white p-12 shadow-md">
               <div className="max-w-4xl mx-auto">
                 <div className="flex items-start gap-4 mb-6">
                   <div className="bg-gradient-to-br from-blue-400 to-blue-700 rounded-md w-12 h-12 flex items-center justify-center flex-shrink-0 shadow-lg">
@@ -361,7 +335,7 @@ export default function SpecialInspections() {
             </h2>
 
             <div className="grid md:grid-cols-2 gap-8">
-              <Card className="p-8 border-0 shadow-xl bg-gradient-to-br from-blue-50 to-cyan-50" data-testid="card-continuous-inspection">
+              <Card className="rounded-md border border-slate-200 bg-white p-8 shadow-sm" data-testid="card-continuous-inspection">
                 <h3 className="text-gray-900 mb-4 text-2xl font-bold text-center">Continuous Inspection</h3>
                 <p className="text-gray-700 mb-6 text-center leading-relaxed">Required for seismic force-resisting systems and other critical structural elements where work must not proceed without inspector verification
                 </p>
@@ -381,7 +355,7 @@ export default function SpecialInspections() {
                 </ul>
               </Card>
 
-              <Card className="p-8 border-0 shadow-xl bg-gradient-to-br from-teal-50 to-green-50" data-testid="card-periodic-inspection">
+              <Card className="rounded-md border border-slate-200 bg-white p-8 shadow-sm" data-testid="card-periodic-inspection">
                 <h3 className="text-gray-900 mb-4 text-2xl font-bold text-center">Periodic Inspection</h3>
                 <p className="text-gray-700 mb-6 text-center leading-relaxed">Scheduled inspections at key phases of construction for work that doesn't require continuous oversight but still needs third-party verification
                 </p>
@@ -461,7 +435,7 @@ export default function SpecialInspections() {
             </div>
 
             <div className="space-y-12">
-              <Card className="overflow-hidden border-0 shadow-2xl hover:shadow-3xl transition-all duration-300" data-testid="card-case-study-steel">
+              <Card className="overflow-hidden rounded-md border border-slate-200 bg-white shadow-md transition-shadow duration-300 hover:shadow-lg" data-testid="card-case-study-steel">
                 <div className="grid lg:grid-cols-2 gap-0">
                   <div className="relative h-80 lg:h-auto overflow-hidden">
                     <img
@@ -537,7 +511,7 @@ export default function SpecialInspections() {
                 </div>
               </Card>
 
-              <Card className="overflow-hidden border-0 shadow-2xl hover:shadow-3xl transition-all duration-300" data-testid="card-case-study-seismic">
+              <Card className="overflow-hidden rounded-md border border-slate-200 bg-white shadow-md transition-shadow duration-300 hover:shadow-lg" data-testid="card-case-study-seismic">
                 <div className="grid lg:grid-cols-2 gap-0">
                   <div className="relative h-80 lg:h-auto overflow-hidden lg:order-2">
                     <img

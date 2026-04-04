@@ -7,9 +7,8 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import AnimatedSection from "../components/AnimatedSection";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import AnimatedGridBackground from "../components/AnimatedGridBackground";
-import BlueprintBackground from "../components/BlueprintBackground";
 import CTASection from "../components/CTASection";
+import MarketingPageHero from "../components/MarketingPageHero";
 
 interface Project {
   id: number;
@@ -198,49 +197,20 @@ export default function PreviousWork() {
 
   return (
     <div className="min-h-screen bg-slate-50" data-testid="page-previous-work">
-      <section className="relative py-16 sm:py-24 md:py-32 px-4 sm:px-6 bg-slate-950 overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.6]">
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: "url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1600')" }}
-          />
-          <div className="absolute inset-0 bg-slate-900/60 mix-blend-multiply"></div>
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-slate-900/60 to-slate-950/90 opacity-30" />
-        <div className="absolute inset-0 bg-gradient-to-r from-cyan-950/20 via-transparent to-blue-950/15 opacity-50" />
-        <AnimatedGridBackground baseOpacity={0.5} gridSize={40} triggerInterval={500} animationDuration={2500} className="hidden sm:block z-[1] opacity-30" />
-        <BlueprintBackground className="z-[2] opacity-50" />
-        <div className="absolute top-1/3 left-1/5 w-48 md:w-72 h-48 md:h-72 bg-cyan-500/8 rounded-full blur-[80px] md:blur-[120px] pointer-events-none z-[1]" />
-        <div className="absolute bottom-1/4 right-1/5 w-40 md:w-64 h-40 md:h-64 bg-blue-500/6 rounded-full blur-[60px] md:blur-[100px] pointer-events-none z-[1]" />
+      <MarketingPageHero
+        title="Previous Work"
+        description="Selected Pacific Engineering work across Bay Area and Northern California infrastructure, institutional, airport, and commercial scopes."
+        backgroundImage="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1600"
+        sectionTestId="section-previous-work-hero"
+        titleTestId="text-previous-work-title"
+      />
 
-        <div className="relative z-[5] max-w-6xl mx-auto text-center">
-          <AnimatedSection direction="up" blur>
-            <div className="relative">
-              <div className="absolute -inset-px bg-gradient-to-r from-cyan-500/5 via-blue-500/3 to-cyan-500/5 rounded-2xl blur-sm hidden sm:block" />
-              <div className="relative bg-slate-950/30 sm:bg-slate-950/40 backdrop-blur-[6px] rounded-lg sm:rounded-xl border border-white/[0.06] shadow-2xl overflow-hidden px-5 py-8 sm:p-10 md:p-12">
-                <div className="h-0.5 sm:h-1 bg-gradient-to-r from-blue-600/80 via-cyan-500/80 to-blue-500/80 absolute top-0 left-0 right-0" />
-                <div className="inline-flex items-center gap-2 bg-blue-900/80 px-4 py-2 rounded-full border border-blue-500 mb-6 backdrop-blur-sm shadow-xl">
-                  <Award className="w-4 h-4 text-blue-400" />
-                  <span className="text-blue-100 text-sm font-bold tracking-wider">Excellence Since 2001</span>
-                </div>
-                <h1 className="text-white mb-6 text-3xl font-bold sm:text-5xl md:text-7xl tracking-tight" data-testid="text-previous-work-title">Previous Work</h1>
-                <div className="w-20 sm:w-32 h-1 bg-gradient-to-r from-cyan-200 via-blue-500 to-cyan-200 mx-auto mb-8 rounded-full"></div>
-                <p className="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed font-light">
-                  Over two decades of excellence in civil engineering, construction management, and infrastructure development across California and Nevada.
-                </p>
-              </div>
-            </div>
-          </AnimatedSection>
-        </div>
-        <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-600/80 via-cyan-500/80 to-blue-500/80" />
-      </section>
-
-      <section className="py-20 px-6 bg-white border-b border-slate-200">
+      <section className="py-20 px-6 bg-white border-b border-slate-200 overflow-hidden">
         <div className="max-w-6xl mx-auto">
           <AnimatedSection direction="up" delay={0.1}>
             <div className="mb-16">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-8 text-center tracking-tight">Company Profile</h2>
-              <Card className="p-10 border-0 shadow-2xl bg-gradient-to-br from-white to-blue-50 border-t-4 border-blue-600 rounded-lg transform hover:scale-[1.01] transition-transform duration-500" data-testid="card-company-profile">
+              <Card className="rounded-md border border-slate-200 bg-white p-10 shadow-md" data-testid="card-company-profile">
                 <p className="text-lg text-slate-700 leading-relaxed font-light">
                   Founded in 2001, Pacific Engineering & Construction, Inc. (PECI) has applied its civil, environmental, construction management, surveying, and infrastructure engineering capabilities to sites across California and Nevada. PECI provides complete site civil and environmental engineering design and surveying services for airports, municipal buildings, marinas, prisons, hospitals, schools, condominiums, casinos and new residential land developments.
                 </p>
@@ -257,7 +227,7 @@ export default function PreviousWork() {
 
           <div className="grid md:grid-cols-2 gap-8">
             <AnimatedSection direction="left" delay={0.2}>
-              <div className="bg-slate-50 p-8 rounded-xl border border-slate-100 shadow-lg hover:shadow-xl transition-shadow h-full" data-testid="card-capabilities">
+              <div className="h-full rounded-md border border-slate-200 bg-white p-8 shadow-md" data-testid="card-capabilities">
                 <div className="flex items-center gap-4 mb-6">
                   <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-700 rounded-md flex items-center justify-center shadow-lg">
                     <Layers className="w-6 h-6 text-white" />
@@ -266,9 +236,9 @@ export default function PreviousWork() {
                 </div>
                 <div className="space-y-3">
                   {capabilities.map((capability, index) => (
-                    <div key={index} className="flex items-center gap-3 p-3 bg-white rounded-lg border border-slate-100 hover:border-blue-300 hover:translate-x-1 transition-all duration-300 group cursor-default shadow-sm" data-testid={`text-capability-${index}`}>
-                      <CheckCircle className="w-4 h-4 text-blue-500 group-hover:scale-110 transition-transform" />
-                      <span className="text-slate-700 font-semibold text-sm group-hover:text-blue-700">{capability}</span>
+                    <div key={index} className="flex cursor-default items-center gap-3 rounded-md border border-slate-200 bg-slate-50 p-3 shadow-sm" data-testid={`text-capability-${index}`}>
+                      <CheckCircle className="h-4 w-4 text-blue-500" />
+                      <span className="text-sm font-semibold text-slate-700">{capability}</span>
                     </div>
                   ))}
                 </div>
@@ -276,25 +246,24 @@ export default function PreviousWork() {
             </AnimatedSection>
 
             <AnimatedSection direction="right" delay={0.3}>
-              <div className="bg-slate-900 p-8 rounded-xl border border-slate-800 shadow-2xl h-full text-white relative overflow-hidden" data-testid="card-geographic-reach">
-                <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none"></div>
-                <div className="flex items-center gap-4 mb-6 relative z-10">
-                  <div className="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center shadow-lg">
-                    <MapPin className="w-6 h-6 text-white" />
+              <div className="h-full rounded-md border border-slate-200 bg-white p-8 shadow-md" data-testid="card-geographic-reach">
+                <div className="mb-6 flex items-center gap-4">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-md bg-slate-900 shadow-sm">
+                    <MapPin className="h-6 w-6 text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold tracking-wide">Geographic Reach</h3>
+                  <h3 className="text-2xl font-bold tracking-wide text-slate-900">Geographic Reach</h3>
                 </div>
-                <p className="text-blue-100 leading-relaxed text-lg font-light mb-8 relative z-10">
-                  Our expertise spans across multiple states, with extensive experience in both <strong className="text-white">California</strong> and <strong className="text-white">Nevada</strong> markets.
+                <p className="mb-8 text-lg font-light leading-relaxed text-slate-600">
+                  Pacific Engineering has worked across multiple states, with deep field experience in both <strong className="text-slate-900">California</strong> and <strong className="text-slate-900">Nevada</strong>.
                 </p>
-                <div className="grid grid-cols-2 gap-4 relative z-10">
-                  <div className="bg-white/10 p-4 rounded-lg backdrop-blur-sm border border-white/10 hover:bg-white/20 transition-colors">
-                    <h4 className="font-bold text-lg mb-1">California</h4>
-                    <p className="text-sm text-blue-200">Bay Area, Northern CA, Central Valley</p>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="rounded-md border border-slate-200 bg-slate-50 p-4">
+                    <h4 className="mb-1 text-lg font-bold text-slate-900">California</h4>
+                    <p className="text-sm text-slate-600">Bay Area, Northern California, Central Valley</p>
                   </div>
-                  <div className="bg-white/10 p-4 rounded-lg backdrop-blur-sm border border-white/10 hover:bg-white/20 transition-colors">
-                    <h4 className="font-bold text-lg mb-1">Nevada</h4>
-                    <p className="text-sm text-blue-200">Reno, Las Vegas, Regional Infrastructure</p>
+                  <div className="rounded-md border border-slate-200 bg-slate-50 p-4">
+                    <h4 className="mb-1 text-lg font-bold text-slate-900">Nevada</h4>
+                    <p className="text-sm text-slate-600">Reno, Las Vegas, regional infrastructure</p>
                   </div>
                 </div>
               </div>
@@ -381,7 +350,7 @@ export default function PreviousWork() {
             {filteredProjects.map((project, index) => (
               <AnimatedSection key={project.id} direction="up" delay={index * 0.05}>
                 <Card 
-                  className="group h-full flex flex-col overflow-hidden border border-slate-200 shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer bg-white rounded-lg hover:-translate-y-2"
+                  className="group flex h-full cursor-pointer flex-col overflow-hidden rounded-md border border-slate-200 bg-white shadow-md transition-shadow duration-300 hover:shadow-lg"
                   onClick={() => setSelectedProject(project)}
                   data-testid={`card-project-${project.id}`}
                 >
@@ -389,10 +358,10 @@ export default function PreviousWork() {
                     <img 
                       src={project.image} 
                       alt={project.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                      className="h-full w-full object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300"></div>
-                    <div className="absolute bottom-4 left-4 right-4 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/75 via-transparent to-transparent opacity-70"></div>
+                    <div className="absolute bottom-4 left-4 right-4">
                       <div className="flex gap-2 mb-2 flex-wrap">
                         <span className="inline-block px-2 py-1 bg-blue-600 text-white text-[10px] font-bold tracking-wider rounded-md shadow-sm">
                           {project.category}
@@ -410,7 +379,7 @@ export default function PreviousWork() {
                   </div>
                   
                   <div className="p-6 flex-1 flex flex-col">
-                    <div className="flex items-center gap-2 text-xs text-slate-500 font-bold tracking-wide mb-4">
+                    <div className="mb-4 flex min-w-0 items-center gap-2 text-xs font-bold tracking-wide text-slate-500">
                       <Building2 className="w-3 h-3 text-blue-500" />
                       <span className="truncate">{project.client}</span>
                     </div>
@@ -420,9 +389,9 @@ export default function PreviousWork() {
                     </p>
                     
                     <div className="pt-4 border-t border-slate-100 flex items-center justify-between gap-2 text-xs font-medium text-slate-500 mt-auto">
-                      <div className="flex items-center gap-1 group-hover:text-blue-600 transition-colors">
+                      <div className="flex items-center gap-1">
                         <span>View Details</span>
-                        <ArrowRight className="w-3 h-3 transform group-hover:translate-x-1 transition-transform" />
+                        <ArrowRight className="h-3 w-3" />
                       </div>
                       {project.budget && (
                         <span className="bg-slate-100 px-2 py-1 rounded-md text-slate-600">

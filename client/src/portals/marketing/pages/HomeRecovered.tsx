@@ -24,9 +24,9 @@ import { createPageUrl } from "../lib/utils";
 import bayBridgeImg from "@assets/bay-bridge-sunrise_1773821710974.jpg";
 
 const HERO_TRUST_POINTS = [
-  "Bay Area engineering and compliance support",
-  "Field-aware planning across public and private scopes",
-  "Permit-minded coordination from preconstruction forward",
+  "Public, institutional, utility, and waterfront scopes",
+  "PE / QSD / QSP and contractor-backed support",
+  "Documentation, inspection, and closeout discipline",
 ];
 
 const VALUE_CARDS = [
@@ -78,23 +78,23 @@ export default function HomeRecovered() {
         >
           <source src="/images/hero-ggb-draft.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/70 via-slate-950/75 to-slate-950" />
-        <div className="absolute inset-0 bg-gradient-to-r from-cyan-950/25 via-transparent to-orange-950/15" />
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/74 via-slate-950/82 to-slate-950" />
+        <div className="absolute inset-0 bg-gradient-to-r from-cyan-950/12 via-transparent to-orange-950/6" />
         <AnimatedGridBackground
-          baseOpacity={0.45}
+          baseOpacity={0.18}
           gridSize={40}
           triggerInterval={500}
           animationDuration={2500}
-          className="hidden opacity-30 sm:block"
+          className="hidden opacity-15 sm:block"
         />
-        <BlueprintBackground className="opacity-60" />
+        <BlueprintBackground className="opacity-22" />
 
         <div className="relative z-10 pe-container-wide py-16 sm:py-20 lg:py-24">
           <div className="home-hero-shell">
             <div className="home-hero-copy pe-inverse">
               <div className="max-w-3xl pe-stack-sm">
                 <span className="eyebrow warm text-orange-300">
-                  Bay Area Field-Proven Partner
+                  Bay Area Engineering + Construction Partner
                 </span>
                 <motion.h1
                   className="pe-heading-1 text-white"
@@ -102,7 +102,7 @@ export default function HomeRecovered() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.7 }}
                 >
-                  Pacific Engineering and Construction.
+                  Pacific Engineering & Construction Inc.
                 </motion.h1>
                 <motion.p
                   className="pe-lead text-slate-200"
@@ -112,9 +112,10 @@ export default function HomeRecovered() {
                     prefersReducedMotion ? { duration: 0 } : { duration: 0.7, delay: 0.08 }
                   }
                 >
-                  Engineering, inspections, stormwater compliance, and
-                  construction-minded coordination shaped around how Bay Area
-                  projects actually move from scope through field execution.
+                  Engineering, inspections, stormwater compliance, permitting
+                  coordination, and construction-minded support shaped around
+                  how Bay Area projects move from preconstruction through
+                  closeout.
                 </motion.p>
               </div>
 
@@ -136,7 +137,7 @@ export default function HomeRecovered() {
                 </Link>
               </motion.div>
 
-              <div className="home-hero-trust mt-8 flex flex-wrap gap-4 text-sm text-slate-200">
+                <div className="home-hero-trust mt-8 flex flex-wrap gap-4 text-sm text-slate-200">
                 {HERO_TRUST_POINTS.map((point) => (
                   <div key={point} className="inline-flex items-center gap-2">
                     <CheckCircle2 className="h-4 w-4 text-cyan-300" />
@@ -147,6 +148,13 @@ export default function HomeRecovered() {
             </div>
 
             <AnimatedSection className="home-hero-metrics-wrap" direction="up" delay={0.18}>
+              <div className="home-hero-aside-header hidden lg:grid">
+                <span className="eyebrow cool">Credentials + Coverage</span>
+                <p className="home-hero-aside-copy">
+                  One working partner for engineering, compliance, inspections,
+                  and contractor-backed project support.
+                </p>
+              </div>
               <div className="home-hero-metrics">
                 <div className="home-hero-metric-card">
                   <p className="text-3xl font-bold text-white sm:text-4xl">
@@ -178,7 +186,15 @@ export default function HomeRecovered() {
 
       <HomeProofRail />
 
+      <div className="pe-container-wide" aria-hidden="true">
+        <div className="pe-section-divider" />
+      </div>
+
       <HomeProjectEvidence />
+
+      <div className="pe-container-wide" aria-hidden="true">
+        <div className="pe-section-divider" />
+      </div>
 
       <section className="pe-section pe-section-tight section-surface-soft">
         <div className="pe-container-wide pe-stack">
@@ -186,7 +202,8 @@ export default function HomeRecovered() {
             <div className="pe-stack-sm" style={{ maxWidth: "50rem" }}>
               <span className="eyebrow">Selected Work</span>
               <h2 className="pe-heading-3">
-                A tighter read on the kinds of scopes Pacific supports.
+                Representative project work tied to actual Bay Area delivery
+                conditions.
               </h2>
             </div>
             <Link to={createPageUrl("ProjectGallery")} className="pe-link-inline">
@@ -198,29 +215,34 @@ export default function HomeRecovered() {
         </div>
       </section>
 
-      <section className="pe-section section-surface-solid" data-testid="section-services">
+      <div className="pe-container-wide" aria-hidden="true">
+        <div className="pe-section-divider" />
+      </div>
+
+      <section className="pe-section pe-section-tight section-surface-solid" data-testid="section-services">
         <div className="pe-container-wide pe-stack">
           <div className="pe-stack-sm" style={{ maxWidth: "56rem" }}>
             <span className="eyebrow cool">Service Coverage</span>
             <h2 className="pe-heading-2">
-              Multi-discipline support designed around delivery, not silos.
+              Support coverage built for active project delivery.
             </h2>
             <p className="pe-lead">
-              Civil and structural support, inspections, stormwater compliance, and
-              project coordination aligned so scope, permitting, and field execution
-              stay connected.
+              Civil and structural consulting, inspections, stormwater
+              compliance, and project coordination aligned so scope,
+              permitting, documentation, and field execution stay connected.
             </p>
           </div>
           <ServiceCardsGrid />
         </div>
       </section>
 
-      <section className="pe-section section-surface-dark pe-inverse">
+      <section className="pe-section pe-section-tight section-surface-dark pe-inverse">
         <div className="pe-container-wide pe-stack">
           <div className="pe-stack-sm" style={{ maxWidth: "44rem" }}>
             <span className="eyebrow cool">How We Work</span>
             <h2 className="pe-heading-2 text-white">
-              Pacific is built around accountable project support.
+              Practical support built around schedule, permitting, and field
+              conditions.
             </h2>
           </div>
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
@@ -243,18 +265,22 @@ export default function HomeRecovered() {
         </div>
       </section>
 
-      <section className="pe-section section-surface-soft">
+      <div className="pe-container-wide" aria-hidden="true">
+        <div className="pe-section-divider" />
+      </div>
+
+      <section className="pe-section pe-section-tight section-surface-soft overflow-hidden">
         <div className="pe-container-wide pe-grid-2">
           <AnimatedSection direction="left">
             <div className="pe-stack-sm">
-              <span className="eyebrow">Why Pacific</span>
+              <span className="eyebrow">Why Pacific Engineering</span>
               <h2 className="pe-heading-2">
-                Engineering judgment shaped by field reality.
+                Engineering judgment that stays useful in the field.
               </h2>
               <p className="pe-lead">
-                Pacific keeps engineering, compliance, and construction coordination
-                in one conversation so teams get a practical path forward instead of
-                disconnected handoffs.
+                Pacific Engineering keeps engineering, compliance, and construction
+                coordination in one conversation so teams get a practical path
+                forward instead of disconnected handoffs.
               </p>
               <Link to={createPageUrl("About")} className="pe-link-inline">
                 Meet the team

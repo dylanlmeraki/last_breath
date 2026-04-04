@@ -91,11 +91,11 @@ export default function AnimatedSection({
             <motion.div
               key={i}
               initial={{
-                opacity: 0,
-                y: (direction === "up" ? 40 : direction === "down" ? -40 : 0) * yDist,
-                x: (direction === "left" ? 40 : direction === "right" ? -40 : 0) * xDist,
-                scale: prefersReducedMotion ? 1 : 0.97,
-                filter: safeBlur ? "blur(8px)" : "blur(0px)",
+                opacity: 1,
+                y: (direction === "up" ? 18 : direction === "down" ? -18 : 0) * yDist,
+                x: (direction === "left" ? 18 : direction === "right" ? -18 : 0) * xDist,
+                scale: prefersReducedMotion ? 1 : 0.995,
+                filter: safeBlur ? "blur(2px)" : "blur(0px)",
               }}
               animate={isInView ? {
                 opacity: 1,
@@ -116,11 +116,11 @@ export default function AnimatedSection({
 
   const variants = {
     hidden: {
-      opacity: 0,
-      y: (direction === "up" ? 60 : direction === "down" ? -60 : 0) * yDist,
-      x: (direction === "left" ? 60 : direction === "right" ? -60 : 0) * xDist,
-      scale: prefersReducedMotion ? 1 : 0.95,
-      filter: safeBlur ? "blur(10px)" : "blur(0px)",
+      opacity: 1,
+      y: (direction === "up" ? 22 : direction === "down" ? -22 : 0) * yDist,
+      x: (direction === "left" ? 22 : direction === "right" ? -22 : 0) * xDist,
+      scale: prefersReducedMotion ? 1 : 0.995,
+      filter: safeBlur ? "blur(2px)" : "blur(0px)",
     },
     visible: {
       opacity: 1,

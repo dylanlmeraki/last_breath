@@ -1,4 +1,4 @@
-import { useRef, useCallback } from "react";
+import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import type { LucideIcon } from "lucide-react";
@@ -14,7 +14,7 @@ import {
 export const SERVICES = [
   {
     icon: HardHat,
-    title: "Construction Service",
+    title: "Construction Services",
     desc: "Field-driven construction support for site improvements, utility work, rehabilitation, and phased project delivery. We help teams move work forward with constructable planning, disciplined coordination, and execution aligned with real Bay Area field conditions.",
     items: ["Class A License", "Class B License", "Infrastructure & Public Works", "Residential, Commercial, and Municipal Infrastructure"],
     color: "darkblue" as const,
@@ -93,27 +93,7 @@ export function ServiceCard({ svc, idx, reducedMotion }: { svc: typeof SERVICES[
   const c = colorMap[svc.color];
   const Icon = svc.icon;
   const ref = useRef<HTMLDivElement>(null);
-  const cardRef = useRef<HTMLDivElement>(null);
-  const iconRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
-
-  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    if (reducedMotion) return;
-    const el = cardRef.current;
-    if (!el) return;
-    const rect = el.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
-    el.style.transform = `translateY(-0.5rem) rotateX(${y * -6}deg) rotateY(${x * 6}deg)`;
-    el.style.boxShadow = `0 25px 50px -12px ${c.shadowColor}, 0 12px 24px -8px rgba(0,0,0,0.12), 0 4px 8px -2px rgba(0,0,0,0.06)`;
-  }, [c.shadowColor, reducedMotion]);
-
-  const handleMouseLeave = useCallback(() => {
-    const el = cardRef.current;
-    if (!el) return;
-    el.style.transform = "";
-    el.style.boxShadow = "";
-  }, []);
 
   return (
     <motion.div
@@ -127,44 +107,26 @@ export function ServiceCard({ svc, idx, reducedMotion }: { svc: typeof SERVICES[
         ease: [0.22, 1, 0.36, 1],
       }}
       className="h-full"
-      style={{ perspective: reducedMotion ? undefined : "800px" }}
     >
       <Link to={createPageUrl(svc.page)} className="block group h-full" data-testid={`link-${svc.title.toLowerCase().replace(/\s+/g, "-")}`}>
         <div
-          ref={cardRef}
-          className={`h-full bg-white ${c.cardBgHover} rounded-md shadow-md sm:shadow-lg border border-slate-200 group-hover:border-slate-300 group-hover:-translate-y-2 transition-all duration-500 overflow-hidden cursor-pointer`}
-          style={{
-            transition: reducedMotion ? "border-color 0.5s ease, background-color 0.5s ease" : "transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s ease, border-color 0.5s ease, background-color 0.5s ease",
-          }}
-          onMouseMove={handleMouseMove}
-          onMouseLeave={handleMouseLeave}
+          className="h-full rounded-[18px] border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 group-hover:border-slate-300 group-hover:shadow-md sm:p-7 lg:p-8"
         >
-          <div className={c.h} style={{ background: c.gradient }} />
-          <div className="p-5 sm:p-8 lg:p-10 flex flex-col items-center text-center">
-            <div
-              ref={iconRef}
-              className={`${c.bg} rounded-md w-10 h-10 sm:w-14 sm:h-14 lg:w-16 lg:h-16 flex items-center justify-center mb-4 sm:mb-6 lg:mb-8 transition-all duration-300 relative`}
-            >
-              <div
-                className="absolute inset-0 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                style={{ background: c.iconGradient, boxShadow: c.icon3dShadow }}
-              />
-              <div className="absolute inset-0 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-b from-white/20 via-transparent to-black/10" />
+          <div className="flex h-full flex-col items-start text-left">
+            <div className={`${c.bg} mb-5 inline-flex h-12 w-12 items-center justify-center rounded-lg`}>
               <Icon
-                data-icon-3d
-                className={`relative z-10 w-5 h-5 sm:w-7 sm:h-7 lg:w-8 lg:h-8 ${c.icon} group-hover:text-white transition-colors duration-300`}
-                style={{ filter: "var(--icon-drop)" }}
+                className={`h-6 w-6 ${c.icon}`}
               />
             </div>
-            <h3 className={`text-slate-900 ${c.titleHover} text-lg sm:text-xl lg:text-2xl font-bold mb-2 sm:mb-4 uppercase tracking-wider transition-colors`}>
+            <h3 className="mb-3 text-xl font-bold tracking-tight text-slate-900 sm:text-[1.35rem]">
               {svc.title}
             </h3>
-            <p className="text-slate-600 mb-4 sm:mb-6 lg:mb-8 leading-relaxed text-sm sm:text-base lg:text-lg">{svc.desc}</p>
-            <ul className="space-y-2 sm:space-y-3 w-full">
+            <p className="mb-6 text-sm leading-7 text-slate-600 sm:text-[0.98rem]">{svc.desc}</p>
+            <ul className="w-full space-y-2.5 border-t border-slate-200 pt-5">
               {svc.items.map((item, i) => (
-                <li key={i} className={`flex items-center justify-center gap-2 sm:gap-3 text-slate-600 ${c.textHover} transition-colors`}>
-                  <CheckCircle className={`w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0 ${c.check} ${c.checkHover} transition-colors`} />
-                  <span className="font-medium text-sm sm:text-base">{item}</span>
+                <li key={i} className="flex items-start gap-3 text-slate-700">
+                  <CheckCircle className={`mt-0.5 h-4 w-4 flex-shrink-0 ${c.check}`} />
+                  <span className="text-sm font-medium leading-6 sm:text-[0.96rem]">{item}</span>
                 </li>
               ))}
             </ul>

@@ -1,11 +1,9 @@
 import { useState, useEffect, ReactNode, CSSProperties } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { createPageUrl } from "../lib/utils";
-import { Menu, X, Phone, Mail, MapPin, ChevronDown, PhoneCall, Send, Linkedin } from "lucide-react";
+import { Menu, X, Phone, Mail, MapPin, ChevronDown, PhoneCall, Linkedin } from "lucide-react";
 import ChatBot from "../components/ChatBot";
 import BackToTop from "../components/BackToTop";
-import FooterBackground from "../components/FooterBackground";
-import { ShinyButton } from "../components/ShinyButton";
 
 const MOBILE_STICKY_CTA_STORAGE_KEY = "peci_marketing_mobile_cta_collapsed";
 type MarketingStyleVars = CSSProperties & Record<string, string>;
@@ -59,16 +57,6 @@ function getShellState(): ShellState {
     showStickyCta,
   };
 }
-
-const consultationShinyVars: MarketingStyleVars = {
-  "--shiny-cta-bg": "#f97316",
-  "--shiny-cta-bg-subtle": "rgba(249, 115, 22, 0.2)",
-  "--shiny-cta-fg": "#ffffff",
-  "--shiny-cta-highlight": "#ea580c",
-  "--shiny-cta-highlight-subtle": "#fb923c",
-  "--shiny-cta-shadow": "rgba(249, 115, 22, 0.4)",
-  "--shiny-cta-glow": "rgba(251, 146, 60, 0.55)",
-};
 
 interface MarketingLayoutProps {
   children: ReactNode;
@@ -193,37 +181,36 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
       data-shell-profile={shellState.profile}
       data-shell-touch={shellState.isTouchLike ? "true" : "false"}
     >
-      <header className={`fixed top-0 left-0 right-0 z-40 border-b border-white/10 transition-all duration-300 ${isScrolled ? "bg-slate-900/95 backdrop-blur-sm shadow-xl" : "bg-slate-900/98 shadow-lg"}`}>
+      <header className={`fixed top-0 left-0 right-0 z-40 border-b border-white/10 transition-all duration-300 ${isScrolled ? "bg-slate-950/96 backdrop-blur-sm shadow-[0_10px_24px_rgba(2,8,23,0.16)]" : "bg-slate-950/98 shadow-[0_8px_18px_rgba(2,8,23,0.12)]"}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="flex h-20 items-center justify-between">
             <Link to={createPageUrl("Home")} className="flex items-center gap-3 group" data-testid="link-logo">
               <div className="relative">
-                <div className="absolute inset-0 bg-white rounded-md opacity-10 group-hover:opacity-20 transition-opacity" />
                 <img src="/images/pe-logo.png" alt="Pacific Engineering Logo" className={`rounded-md object-contain relative z-10 transition-all duration-300 ${isScrolled ? "h-11 w-11" : "h-12 w-12"}`} />
               </div>
               <div className="min-w-0 hidden sm:block">
-                <div className={`font-bold text-white tracking-tight truncate transition-all duration-300 ${isScrolled ? "text-[15px] sm:text-base lg:text-[1.05rem]" : "text-[20px] sm:text-lg lg:text-[1.2rem] xl:text-[1.45rem]"}`}>
+                <div className={`font-bold text-white tracking-tight truncate transition-all duration-300 ${isScrolled ? "text-[15px] sm:text-base lg:text-[1.05rem]" : "text-[18px] sm:text-lg lg:text-[1.08rem] xl:text-[1.32rem]"}`}>
                   {isScrolled ? "Pacific Engineering" : "Pacific Engineering & Construction Inc."}
                 </div>
-                <div className={`font-medium text-blue-200 tracking-[0.08em] hidden sm:block transition-all duration-300 ${isScrolled ? "text-[11px]" : "text-[12px]"}`}>Consulting Engineers & Contractors</div>
+                <div className={`font-medium text-slate-300 tracking-[0.1em] hidden sm:block transition-all duration-300 ${isScrolled ? "text-[10px]" : "text-[11px]"}`}>Consulting Engineers & Contractors</div>
               </div>
             </Link>
 
             {isFullDesktop ? (
-              <nav className="flex h-full items-center gap-0.5" data-testid="nav-main">
-                <Link to={createPageUrl("Home")} className="flex h-full items-center rounded-t-lg px-3 text-[12px] font-semibold uppercase tracking-[0.14em] text-white transition-all hover:bg-white/10 hover:text-blue-200 border-b-2 border-transparent hover:border-blue-400 xl:px-4" data-testid="nav-home">Home</Link>
+              <nav className="flex h-full items-center gap-1.5" data-testid="nav-main">
+                <Link to={createPageUrl("Home")} className="flex h-full items-center px-3 text-[13px] font-semibold tracking-[0.08em] text-slate-100 transition-colors hover:text-white xl:px-3.5" data-testid="nav-home">Home</Link>
 
                 <div className="relative group h-full flex items-center" onMouseEnter={() => setServicesDropdownOpen(true)} onMouseLeave={() => setServicesDropdownOpen(false)}>
-                  <Link to={createPageUrl("ServicesOverview")} className="flex h-full items-center gap-1 rounded-t-lg px-3 text-[12px] font-semibold uppercase tracking-[0.14em] text-white transition-all hover:bg-white/10 hover:text-blue-200 border-b-2 border-transparent hover:border-blue-400 xl:px-4" data-testid="nav-services">
+                  <Link to={createPageUrl("ServicesOverview")} className="flex h-full items-center gap-1 px-3 text-[13px] font-semibold tracking-[0.08em] text-slate-100 transition-colors hover:text-white xl:px-3.5" data-testid="nav-services">
                     Services
                     <ChevronDown className={`w-4 h-4 transition-transform ${servicesDropdownOpen ? "rotate-180" : ""}`} />
                   </Link>
                   {servicesDropdownOpen && (
-                    <div className="absolute left-1/2 top-full -translate-x-1/2 pt-3">
-                      <div className="w-64 overflow-hidden rounded-2xl border border-white/10 bg-slate-900/98 py-1 shadow-2xl shadow-slate-950/45 backdrop-blur-md">
-                        <Link to={createPageUrl("ServicesOverview")} className="block border-b border-white/10 px-6 py-4 text-center text-sm font-bold uppercase tracking-[0.14em] text-white hover:bg-white/10" data-testid="nav-services-overview">Our Services</Link>
+                    <div className="absolute left-0 top-full pt-3">
+                      <div className="w-72 overflow-hidden rounded-lg border border-white/10 bg-slate-950/98 py-2 shadow-[0_16px_30px_rgba(2,8,23,0.24)]">
+                        <Link to={createPageUrl("ServicesOverview")} className="block border-b border-white/10 px-5 py-3 text-left text-[12px] font-bold uppercase tracking-[0.14em] text-white hover:bg-white/5" data-testid="nav-services-overview">Pacific Engineering Services</Link>
                         {servicesItems.map((item) => (
-                          <Link key={item.path} to={item.path} className="block px-6 py-3 text-center text-sm font-medium text-gray-300 transition-all hover:bg-blue-600 hover:text-white" data-testid={`nav-service-${item.name.toLowerCase().replace(/\s+/g, "-")}`}>{item.name}</Link>
+                          <Link key={item.path} to={item.path} className="block px-5 py-3 text-left text-sm font-medium text-slate-300 transition-colors hover:bg-white/5 hover:text-white" data-testid={`nav-service-${item.name.toLowerCase().replace(/\s+/g, "-")}`}>{item.name}</Link>
                         ))}
                       </div>
                     </div>
@@ -231,31 +218,26 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
                 </div>
 
                 <div className="relative group h-full flex items-center" onMouseEnter={() => setAboutDropdownOpen(true)} onMouseLeave={() => setAboutDropdownOpen(false)}>
-                  <Link to={createPageUrl("About")} className="flex h-full items-center gap-1 rounded-t-lg px-3 text-[12px] font-semibold uppercase tracking-[0.14em] text-white transition-all hover:bg-white/10 hover:text-blue-200 border-b-2 border-transparent hover:border-blue-400 xl:px-4" data-testid="nav-about">
+                  <Link to={createPageUrl("About")} className="flex h-full items-center gap-1 px-3 text-[13px] font-semibold tracking-[0.08em] text-slate-100 transition-colors hover:text-white xl:px-3.5" data-testid="nav-about">
                     About
                     <ChevronDown className={`w-4 h-4 transition-transform ${aboutDropdownOpen ? "rotate-180" : ""}`} />
                   </Link>
                   {aboutDropdownOpen && (
-                    <div className="absolute left-1/2 top-full -translate-x-1/2 pt-3">
-                      <div className="w-56 overflow-hidden rounded-2xl border border-white/10 bg-slate-900/98 py-1 shadow-2xl shadow-slate-950/45 backdrop-blur-md">
+                    <div className="absolute left-0 top-full pt-3">
+                      <div className="w-60 overflow-hidden rounded-lg border border-white/10 bg-slate-950/98 py-2 shadow-[0_16px_30px_rgba(2,8,23,0.24)]">
                         {aboutItems.map((item) => (
-                          <Link key={item.path} to={item.path} className="block px-6 py-3 text-center text-sm font-medium text-gray-300 transition-all hover:bg-blue-600 hover:text-white" data-testid={`nav-about-${item.name.toLowerCase().replace(/\s+/g, "-")}`}>{item.name}</Link>
+                          <Link key={item.path} to={item.path} className="block px-5 py-3 text-left text-sm font-medium text-slate-300 transition-colors hover:bg-white/5 hover:text-white" data-testid={`nav-about-${item.name.toLowerCase().replace(/\s+/g, "-")}`}>{item.name}</Link>
                         ))}
                       </div>
                     </div>
                   )}
                 </div>
 
-                <Link to={createPageUrl("Contact")} className="flex h-full items-center rounded-t-lg px-3 text-[12px] font-semibold uppercase tracking-[0.14em] text-white transition-all hover:bg-white/10 hover:text-blue-200 border-b-2 border-transparent hover:border-blue-400 xl:px-4" data-testid="nav-contact">Contact</Link>
+                <Link to={createPageUrl("Contact")} className="flex h-full items-center px-3 text-[13px] font-semibold tracking-[0.08em] text-slate-100 transition-colors hover:text-white xl:px-3.5" data-testid="nav-contact">Contact</Link>
 
                 <div className="ml-3 flex h-full items-center gap-3">
-                  <Link to={createPageUrl("SWPPPChecker")} data-testid="nav-consultation">
-                    <ShinyButton
-                      className="group inline-flex h-9 items-center justify-center gap-2 whitespace-nowrap rounded-md px-4 text-[11px] font-bold tracking-[0.12em] text-white shadow-lg shadow-orange-900/20 transition-all duration-300 hover:shadow-orange-500/50 active:scale-95"
-                      style={consultationShinyVars}
-                    >
-                      Start Consultation
-                    </ShinyButton>
+                  <Link to={createPageUrl("SWPPPChecker")} className="pe-shell-button" data-testid="nav-consultation">
+                    Project Consultation
                   </Link>
                 </div>
               </nav>
@@ -264,10 +246,10 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
                 {isCompactDesktop ? (
                   <Link
                     to={createPageUrl("SWPPPChecker")}
-                    className="inline-flex items-center rounded-full bg-orange-500 px-4 py-2 text-sm font-bold text-white shadow-lg shadow-orange-500/30 transition-colors hover:bg-orange-400 active:bg-orange-600"
+                    className="pe-shell-button pe-shell-button-compact"
                     data-testid="btn-header-consult-compact"
                   >
-                    Start Consultation
+                    Project Consultation
                   </Link>
                 ) : (
                   <a
@@ -291,7 +273,7 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
             )}
           </div>
         </div>
-        <div className="absolute bottom-0 left-0 right-0 hidden h-1 bg-gradient-to-r from-blue-600 via-cyan-600 to-blue-600 sm:block" />
+        <div className="absolute bottom-0 left-0 right-0 hidden h-px bg-white/10 sm:block" />
       </header>
       {usesMenuShell && isMobileMenuOpen && (
         <div className="fixed inset-0 z-50 bg-slate-950/95 backdrop-blur-md" data-testid="mobile-menu">
@@ -418,29 +400,31 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
       <main className="pe-shell-main">
         {children}
       </main>
-      <div className="h-1.5" style={{ background: "linear-gradient(to right, #1e293b, #2563eb 30%, #06b6d4 50%, #2563eb 70%, #1e293b)" }} />
-      <footer className="relative bg-slate-900 text-white overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900" />
-        <div className="absolute inset-0 bg-gradient-to-tr from-cyan-900/20 via-transparent to-orange-900/15" />
-        <FooterBackground />
-        <div className="relative z-10 max-w-7xl mx-auto px-6 py-16">
-          <div className="grid md:grid-cols-5 gap-12 mb-12">
-            <div className="md:col-span-2">
+      <div className="h-px bg-slate-200" />
+      <footer className="relative bg-slate-950 text-white overflow-hidden">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 py-14">
+          <div className="grid gap-10 border-b border-white/10 pb-10 md:grid-cols-[1.4fr_1fr_1fr_1.1fr]">
+            <div className="pe-footer-panel">
               <div className="flex items-center gap-4 mb-6">
-              <div className="relative">
-                  <div className="relative rounded-lg p-1.5" style={{ backgroundColor: "#27a0d1" }}>
+                <div className="relative">
+                  <div className="relative rounded-lg border border-white/10 bg-slate-900 p-1.5">
                     <img src="/images/pe-logo.png" alt="Pacific Engineering" className="h-10 w-10 rounded object-contain" />
                   </div>
                 </div>
                 <div>
                   <div className="font-bold text-lg text-white">Pacific Engineering</div>
-                  <div className="text-xs text-cyan-400 tracking-wide font-medium">Consulting Engineers & Contractors</div>
+                  <div className="text-xs text-slate-400 tracking-[0.12em] font-medium uppercase">Consulting Engineers & Contractors</div>
                 </div>
               </div>
-              <p className="text-sm text-gray-300 leading-relaxed border-l-4 border-cyan-500 pl-4 font-medium mb-5">
-                Pacific Engineering & Construction Inc. provides full-scale civil and structural engineering, construction consulting, and plan implementation in a vertically integrated business model working on projects of all sizes from residential remodels to public utility and infrastructure projects. Through decades of deep in-field knowledge and network fostering and growth - Pacific Engineering & Construction truly has earned its polished and professional reputation.
+              <p className="text-sm leading-relaxed text-slate-300">
+                Pacific Engineering & Construction Inc. supports Bay Area and Northern California project teams with engineering, construction, stormwater compliance, inspections, and delivery coordination grounded in field experience.
               </p>
-              <div className="flex items-center gap-3">
+              <div className="mt-5 space-y-2 text-sm text-slate-400">
+                <p>Bay Area + Northern California coverage</p>
+                <p>PE / QSD / QSP and Class A &amp; B contractor capability</p>
+                <p>Public, institutional, aviation, utility, and commercial scopes</p>
+              </div>
+              <div className="mt-5 flex items-center gap-3">
                 <a
                   href="https://www.linkedin.com/in/a-mark-waldman-814b119"
                   target="_blank"
@@ -451,37 +435,37 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
                 >
                   <Linkedin className="w-4 h-4 text-gray-400" />
                 </a>
-                <p className="text-xs text-gray-500 font-medium">Contractor Lic. #: 1351235425</p>
+                <p className="text-xs text-slate-500 font-medium">Contractor Lic. #: 1351235425</p>
               </div>
             </div>
 
             <div>
-              <h4 className="font-bold text-base uppercase tracking-wider text-cyan-400 mb-5 text-center border-b border-cyan-500/20 pb-3" style={{ textShadow: "0 0 20px rgba(6,182,212,0.2)" }}>Services</h4>
-              <ul className="space-y-2.5 text-center">
+              <h4 className="mb-4 text-sm font-bold uppercase tracking-[0.18em] text-slate-400">Services</h4>
+              <ul className="space-y-2.5">
                 {servicesItems.map((item) => (
                   <li key={item.path}>
-                    <Link to={item.path} className="text-sm text-gray-300 hover:text-cyan-400 transition-colors font-medium">{item.name}</Link>
+                    <Link to={item.path} className="text-sm text-slate-300 hover:text-cyan-300 transition-colors font-medium">{item.name}</Link>
                   </li>
                 ))}
               </ul>
             </div>
 
             <div>
-              <h4 className="font-bold text-base uppercase tracking-wider text-cyan-400 mb-5 text-center border-b border-cyan-500/20 pb-3" style={{ textShadow: "0 0 20px rgba(6,182,212,0.2)" }}>Company</h4>
-              <ul className="space-y-2.5 text-center">
+              <h4 className="mb-4 text-sm font-bold uppercase tracking-[0.18em] text-slate-400">Company</h4>
+              <ul className="space-y-2.5">
                 {aboutItems.map((item) => (
                   <li key={item.path}>
-                    <Link to={item.path} className="text-sm text-gray-300 hover:text-cyan-400 transition-colors font-medium">{item.name}</Link>
+                    <Link to={item.path} className="text-sm text-slate-300 hover:text-cyan-300 transition-colors font-medium">{item.name}</Link>
                   </li>
                 ))}
                 <li>
-                  <Link to={createPageUrl("Contact")} className="text-sm text-gray-300 hover:text-cyan-400 transition-colors font-medium">Contact Us</Link>
+                  <Link to={createPageUrl("Contact")} className="text-sm text-slate-300 hover:text-cyan-300 transition-colors font-medium">Contact Pacific Engineering</Link>
                 </li>
               </ul>
             </div>
 
             <div>
-              <h4 className="font-bold text-base uppercase tracking-wider text-cyan-400 mb-5 text-center border-b border-cyan-500/20 pb-3" style={{ textShadow: "0 0 20px rgba(6,182,212,0.2)" }}>Contact</h4>
+              <h4 className="mb-4 text-sm font-bold uppercase tracking-[0.18em] text-slate-400">Office + Next Step</h4>
               <ul className="space-y-3">
                 <li className="flex items-center gap-3 text-gray-300 group">
                   <div className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center border border-white/10 group-hover:border-cyan-500/50 transition-colors flex-shrink-0">
@@ -502,45 +486,39 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
                   <span className="text-sm font-medium">470 3rd St.<br />San Francisco, CA 94107</span>
                 </li>
               </ul>
+              <div className="mt-6 border-t border-white/10 pt-5">
+                <p className="text-sm font-semibold text-white">Need an early read on scope, permitting, or field constraints?</p>
+                <p className="mt-2 text-sm leading-relaxed text-slate-400">
+                  Pacific Engineering can review project context and help identify a practical next step before design, compliance, or construction issues stack up.
+                </p>
+                <div className="mt-4 flex flex-col gap-3 sm:flex-row">
+                  <a href="tel:+14156894428" className="pe-shell-button pe-shell-button-compact justify-center">
+                    Call Pacific Engineering
+                  </a>
+                  <Link to={createPageUrl("Consultation")} className="pe-shell-button pe-shell-button-compact pe-shell-button-secondary justify-center">
+                    Request Consultation
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div className="mb-10 max-w-md mx-auto">
-            <p className="text-center text-sm text-gray-400 font-medium mb-3">Stay updated with project insights & industry news</p>
-            <form onSubmit={(e) => e.preventDefault()} className="flex gap-0 rounded-full overflow-hidden border border-white/10 focus-within:border-cyan-500/50 transition-colors bg-white/5" data-testid="form-newsletter">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 bg-transparent text-sm text-white placeholder:text-gray-500 px-5 py-3 outline-none font-medium"
-                data-testid="input-newsletter-email"
-              />
-              <button
-                type="submit"
-                className="flex items-center gap-2 bg-gradient-to-r from-cyan-600 to-blue-500 px-5 py-3 text-sm font-bold text-white transition-all hover:from-cyan-500 hover:to-blue-600"
-                data-testid="button-newsletter-subscribe"
-              >
-                Subscribe
-                <Send className="w-4 h-4" />
-              </button>
-            </form>
-          </div>
-
-          <div className="pt-8 border-t border-transparent relative">
-            <div className="absolute top-0 left-0 right-0 h-px" style={{ background: "linear-gradient(to right, transparent, rgba(6,182,212,0.3) 30%, rgba(59,130,246,0.4) 50%, rgba(6,182,212,0.3) 70%, transparent)" }} />
-            <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-400 font-medium">
-              <p>&copy; {new Date().getFullYear()} Pacific Engineering. All rights reserved.</p>
-              <div className="flex items-center gap-6">
-                <a href="#" className="hover:text-cyan-400 transition-colors">Privacy Policy</a>
-                <a href="#" className="hover:text-cyan-400 transition-colors">Terms of Service</a>
+          <div className="pt-8">
+            <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-400 font-medium">
+              <p>&copy; {new Date().getFullYear()} Pacific Engineering & Construction Inc. All rights reserved.</p>
+              <div className="flex flex-wrap items-center justify-center gap-4 text-xs font-semibold uppercase tracking-[0.14em] text-slate-500 md:justify-end">
+                <span>Bay Area + Northern California</span>
+                <span>PE / QSD / QSP</span>
+                <span>Class A &amp; B Contractor</span>
                 <a
                   href="https://www.linkedin.com/in/a-mark-waldman-814b119"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center border border-white/10 hover:border-cyan-500/50 hover:bg-white/10 transition-all"
+                  className="ml-1 flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-white/5 transition-all hover:border-cyan-500/50 hover:bg-white/10"
                   aria-label="LinkedIn"
                   data-testid="link-linkedin"
                 >
-                  <Linkedin className="w-4 h-4 text-gray-400 hover:text-cyan-400" />
+                  <Linkedin className="w-4 h-4 text-gray-400 hover:text-cyan-300" />
                 </a>
               </div>
             </div>

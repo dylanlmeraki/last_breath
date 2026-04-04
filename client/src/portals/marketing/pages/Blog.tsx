@@ -8,9 +8,8 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import AnimatedSection from "../components/AnimatedSection";
-import AnimatedGridBackground from "../components/AnimatedGridBackground";
-import BlueprintBackground from "../components/BlueprintBackground";
 import CTASection from "../components/CTASection";
+import MarketingPageHero from "../components/MarketingPageHero";
 
 interface BlogPostData {
   id: string;
@@ -94,40 +93,13 @@ export default function Blog() {
         </script>
       </Helmet>
 
-      <section className="relative py-16 sm:py-24 md:py-32 px-4 sm:px-6 bg-slate-950 overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.6]">
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: "url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1600')" }}
-          />
-          <div className="absolute inset-0 bg-slate-900/60 mix-blend-multiply"></div>
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-slate-900/60 to-slate-950/90 opacity-30" />
-        <div className="absolute inset-0 bg-gradient-to-r from-cyan-950/20 via-transparent to-blue-950/15 opacity-50" />
-        <AnimatedGridBackground baseOpacity={0.5} gridSize={40} triggerInterval={500} animationDuration={2500} className="hidden sm:block z-[1] opacity-30" />
-        <BlueprintBackground className="z-[2] opacity-50" />
-        <div className="absolute top-1/3 left-1/5 w-48 md:w-72 h-48 md:h-72 bg-cyan-500/8 rounded-full blur-[80px] md:blur-[120px] pointer-events-none z-[1]" />
-        <div className="absolute bottom-1/4 right-1/5 w-40 md:w-64 h-40 md:h-64 bg-blue-500/6 rounded-full blur-[60px] md:blur-[100px] pointer-events-none z-[1]" />
-
-        <div className="relative z-[5] max-w-5xl mx-auto text-center">
-          <AnimatedSection direction="up" blur>
-            <div className="relative">
-              <div className="absolute -inset-px bg-gradient-to-r from-cyan-500/5 via-blue-500/3 to-cyan-500/5 rounded-2xl blur-sm hidden sm:block" />
-              <div className="relative bg-slate-950/30 sm:bg-slate-950/40 backdrop-blur-[6px] rounded-lg sm:rounded-xl border border-white/[0.06] shadow-2xl overflow-hidden px-5 py-8 sm:p-10 md:p-12">
-                <div className="h-0.5 sm:h-1 bg-gradient-to-r from-blue-600/80 via-cyan-500/80 to-blue-500/80 absolute top-0 left-0 right-0" />
-                <h1 className="text-white mb-6 text-3xl font-bold sm:text-5xl md:text-6xl tracking-tight" data-testid="text-blog-title">
-                  Insights & Updates
-                </h1>
-                <div className="w-20 sm:w-32 h-1 bg-gradient-to-r from-cyan-200 via-blue-500 to-cyan-200 mx-auto mb-8 rounded-full"></div>
-                <p className="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed font-light">
-                  Expert guidance, industry insights, and the latest updates in stormwater compliance, structural engineering, and construction best practices.
-                </p>
-              </div>
-            </div>
-          </AnimatedSection>
-        </div>
-        <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-600/80 via-cyan-500/80 to-blue-500/80" />
-      </section>
+      <MarketingPageHero
+        title="Pacific Engineering Insights"
+        description="Practical guidance on compliance, engineering coordination, inspections, and Bay Area project delivery from Pacific Engineering’s field-informed perspective."
+        backgroundImage="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1600"
+        sectionTestId="section-blog-hero"
+        titleTestId="text-blog-title"
+      />
 
       <section className="py-12 px-6 bg-white border-b border-slate-200">
         <AnimatedSection direction="up" delay={0.1}>
@@ -328,22 +300,25 @@ export default function Blog() {
         <AnimatedSection direction="up">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-6 tracking-tight">
-              Stay Informed
+              Need a Practical Read on Project Requirements?
             </h2>
             <div className="w-20 sm:w-32 h-1 bg-gradient-to-r from-cyan-200 via-blue-500 to-cyan-200 mx-auto mb-8 rounded-full"></div>
-            <p className="text-xl text-slate-600 mb-8 leading-relaxed font-light">
-              Subscribe to receive the latest updates on compliance regulations, best practices, and industry insights delivered to your inbox.
+            <p className="text-lg text-slate-600 mb-8 leading-relaxed">
+              Talk to Pacific Engineering if you need project-specific guidance on compliance, permitting, or field coordination rather than general updates.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-xl mx-auto">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                data-testid="input-newsletter-email"
-                className="flex h-12 w-full rounded-md border border-input bg-white px-4 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-              />
-              <Button size="lg" data-testid="button-subscribe" className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white whitespace-nowrap rounded-md shadow-lg transition-all duration-300">
-                Subscribe
+              <Link
+                to={createPageUrl("Contact")}
+                data-testid="button-contact-blog"
+                className="pe-button"
+              >
+                Contact Pacific Engineering
+              </Link>
+              <Button size="lg" asChild variant="outline" className="whitespace-nowrap rounded-md">
+                <Link to={createPageUrl("Consultation")}>
+                  Request Consultation
+                </Link>
               </Button>
             </div>
           </div>

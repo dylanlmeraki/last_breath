@@ -1,0 +1,11 @@
+
+services:
+  restexpress:
+    image: restexpress
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: production
+    ports:
+      - 5000:5000

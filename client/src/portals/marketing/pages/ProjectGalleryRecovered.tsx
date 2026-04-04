@@ -7,8 +7,6 @@ import { createPageUrl } from "../lib/utils";
 import { fetchMarketingJson } from "../lib/stubApi";
 import AnimatedSection from "../components/AnimatedSection";
 import SEO from "../components/SEO";
-import AnimatedGridBackground from "../components/AnimatedGridBackground";
-import BlueprintBackground from "../components/BlueprintBackground";
 import CTASection from "../components/CTASection";
 import ProjectGalleryMap from "../components/ProjectGalleryMap";
 
@@ -93,6 +91,16 @@ export default function ProjectGalleryRecovered() {
   const selectedProject =
     filteredProjects.find((project) => project.slug === selectedSlug) ?? filteredProjects[0];
 
+  const filteredCountyCount = useMemo(
+    () => new Set(filteredProjects.map((project) => project.county)).size,
+    [filteredProjects],
+  );
+
+  const filteredServiceCount = useMemo(
+    () => new Set(filteredProjects.flatMap((project) => project.services)).size,
+    [filteredProjects],
+  );
+
   const handleFilterChange = (key: keyof GalleryFilters, value: string) => {
     setFilters((current) => ({ ...current, [key]: value }));
   };
@@ -114,56 +122,53 @@ export default function ProjectGalleryRecovered() {
         url="/project-gallery"
       />
 
-      <section className="project-gallery-hero relative overflow-hidden pe-inverse">
-        <AnimatedGridBackground
-          baseOpacity={0.45}
-          gridSize={40}
-          triggerInterval={500}
-          animationDuration={2500}
-          className="hidden opacity-30 sm:block"
-        />
-        <BlueprintBackground className="z-[2] opacity-50" />
-        <div className="pe-container-wide relative z-[5] py-20 sm:py-24 lg:py-28">
-          <AnimatedSection direction="up" blur>
-            <div className="project-gallery-hero-card technical-frame">
-              <div className="project-gallery-hero-copy pe-stack-sm">
-                <span className="eyebrow cool">Northern California Project Proof</span>
-                <h1 className="pe-heading-1 text-white" data-testid="text-gallery-title">
-                  Project Gallery
+      <section className="pe-section pe-section-tight section-surface-solid">
+        <div className="pe-container-wide">
+          <AnimatedSection direction="up">
+            <div className="project-gallery-intro">
+              <div className="project-gallery-intro-copy pe-stack-sm">
+                <span className="eyebrow">Project Experience</span>
+                <h1 className="pe-heading-2" data-testid="text-gallery-title">
+                  Relevant Work
                 </h1>
-                <p className="pe-lead text-slate-200">
-                  Real Pacific project work across infrastructure, institutional,
-                  aviation, utility, and civic scopes. Filter by service, location,
-                  or project type and trace each project back to the delivery context
-                  behind it.
+                <p className="pe-lead">
+                  Representative Pacific Engineering project work across Bay
+                  Area infrastructure, institutional, aviation, utility, and
+                  civic scopes. Review the map, shortlist, and project records
+                  by county, service, and scope.
                 </p>
-                <div className="flex flex-col gap-3 sm:flex-row">
-                  <Link to={createPageUrl("Consultation")} className="pe-button">
-                    Review Project Scope
-                    <ArrowRight className="h-5 w-5" />
-                  </Link>
-                  <Link to={createPageUrl("Contact")} className="pe-button-secondary">
-                    Talk to Pacific
-                  </Link>
-                </div>
               </div>
 
-              <div className="project-gallery-metrics">
-                <div className="project-gallery-metric pe-card-dark">
-                  <span className="project-gallery-metric-value">{projects.length || 6}</span>
-                  <span className="project-gallery-metric-label">Representative projects</span>
+              <div className="project-gallery-intro-aside">
+                <div className="project-gallery-intro-stats">
+                  <div className="project-gallery-intro-stat">
+                    <span className="project-gallery-intro-stat-value">
+                      {filteredProjects.length || projects.length || 6}
+                    </span>
+                    <span className="project-gallery-intro-stat-label">Representative projects</span>
+                  </div>
+                  <div className="project-gallery-intro-stat">
+                    <span className="project-gallery-intro-stat-value">
+                      {filteredCountyCount || new Set(projects.map((project) => project.county)).size || 3}
+                    </span>
+                    <span className="project-gallery-intro-stat-label">County coverage</span>
+                  </div>
+                  <div className="project-gallery-intro-stat">
+                    <span className="project-gallery-intro-stat-value">
+                      {filteredServiceCount || new Set(projects.flatMap((project) => project.services)).size || 10}
+                    </span>
+                    <span className="project-gallery-intro-stat-label">Service threads</span>
+                  </div>
                 </div>
-                <div className="project-gallery-metric pe-card-dark">
-                  <span className="project-gallery-metric-value">
-                    {new Set(projects.map((project) => project.county)).size || 3}
-                  </span>
-                  <span className="project-gallery-metric-label">Core Bay Area counties</span>
-                </div>
-                <div className="project-gallery-metric pe-card-dark">
-                  <span className="project-gallery-metric-value">
-                    {new Set(projects.flatMap((project) => project.services)).size || 10}
-                  </span>
-                  <span className="project-gallery-metric-label">Service threads represented</span>
+
+                <div className="project-gallery-intro-actions">
+                  <Link to={createPageUrl("Contact")} className="pe-button-ghost">
+                    Discuss Project Fit
+                  </Link>
+                  <Link to={createPageUrl("Consultation")} className="pe-link-inline">
+                    Review Project Scope
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
                 </div>
               </div>
             </div>
@@ -178,7 +183,7 @@ export default function ProjectGalleryRecovered() {
               <div className="project-gallery-filter-header">
                 <div className="pe-stack-sm">
                   <span className="eyebrow">Filter Project Experience</span>
-                  <h2 className="pe-heading-3">Browse project proof by scope, service, and county.</h2>
+                  <h2 className="pe-heading-3">Review project experience by scope, service, and county.</h2>
                 </div>
                 <div className="project-gallery-results" data-testid="text-project-count">
                   <Filter className="h-4 w-4" />
@@ -277,9 +282,9 @@ export default function ProjectGalleryRecovered() {
                   <div className="project-gallery-stage-map pe-card pe-card-pad">
                     <div className="project-gallery-stage-header">
                       <div className="pe-stack-sm">
-                        <span className="eyebrow cool">Location Coverage</span>
+                        <span className="eyebrow cool">County Coverage</span>
                         <h2 className="pe-heading-3">
-                          Trace Pacific project work across the Bay Area.
+                          Trace Pacific Engineering project work across the Bay Area.
                         </h2>
                       </div>
                       <p className="project-gallery-stage-note">
@@ -294,50 +299,69 @@ export default function ProjectGalleryRecovered() {
                     />
                   </div>
 
-                  <div className="project-gallery-spotlight pe-card">
+                  <aside className="project-gallery-sidebar pe-card">
                     {selectedProject ? (
                       <>
-                        <div className="project-gallery-spotlight-media">
-                          <img
-                            src={selectedProject.image}
-                            alt={selectedProject.title}
-                            className="h-full w-full object-cover"
-                          />
-                        </div>
-                        <div className="project-gallery-spotlight-body">
-                          <div className="project-gallery-spotlight-top">
+                        <div className="project-gallery-sidebar-summary">
+                          <div className="project-gallery-sidebar-summary-top">
                             <span className={`pe-pill pe-pill-dot status-${selectedProject.status}`}>
                               {statusLabel(selectedProject.status)}
                             </span>
                             <span className="pe-pill">{selectedProject.category}</span>
-                            <span className="project-gallery-spotlight-date">
+                            <span className="project-gallery-sidebar-summary-date">
                               {selectedProject.date}
                             </span>
                           </div>
                           <h3 className="pe-heading-3">{selectedProject.title}</h3>
-                          <div className="project-gallery-spotlight-location">
+                          <div className="project-gallery-sidebar-summary-location">
                             <MapPin className="h-4 w-4 text-cyan-600" />
                             <span>{selectedProject.location}</span>
                           </div>
-                          <p className="pe-copy">{selectedProject.popupSummary}</p>
-                          <p className="project-gallery-spotlight-proof">
+                          <p className="project-gallery-sidebar-summary-copy">
+                            {selectedProject.popupSummary}
+                          </p>
+                          <p className="project-gallery-sidebar-summary-proof">
                             {selectedProject.homeProof}
                           </p>
-                          <div className="project-gallery-spotlight-services">
-                            {selectedProject.services.map((service) => (
-                              <span key={service} className="pe-pill">
-                                {service}
-                              </span>
-                            ))}
-                          </div>
                           <Link
                             to={`/project/${selectedProject.slug}`}
                             className="pe-link-inline"
                             data-testid={`link-project-${selectedProject.slug}`}
                           >
-                            View full project detail
+                            Open project record
                             <ArrowRight className="h-4 w-4" />
                           </Link>
+                        </div>
+
+                        <div className="project-gallery-sidebar-list" data-testid="gallery-shortlist">
+                          {filteredProjects.map((project) => {
+                            const isSelected = project.slug === selectedProject.slug;
+
+                            return (
+                              <button
+                                key={project.slug}
+                                type="button"
+                                className={`project-gallery-sidebar-item ${isSelected ? "is-active" : ""}`}
+                                onClick={() => handleSelectProject(project.slug)}
+                                data-testid={`button-project-shortlist-${project.slug}`}
+                              >
+                                <div className="project-gallery-sidebar-item-top">
+                                  <span className={`pe-pill pe-pill-dot status-${project.status}`}>
+                                    {statusLabel(project.status)}
+                                  </span>
+                                  <span className="project-gallery-sidebar-item-county">
+                                    {project.county}
+                                  </span>
+                                </div>
+                                <h4 className="project-gallery-sidebar-item-title">
+                                  {project.title}
+                                </h4>
+                                <p className="project-gallery-sidebar-item-meta">
+                                  {project.homeMeta}
+                                </p>
+                              </button>
+                            );
+                          })}
                         </div>
                       </>
                     ) : (
@@ -348,7 +372,7 @@ export default function ProjectGalleryRecovered() {
                         </p>
                       </div>
                     )}
-                  </div>
+                  </aside>
                 </div>
               </AnimatedSection>
 
@@ -369,20 +393,21 @@ export default function ProjectGalleryRecovered() {
                           className="h-full w-full object-cover transition-transform duration-500 hover:scale-[1.03]"
                         />
                         <div className="project-gallery-card-top">
+                          <span className="pe-pill">{project.category}</span>
                           <span className={`pe-pill pe-pill-dot status-${project.status}`}>
                             {statusLabel(project.status)}
                           </span>
-                          <span className="project-gallery-card-date">{project.date}</span>
                         </div>
                       </div>
                       <div className="project-gallery-card-body">
                         <div className="project-gallery-card-meta">
-                          <span className="pe-pill">{project.category}</span>
                           <span className="project-gallery-card-location">
                             <MapPin className="h-4 w-4" />
-                            {project.county}
+                            {project.location}
                           </span>
+                          <span className="project-gallery-card-date">{project.date}</span>
                         </div>
+                        <p className="project-gallery-card-role">{project.homeMeta}</p>
                         <h3
                           className="project-gallery-card-title"
                           data-testid={`text-project-title-${project.id}`}
@@ -390,18 +415,12 @@ export default function ProjectGalleryRecovered() {
                           {project.title}
                         </h3>
                         <p className="project-gallery-card-description">
-                          {project.description}
+                          {project.homeProof}
                         </p>
-                        <div className="project-gallery-card-services">
-                          {project.services.slice(0, 2).map((service) => (
-                            <span key={service} className="pe-pill">
-                              {service}
-                            </span>
-                          ))}
-                          {project.services.length > 2 && (
-                            <span className="pe-pill">+{project.services.length - 2} more</span>
-                          )}
-                        </div>
+                        <span className="project-gallery-card-link">
+                          Open project record
+                          <ArrowRight className="h-4 w-4" />
+                        </span>
                       </div>
                     </Link>
                   </AnimatedSection>
@@ -416,7 +435,7 @@ export default function ProjectGalleryRecovered() {
                 No projects match the current filter set.
               </p>
               <p className="pe-copy">
-                Clear the filters to return to the full Pacific project sample.
+                Clear the filters to return to the full Pacific Engineering project sample.
               </p>
               <button
                 type="button"
@@ -433,7 +452,7 @@ export default function ProjectGalleryRecovered() {
 
       <CTASection
         headline="Ready to Start Your Project?"
-        body="Let's discuss how Pacific can bring the same level of technical coordination, compliance discipline, and delivery support to your next scope."
+        body="Let's discuss how Pacific Engineering can bring the same level of technical coordination, compliance discipline, and delivery support to your next scope."
         primaryButtonText="Get Your Project Moving"
         primaryButtonLink={createPageUrl("Consultation")}
         testIdPrefix="gallery-cta"

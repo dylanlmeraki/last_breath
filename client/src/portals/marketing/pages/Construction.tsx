@@ -4,9 +4,8 @@ import { HardHat, Truck, Wrench, Users, ArrowRight, CheckCircle, Building2, Laye
 import { Card } from "@/components/ui/card";
 import AnimatedSection from "../components/AnimatedSection";
 import SEO from "../components/SEO";
-import AnimatedGridBackground from "../components/AnimatedGridBackground";
-import BlueprintBackground from "../components/BlueprintBackground";
 import CTASection from "../components/CTASection";
+import MarketingPageHero from "../components/MarketingPageHero";
 
 export default function Construction() {
   return (
@@ -17,40 +16,13 @@ export default function Construction() {
         keywords="construction services bay area, class a contractor, class b contractor, infrastructure construction, building construction, residential construction, commercial construction"
         url="/construction"
       />
-      <section className="relative py-16 sm:py-24 md:py-32 px-4 sm:px-6 bg-slate-950 overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.6]">
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: "url('https://images.unsplash.com/photo-1590856029826-c7a73142bbf1?w=1600')" }}
-          />
-          <div className="absolute inset-0 bg-slate-900/60 mix-blend-multiply"></div>
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-slate-900/60 to-slate-950/90 opacity-30" />
-        <div className="absolute inset-0 bg-gradient-to-r from-cyan-950/20 via-transparent to-blue-950/15 opacity-50" />
-        <AnimatedGridBackground baseOpacity={0.5} gridSize={40} triggerInterval={500} animationDuration={2500} className="hidden sm:block z-[1] opacity-30" />
-        <BlueprintBackground className="z-[2] opacity-50" />
-        <div className="absolute top-1/3 left-1/5 w-48 md:w-72 h-48 md:h-72 bg-cyan-500/8 rounded-full blur-[80px] md:blur-[120px] pointer-events-none z-[1]" />
-        <div className="absolute bottom-1/4 right-1/5 w-40 md:w-64 h-40 md:h-64 bg-blue-500/6 rounded-full blur-[60px] md:blur-[100px] pointer-events-none z-[1]" />
-
-        <div className="relative z-[5] max-w-5xl mx-auto text-center">
-          <AnimatedSection direction="up" blur>
-            <div className="relative">
-              <div className="absolute -inset-px bg-gradient-to-r from-cyan-500/5 via-blue-500/3 to-cyan-500/5 rounded-2xl blur-sm hidden sm:block" />
-              <div className="relative bg-slate-950/30 sm:bg-slate-950/40 backdrop-blur-[6px] rounded-lg sm:rounded-xl border border-white/[0.06] shadow-2xl overflow-hidden px-5 py-8 sm:p-10 md:p-12">
-                <div className="h-0.5 sm:h-1 bg-gradient-to-r from-blue-600/80 via-cyan-500/80 to-blue-500/80 absolute top-0 left-0 right-0" />
-                <h1 className="text-white mb-6 text-3xl font-bold sm:text-5xl md:text-6xl tracking-tight" data-testid="text-construction-title">
-                  Construction Services
-                </h1>
-                <div className="w-20 sm:w-32 h-1 bg-gradient-to-r from-cyan-200 via-blue-500 to-cyan-200 mx-auto mb-8 rounded-full"></div>
-                <p className="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed font-light">
-                  We are fully licensed and ready to take on any and all work including residential additions, multi-unit residential, commercial mixed-use, public works, and large-scale infrastructure.
-                </p>
-              </div>
-            </div>
-          </AnimatedSection>
-        </div>
-        <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-600/80 via-cyan-500/80 to-blue-500/80" />
-      </section>
+      <MarketingPageHero
+        title="Construction Services"
+        description="Pacific Engineering supports residential, commercial, public works, and infrastructure scopes with Class A and Class B contractor capability tied to practical field execution."
+        backgroundImage="https://images.unsplash.com/photo-1590856029826-c7a73142bbf1?w=1600"
+        sectionTestId="section-construction-hero"
+        titleTestId="text-construction-title"
+      />
 
       <section className="py-20 px-6 bg-white border-b border-slate-200">
         <div className="max-w-6xl mx-auto">
@@ -103,7 +75,7 @@ export default function Construction() {
             
             <div className="space-y-12">
               <AnimatedSection direction="up" delay={0.1}>
-                <Card className="overflow-hidden border border-slate-200 shadow-xl hover:shadow-2xl transition-all duration-300 rounded-md bg-white" data-testid="card-class-a">
+                <Card className="overflow-hidden rounded-md border border-slate-200 bg-white shadow-md transition-shadow duration-300 hover:shadow-lg" data-testid="card-class-a">
                   <div className="h-2 bg-gradient-to-r from-blue-600 to-cyan-500" />
                   <div className="p-8">
                     <div className="flex flex-col items-center text-center mb-10">
@@ -135,7 +107,7 @@ export default function Construction() {
               </AnimatedSection>
 
               <AnimatedSection direction="up" delay={0.2}>
-                <Card className="overflow-hidden border border-slate-200 shadow-xl hover:shadow-2xl transition-all duration-300 rounded-md bg-white" data-testid="card-class-b">
+                <Card className="overflow-hidden rounded-md border border-slate-200 bg-white shadow-md transition-shadow duration-300 hover:shadow-lg" data-testid="card-class-b">
                   <div className="h-2 bg-gradient-to-r from-cyan-500 to-teal-500" />
                   <div className="p-8">
                     <div className="flex flex-col items-center text-center mb-10">
@@ -167,7 +139,7 @@ export default function Construction() {
               </AnimatedSection>
 
               <AnimatedSection direction="up" delay={0.3}>
-                <Card className="overflow-hidden border border-slate-200 shadow-xl hover:shadow-2xl transition-all duration-300 rounded-md bg-white" data-testid="card-specialty">
+                <Card className="overflow-hidden rounded-md border border-slate-200 bg-white shadow-md transition-shadow duration-300 hover:shadow-lg" data-testid="card-specialty">
                   <div className="h-2 bg-gradient-to-r from-teal-500 to-green-500" />
                   <div className="p-8">
                     <div className="flex flex-col items-center text-center mb-10">
@@ -197,7 +169,7 @@ export default function Construction() {
               </AnimatedSection>
 
               <AnimatedSection direction="up" delay={0.4}>
-                <Card className="overflow-hidden border border-slate-200 shadow-xl hover:shadow-2xl transition-all duration-300 rounded-md bg-white" data-testid="card-integrated">
+                <Card className="overflow-hidden rounded-md border border-slate-200 bg-white shadow-md transition-shadow duration-300 hover:shadow-lg" data-testid="card-integrated">
                   <div className="h-2 bg-gradient-to-r from-green-500 to-blue-500" />
                   <div className="p-8">
                     <div className="flex flex-col items-center text-center mb-10">
@@ -236,21 +208,21 @@ export default function Construction() {
             <div className="w-20 sm:w-32 h-1 bg-gradient-to-r from-cyan-200 via-blue-500 to-cyan-200 mx-auto rounded-full"></div>
             </AnimatedSection>
             <div className="p-8 grid md:grid-cols-3 gap-6">
-              <Card className="p-6 bg-gradient-to-br from-blue-50 to-cyan-50 border-0 shadow-lg" data-testid="card-residential-dev">
+              <Card className="rounded-md border border-slate-200 bg-white p-6 shadow-sm" data-testid="card-residential-dev">
                 <h3 className="text-xl font-bold text-gray-900 text-center mb-3">Residential Development</h3>
                 <p className="text-gray-700 leading-relaxed text-center">
                   Single-family subdivisions, multi-family housing, custom homes, and residential site work
                 </p>
               </Card>
 
-              <Card className="p-6 bg-gradient-to-br from-cyan-50 to-teal-50 border-0 shadow-lg" data-testid="card-commercial-projects">
+              <Card className="rounded-md border border-slate-200 bg-white p-6 shadow-sm" data-testid="card-commercial-projects">
                 <h3 className="text-xl font-bold text-gray-900 text-center mb-3">Commercial Projects</h3>
                 <p className="text-gray-700 leading-relaxed text-center">
                   Retail centers, office buildings, industrial facilities, and mixed-use developments
                 </p>
               </Card>
 
-              <Card className="p-6 bg-gradient-to-br from-teal-50 to-green-50 border-0 shadow-lg" data-testid="card-public-infra">
+              <Card className="rounded-md border border-slate-200 bg-white p-6 shadow-sm" data-testid="card-public-infra">
                 <h3 className="text-xl font-bold text-gray-900 text-center mb-3">Public Infrastructure</h3>
                 <p className="text-gray-700 leading-relaxed text-center">
                   Transportation improvements, utility upgrades, municipal facilities, and public works projects
@@ -259,7 +231,7 @@ export default function Construction() {
             </div>
 
             <div className="space-y-12">
-              <Card className="overflow-hidden border-0 shadow-2xl hover:shadow-3xl transition-all duration-300" data-testid="card-eddy-francisco">
+              <Card className="overflow-hidden rounded-md border border-slate-200 bg-white shadow-md transition-shadow duration-300 hover:shadow-lg" data-testid="card-eddy-francisco">
                 <div className="grid lg:grid-cols-2 gap-0">
                   <div className="relative h-80 lg:h-auto overflow-hidden">
                     <img
@@ -335,7 +307,7 @@ export default function Construction() {
                 </div>
               </Card>
 
-              <Card className="overflow-hidden border-0 shadow-2xl hover:shadow-3xl transition-all duration-300" data-testid="card-san-rafael">
+              <Card className="overflow-hidden rounded-md border border-slate-200 bg-white shadow-md transition-shadow duration-300 hover:shadow-lg" data-testid="card-san-rafael">
                 <div className="grid lg:grid-cols-2 gap-0">
                   <div className="relative h-80 lg:h-auto overflow-hidden lg:order-1">
                     <img
@@ -411,7 +383,7 @@ export default function Construction() {
                 </div>
               </Card>
 
-              <Card className="overflow-hidden border-0 shadow-2xl hover:shadow-3xl transition-all duration-300" data-testid="card-telegraph-hill">
+              <Card className="overflow-hidden rounded-md border border-slate-200 bg-white shadow-md transition-shadow duration-300 hover:shadow-lg" data-testid="card-telegraph-hill">
                 <div className="grid lg:grid-cols-2 gap-0">
                   <div className="relative h-80 lg:h-auto overflow-hidden">
                     <img
@@ -501,8 +473,8 @@ export default function Construction() {
 
           <div className="grid md:grid-cols-3 gap-8">
             <AnimatedSection direction="up" delay={0.1}>
-              <div className="bg-white border border-slate-200 rounded-md p-8 text-center group hover:-translate-y-1 hover:shadow-xl transition-all duration-300" data-testid="card-engineering-bg">
-                <div className="bg-gradient-to-br from-blue-400 to-blue-700 rounded-md w-16 h-16 flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform">
+              <div className="rounded-md border border-slate-200 bg-white p-8 text-center shadow-sm transition-shadow duration-300 hover:shadow-md" data-testid="card-engineering-bg">
+                <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-md bg-gradient-to-br from-blue-400 to-blue-700 shadow-md">
                   <HardHat className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-xl font-bold text-slate-900 mb-3 uppercase tracking-wide">Engineering Background</h3>
@@ -513,8 +485,8 @@ export default function Construction() {
             </AnimatedSection>
 
             <AnimatedSection direction="up" delay={0.2}>
-              <div className="bg-white border border-slate-200 rounded-md p-8 text-center group hover:-translate-y-1 hover:shadow-xl transition-all duration-300" data-testid="card-own-equipment">
-                <div className="bg-gradient-to-br from-cyan-400 to-cyan-700 rounded-md w-16 h-16 flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform">
+              <div className="rounded-md border border-slate-200 bg-white p-8 text-center shadow-sm transition-shadow duration-300 hover:shadow-md" data-testid="card-own-equipment">
+                <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-md bg-gradient-to-br from-cyan-400 to-cyan-700 shadow-md">
                   <Truck className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-xl font-bold text-slate-900 mb-3 uppercase tracking-wide">Own Equipment & Crews</h3>
@@ -525,8 +497,8 @@ export default function Construction() {
             </AnimatedSection>
 
             <AnimatedSection direction="up" delay={0.3}>
-              <div className="bg-white border border-slate-200 rounded-md p-8 text-center group hover:-translate-y-1 hover:shadow-xl transition-all duration-300" data-testid="card-on-time">
-                <div className="bg-gradient-to-br from-teal-400 to-teal-700 rounded-md w-16 h-16 flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform">
+              <div className="rounded-md border border-slate-200 bg-white p-8 text-center shadow-sm transition-shadow duration-300 hover:shadow-md" data-testid="card-on-time">
+                <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-md bg-gradient-to-br from-teal-400 to-teal-700 shadow-md">
                   <Users className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-xl font-bold text-slate-900 mb-3 uppercase tracking-wide">On-Time Performance</h3>

@@ -23,6 +23,18 @@ export default function HomeProjectEvidence() {
     [activeId],
   );
 
+  const visibleItems = useMemo(() => {
+    if (!homeProjectSnippets.length) return [];
+
+    const shortlistLength = Math.min(3, homeProjectSnippets.length);
+    const startIndex = activeIndex >= 0 ? activeIndex : 0;
+
+    return Array.from({ length: shortlistLength }, (_, offset) => {
+      const index = (startIndex + offset) % homeProjectSnippets.length;
+      return homeProjectSnippets[index];
+    });
+  }, [activeIndex]);
+
   const setActiveProject = (id: string, source: "auto" | "user" = "user") => {
     if (source === "user") {
       setIsAutoPaused(true);
@@ -61,12 +73,13 @@ export default function HomeProjectEvidence() {
         <div className="pe-stack-sm" style={{ maxWidth: "56rem" }}>
           <span className="eyebrow cool">Project Evidence</span>
           <h2 className="pe-heading-2">
-            Bay Area project proof tied to real delivery conditions.
+            Representative Bay Area project records tied to real delivery conditions.
           </h2>
           <p className="pe-lead">
-            Representative infrastructure, institutional, and utility work surfaced
-            early so visitors can read Pacific through project conditions instead
-            of generic service labels.
+            Infrastructure, institutional, utility, and aviation work surfaced
+            through location, responsibility, and field context so visitors can
+            read Pacific Engineering through the work itself rather than
+            through generic service language.
           </p>
         </div>
 
@@ -74,11 +87,11 @@ export default function HomeProjectEvidence() {
           <div className="project-evidence-panel">
             <div className="project-evidence-toolbar">
               <div className="project-evidence-status">
-                <span className="project-evidence-kicker">Interactive project proof</span>
+                <span className="project-evidence-kicker">Regional project shortlist</span>
                 <span className="project-evidence-note">
                   {isAutoPaused
-                    ? "Rotation paused after your interaction"
-                    : "Auto-rotating through featured case-study snapshots"}
+                    ? "Selection held on the project record you chose"
+                    : "Rotating through representative Bay Area project records"}
                 </span>
               </div>
 
@@ -103,7 +116,7 @@ export default function HomeProjectEvidence() {
             </div>
 
             <ProjectSnippetRotator
-              items={homeProjectSnippets}
+              items={visibleItems}
               activeId={activeId}
               onActivate={setActiveProject}
             />
@@ -123,8 +136,8 @@ export default function HomeProjectEvidence() {
 
         <div className="project-evidence-cta-row">
           <p className="project-evidence-cta-copy">
-            Tap a card or map marker to review project proof tied to field
-            conditions, permitting context, and delivery outcomes.
+            Review the shortlist, confirm the location on the map, and then open
+            the full project record for the broader delivery story.
           </p>
           <Link to={createPageUrl("ProjectGallery")} className="pe-link-inline">
             View all project experience

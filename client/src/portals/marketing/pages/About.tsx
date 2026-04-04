@@ -6,9 +6,8 @@ import AnimatedSection from "../components/AnimatedSection";
 import AnimatedCounter from "../components/AnimatedCounter";
 import { ServiceCardsGrid } from "../components/ServiceCards";
 import SEO from "../components/SEO";
-import AnimatedGridBackground from "../components/AnimatedGridBackground";
-import BlueprintBackground from "../components/BlueprintBackground";
 import CTASection from "../components/CTASection";
+import MarketingPageHero from "../components/MarketingPageHero";
 import bayBridgeImg from "@assets/bay-bridge-sunrise_1773821710974.jpg";
 
 export default function About() {
@@ -20,40 +19,15 @@ export default function About() {
         keywords="about pacific engineering, civil engineering company, construction firm bay area, PE certified engineers, engineering company history, PECI team"
         url="/about"
       />
-      <section className="relative py-16 sm:py-24 md:py-32 px-4 sm:px-6 bg-slate-950 overflow-hidden" data-testid="section-about-hero">
-        <div className="absolute inset-0 opacity-[0.6]">
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: `url(${bayBridgeImg})` }}
-          />
-          <div className="absolute inset-0 bg-slate-900/60 mix-blend-multiply"></div>
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-slate-900/60 to-slate-950/90 opacity-30" />
-        <div className="absolute inset-0 bg-gradient-to-r from-cyan-950/20 via-transparent to-blue-950/15 opacity-50" />
-        <AnimatedGridBackground baseOpacity={0.5} gridSize={40} triggerInterval={500} animationDuration={2500} className="hidden sm:block z-[1] opacity-30" />
-        <BlueprintBackground className="z-[2] opacity-50" />
-        <div className="absolute top-1/3 left-1/5 w-48 md:w-72 h-48 md:h-72 bg-cyan-500/8 rounded-full blur-[80px] md:blur-[120px] pointer-events-none z-[1]" />
-        <div className="absolute bottom-1/4 right-1/5 w-40 md:w-64 h-40 md:h-64 bg-blue-500/6 rounded-full blur-[60px] md:blur-[100px] pointer-events-none z-[1]" />
+      <MarketingPageHero
+        title="About Pacific Engineering"
+        description="Pacific Engineering & Construction Inc. brings engineering, compliance, and construction support together so project teams can move with clearer judgment, steadier coordination, and stronger field readiness."
+        backgroundImage={bayBridgeImg}
+        sectionTestId="section-about-hero"
+        titleTestId="text-about-title"
+      />
 
-        <div className="relative z-[5] max-w-5xl mx-auto text-center">
-          <AnimatedSection direction="up" blur>
-            <div className="relative">
-              <div className="absolute -inset-px bg-gradient-to-r from-cyan-500/5 via-blue-500/3 to-cyan-500/5 rounded-2xl blur-sm hidden sm:block" />
-              <div className="relative bg-slate-950/30 sm:bg-slate-950/40 backdrop-blur-[6px] rounded-lg sm:rounded-xl border border-white/[0.06] shadow-2xl overflow-hidden px-5 py-8 sm:p-10 md:p-12">
-                <div className="h-0.5 sm:h-1 bg-gradient-to-r from-blue-600/80 via-cyan-500/80 to-blue-500/80 absolute top-0 left-0 right-0" />
-                <h1 className="text-white mb-6 text-3xl font-bold sm:text-5xl md:text-6xl tracking-tight" data-testid="text-about-title">About Pacific Engineering</h1>
-                <div className="w-20 sm:w-32 h-1 bg-gradient-to-r from-cyan-200 via-blue-500 to-cyan-200 mx-auto mb-8 rounded-full"></div>
-                <p className="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed font-light">
-                  Engineering, consulting, and construction services backed by decades of experience and a commitment to getting projects done right
-                </p>
-              </div>
-            </div>
-          </AnimatedSection>
-        </div>
-        <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-600/80 via-cyan-500/80 to-blue-500/80" />
-      </section>
-
-      <section className="py-20 px-6 bg-white border-b border-slate-200" data-testid="section-company-story">
+      <section className="py-20 px-6 bg-white border-b border-slate-200 overflow-hidden" data-testid="section-company-story">
         <div className="max-w-6xl mx-auto">
           <div className="mb-20">
             <AnimatedSection direction="up" className="text-center mb-12">
@@ -63,7 +37,7 @@ export default function About() {
               <div className="w-20 sm:w-32 h-1 bg-gradient-to-r from-cyan-200 via-blue-500 to-cyan-200 mx-auto mb-8 rounded-full"></div>
             </AnimatedSection>
 
-            <div className="grid lg:grid-cols-2 gap-12 items-start">
+            <div className="grid grid-cols-1 gap-y-12 lg:grid-cols-2 lg:gap-x-12 items-start">
               <AnimatedSection direction="left">
                 <div className="space-y-4 text-lg text-slate-700 leading-relaxed font-light text-center lg:text-left">
                 <p>
@@ -124,7 +98,7 @@ in a timely manner.
               <ServiceCardsGrid />
             </div>
 
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="grid grid-cols-1 gap-y-12 lg:grid-cols-2 lg:gap-x-12 items-center">
               <AnimatedSection direction="left" className="order-2 lg:order-1">
                 <div className="aspect-[4/3] rounded-md overflow-hidden shadow-2xl border-4 border-slate-100">
                   <img
@@ -227,7 +201,7 @@ in a timely manner.
           style={{ backgroundImage: "url('https://www.transparenttextures.com/patterns/carbon-fibre.png')" }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-slate-950/40 via-transparent to-slate-950/40 pointer-events-none" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-cyan-500/[0.04] rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 h-[300px] w-[calc(100vw-2rem)] max-w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-500/[0.04] blur-[120px] pointer-events-none" />
 
         <div className="max-w-6xl mx-auto relative z-10">
           <AnimatedSection direction="up" className="text-center mb-10">

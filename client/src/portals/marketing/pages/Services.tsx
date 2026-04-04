@@ -2,25 +2,15 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { createPageUrl } from "../lib/utils";
 import { FileText, Shield, ArrowRight, Check, Droplets, ClipboardCheck, Users, Zap, CheckCircle, Info, Plus, X } from "lucide-react";
-import { ShinyButton } from "../components/ShinyButton";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import AnimatedSection from "../components/AnimatedSection";
 import SEO from "../components/SEO";
-import AnimatedGridBackground from "../components/AnimatedGridBackground";
-import BlueprintBackground from "../components/BlueprintBackground";
 import CTASection from "../components/CTASection";
+import MarketingPageHero from "../components/MarketingPageHero";
 
 export default function Services() {
   const [isInfoExpanded, setIsInfoExpanded] = useState(false);
-  const consultationShinyVars = {
-    "--shiny-cta-bg": "#0ea5e9",
-    "--shiny-cta-bg-subtle": "rgba(14, 165, 233, 0.2)",
-    "--shiny-cta-highlight": "#2563eb",
-    "--shiny-cta-highlight-subtle": "#38bdf8",
-    "--shiny-cta-shadow": "rgba(59, 130, 246, 0.4)",
-    "--shiny-cta-glow": "rgba(56, 189, 248, 0.55)",
-  };
   
   return (
     <div className="min-h-screen bg-slate-50" data-testid="page-services">
@@ -30,70 +20,43 @@ export default function Services() {
         keywords="SWPPP services, QSD services, QSP services, stormwater planning, BMP design, erosion control, construction stormwater compliance"
         url="/services"
       />
-      <section className="relative py-16 sm:py-24 md:py-32 px-4 sm:px-6 bg-slate-950 overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.6]">
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: "url('https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=1600')" }}
-          />
-          <div className="absolute inset-0 bg-slate-900/60 mix-blend-multiply"></div>
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-slate-900/60 to-slate-950/90 opacity-30" />
-        <div className="absolute inset-0 bg-gradient-to-r from-cyan-950/20 via-transparent to-blue-950/15 opacity-50" />
-        <AnimatedGridBackground baseOpacity={0.5} gridSize={40} triggerInterval={500} animationDuration={2500} className="hidden sm:block z-[1] opacity-30" />
-        <BlueprintBackground className="z-[2] opacity-50" />
-        <div className="absolute top-1/3 left-1/5 w-48 md:w-72 h-48 md:h-72 bg-cyan-500/8 rounded-full blur-[80px] md:blur-[120px] pointer-events-none z-[1]" />
-        <div className="absolute bottom-1/4 right-1/5 w-40 md:w-64 h-40 md:h-64 bg-blue-500/6 rounded-full blur-[60px] md:blur-[100px] pointer-events-none z-[1]" />
-
-        <div className="relative z-[5] max-w-5xl mx-auto text-center">
-          <AnimatedSection direction="up" blur>
-            <div className="relative">
-              <div className="absolute -inset-px bg-gradient-to-r from-cyan-500/5 via-blue-500/3 to-cyan-500/5 rounded-2xl blur-sm hidden sm:block" />
-              <div className="relative bg-slate-950/30 sm:bg-slate-950/40 backdrop-blur-[6px] rounded-lg sm:rounded-xl border border-white/[0.06] shadow-2xl overflow-hidden px-5 py-8 sm:p-10 md:p-12">
-                <div className="h-0.5 sm:h-1 bg-gradient-to-r from-blue-600/80 via-cyan-500/80 to-blue-500/80 absolute top-0 left-0 right-0" />
-                <h1 className="text-white mb-6 text-3xl font-bold sm:text-5xl md:text-6xl tracking-tight" data-testid="text-services-title">
-                  Stormwater Pollution Planning Services
-                </h1>
-                <div className="w-20 sm:w-32 h-1 bg-gradient-to-r from-cyan-200 via-blue-500 to-cyan-200 mx-auto mb-8 rounded-full"></div>
-                <p className="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed font-light">
-                  We help keep your projects on track, on time, and compliant - providing Stormwater Plans from inception to completion. All work is performed by our in-house Professional Engineers (PEs), Qualified SWPPP Developers (QSDs), and Qualified SWPPP Practitioners (QSPs).
-                </p>
-              </div>
-            </div>
-          </AnimatedSection>
-        </div>
-        <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-600/80 via-cyan-500/80 to-blue-500/80" />
-      </section>
+      <MarketingPageHero
+        title="Stormwater Planning & SWPPP Services"
+        description="Pacific Engineering supports stormwater planning, implementation, and closeout with in-house PE, QSD, and QSP expertise shaped around compliance, sequencing, and field conditions."
+        backgroundImage="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=1600"
+        sectionTestId="section-services-hero"
+        titleTestId="text-services-title"
+      />
       <section className="py-16 px-6 bg-slate-50 border-b border-slate-200 pt-[24px] pb-[24px]">
         <div className="max-w-7xl mx-auto">
           <AnimatedSection direction="up">
             <div className="grid md:grid-cols-4 gap-2">
-              <div className="bg-white border border-slate-200 rounded-md p-6 text-center group hover:-translate-y-1 hover:shadow-xl transition-all duration-300" data-testid="stat-compliance-rate">
-                <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-700 rounded-md flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform">
+              <div className="rounded-md border border-slate-200 bg-white p-6 text-center shadow-sm transition-shadow duration-300 hover:shadow-md" data-testid="stat-compliance-rate">
+                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-md bg-gradient-to-br from-blue-400 to-blue-700 shadow-md">
                   <Droplets className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="text-2xl font-bold text-slate-900 mb-2">100%</h3>
                 <p className="text-slate-600">Compliance Rate</p>
               </div>
               
-              <div className="bg-white border border-slate-200 rounded-md p-6 text-center group hover:-translate-y-1 hover:shadow-xl transition-all duration-300" data-testid="stat-projects-completed">
-                <div className="w-16 h-16 bg-gradient-to-br from-cyan-400 to-cyan-700 rounded-md flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform">
+              <div className="rounded-md border border-slate-200 bg-white p-6 text-center shadow-sm transition-shadow duration-300 hover:shadow-md" data-testid="stat-projects-completed">
+                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-md bg-gradient-to-br from-cyan-400 to-cyan-700 shadow-md">
                   <ClipboardCheck className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="text-2xl font-bold text-slate-900 mb-2">500+</h3>
                 <p className="text-slate-600">Projects Completed</p>
               </div>
               
-              <div className="bg-white border border-slate-200 rounded-md p-6 text-center group hover:-translate-y-1 hover:shadow-xl transition-all duration-300" data-testid="stat-support">
-                <div className="w-16 h-16 bg-gradient-to-br from-teal-400 to-teal-700 rounded-md flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform">
+              <div className="rounded-md border border-slate-200 bg-white p-6 text-center shadow-sm transition-shadow duration-300 hover:shadow-md" data-testid="stat-support">
+                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-md bg-gradient-to-br from-teal-400 to-teal-700 shadow-md">
                   <Users className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="text-2xl font-bold text-slate-900 mb-2">24/7</h3>
                 <p className="text-slate-600">Support Available</p>
               </div>
               
-              <div className="bg-white border border-slate-200 rounded-md p-6 text-center group hover:-translate-y-1 hover:shadow-xl transition-all duration-300" data-testid="stat-turnaround">
-                <div className="w-16 h-16 bg-gradient-to-br from-green-400 to-green-700 rounded-md flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform">
+              <div className="rounded-md border border-slate-200 bg-white p-6 text-center shadow-sm transition-shadow duration-300 hover:shadow-md" data-testid="stat-turnaround">
+                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-md bg-gradient-to-br from-green-400 to-green-700 shadow-md">
                   <Zap className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="text-2xl font-bold text-slate-900 mb-2">Fast</h3>
@@ -106,7 +69,7 @@ export default function Services() {
       <section className="py-20 px-6 bg-slate-50">
         <div className="max-w-7xl mx-auto space-y-12">
           <AnimatedSection direction="up" delay={0.1}>
-            <Card className="overflow-hidden border border-slate-200 shadow-xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 rounded-md bg-white">
+            <Card className="overflow-hidden rounded-md border border-slate-200 bg-white shadow-md transition-shadow duration-300 hover:shadow-lg">
               <div className="h-2 bg-gradient-to-r from-blue-600 to-cyan-500" />
               <div className="grid lg:grid-cols-2 gap-0">
                 <div className="relative order-2 lg:order-1 h-96 lg:h-auto">
@@ -168,14 +131,9 @@ export default function Services() {
                   </div>
 
                   <div className="flex justify-center mt-8">
-                    <Link to={createPageUrl("Consultation")} data-testid="link-start-swppp">
-                      <ShinyButton
-                        className="group inline-flex items-center justify-center gap-2 whitespace-nowrap text-white font-bold tracking-tight text-lg px-10 py-7 rounded-md shadow-lg hover:shadow-blue-500/60 hover:-translate-y-1 active:scale-95 transition-all duration-300"
-                        style={consultationShinyVars}
-                      >
+                    <Link to={createPageUrl("Consultation")} data-testid="link-start-swppp" className="pe-button">
                         Start Your SWPPP
                         <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-                      </ShinyButton>
                     </Link>
                   </div>
                 </div>
@@ -184,7 +142,7 @@ export default function Services() {
           </AnimatedSection>
 
           <AnimatedSection direction="up" delay={0.2}>
-            <Card className="overflow-hidden border border-slate-200 shadow-xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 rounded-md bg-white">
+            <Card className="overflow-hidden rounded-md border border-slate-200 bg-white shadow-md transition-shadow duration-300 hover:shadow-lg">
               <div className="h-2 bg-gradient-to-r from-cyan-500 to-teal-500" />
               <div className="grid lg:grid-cols-2 gap-0">
                 <div className="p-8 lg:p-12">
@@ -237,14 +195,9 @@ export default function Services() {
                   </div>
 
                   <div className="flex justify-center mt-8">
-                    <Link to={createPageUrl("Consultation")} data-testid="link-get-swppp">
-                      <ShinyButton
-                        className="group inline-flex items-center justify-center gap-2 whitespace-nowrap text-white font-bold tracking-tight text-lg px-10 py-7 rounded-md shadow-lg hover:shadow-cyan-500/50 hover:-translate-y-1 active:scale-95 transition-all duration-300"
-                        style={consultationShinyVars}
-                      >
+                    <Link to={createPageUrl("Consultation")} data-testid="link-get-swppp" className="pe-button-secondary">
                         Get Your SWPPP
                         <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-                      </ShinyButton>
                     </Link>
                   </div>
                 </div>
@@ -262,11 +215,11 @@ export default function Services() {
           </AnimatedSection>
           
           <AnimatedSection direction="up" delay={0.3}>
-            <Card className="p-8 bg-blue-50 border border-blue-200 rounded-md shadow-lg">
+            <Card className="rounded-md border border-slate-200 bg-white p-8 shadow-sm">
               <div className="flex items-start justify-between gap-4">
                 <div className="flex items-start gap-4 flex-1">
                   <div className="flex-shrink-0">
-                    <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-700 rounded-md flex items-center justify-center shadow-lg">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-md bg-slate-900 shadow-sm">
                       <Info className="w-6 h-6 text-white" />
                     </div>
                   </div>
@@ -322,8 +275,8 @@ export default function Services() {
 
           <div className="grid md:grid-cols-3 gap-4">
             <AnimatedSection direction="up" delay={0.1}>
-              <div className="bg-white border border-slate-200 rounded-md p-8 text-center group hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
-                <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-700 rounded-md flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform">
+              <div className="rounded-md border border-slate-200 bg-white p-8 text-center shadow-sm transition-shadow duration-300 hover:shadow-md">
+                <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-md bg-gradient-to-br from-blue-400 to-blue-700 shadow-md">
                   <ClipboardCheck className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-xl font-bold text-slate-900 mb-3 uppercase tracking-wide">PE-Certified Team</h3>
@@ -334,8 +287,8 @@ export default function Services() {
             </AnimatedSection>
 
             <AnimatedSection direction="up" delay={0.2}>
-              <div className="bg-white border border-slate-200 rounded-md p-8 text-center group hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
-                <div className="w-16 h-16 bg-gradient-to-br from-cyan-400 to-cyan-700 rounded-md flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform">
+              <div className="rounded-md border border-slate-200 bg-white p-8 text-center shadow-sm transition-shadow duration-300 hover:shadow-md">
+                <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-md bg-gradient-to-br from-cyan-400 to-cyan-700 shadow-md">
                   <Zap className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-xl font-bold text-slate-900 mb-3 uppercase tracking-wide">Fast Turnaround</h3>
@@ -346,8 +299,8 @@ export default function Services() {
             </AnimatedSection>
 
             <AnimatedSection direction="up" delay={0.3}>
-              <div className="bg-white border border-slate-200 rounded-md p-8 text-center group hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
-                <div className="w-16 h-16 bg-gradient-to-br from-teal-400 to-teal-700 rounded-md flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform">
+              <div className="rounded-md border border-slate-200 bg-white p-8 text-center shadow-sm transition-shadow duration-300 hover:shadow-md">
+                <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-md bg-gradient-to-br from-teal-400 to-teal-700 shadow-md">
                   <Users className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-xl font-bold text-slate-900 mb-3 uppercase tracking-wide">Compliance Expertise</h3>
