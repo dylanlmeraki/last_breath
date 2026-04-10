@@ -1,5 +1,14 @@
 {
 	"servers": {
+		"filesystem": {
+			"command": "npx",
+			"args": [
+				"-y",
+				"@modelcontextprotocol/server-filesystem",
+				"${workspaceFolder}"
+			],
+			"type": "stdio"
+		},
 		"github": {
 			"type": "http",
 			"url": "https://api.githubcopilot.com/mcp/"
@@ -41,6 +50,13 @@
 			"gallery": "https://api.mcp.github.com",
 			"version": "1.0.0"
 		},
+		"fetch": {
+			"command": "uvx",
+			"args": [
+				"mcp-server-fetch"
+			],
+			"type": "stdio"
+		}
 	},
 	"inputs": [
 		{

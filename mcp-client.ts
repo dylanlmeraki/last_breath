@@ -1,4 +1,4 @@
-type MCPServerName = "github" | "figma" | "playwright" | "context7";
+type MCPServerName = "github" | "figma" | "playwright" | "context7" | "filesystem";
 
 export interface MCPClientOptions {
   dryRun?: boolean;
@@ -40,6 +40,7 @@ export class MCPClient {
       figma: "http://127.0.0.1:3845/mcp",
       playwright: "",
       context7: "",
+      filesystem: "http://127.0.0.1:3846/mcp",
     };
 
     return urls[serverName];
@@ -71,6 +72,46 @@ export class MCPClient {
       case "figma:create_frame":
         return {
           node_id: `mock-node-${String(params.name ?? "component").toLowerCase()}`,
+        };
+
+      case "filesystem:read_file":
+        return {
+          content: "// Mock file content\nconsole.log('hello');",
+        };
+
+      case "filesystem:read_directory":
+        return {
+          content:
+            "[DIR] src\n[DIR] dist\n[FILE] package.json\n[FILE] README.md",
+        };
+
+      case "filesystem:write_file":
+      case "filesystem:append_file":
+        return {
+          content: `File operation completed: ${params.path}`,
+        };
+
+      case "filesystem:delete_file":
+        return {
+          content: `File deleted: ${params.path}`,
+        };
+
+      case "filesystem:create_directory":
+        return {
+          content: `Directory created: ${params.path}`,
+        };
+
+      case "filesystem:get_file_info":
+        return {
+          content: JSON.stringify({
+            path: params.path,
+            size: 1024,
+            created: new Date().toISOString(),
+            modified: new Date().toISOString(),
+            isDirectory: false,
+            isFile: true,
+            permissions: "644",
+          }),
         };
 
       case "playwright:navigate":

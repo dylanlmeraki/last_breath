@@ -160,6 +160,10 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
   const isFullDesktop = shellState.profile === "full-desktop";
   const isCompactDesktop = shellState.profile === "compact-desktop";
   const usesMenuShell = !isFullDesktop;
+  const headerBrandName =
+    shellState.profile === "full-desktop" && !isScrolled
+      ? "Pacific Engineering & Construction Inc."
+      : "Pacific Engineering";
   const mobileStickyHeight =
     shellState.showStickyCta && !isMobileMenuOpen
       ? isStickyCtaCollapsed
@@ -181,36 +185,39 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
       data-shell-profile={shellState.profile}
       data-shell-touch={shellState.isTouchLike ? "true" : "false"}
     >
-      <header className={`fixed top-0 left-0 right-0 z-40 border-b border-white/10 transition-all duration-300 ${isScrolled ? "bg-slate-950/96 backdrop-blur-sm shadow-[0_10px_24px_rgba(2,8,23,0.16)]" : "bg-slate-950/98 shadow-[0_8px_18px_rgba(2,8,23,0.12)]"}`}>
+      <header className={`fixed top-0 left-0 right-0 z-40 border-b border-slate-200/90 transition-all duration-300 ${isScrolled ? "bg-white/98 shadow-[0_10px_24px_rgba(15,23,42,0.12)]" : "bg-white shadow-[0_8px_18px_rgba(15,23,42,0.08)]"}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="flex h-20 items-center justify-between">
             <Link to={createPageUrl("Home")} className="flex items-center gap-3 group" data-testid="link-logo">
               <div className="relative">
                 <img src="/images/pe-logo.png" alt="Pacific Engineering Logo" className={`rounded-md object-contain relative z-10 transition-all duration-300 ${isScrolled ? "h-11 w-11" : "h-12 w-12"}`} />
               </div>
-              <div className="min-w-0 hidden sm:block">
-                <div className={`font-bold text-white tracking-tight truncate transition-all duration-300 ${isScrolled ? "text-[15px] sm:text-base lg:text-[1.05rem]" : "text-[18px] sm:text-lg lg:text-[1.08rem] xl:text-[1.32rem]"}`}>
-                  {isScrolled ? "Pacific Engineering" : "Pacific Engineering & Construction Inc."}
+              <div className="min-w-0 max-w-[12rem] sm:max-w-[17rem] lg:max-w-none block">
+                <div
+                  data-testid="brand-wordmark"
+                  className={`font-bold text-slate-900 tracking-tight truncate transition-all duration-300 ${isScrolled ? "text-[14px] sm:text-base lg:text-[1.05rem]" : "text-[15px] sm:text-lg lg:text-[1.08rem] xl:text-[1.3rem]"}`}
+                >
+                  {headerBrandName}
                 </div>
-                <div className={`font-medium text-slate-300 tracking-[0.1em] hidden sm:block transition-all duration-300 ${isScrolled ? "text-[10px]" : "text-[11px]"}`}>Consulting Engineers & Contractors</div>
+                <div className={`font-medium text-slate-500 tracking-[0.1em] hidden md:block transition-all duration-300 ${isScrolled ? "text-[10px]" : "text-[11px]"}`}>Consulting Engineers & Contractors</div>
               </div>
             </Link>
 
             {isFullDesktop ? (
               <nav className="flex h-full items-center gap-1.5" data-testid="nav-main">
-                <Link to={createPageUrl("Home")} className="flex h-full items-center px-3 text-[13px] font-semibold tracking-[0.08em] text-slate-100 transition-colors hover:text-white xl:px-3.5" data-testid="nav-home">Home</Link>
+                <Link to={createPageUrl("Home")} className="flex h-full items-center px-3 text-[13px] font-semibold tracking-[0.08em] text-slate-700 transition-colors hover:text-slate-950 xl:px-3.5" data-testid="nav-home">Home</Link>
 
                 <div className="relative group h-full flex items-center" onMouseEnter={() => setServicesDropdownOpen(true)} onMouseLeave={() => setServicesDropdownOpen(false)}>
-                  <Link to={createPageUrl("ServicesOverview")} className="flex h-full items-center gap-1 px-3 text-[13px] font-semibold tracking-[0.08em] text-slate-100 transition-colors hover:text-white xl:px-3.5" data-testid="nav-services">
+                  <Link to={createPageUrl("ServicesOverview")} className="flex h-full items-center gap-1 px-3 text-[13px] font-semibold tracking-[0.08em] text-slate-700 transition-colors hover:text-slate-950 xl:px-3.5" data-testid="nav-services">
                     Services
                     <ChevronDown className={`w-4 h-4 transition-transform ${servicesDropdownOpen ? "rotate-180" : ""}`} />
                   </Link>
                   {servicesDropdownOpen && (
                     <div className="absolute left-0 top-full pt-3">
-                      <div className="w-72 overflow-hidden rounded-lg border border-white/10 bg-slate-950/98 py-2 shadow-[0_16px_30px_rgba(2,8,23,0.24)]">
-                        <Link to={createPageUrl("ServicesOverview")} className="block border-b border-white/10 px-5 py-3 text-left text-[12px] font-bold uppercase tracking-[0.14em] text-white hover:bg-white/5" data-testid="nav-services-overview">Pacific Engineering Services</Link>
+                      <div className="w-72 overflow-hidden rounded-md border border-slate-200 bg-white py-2 shadow-[0_16px_30px_rgba(15,23,42,0.14)]">
+                        <Link to={createPageUrl("ServicesOverview")} className="block border-b border-slate-200 px-5 py-3 text-left text-[12px] font-bold uppercase tracking-[0.14em] text-slate-800 hover:bg-slate-100" data-testid="nav-services-overview">Pacific Engineering Services</Link>
                         {servicesItems.map((item) => (
-                          <Link key={item.path} to={item.path} className="block px-5 py-3 text-left text-sm font-medium text-slate-300 transition-colors hover:bg-white/5 hover:text-white" data-testid={`nav-service-${item.name.toLowerCase().replace(/\s+/g, "-")}`}>{item.name}</Link>
+                          <Link key={item.path} to={item.path} className="block px-5 py-3 text-left text-sm font-medium text-slate-700 transition-colors hover:bg-slate-100 hover:text-slate-950" data-testid={`nav-service-${item.name.toLowerCase().replace(/\s+/g, "-")}`}>{item.name}</Link>
                         ))}
                       </div>
                     </div>
@@ -218,22 +225,22 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
                 </div>
 
                 <div className="relative group h-full flex items-center" onMouseEnter={() => setAboutDropdownOpen(true)} onMouseLeave={() => setAboutDropdownOpen(false)}>
-                  <Link to={createPageUrl("About")} className="flex h-full items-center gap-1 px-3 text-[13px] font-semibold tracking-[0.08em] text-slate-100 transition-colors hover:text-white xl:px-3.5" data-testid="nav-about">
+                  <Link to={createPageUrl("About")} className="flex h-full items-center gap-1 px-3 text-[13px] font-semibold tracking-[0.08em] text-slate-700 transition-colors hover:text-slate-950 xl:px-3.5" data-testid="nav-about">
                     About
                     <ChevronDown className={`w-4 h-4 transition-transform ${aboutDropdownOpen ? "rotate-180" : ""}`} />
                   </Link>
                   {aboutDropdownOpen && (
                     <div className="absolute left-0 top-full pt-3">
-                      <div className="w-60 overflow-hidden rounded-lg border border-white/10 bg-slate-950/98 py-2 shadow-[0_16px_30px_rgba(2,8,23,0.24)]">
+                      <div className="w-60 overflow-hidden rounded-md border border-slate-200 bg-white py-2 shadow-[0_16px_30px_rgba(15,23,42,0.14)]">
                         {aboutItems.map((item) => (
-                          <Link key={item.path} to={item.path} className="block px-5 py-3 text-left text-sm font-medium text-slate-300 transition-colors hover:bg-white/5 hover:text-white" data-testid={`nav-about-${item.name.toLowerCase().replace(/\s+/g, "-")}`}>{item.name}</Link>
+                          <Link key={item.path} to={item.path} className="block px-5 py-3 text-left text-sm font-medium text-slate-700 transition-colors hover:bg-slate-100 hover:text-slate-950" data-testid={`nav-about-${item.name.toLowerCase().replace(/\s+/g, "-")}`}>{item.name}</Link>
                         ))}
                       </div>
                     </div>
                   )}
                 </div>
 
-                <Link to={createPageUrl("Contact")} className="flex h-full items-center px-3 text-[13px] font-semibold tracking-[0.08em] text-slate-100 transition-colors hover:text-white xl:px-3.5" data-testid="nav-contact">Contact</Link>
+                <Link to={createPageUrl("Contact")} className="flex h-full items-center px-3 text-[13px] font-semibold tracking-[0.08em] text-slate-700 transition-colors hover:text-slate-950 xl:px-3.5" data-testid="nav-contact">Contact</Link>
 
                 <div className="ml-3 flex h-full items-center gap-3">
                   <Link to={createPageUrl("SWPPPChecker")} className="pe-shell-button" data-testid="nav-consultation">
@@ -262,7 +269,7 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
                   </a>
                 )}
                 <button
-                  className="p-2 text-white hover:bg-white/10 rounded-lg transition-colors"
+                  className="p-2 text-slate-700 hover:bg-slate-100 rounded-lg transition-colors"
                   onClick={() => setIsMobileMenuOpen((current) => !current)}
                   data-testid="button-mobile-menu"
                   aria-label="Toggle menu"
@@ -273,27 +280,27 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
             )}
           </div>
         </div>
-        <div className="absolute bottom-0 left-0 right-0 hidden h-px bg-white/10 sm:block" />
+        <div className="pe-shell-header-separator absolute bottom-0 left-0 right-0 h-px" />
       </header>
       {usesMenuShell && isMobileMenuOpen && (
-        <div className="fixed inset-0 z-50 bg-slate-950/95 backdrop-blur-md" data-testid="mobile-menu">
-          <div className="flex items-center justify-between px-6 h-20 border-b border-slate-800/50">
+        <div className="fixed inset-0 z-50 bg-white" data-testid="mobile-menu">
+          <div className="flex items-center justify-between px-6 h-20 border-b border-slate-200">
             <div className="flex items-center gap-3">
               <img src="/images/pe-logo.png" alt="Pacific Engineering Logo" className="h-12 w-12 rounded-md object-contain" />
-              <span className="text-white font-bold text-lg">Pacific Engineering</span>
+              <span className="text-slate-900 font-bold text-lg">Pacific Engineering</span>
             </div>
-            <button onClick={() => setIsMobileMenuOpen(false)} className="text-white p-2" data-testid="btn-close-menu">
+            <button onClick={() => setIsMobileMenuOpen(false)} className="text-slate-700 p-2" data-testid="btn-close-menu">
               <X className="w-6 h-6" />
             </button>
           </div>
 
           <nav className="flex flex-col px-6 py-4 space-y-0 overflow-y-auto" style={{ maxHeight: "calc(100vh - 5rem)" }}>
-            <Link to={createPageUrl("Home")} className="text-lg text-slate-200 hover:text-cyan-400 py-3.5 border-b border-slate-800 transition-colors font-medium" data-testid="mobile-nav-home">Home</Link>
+            <Link to={createPageUrl("Home")} className="text-lg text-slate-800 hover:text-blue-700 py-3.5 border-b border-slate-200 transition-colors font-medium" data-testid="mobile-nav-home">Home</Link>
 
-            <div className="border-b border-slate-800">
+            <div className="border-b border-slate-200">
               <button
                 onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
-                className="w-full flex items-center justify-between text-lg text-slate-200 hover:text-cyan-400 py-3.5 transition-colors font-medium"
+                className="w-full flex items-center justify-between text-lg text-slate-800 hover:text-blue-700 py-3.5 transition-colors font-medium"
                 data-testid="mobile-nav-services-toggle"
               >
                 <span>Services</span>
@@ -301,18 +308,18 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
               </button>
               {mobileServicesOpen && (
                 <div className="pb-2 space-y-0">
-                  <Link to={createPageUrl("ServicesOverview")} className="block py-2.5 pl-4 text-base text-cyan-400 font-medium" data-testid="mobile-nav-services-overview">All Services</Link>
+                  <Link to={createPageUrl("ServicesOverview")} className="block py-2.5 pl-4 text-base text-blue-700 font-semibold" data-testid="mobile-nav-services-overview">All Services</Link>
                   {servicesItems.map((item) => (
-                    <Link key={item.path} to={item.path} className="block py-2.5 pl-4 text-base text-slate-400 hover:text-white transition-colors" data-testid={`mobile-nav-service-${item.name.toLowerCase().replace(/\s+/g, "-")}`}>{item.name}</Link>
+                    <Link key={item.path} to={item.path} className="block py-2.5 pl-4 text-base text-slate-600 hover:text-slate-900 transition-colors" data-testid={`mobile-nav-service-${item.name.toLowerCase().replace(/\s+/g, "-")}`}>{item.name}</Link>
                   ))}
                 </div>
               )}
             </div>
 
-            <div className="border-b border-slate-800">
+            <div className="border-b border-slate-200">
               <button
                 onClick={() => setMobileAboutOpen(!mobileAboutOpen)}
-                className="w-full flex items-center justify-between text-lg text-slate-200 hover:text-cyan-400 py-3.5 transition-colors font-medium"
+                className="w-full flex items-center justify-between text-lg text-slate-800 hover:text-blue-700 py-3.5 transition-colors font-medium"
                 data-testid="mobile-nav-about-toggle"
               >
                 <span>About</span>
@@ -321,19 +328,19 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
               {mobileAboutOpen && (
                 <div className="pb-2 space-y-0">
                   {aboutItems.map((item) => (
-                    <Link key={item.path} to={item.path} className="block py-2.5 pl-4 text-base text-slate-400 hover:text-white transition-colors" data-testid={`mobile-nav-about-${item.name.toLowerCase().replace(/\s+/g, "-")}`}>{item.name}</Link>
+                    <Link key={item.path} to={item.path} className="block py-2.5 pl-4 text-base text-slate-600 hover:text-slate-900 transition-colors" data-testid={`mobile-nav-about-${item.name.toLowerCase().replace(/\s+/g, "-")}`}>{item.name}</Link>
                   ))}
                 </div>
               )}
             </div>
 
-            <Link to={createPageUrl("Contact")} className="text-lg text-slate-200 hover:text-cyan-400 py-3.5 border-b border-slate-800 transition-colors font-medium" data-testid="mobile-nav-contact">Contact</Link>
+            <Link to={createPageUrl("Contact")} className="text-lg text-slate-800 hover:text-blue-700 py-3.5 border-b border-slate-200 transition-colors font-medium" data-testid="mobile-nav-contact">Contact</Link>
 
             <div className="pt-6 space-y-3">
               <Link to={createPageUrl("SWPPPChecker")} className="w-full py-4 rounded-lg bg-orange-600 text-white font-bold text-lg flex items-center justify-center gap-2 hover:bg-orange-500 transition-colors" data-testid="mobile-nav-consultation">
                 <PhoneCall className="w-5 h-5" /> Request a Quote
               </Link>
-              <a href="tel:+14156894428" className="w-full py-4 rounded-lg bg-slate-700 text-white font-bold text-lg flex items-center justify-center gap-2 hover:bg-slate-600 transition-colors" data-testid="mobile-nav-call">
+              <a href="tel:+14156894428" className="w-full py-4 rounded-lg bg-slate-900 text-white font-bold text-lg flex items-center justify-center gap-2 hover:bg-slate-800 transition-colors" data-testid="mobile-nav-call">
                 <Phone className="w-5 h-5" /> (415) 689-4428
               </a>
             </div>
@@ -343,19 +350,19 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
       {shellState.showStickyCta && !isMobileMenuOpen && (
         <div
           data-testid="mobile-sticky-bar"
-          className="fixed inset-x-0 bottom-0 z-40 px-3 pb-3"
+          className="fixed inset-x-0 bottom-0 z-40 border-t border-slate-700 bg-slate-900 px-3 pb-3 pt-2"
           style={{ paddingBottom: "max(0.75rem, env(safe-area-inset-bottom))" }}
         >
           <div
             data-testid="mobile-sticky-content"
-            className={`pointer-events-auto relative mx-auto max-w-3xl overflow-hidden rounded-2xl border border-white/10 bg-slate-950/94 text-white shadow-[0_-12px_32px_rgba(2,8,23,0.38)] backdrop-blur-md transition-all duration-300 ${
+            className={`pointer-events-auto relative mx-auto max-w-3xl overflow-hidden rounded-2xl border border-slate-700 bg-slate-900 text-white shadow-[0_-12px_32px_rgba(2,8,23,0.38)] transition-all duration-300 ${
               isStickyCtaCollapsed ? "px-4 py-2.5" : "px-4 pt-4 pb-3"
             }`}
           >
             <button
               type="button"
               onClick={() => setIsStickyCtaCollapsed((current) => !current)}
-              className="absolute -top-3 left-3 inline-flex h-7 w-7 items-center justify-center rounded-full border border-slate-700 bg-slate-900 text-slate-200 shadow-md transition-colors hover:border-cyan-400 hover:text-white"
+              className="absolute -top-3 left-3 inline-flex h-7 w-7 items-center justify-center rounded-full border border-slate-600 bg-slate-900 text-slate-200 shadow-md transition-colors hover:border-cyan-400 hover:text-white"
               aria-expanded={!isStickyCtaCollapsed}
               aria-controls="marketing-mobile-sticky-actions"
               data-testid="btn-sticky-toggle"
@@ -378,7 +385,7 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
               <div id="marketing-mobile-sticky-actions" className="grid grid-cols-2 gap-3">
                 <a
                   href="tel:+14156894428"
-                  className="flex min-h-12 items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/8 px-4 py-3 text-sm font-bold text-white transition-colors active:bg-white/20"
+                  className="flex min-h-12 items-center justify-center gap-2 rounded-xl border border-slate-700 bg-slate-800 px-4 py-3 text-sm font-bold text-white transition-colors active:bg-slate-700"
                   data-testid="btn-sticky-call"
                 >
                   <Phone className="h-4 w-4" />

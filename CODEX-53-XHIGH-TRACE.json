@@ -1,0 +1,234 @@
+{
+  "meta": {
+    "trace_id": "codex-53-xhigh-switch-2026-04-04",
+    "created_at": "2026-04-04T00:00:00-07:00",
+    "updated_at": "2026-04-04T00:00:00-07:00",
+    "project": {
+      "name": "Pacific Engineering Marketing Site",
+      "repo": "d:/last_breath",
+      "root": "d:/last_breath"
+    }
+  },
+  "study": {
+    "enabled": true,
+    "sources": [
+      "repo",
+      "conversation"
+    ],
+    "signals": {
+      "languages": [
+        "TypeScript",
+        "CSS"
+      ],
+      "frameworks": [
+        "React",
+        "Vite",
+        "Express",
+        "Tailwind CSS"
+      ],
+      "build": [
+        "npm run build",
+        "tsx build.ts",
+        "esbuild"
+      ],
+      "tests": [
+        "npm run check",
+        "npm run check:repo-hygiene",
+        "browser verification"
+      ],
+      "ci": []
+    },
+    "evidence": [
+      {
+        "type": "file",
+        "ref": "d:/last_breath/.vscode/mcp.json",
+        "note": "Configured MCP servers include filesystem and fetch."
+      },
+      {
+        "type": "file",
+        "ref": "d:/last_breath/MCP-FILESYSTEM-SETUP.md",
+        "note": "Documents intended local filesystem MCP workflow."
+      },
+      {
+        "type": "file",
+        "ref": "d:/last_breath/client/.sixth/MCP-SKILLS.md",
+        "note": "Documents local MCP-related workspace skills."
+      },
+      {
+        "type": "file",
+        "ref": "d:/last_breath/client/src/portals/marketing/layout/MarketingLayout.tsx",
+        "note": "Shared shell, header, sticky CTA, dropdown, and footer ownership."
+      },
+      {
+        "type": "file",
+        "ref": "d:/last_breath/client/src/portals/marketing/pages/HomeRecovered.tsx",
+        "note": "Canonical Home page."
+      },
+      {
+        "type": "file",
+        "ref": "d:/last_breath/client/src/portals/marketing/components/HomeProjectEvidence.tsx",
+        "note": "Home evidence block needing listing-style rebuild."
+      },
+      {
+        "type": "file",
+        "ref": "d:/last_breath/client/src/portals/marketing/pages/ProjectGalleryRecovered.tsx",
+        "note": "Canonical Gallery page."
+      },
+      {
+        "type": "file",
+        "ref": "d:/last_breath/client/src/portals/marketing/components/ProjectGalleryMap.tsx",
+        "note": "Existing real map logic that should influence Home."
+      },
+      {
+        "type": "file",
+        "ref": "d:/last_breath/client/src/portals/marketing/marketing.css",
+        "note": "Brand palette and shared visual token authority."
+      },
+      {
+        "type": "file",
+        "ref": "d:/last_breath/artifacts/step4-team-mobile-pass/summary.json",
+        "note": "Last major browser verification snapshot from the thread."
+      }
+    ],
+    "summary": [
+      "The marketing site is structurally healthier than earlier passes, but the visual language still drifts too SaaS-like in the shell, Home evidence area, and mobile read.",
+      "Header contrast, dropdown legibility, and mobile sticky CTA opacity are active visual problems called out by the user.",
+      "The next implementation order is locked: shell contrast reset, Home evidence rebuild, Gallery convergence, then mobile catch-up.",
+      "Filesystem MCP is configured but timed out on handshake from this session, so repo-local handoff files are the reliable switch-preservation mechanism."
+    ]
+  },
+  "steps": [
+    {
+      "id": "S1",
+      "title": "Confirm switch-preservation constraints",
+      "goal": "Determine whether MCP can preserve context or change the model in-place.",
+      "observations": [
+        {
+          "evidence_ref": "d:/last_breath/.vscode/mcp.json",
+          "note": "Filesystem and fetch MCP servers are configured."
+        },
+        {
+          "evidence_ref": "conversation",
+          "note": "Filesystem MCP resource listing timed out during handshake in this session."
+        }
+      ],
+      "decision": "Treat chat continuity plus repo-local handoff artifacts as the primary preservation path; do not rely on MCP to switch the underlying model.",
+      "next_actions": [
+        "Write a prompt capsule for Codex 5.3 xhigh.",
+        "Write a durable trace file in the repo."
+      ],
+      "status": "done",
+      "confidence": "high"
+    },
+    {
+      "id": "S2",
+      "title": "Lock the active Step 4 direction",
+      "goal": "Capture the exact visual recovery direction before the model switch.",
+      "observations": [
+        {
+          "evidence_ref": "conversation",
+          "note": "User wants the Home evidence/map area to resemble the Figma property-listing frame with Frame 29 map tone."
+        },
+        {
+          "evidence_ref": "d:/last_breath/client/src/portals/marketing/layout/MarketingLayout.tsx",
+          "note": "Header/dropdowns/sticky CTA still need a contrast and opacity reset."
+        },
+        {
+          "evidence_ref": "d:/last_breath/client/src/portals/marketing/components/HomeProjectEvidence.tsx",
+          "note": "Current Home evidence block still needs a closer listing-style composition."
+        }
+      ],
+      "decision": "Preserve the Codex 5.3 xhigh recovery runbook as the active next-owner plan.",
+      "next_actions": [
+        "Implement shell contrast reset first.",
+        "Then rebuild Home evidence before touching mobile-specific tuning."
+      ],
+      "status": "done",
+      "confidence": "high"
+    },
+    {
+      "id": "S3",
+      "title": "Set the next-owner execution order",
+      "goal": "Make the first post-switch steps explicit and non-negotiable.",
+      "observations": [
+        {
+          "evidence_ref": "conversation",
+          "note": "User approved the recovery direction and wants Codex 5.3 xhigh to execute the next passes."
+        }
+      ],
+      "decision": "Execution order is locked to shell contrast, Home listing rebuild, Gallery convergence, then mobile catch-up.",
+      "next_actions": [
+        "Run npm run check after the next edit batch.",
+        "Run npm run build after the next edit batch.",
+        "Run npm run check:repo-hygiene after the next edit batch.",
+        "Verify /, /project-gallery, /about, /contact, and /blog across required viewports."
+      ],
+      "status": "open",
+      "confidence": "high"
+    }
+  ],
+  "revisions": [
+    {
+      "id": "R1",
+      "revises_step_id": "S1",
+      "reason": "Filesystem MCP was expected to help with preservation, but the active session could not complete the handshake.",
+      "change": "Switch protocol now relies on repo-local prompt capsule and trace artifacts rather than MCP continuity.",
+      "evidence": [
+        {
+          "evidence_ref": "conversation",
+          "note": "resources/list failed with filesystem MCP handshake timeout."
+        }
+      ]
+    }
+  ],
+  "branches": [
+    {
+      "branch_id": "B1",
+      "from_step_id": "S3",
+      "hypothesis": "If the host UI keeps the same thread during the model switch, the repo-local files act as backup only.",
+      "plan": [
+        "Switch in place.",
+        "Continue with the locked runbook.",
+        "Use the handoff files only as a quick re-anchor."
+      ],
+      "tradeoffs": [
+        "Fastest path with the least friction.",
+        "Still depends on the host preserving thread continuity."
+      ],
+      "status": "chosen"
+    },
+    {
+      "branch_id": "B2",
+      "from_step_id": "S3",
+      "hypothesis": "If the host opens a fresh thread, the new model can recover quickly from the written capsule and trace.",
+      "plan": [
+        "Open the switch protocol file.",
+        "Paste the prompt capsule into the new thread.",
+        "Resume from the locked next actions."
+      ],
+      "tradeoffs": [
+        "Slightly more manual, but deterministic.",
+        "No dependence on MCP handshake success."
+      ],
+      "status": "chosen"
+    }
+  ],
+  "handoff": {
+    "success_criteria": [
+      "Codex 5.3 xhigh has an explicit repo-local prompt capsule and trace to resume work.",
+      "The next-owner plan is locked to shell contrast reset, Home evidence rebuild, Gallery convergence, then mobile catch-up.",
+      "Brand, route, and API constraints remain explicit.",
+      "The known PostCSS warning remains visible and documented as an open technical caveat."
+    ],
+    "validation_commands": [
+      "npm run check",
+      "npm run build",
+      "npm run check:repo-hygiene"
+    ],
+    "open_questions": [
+      "Will the host UI preserve this thread when switching to Codex 5.3 xhigh?",
+      "Will filesystem MCP handshake successfully in the new model session, or should repo-local artifacts remain the primary preservation layer?"
+    ],
+    "next_owner": "codex"
+  }
+}

@@ -3,13 +3,17 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { createPageUrl } from "../lib/utils";
 import ProjectSnippetRotator from "./ProjectSnippetRotator";
-import ProjectMiniMap from "./ProjectMiniMap";
+import HomeEvidenceMap from "./HomeEvidenceMap";
 import { homeProjectSnippets } from "../data/homeProjectSnippets";
 import { projectMarkers } from "../data/projectMarkers";
 
 export default function HomeProjectEvidence() {
   const [activeId, setActiveId] = useState<string>(homeProjectSnippets[0]?.id ?? "");
   const [isAutoPaused, setIsAutoPaused] = useState(false);
+  const [isMobileEvidenceLayout, setIsMobileEvidenceLayout] = useState<boolean>(() => {
+    if (typeof window === "undefined") return false;
+    return window.matchMedia("(max-width: 1023px)").matches;
+  });
 
   const activeItem = useMemo(
     () =>
@@ -34,6 +38,33 @@ export default function HomeProjectEvidence() {
       return homeProjectSnippets[index];
     });
   }, [activeIndex]);
+
+  const supportingItems = useMemo(() => {
+    if (homeProjectSnippets.length <= 1) return [];
+
+    const startIndex = activeIndex >= 0 ? activeIndex : 0;
+    const supportLength = Math.min(2, homeProjectSnippets.length - 1);
+
+    return Array.from({ length: supportLength }, (_, offset) => {
+      const index = (startIndex + offset + 1) % homeProjectSnippets.length;
+      return homeProjectSnippets[index];
+    });
+  }, [activeIndex]);
+
+  const evidenceMarkers = useMemo(
+    () =>
+      projectMarkers.map((marker) => {
+        const match = homeProjectSnippets.find((item) => item.markerId === marker.id);
+
+        return {
+          ...marker,
+          slug: match?.slug,
+          location: match?.location ?? marker.label,
+          category: match?.category ?? "Project Evidence",
+        };
+      }),
+    [],
+  );
 
   const setActiveProject = (id: string, source: "auto" | "user" = "user") => {
     if (source === "user") {
@@ -67,6 +98,21 @@ export default function HomeProjectEvidence() {
     return () => window.clearInterval(timer);
   }, [activeItem, isAutoPaused]);
 
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const mediaQuery = window.matchMedia("(max-width: 1023px)");
+    const updateLayout = () => setIsMobileEvidenceLayout(mediaQuery.matches);
+    updateLayout();
+
+    mediaQuery.addEventListener("change", updateLayout);
+    return () => mediaQuery.removeEventListener("change", updateLayout);
+  }, []);
+
+  if (!activeItem) {
+    return null;
+  }
+
   return (
     <section className="pe-section pe-section-tight section-surface-solid">
       <div className="pe-container-wide pe-stack">
@@ -83,7 +129,7 @@ export default function HomeProjectEvidence() {
           </p>
         </div>
 
-        <div className="project-evidence">
+        <div className="project-evidence project-evidence-desktop">
           <div className="project-evidence-panel">
             <div className="project-evidence-toolbar">
               <div className="project-evidence-status">
@@ -91,7 +137,7 @@ export default function HomeProjectEvidence() {
                 <span className="project-evidence-note">
                   {isAutoPaused
                     ? "Selection held on the project record you chose"
-                    : "Rotating through representative Bay Area project records"}
+                    : "Curated records tied to location, field constraints, and delivery scope"}
                 </span>
               </div>
 
@@ -122,16 +168,50 @@ export default function HomeProjectEvidence() {
             />
           </div>
 
-          <ProjectMiniMap
-            markers={projectMarkers}
-            activeMarkerId={activeItem.markerId}
-            onActivate={(markerId) => {
-              const match = homeProjectSnippets.find(
-                (item) => item.markerId === markerId,
-              );
-              if (match) setActiveProject(match.id);
-            }}
-          />
+          {!isMobileEvidenceLayout ? (
+            <HomeEvidenceMap
+              markers={evidenceMarkers}
+              activeMarkerId={activeItem.markerId}
+              onActivate={(markerId) => {
+                const match = homeProjectSnippets.find(
+                  (item) => item.markerId === markerId,
+                );
+                if (match) setActiveProject(match.id);
+              }}
+            />
+          ) : null}
+        </div>
+
+        <div className="project-evidence-mobile">
+          <div className="project-evidence-mobile-primary">
+            <ProjectSnippetRotator
+              items={activeItem ? [activeItem] : []}
+              activeId={activeId}
+              onActivate={setActiveProject}
+            />
+          </div>
+
+          {isMobileEvidenceLayout ? (
+            <HomeEvidenceMap
+              markers={evidenceMarkers}
+              activeMarkerId={activeItem.markerId}
+              onActivate={(markerId) => {
+                const match = homeProjectSnippets.find(
+                  (item) => item.markerId === markerId,
+                );
+                if (match) setActiveProject(match.id);
+              }}
+            />
+          ) : null}
+
+          <div className="project-evidence-mobile-supporting">
+            <ProjectSnippetRotator
+              items={supportingItems}
+              activeId={activeId}
+              onActivate={setActiveProject}
+              density="compact"
+            />
+          </div>
         </div>
 
         <div className="project-evidence-cta-row">

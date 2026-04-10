@@ -74,20 +74,20 @@ export default function HomeRecovered() {
           loop
           playsInline
           preload="auto"
-          className="absolute inset-0 h-full w-full object-cover opacity-40"
+          className="absolute inset-0 h-full w-full object-cover opacity-34"
         >
           <source src="/images/hero-ggb-draft.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/74 via-slate-950/82 to-slate-950" />
-        <div className="absolute inset-0 bg-gradient-to-r from-cyan-950/12 via-transparent to-orange-950/6" />
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/66 via-slate-950/74 to-slate-950/92" />
+        <div className="absolute inset-0 bg-gradient-to-r from-cyan-950/8 via-transparent to-orange-950/4" />
         <AnimatedGridBackground
-          baseOpacity={0.18}
+          baseOpacity={0.1}
           gridSize={40}
           triggerInterval={500}
           animationDuration={2500}
-          className="hidden opacity-15 sm:block"
+          className="hidden opacity-10 sm:block"
         />
-        <BlueprintBackground className="opacity-22" />
+        <BlueprintBackground className="opacity-14" />
 
         <div className="relative z-10 pe-container-wide py-16 sm:py-20 lg:py-24">
           <div className="home-hero-shell">

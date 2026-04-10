@@ -2,39 +2,13 @@ import { useEffect, useMemo, useRef } from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import type { MarketingGalleryProject } from "@shared/marketing-content";
+import { createMarketingMap, escapeHtml, fitMapToMarkers, markerStyle } from "../lib/mapFoundation";
 
 type Props = {
   projects: MarketingGalleryProject[];
   activeSlug?: string;
   onSelectProject: (slug: string) => void;
 };
-
-function escapeHtml(value: string): string {
-  return value
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
-}
-
-function markerStyle(status: MarketingGalleryProject["status"], isActive: boolean) {
-  const palette =
-    status === "completed"
-      ? { fill: "#13c5a5", stroke: "#bff6ec" }
-      : status === "ongoing"
-        ? { fill: "#f5751f", stroke: "#ffe2c2" }
-        : { fill: "#2253da", stroke: "#d7e3ff" };
-
-  return {
-    color: palette.stroke,
-    fillColor: palette.fill,
-    fillOpacity: isActive ? 1 : 0.92,
-    opacity: 1,
-    radius: isActive ? 10 : 7,
-    weight: isActive ? 4 : 3,
-  };
-}
 
 function buildPopupMarkup(project: MarketingGalleryProject): string {
   return `
@@ -71,18 +45,11 @@ export default function ProjectGalleryMap({
       return;
     }
 
-    const map = L.map(mapElementRef.current, {
-      zoomControl: false,
+    const map = createMarketingMap(mapElementRef.current, {
+      zoomControl: true,
+      zoomPosition: "bottomright",
       scrollWheelZoom: false,
-      attributionControl: false,
-      preferCanvas: true,
     });
-
-    L.control.zoom({ position: "bottomright" }).addTo(map);
-
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      maxZoom: 16,
-    }).addTo(map);
 
     mapRef.current = map;
 
@@ -108,7 +75,7 @@ export default function ProjectGalleryMap({
     projects.forEach((project) => {
       const marker = L.circleMarker(
         [project.coordinates.lat, project.coordinates.lng],
-        markerStyle(project.status, project.slug === activeSlug),
+        markerStyle(project.status, project.slug === activeSlug, "gallery"),
       );
 
       marker
@@ -132,12 +99,14 @@ export default function ProjectGalleryMap({
     markerLayer.addTo(map);
     layerRef.current = markerLayer;
 
-    if (projects.length > 0) {
-      const bounds = L.latLngBounds(
-        projects.map((project) => [project.coordinates.lat, project.coordinates.lng] as L.LatLngTuple),
-      );
-      map.fitBounds(bounds.pad(0.24), { animate: false });
-    }
+    fitMapToMarkers(
+      map,
+      projects.map((project) => ({
+        lat: project.coordinates.lat,
+        lng: project.coordinates.lng,
+      })),
+      0.24,
+    );
   }, [projects, activeSlug, onSelectProject]);
 
   useEffect(() => {
@@ -147,7 +116,7 @@ export default function ProjectGalleryMap({
         return;
       }
 
-      marker.setStyle(markerStyle(project.status, slug === activeSlug));
+      marker.setStyle(markerStyle(project.status, slug === activeSlug, "gallery"));
     });
 
     if (!activeSlug) {
@@ -168,7 +137,7 @@ export default function ProjectGalleryMap({
   }, [activeSlug, projectBySlug]);
 
   return (
-    <div className="project-gallery-map-shell">
+    <div className="project-gallery-map-shell pe-map-toned">
       <div ref={mapElementRef} className="project-gallery-map" data-testid="project-gallery-map" />
       <div className="project-gallery-map-overlay" aria-hidden="true" />
     </div>

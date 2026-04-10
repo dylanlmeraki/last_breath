@@ -18,22 +18,24 @@ type Props = {
   items: readonly ProjectSnippet[];
   activeId: string;
   onActivate: (id: string) => void;
+  density?: "default" | "compact";
 };
 
 export default function ProjectSnippetRotator({
   items,
   activeId,
   onActivate,
+  density = "default",
 }: Props) {
   return (
-    <div className="project-rotator">
+    <div className={`project-rotator ${density === "compact" ? "is-compact" : ""}`}>
       {items.map((item) => {
         const isActive = item.id === activeId;
 
         return (
           <article
             key={item.id}
-            className={`project-snippet ${isActive ? "is-active" : ""}`}
+            className={`project-snippet ${density === "compact" ? "is-compact" : ""} ${isActive ? "is-active" : ""}`}
           >
             <button
               type="button"
@@ -45,7 +47,7 @@ export default function ProjectSnippetRotator({
             >
               <div className="project-snippet-top">
                 <span
-                  className={`pe-pill ${
+                  className={`project-snippet-status ${
                     item.tone === "completed"
                       ? "status-completed"
                       : item.tone === "ongoing"
