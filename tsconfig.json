@@ -3,11 +3,7 @@
     "client/src/**/*",
     "shared/**/*",
     "server/**/*",
-    "mcp-conductor.ts",
-    "mcp-client.ts",
-    "github-parser.ts",
-    "playwright-validator.ts",
-    "github-reporter.ts"
+    "tools/mcp/**/*.ts"
   ],
   "exclude": [
     "node_modules",

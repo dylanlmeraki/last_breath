@@ -40,6 +40,9 @@ Starter templates:
 Model switch and continuity artifacts are stored under:
 - `docs/internal/agent-handoffs/`
 
+Internal operating playbook is stored under:
+- `docs/internal/PLAYBOOK.md`
+
 ## Root Tracked File Allowlist
 
 Expected tracked files at repo root:
@@ -48,15 +51,13 @@ Expected tracked files at repo root:
 - `active-platform.code-workspace`
 - `active-platform.local.code-workspace.example`
 - `build.ts`
-- `github-parser.ts`
-- `github-reporter.ts`
-- `mcp-client.ts`
 - `package-lock.json`
 - `package.json`
-- `PLAYBOOK.md`
-- `playwright-validator.ts`
 - `postcss.config.cjs`
 - `README.md`
 - `tailwind.config.cjs`
 - `tsconfig.json`
 - `vite.config.ts`
+
+Tooling helpers for MCP orchestration live under:
+- `tools/mcp/`
