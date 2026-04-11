@@ -24,3 +24,39 @@ How to use locally:
 1. Keep your main repo checkout as-is.
 2. Copy the included `active-platform.code-workspace` file into the repo root.
 3. Open that workspace in VS Code.
+
+## Local Override Conventions
+
+Use these local-only files for personal tooling so shared baselines stay portable:
+- `.vscode/mcp.local.json` (ignored)
+- `active-platform.local.code-workspace` (ignored)
+
+Starter templates:
+- `.vscode/mcp.local.example.json`
+- `active-platform.local.code-workspace.example`
+
+## Agent Handoff Docs
+
+Model switch and continuity artifacts are stored under:
+- `docs/internal/agent-handoffs/`
+
+## Root Tracked File Allowlist
+
+Expected tracked files at repo root:
+- `.dockerignore`
+- `.gitignore`
+- `active-platform.code-workspace`
+- `active-platform.local.code-workspace.example`
+- `build.ts`
+- `github-parser.ts`
+- `github-reporter.ts`
+- `mcp-client.ts`
+- `package-lock.json`
+- `package.json`
+- `PLAYBOOK.md`
+- `playwright-validator.ts`
+- `postcss.config.cjs`
+- `README.md`
+- `tailwind.config.cjs`
+- `tsconfig.json`
+- `vite.config.ts`

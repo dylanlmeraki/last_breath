@@ -6,6 +6,14 @@ const TRACKED_ARTIFACT_ROOTS = [
   "artifacts",
   "attached_assets",
 ];
+const DISALLOWED_ROOT_FILES = [
+  "directory-tree.txt",
+  "path-manifest.txt",
+];
+const DISALLOWED_ROOT_PATTERNS = [
+  /^\.codex-.*\.log$/i,
+  /^\.tmp-.*\.cjs$/i,
+];
 const MAX_REPORTED_PATHS = 30;
 
 function runGit(args) {
@@ -33,6 +41,22 @@ function listTracked(root) {
     .filter(Boolean);
 }
 
+function listTrackedRootFiles() {
+  return runGit(["ls-files"])
+    .split(/\r?\n/)
+    .map((entry) => entry.trim())
+    .filter(Boolean)
+    .filter((entry) => !entry.includes("/"));
+}
+
+function isDisallowedRootFile(entry) {
+  if (DISALLOWED_ROOT_FILES.includes(entry)) {
+    return true;
+  }
+
+  return DISALLOWED_ROOT_PATTERNS.some((pattern) => pattern.test(entry));
+}
+
 function formatViolations(violations) {
   return violations
     .slice(0, MAX_REPORTED_PATHS)
@@ -41,7 +65,9 @@ function formatViolations(violations) {
 }
 
 function main() {
-  const violations = TRACKED_ARTIFACT_ROOTS.flatMap((root) => listTracked(root));
+  const directoryViolations = TRACKED_ARTIFACT_ROOTS.flatMap((root) => listTracked(root));
+  const rootFileViolations = listTrackedRootFiles().filter(isDisallowedRootFile);
+  const violations = [...new Set([...directoryViolations, ...rootFileViolations])];
 
   if (violations.length > 0) {
     console.error("Tracked artifact/dependency files are still in Git:");

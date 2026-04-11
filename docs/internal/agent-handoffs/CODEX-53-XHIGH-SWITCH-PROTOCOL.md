@@ -8,11 +8,11 @@
 - `.vscode/mcp.json` is configured with `filesystem`, `fetch`, `figma`, `github`, `playwright`, `context7`, and `anima`.
 - In this session, `filesystem` MCP did **not** complete handshake within 10 seconds, so it should not be treated as the primary preservation mechanism for the switch itself.
 - Use the chat thread as the first preservation layer if the host UI supports an in-place model switch.
-- Use this file plus [CODEX-53-XHIGH-TRACE.json](/d:/last_breath/CODEX-53-XHIGH-TRACE.json) as the fallback preservation layer if the host opens a fresh panel or loses in-memory continuity.
+- Use this file plus [CODEX-53-XHIGH-TRACE.json](/d:/last_breath/docs/internal/agent-handoffs/CODEX-53-XHIGH-TRACE.json) as the fallback preservation layer if the host opens a fresh panel or loses in-memory continuity.
 
 ## Preferred Switch Sequence
 1. Switch the host model to `Codex 5.3 xhigh` in the **same thread/panel** if possible.
-2. After the switch, re-open this file and [CODEX-53-XHIGH-TRACE.json](/d:/last_breath/CODEX-53-XHIGH-TRACE.json) before starting edits.
+2. After the switch, re-open this file and [CODEX-53-XHIGH-TRACE.json](/d:/last_breath/docs/internal/agent-handoffs/CODEX-53-XHIGH-TRACE.json) before starting edits.
 3. If the host forces a new thread, paste the prompt capsule below into the new session and continue from the listed next actions.
 
 ## Prompt Capsule
@@ -44,10 +44,10 @@ EVIDENCE (paths)
 - d:\last_breath\artifacts\step4-team-mobile-pass\home-mobile.png
 - d:\last_breath\artifacts\step4-team-mobile-pass\about-desktop.png
 - d:\last_breath\artifacts\step4-team-mobile-pass\gallery-compact.png
-- d:\last_breath\CODEX-53-XHIGH-TRACE.json
+- d:\last_breath\docs\internal\agent-handoffs\CODEX-53-XHIGH-TRACE.json
 
 CURRENT TRACE SNAPSHOT (JSON)
-- Open d:\last_breath\CODEX-53-XHIGH-TRACE.json and use it as the working trace.
+- Open d:\last_breath\docs\internal\agent-handoffs\CODEX-53-XHIGH-TRACE.json and use it as the working trace.
 
 WHAT YOU MUST DO NEXT
 1) Execute Pass 1 from the locked Step 4 recovery runbook: reset shell/header contrast, make dropdowns opaque and readable, keep the hero but reduce technical-overlay noise, and make the mobile sticky CTA fully opaque with the same background family as its chevron toggle.

@@ -72,19 +72,6 @@
 					"url": "https://mcp.figma.com/mcp",
 					"gallery": "https://api.mcp.github.com",
 					"version": "1.0.3"
-				},
-				"io.github.microsoft/awesome-copilot": {
-					"type": "stdio",
-					"command": "docker",
-					"args": [
-						"-y",
-						"run",
-						"-i",
-						"--rm",
-						"ghcr.io/microsoft/mcp-dotnet-samples/awesome-copilot:1.0.2026040123"
-					],
-					"gallery": "https://api.mcp.github.com",
-					"version": "1.0.2026040123"
 				}
 			}
 		}
@@ -102,18 +89,6 @@
 				},
 				"gallery": "https://api.mcp.github.com",
 				"version": "1.0.31"
-			},
-			"io.github.microsoft/awesome-copilot": {
-				"type": "stdio",
-				"command": "docker",
-				"args": [
-					"run",
-					"-i",
-					"--rm",
-					"ghcr.io/microsoft/mcp-dotnet-samples/awesome-copilot:1.0.2026040100"
-				],
-				"gallery": "https://api.mcp.github.com",
-				"version": "1.0.2026040100"
 			},
 			"io.github.github/github-mcp-server": {
 				"type": "stdio",
