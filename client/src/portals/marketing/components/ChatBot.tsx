@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { MessageCircle, X, Send, Phone, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -41,6 +41,8 @@ interface ChatState {
   messages: ChatMessage[];
   memory: ChatMemory;
 }
+
+type ClosedIconAnchor = "bottom-right" | "top-right-under-header";
 
 function classifyIntent(text: string | null | undefined): { intent: ChatIntent; confidence: number } {
   if (!text) return { intent: "unknown", confidence: 0.5 };
@@ -125,6 +127,7 @@ function readMarketingBottomOffset(variableName: string, fallback: number): numb
 
 export default function ChatBot() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -158,6 +161,19 @@ export default function ChatBot() {
   const [dragPos, setDragPos] = useState<{ x: number; y: number } | null>(null);
   const dragStartRef = useRef<{ x: number; y: number; startX: number; startY: number } | null>(null);
   const hasDraggedRef = useRef(false);
+  const [dockOffsets, setDockOffsets] = useState(() => ({
+    hasStickyDock: false,
+    baseBottom: 24,
+    panelBottom: 24,
+  }));
+  const [closedIconAnchor, setClosedIconAnchor] =
+    useState<ClosedIconAnchor>("bottom-right");
+  const isMobileTouchDockContext = viewportWidth <= 480;
+  const effectiveScrollLift = isMobileTouchDockContext ? 0 : scrollLift;
+  const shellHeaderHeight = readMarketingBottomOffset(
+    "--pe-shell-header-height",
+    64,
+  );
 
   useEffect(() => {
     saveState({ messages, memory });
@@ -173,6 +189,55 @@ export default function ChatBot() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const syncDockOffsets = useCallback(() => {
+    const hasStickyDock = readMarketingBottomOffset("--pe-shell-has-sticky-dock", 0) >= 1;
+    const baseBottom = hasStickyDock
+      ? readMarketingBottomOffset("--pe-chatbot-mobile-bottom", 136)
+      : 24;
+    const panelBottom = hasStickyDock
+      ? readMarketingBottomOffset("--pe-chatbot-mobile-panel-bottom", 152)
+      : 24;
+
+    setDockOffsets((current) => {
+      if (
+        current.hasStickyDock === hasStickyDock &&
+        Math.abs(current.baseBottom - baseBottom) < 0.1 &&
+        Math.abs(current.panelBottom - panelBottom) < 0.1
+      ) {
+        return current;
+      }
+
+      return { hasStickyDock, baseBottom, panelBottom };
+    });
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const runSync = () => window.requestAnimationFrame(syncDockOffsets);
+    runSync();
+
+    window.addEventListener("resize", runSync);
+    window.addEventListener("orientationchange", runSync);
+
+    const portalRoot = document.querySelector(".marketing-portal");
+    const observer =
+      portalRoot instanceof HTMLElement
+        ? new MutationObserver(runSync)
+        : null;
+
+    observer?.observe(portalRoot as HTMLElement, {
+      attributes: true,
+      attributeFilter: ["style", "data-shell-profile", "data-shell-touch"],
+    });
+
+    return () => {
+      window.removeEventListener("resize", runSync);
+      window.removeEventListener("orientationchange", runSync);
+      observer?.disconnect();
+    };
+  }, [location.pathname, syncDockOffsets]);
+
   useEffect(() => {
     const handler = () => {
       const scrollY = window.scrollY;
@@ -181,7 +246,9 @@ export default function ChatBot() {
       const scrollPct = scrollY / Math.max(1, docH - winH);
 
       if (!isOpen) {
-        if (scrollPct > 0.15) {
+        if (isMobileTouchDockContext) {
+          setScrollLift(0);
+        } else if (scrollPct > 0.15) {
           const raisePx = Math.min(scrollPct * 0.3, 0.25) * winH;
           setScrollLift(raisePx);
         } else {
@@ -200,7 +267,106 @@ export default function ChatBot() {
     };
     window.addEventListener("scroll", handler, { passive: true });
     return () => window.removeEventListener("scroll", handler);
-  }, [isOpen]);
+  }, [isOpen, isMobileTouchDockContext]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    if (isOpen || dragPos) {
+      setClosedIconAnchor("bottom-right");
+      return;
+    }
+
+    if (!isMobileTouchDockContext) {
+      setClosedIconAnchor("bottom-right");
+      return;
+    }
+
+    const resolveAnchor = () => {
+      const iconSize = 56;
+      const candidateBottom = Math.max(
+        dockOffsets.baseBottom,
+        readMarketingBottomOffset("--pe-chatbot-mobile-bottom", 136),
+      );
+      const iconRect = {
+        left: window.innerWidth - 24 - iconSize,
+        right: window.innerWidth - 24,
+        top: window.innerHeight - candidateBottom - iconSize,
+        bottom: window.innerHeight - candidateBottom,
+      };
+
+      const candidates = Array.from(
+        document.querySelectorAll<HTMLElement>(
+          "a[href],button,input,select,textarea,[role='button'],[role='menuitem']",
+        ),
+      );
+
+      const hasCollision = candidates.some((element) => {
+        if (
+          element.closest("[data-testid='button-chatbot-open']") ||
+          element.closest("[data-testid='chatbot-panel']") ||
+          element.closest("[data-testid='chatbot-prompt-bubble']")
+        ) {
+          return false;
+        }
+
+        const styles = window.getComputedStyle(element);
+        if (
+          styles.display === "none" ||
+          styles.visibility === "hidden" ||
+          styles.pointerEvents === "none"
+        ) {
+          return false;
+        }
+
+        const rect = element.getBoundingClientRect();
+        if (
+          rect.width < 20 ||
+          rect.height < 20 ||
+          rect.bottom <= 0 ||
+          rect.top >= window.innerHeight ||
+          rect.right <= 0 ||
+          rect.left >= window.innerWidth
+        ) {
+          return false;
+        }
+
+        return !(
+          rect.right <= iconRect.left ||
+          rect.left >= iconRect.right ||
+          rect.bottom <= iconRect.top ||
+          rect.top >= iconRect.bottom
+        );
+      });
+
+      setClosedIconAnchor(
+        hasCollision ? "top-right-under-header" : "bottom-right",
+      );
+    };
+
+    const runResolve = () => window.requestAnimationFrame(resolveAnchor);
+    runResolve();
+    const delayedPassA = window.setTimeout(runResolve, 260);
+    const delayedPassB = window.setTimeout(runResolve, 820);
+
+    window.addEventListener("resize", runResolve);
+    window.addEventListener("orientationchange", runResolve);
+    window.addEventListener("scroll", runResolve, { passive: true });
+
+    return () => {
+      window.clearTimeout(delayedPassA);
+      window.clearTimeout(delayedPassB);
+      window.removeEventListener("resize", runResolve);
+      window.removeEventListener("orientationchange", runResolve);
+      window.removeEventListener("scroll", runResolve);
+    };
+  }, [
+    dockOffsets.baseBottom,
+    dragPos,
+    isMobileTouchDockContext,
+    isOpen,
+    location.pathname,
+  ]);
 
   const handleClose = useCallback(() => {
     manuallyClosedRef.current = true;
@@ -317,19 +483,28 @@ export default function ChatBot() {
     setConversationId(undefined);
   };
 
-  const hasStickyDock = readMarketingBottomOffset("--pe-shell-has-sticky-dock", 0) >= 1;
-  const baseBottom = hasStickyDock
-    ? readMarketingBottomOffset("--pe-chatbot-mobile-bottom", 116)
-    : 24;
-  const panelBottom = hasStickyDock
-    ? readMarketingBottomOffset("--pe-chatbot-mobile-panel-bottom", 128)
-    : 24;
+  const baseBottom = dockOffsets.baseBottom;
+  const panelBottom = dockOffsets.panelBottom;
+  const resolvedBaseBottom = isMobileTouchDockContext
+    ? Math.max(
+        baseBottom,
+        readMarketingBottomOffset("--pe-chatbot-mobile-bottom", baseBottom),
+      )
+    : baseBottom;
 
   const iconStyle: React.CSSProperties = dragPos
     ? { position: "fixed", left: dragPos.x, top: dragPos.y, bottom: "auto", right: "auto", zIndex: 60 }
+    : closedIconAnchor === "top-right-under-header"
+      ? {
+          position: "fixed",
+          top: shellHeaderHeight + 12,
+          right: 16,
+          zIndex: 60,
+          transition: isDragging ? "none" : "top 0.25s ease-out",
+        }
     : {
         position: "fixed",
-        bottom: baseBottom + scrollLift,
+        bottom: resolvedBaseBottom + effectiveScrollLift,
         right: 24,
         zIndex: 60,
         transition: isDragging ? "none" : "bottom 0.4s ease-out",

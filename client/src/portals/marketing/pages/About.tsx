@@ -131,11 +131,11 @@ export default function About() {
         <div className="pe-container-wide pe-stack">
           <div className="pe-stack-sm about-team-intro">
             <span className="eyebrow cool">Our Team</span>
-            <h2 className="pe-heading-2">Meet the experts behind Pacific Engineering.</h2>
+            <h2 className="pe-heading-2">Leadership and field specialists who keep work moving.</h2>
             <p className="pe-lead">
-              Engineering, surveying, geology, construction supervision, estimating, and project
-              controls represented in one practical leadership bench so project teams can work with
-              people who understand both the technical scope and the way the job actually moves.
+              Engineering, surveying, geology, construction supervision, estimating, and project controls
+              represented in one practical bench so teams can work with people who understand both
+              technical scope and live jobsite conditions.
             </p>
           </div>
           <AboutTeamGrid />

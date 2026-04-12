@@ -26,7 +26,7 @@ export default function HomeProofRail() {
           return (
             <article key={item.id} className="proof-item">
               <div className="proof-item-icon">
-                <Icon size={18} strokeWidth={2.1} />
+                <Icon size={16} strokeWidth={2.1} />
               </div>
               <h3 className="proof-item-value">{item.value}</h3>
               <p className="proof-item-label">{item.support}</p>

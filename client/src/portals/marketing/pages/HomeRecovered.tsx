@@ -74,22 +74,22 @@ export default function HomeRecovered() {
           loop
           playsInline
           preload="auto"
-          className="absolute inset-0 h-full w-full object-cover opacity-34"
+          className="absolute inset-0 h-full w-full object-cover opacity-24"
         >
           <source src="/images/hero-ggb-draft.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/66 via-slate-950/74 to-slate-950/92" />
-        <div className="absolute inset-0 bg-gradient-to-r from-cyan-950/8 via-transparent to-orange-950/4" />
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/72 via-slate-950/80 to-slate-950/92" />
+        <div className="absolute inset-0 bg-gradient-to-r from-cyan-950/5 via-transparent to-orange-950/3" />
         <AnimatedGridBackground
-          baseOpacity={0.1}
+          baseOpacity={0.05}
           gridSize={40}
           triggerInterval={500}
           animationDuration={2500}
-          className="hidden opacity-10 sm:block"
+          className="hidden opacity-5 sm:block"
         />
-        <BlueprintBackground className="opacity-14" />
+        <BlueprintBackground className="opacity-10" />
 
-        <div className="relative z-10 pe-container-wide py-16 sm:py-20 lg:py-24">
+        <div className="relative z-10 pe-container-wide py-12 sm:py-16 lg:py-24">
           <div className="home-hero-shell">
             <div className="home-hero-copy pe-inverse">
               <div className="max-w-3xl pe-stack-sm">
@@ -97,8 +97,8 @@ export default function HomeRecovered() {
                   Bay Area Engineering + Construction Partner
                 </span>
                 <motion.h1
-                  className="pe-heading-1 text-white"
-                  initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, y: 28 }}
+                  className="pe-heading-1 home-hero-title text-white"
+                  initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 14 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.7 }}
                 >
@@ -106,7 +106,7 @@ export default function HomeRecovered() {
                 </motion.h1>
                 <motion.p
                   className="pe-lead text-slate-200"
-                  initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, y: 22 }}
+                  initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={
                     prefersReducedMotion ? { duration: 0 } : { duration: 0.7, delay: 0.08 }
@@ -120,8 +120,8 @@ export default function HomeRecovered() {
               </div>
 
               <motion.div
-                className="home-hero-actions mt-8 flex flex-col gap-3 sm:flex-row"
-                initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
+                className="home-hero-actions mt-6 flex flex-col gap-3 sm:flex-row"
+                initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={
                   prefersReducedMotion ? { duration: 0 } : { duration: 0.65, delay: 0.16 }
@@ -137,7 +137,7 @@ export default function HomeRecovered() {
                 </Link>
               </motion.div>
 
-                <div className="home-hero-trust mt-8 flex flex-wrap gap-4 text-sm text-slate-200">
+                <div className="home-hero-trust mt-6 flex flex-wrap gap-4 text-sm text-slate-200">
                 {HERO_TRUST_POINTS.map((point) => (
                   <div key={point} className="inline-flex items-center gap-2">
                     <CheckCircle2 className="h-4 w-4 text-cyan-300" />

@@ -1,0 +1,15 @@
+{
+  "generatedAt": "2026-04-12T06:33:45.000Z",
+  "baseUrl": "http://localhost:5100",
+  "cases": [
+    { "route": "/contact", "width": 390, "height": 844, "tag": "contact-390x844" },
+    { "route": "/contact", "width": 430, "height": 932, "tag": "contact-430x932" },
+    { "route": "/blog", "width": 390, "height": 844, "tag": "blog-390x844" }
+  ],
+  "summary": {
+    "rounds": 5,
+    "totalRuns": 15,
+    "collisionRuns": 0,
+    "failures": []
+  }
+}

@@ -15,14 +15,14 @@ export default function AboutTeamGrid() {
                 className="about-team-image"
                 loading="lazy"
               />
-              <div className="about-team-media-overlay" aria-hidden="true" />
-              <div className="about-team-media-copy">
-                <h3 className="about-team-name">{profile.name}</h3>
-                <p className="about-team-role">{profile.role}</p>
-              </div>
             </div>
 
             <div className="about-team-body">
+              <div className="about-team-header">
+                <h3 className="about-team-name">{profile.name}</h3>
+                <p className="about-team-role">{profile.role}</p>
+              </div>
+
               <div className="about-team-meta">
                 <span className="about-team-meta-item">
                   <Clock3 className="h-3.5 w-3.5" />

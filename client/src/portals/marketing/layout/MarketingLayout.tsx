@@ -159,6 +159,7 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
 
   const isFullDesktop = shellState.profile === "full-desktop";
   const isCompactDesktop = shellState.profile === "compact-desktop";
+  const isMobileShell = shellState.profile === "mobile";
   const usesMenuShell = !isFullDesktop;
   const headerBrandName =
     shellState.profile === "full-desktop" && !isScrolled
@@ -167,14 +168,14 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
   const mobileStickyHeight =
     shellState.showStickyCta && !isMobileMenuOpen
       ? isStickyCtaCollapsed
-        ? 28
-        : 88
+        ? 32
+        : 92
       : 0;
 
   const shellStyle: MarketingStyleVars = {
     "--pe-shell-sticky-height": `${mobileStickyHeight}px`,
-    "--pe-chatbot-mobile-bottom": `${mobileStickyHeight > 0 ? mobileStickyHeight + 28 : 24}px`,
-    "--pe-chatbot-mobile-panel-bottom": `${mobileStickyHeight > 0 ? mobileStickyHeight + 40 : 24}px`,
+    "--pe-chatbot-mobile-bottom": `${mobileStickyHeight > 0 ? mobileStickyHeight + 44 : 24}px`,
+    "--pe-chatbot-mobile-panel-bottom": `${mobileStickyHeight > 0 ? mobileStickyHeight + 56 : 24}px`,
     "--pe-shell-has-sticky-dock": mobileStickyHeight > 0 ? "1" : "0",
   };
 
@@ -185,39 +186,78 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
       data-shell-profile={shellState.profile}
       data-shell-touch={shellState.isTouchLike ? "true" : "false"}
     >
-      <header className={`fixed top-0 left-0 right-0 z-40 border-b border-slate-200/90 transition-all duration-300 ${isScrolled ? "bg-white/98 shadow-[0_10px_24px_rgba(15,23,42,0.12)]" : "bg-white shadow-[0_8px_18px_rgba(15,23,42,0.08)]"}`}>
+      <header className={`fixed top-0 left-0 right-0 z-40 border-b border-slate-200 bg-white transition-[box-shadow] duration-200 ${isScrolled ? "shadow-[0_8px_18px_rgba(15,23,42,0.08)]" : "shadow-[0_2px_10px_rgba(15,23,42,0.05)]"}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="flex h-20 items-center justify-between">
+          <div className="flex items-center justify-between" style={{ height: "var(--pe-shell-header-height)" }}>
             <Link to={createPageUrl("Home")} className="flex items-center gap-3 group" data-testid="link-logo">
               <div className="relative">
-                <img src="/images/pe-logo.png" alt="Pacific Engineering Logo" className={`rounded-md object-contain relative z-10 transition-all duration-300 ${isScrolled ? "h-11 w-11" : "h-12 w-12"}`} />
+                <img
+                  src="/images/pe-logo.png"
+                  alt="Pacific Engineering Logo"
+                  className={`rounded-md object-contain relative z-10 transition-all duration-300 ${
+                    isMobileShell ? "h-10 w-10" : isScrolled ? "h-11 w-11" : "h-12 w-12"
+                  }`}
+                />
               </div>
-              <div className="min-w-0 max-w-[12rem] sm:max-w-[17rem] lg:max-w-none block">
+              <div className={`min-w-0 block ${isMobileShell ? "max-w-[10.5rem]" : "max-w-[12rem] sm:max-w-[17rem] lg:max-w-none"}`}>
                 <div
                   data-testid="brand-wordmark"
-                  className={`font-bold text-slate-900 tracking-tight truncate transition-all duration-300 ${isScrolled ? "text-[14px] sm:text-base lg:text-[1.05rem]" : "text-[15px] sm:text-lg lg:text-[1.08rem] xl:text-[1.3rem]"}`}
+                  className={`font-bold text-slate-950 tracking-tight truncate transition-all duration-300 ${
+                    isMobileShell
+                      ? "text-[13px] leading-tight"
+                      : isScrolled
+                        ? "text-[14px] sm:text-base lg:text-[1.05rem]"
+                        : "text-[15px] sm:text-lg lg:text-[1.08rem] xl:text-[1.3rem]"
+                  }`}
                 >
                   {headerBrandName}
                 </div>
-                <div className={`font-medium text-slate-500 tracking-[0.1em] hidden md:block transition-all duration-300 ${isScrolled ? "text-[10px]" : "text-[11px]"}`}>Consulting Engineers & Contractors</div>
+                <div className={`font-medium text-slate-600 tracking-[0.1em] hidden md:block transition-all duration-300 ${isScrolled ? "text-[10px]" : "text-[11px]"}`}>Consulting Engineers & Contractors</div>
               </div>
             </Link>
 
             {isFullDesktop ? (
               <nav className="flex h-full items-center gap-1.5" data-testid="nav-main">
-                <Link to={createPageUrl("Home")} className="flex h-full items-center px-3 text-[13px] font-semibold tracking-[0.08em] text-slate-700 transition-colors hover:text-slate-950 xl:px-3.5" data-testid="nav-home">Home</Link>
+                <Link to={createPageUrl("Home")} className="flex h-full items-center px-3 text-[13px] font-semibold tracking-[0.08em] text-slate-800 transition-colors hover:text-slate-950 xl:px-3.5" data-testid="nav-home">Home</Link>
 
                 <div className="relative group h-full flex items-center" onMouseEnter={() => setServicesDropdownOpen(true)} onMouseLeave={() => setServicesDropdownOpen(false)}>
-                  <Link to={createPageUrl("ServicesOverview")} className="flex h-full items-center gap-1 px-3 text-[13px] font-semibold tracking-[0.08em] text-slate-700 transition-colors hover:text-slate-950 xl:px-3.5" data-testid="nav-services">
+                  <Link
+                    to={createPageUrl("ServicesOverview")}
+                    className="flex h-full items-center gap-1 px-3 text-[13px] font-semibold tracking-[0.08em] text-slate-800 transition-colors hover:text-slate-950 xl:px-3.5"
+                    data-testid="nav-services"
+                    aria-haspopup="menu"
+                    aria-expanded={servicesDropdownOpen}
+                    aria-label="Services"
+                  >
                     Services
                     <ChevronDown className={`w-4 h-4 transition-transform ${servicesDropdownOpen ? "rotate-180" : ""}`} />
                   </Link>
                   {servicesDropdownOpen && (
                     <div className="absolute left-0 top-full pt-3">
-                      <div className="w-72 overflow-hidden rounded-md border border-slate-200 bg-white py-2 shadow-[0_16px_30px_rgba(15,23,42,0.14)]">
-                        <Link to={createPageUrl("ServicesOverview")} className="block border-b border-slate-200 px-5 py-3 text-left text-[12px] font-bold uppercase tracking-[0.14em] text-slate-800 hover:bg-slate-100" data-testid="nav-services-overview">Pacific Engineering Services</Link>
+                      <div
+                        className="w-72 overflow-hidden rounded-md border border-slate-200 bg-white py-2 shadow-[0_12px_24px_rgba(15,23,42,0.10)]"
+                        data-testid="menu-services"
+                        role="menu"
+                        aria-label="Services menu"
+                      >
+                        <Link
+                          to={createPageUrl("ServicesOverview")}
+                          className="block border-b border-slate-200 px-5 py-3 text-left text-[12px] font-bold uppercase tracking-[0.14em] text-slate-900 hover:bg-slate-50"
+                          data-testid="nav-services-overview"
+                          role="menuitem"
+                        >
+                          Pacific Engineering Services
+                        </Link>
                         {servicesItems.map((item) => (
-                          <Link key={item.path} to={item.path} className="block px-5 py-3 text-left text-sm font-medium text-slate-700 transition-colors hover:bg-slate-100 hover:text-slate-950" data-testid={`nav-service-${item.name.toLowerCase().replace(/\s+/g, "-")}`}>{item.name}</Link>
+                          <Link
+                            key={item.path}
+                            to={item.path}
+                            className="block px-5 py-3 text-left text-sm font-medium text-slate-800 transition-colors hover:bg-slate-50 hover:text-slate-950"
+                            data-testid={`nav-service-${item.name.toLowerCase().replace(/\s+/g, "-")}`}
+                            role="menuitem"
+                          >
+                            {item.name}
+                          </Link>
                         ))}
                       </div>
                     </div>
@@ -225,22 +265,42 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
                 </div>
 
                 <div className="relative group h-full flex items-center" onMouseEnter={() => setAboutDropdownOpen(true)} onMouseLeave={() => setAboutDropdownOpen(false)}>
-                  <Link to={createPageUrl("About")} className="flex h-full items-center gap-1 px-3 text-[13px] font-semibold tracking-[0.08em] text-slate-700 transition-colors hover:text-slate-950 xl:px-3.5" data-testid="nav-about">
+                  <Link
+                    to={createPageUrl("About")}
+                    className="flex h-full items-center gap-1 px-3 text-[13px] font-semibold tracking-[0.08em] text-slate-800 transition-colors hover:text-slate-950 xl:px-3.5"
+                    data-testid="nav-about"
+                    aria-haspopup="menu"
+                    aria-expanded={aboutDropdownOpen}
+                    aria-label="About"
+                  >
                     About
                     <ChevronDown className={`w-4 h-4 transition-transform ${aboutDropdownOpen ? "rotate-180" : ""}`} />
                   </Link>
                   {aboutDropdownOpen && (
                     <div className="absolute left-0 top-full pt-3">
-                      <div className="w-60 overflow-hidden rounded-md border border-slate-200 bg-white py-2 shadow-[0_16px_30px_rgba(15,23,42,0.14)]">
+                      <div
+                        className="w-60 overflow-hidden rounded-md border border-slate-200 bg-white py-2 shadow-[0_12px_24px_rgba(15,23,42,0.10)]"
+                        data-testid="menu-about"
+                        role="menu"
+                        aria-label="About menu"
+                      >
                         {aboutItems.map((item) => (
-                          <Link key={item.path} to={item.path} className="block px-5 py-3 text-left text-sm font-medium text-slate-700 transition-colors hover:bg-slate-100 hover:text-slate-950" data-testid={`nav-about-${item.name.toLowerCase().replace(/\s+/g, "-")}`}>{item.name}</Link>
+                          <Link
+                            key={item.path}
+                            to={item.path}
+                            className="block px-5 py-3 text-left text-sm font-medium text-slate-800 transition-colors hover:bg-slate-50 hover:text-slate-950"
+                            data-testid={`nav-about-${item.name.toLowerCase().replace(/\s+/g, "-")}`}
+                            role="menuitem"
+                          >
+                            {item.name}
+                          </Link>
                         ))}
                       </div>
                     </div>
                   )}
                 </div>
 
-                <Link to={createPageUrl("Contact")} className="flex h-full items-center px-3 text-[13px] font-semibold tracking-[0.08em] text-slate-700 transition-colors hover:text-slate-950 xl:px-3.5" data-testid="nav-contact">Contact</Link>
+                <Link to={createPageUrl("Contact")} className="flex h-full items-center px-3 text-[13px] font-semibold tracking-[0.08em] text-slate-800 transition-colors hover:text-slate-950 xl:px-3.5" data-testid="nav-contact">Contact</Link>
 
                 <div className="ml-3 flex h-full items-center gap-3">
                   <Link to={createPageUrl("SWPPPChecker")} className="pe-shell-button" data-testid="nav-consultation">
@@ -269,7 +329,7 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
                   </a>
                 )}
                 <button
-                  className="p-2 text-slate-700 hover:bg-slate-100 rounded-lg transition-colors"
+                  className="p-2 text-slate-800 hover:bg-slate-100 rounded-lg transition-colors"
                   onClick={() => setIsMobileMenuOpen((current) => !current)}
                   data-testid="button-mobile-menu"
                   aria-label="Toggle menu"
@@ -284,7 +344,7 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
       </header>
       {usesMenuShell && isMobileMenuOpen && (
         <div className="fixed inset-0 z-50 bg-white" data-testid="mobile-menu">
-          <div className="flex items-center justify-between px-6 h-20 border-b border-slate-200">
+          <div className="flex items-center justify-between px-6 border-b border-slate-200" style={{ height: "var(--pe-shell-header-height)" }}>
             <div className="flex items-center gap-3">
               <img src="/images/pe-logo.png" alt="Pacific Engineering Logo" className="h-12 w-12 rounded-md object-contain" />
               <span className="text-slate-900 font-bold text-lg">Pacific Engineering</span>
@@ -294,7 +354,7 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
             </button>
           </div>
 
-          <nav className="flex flex-col px-6 py-4 space-y-0 overflow-y-auto" style={{ maxHeight: "calc(100vh - 5rem)" }}>
+          <nav className="flex flex-col px-6 py-4 space-y-0 overflow-y-auto" style={{ maxHeight: "calc(100vh - var(--pe-shell-header-height))" }}>
             <Link to={createPageUrl("Home")} className="text-lg text-slate-800 hover:text-blue-700 py-3.5 border-b border-slate-200 transition-colors font-medium" data-testid="mobile-nav-home">Home</Link>
 
             <div className="border-b border-slate-200">
@@ -350,19 +410,19 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
       {shellState.showStickyCta && !isMobileMenuOpen && (
         <div
           data-testid="mobile-sticky-bar"
-          className="fixed inset-x-0 bottom-0 z-40 border-t border-slate-700 bg-slate-900 px-3 pb-3 pt-2"
+          className="fixed inset-x-0 bottom-0 z-40 border-t border-slate-700 bg-slate-900 px-3 pb-2.5 pt-1.5"
           style={{ paddingBottom: "max(0.75rem, env(safe-area-inset-bottom))" }}
         >
           <div
             data-testid="mobile-sticky-content"
-            className={`pointer-events-auto relative mx-auto max-w-3xl overflow-hidden rounded-2xl border border-slate-700 bg-slate-900 text-white shadow-[0_-12px_32px_rgba(2,8,23,0.38)] transition-all duration-300 ${
-              isStickyCtaCollapsed ? "px-4 py-2.5" : "px-4 pt-4 pb-3"
+            className={`pointer-events-auto relative mx-auto max-w-3xl overflow-hidden rounded-xl border border-slate-700 bg-slate-900 text-white shadow-[0_-12px_32px_rgba(2,8,23,0.38)] transition-all duration-300 ${
+              isStickyCtaCollapsed ? "px-3.5 py-1.5" : "px-3.5 pt-3 pb-2"
             }`}
           >
             <button
               type="button"
               onClick={() => setIsStickyCtaCollapsed((current) => !current)}
-              className="absolute -top-3 left-3 inline-flex h-7 w-7 items-center justify-center rounded-full border border-slate-600 bg-slate-900 text-slate-200 shadow-md transition-colors hover:border-cyan-400 hover:text-white"
+              className="absolute -top-3 left-3 inline-flex h-6 w-6 items-center justify-center rounded-full border border-slate-600 bg-slate-900 text-slate-200 shadow-md transition-colors hover:border-slate-500 hover:text-white"
               aria-expanded={!isStickyCtaCollapsed}
               aria-controls="marketing-mobile-sticky-actions"
               data-testid="btn-sticky-toggle"
@@ -375,17 +435,17 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
             </button>
 
             {isStickyCtaCollapsed ? (
-              <div className="flex min-h-6 items-center justify-between gap-4 pl-6">
+              <div className="flex min-h-5 items-center justify-between gap-4 pl-5">
                 <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-300">
                   Quick Actions
                 </span>
                 <span className="text-xs text-slate-400">Tap to reopen</span>
               </div>
             ) : (
-              <div id="marketing-mobile-sticky-actions" className="grid grid-cols-2 gap-3">
+              <div id="marketing-mobile-sticky-actions" className="grid grid-cols-2 gap-2.5">
                 <a
                   href="tel:+14156894428"
-                  className="flex min-h-12 items-center justify-center gap-2 rounded-xl border border-slate-700 bg-slate-800 px-4 py-3 text-sm font-bold text-white transition-colors active:bg-slate-700"
+                  className="flex min-h-11 items-center justify-center gap-2 rounded-lg border border-slate-700 bg-slate-800 px-3.5 py-2.5 text-sm font-bold text-white transition-colors active:bg-slate-700"
                   data-testid="btn-sticky-call"
                 >
                   <Phone className="h-4 w-4" />
@@ -393,7 +453,7 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
                 </a>
                 <Link
                   to={createPageUrl("Consultation")}
-                  className="flex min-h-12 items-center justify-center gap-2 rounded-xl bg-orange-600 px-4 py-3 text-sm font-bold text-white shadow-lg shadow-orange-950/25 transition-colors active:bg-orange-500"
+                  className="flex min-h-11 items-center justify-center gap-2 rounded-lg bg-orange-600 px-3.5 py-2.5 text-sm font-bold text-white shadow-lg shadow-orange-950/25 transition-colors active:bg-orange-500"
                   data-testid="btn-sticky-quote"
                 >
                   <PhoneCall className="h-4 w-4" />
@@ -436,11 +496,11 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
                   href="https://www.linkedin.com/in/a-mark-waldman-814b119"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center border border-white/10 hover:border-cyan-500/50 hover:bg-white/10 transition-all flex-shrink-0"
+                  className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center border border-white/10 hover:border-white/30 hover:bg-white/10 transition-all flex-shrink-0"
                   aria-label="LinkedIn"
                   data-testid="link-linkedin-footer"
                 >
-                  <Linkedin className="w-4 h-4 text-gray-400" />
+                  <Linkedin className="w-4 h-4 text-slate-300" />
                 </a>
                 <p className="text-xs text-slate-500 font-medium">Contractor Lic. #: 1351235425</p>
               </div>
@@ -451,7 +511,7 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
               <ul className="space-y-2.5">
                 {servicesItems.map((item) => (
                   <li key={item.path}>
-                    <Link to={item.path} className="text-sm text-slate-300 hover:text-cyan-300 transition-colors font-medium">{item.name}</Link>
+                    <Link to={item.path} className="text-sm text-slate-300 hover:text-white transition-colors font-medium">{item.name}</Link>
                   </li>
                 ))}
               </ul>
@@ -462,11 +522,11 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
               <ul className="space-y-2.5">
                 {aboutItems.map((item) => (
                   <li key={item.path}>
-                    <Link to={item.path} className="text-sm text-slate-300 hover:text-cyan-300 transition-colors font-medium">{item.name}</Link>
+                    <Link to={item.path} className="text-sm text-slate-300 hover:text-white transition-colors font-medium">{item.name}</Link>
                   </li>
                 ))}
                 <li>
-                  <Link to={createPageUrl("Contact")} className="text-sm text-slate-300 hover:text-cyan-300 transition-colors font-medium">Contact Pacific Engineering</Link>
+                  <Link to={createPageUrl("Contact")} className="text-sm text-slate-300 hover:text-white transition-colors font-medium">Contact Pacific Engineering</Link>
                 </li>
               </ul>
             </div>
@@ -475,20 +535,20 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
               <h4 className="mb-4 text-sm font-bold uppercase tracking-[0.18em] text-slate-400">Office + Next Step</h4>
               <ul className="space-y-3">
                 <li className="flex items-center gap-3 text-gray-300 group">
-                  <div className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center border border-white/10 group-hover:border-cyan-500/50 transition-colors flex-shrink-0">
-                    <Phone className="w-4 h-4 text-cyan-400" />
+                  <div className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center border border-white/10 group-hover:border-white/30 transition-colors flex-shrink-0">
+                    <Phone className="w-4 h-4 text-slate-200" />
                   </div>
-                  <a href="tel:+14156894428" className="hover:text-cyan-400 transition-colors text-sm font-medium">(415)-689-4428</a>
+                  <a href="tel:+14156894428" className="hover:text-white transition-colors text-sm font-medium">(415)-689-4428</a>
                 </li>
                 <li className="flex items-center gap-3 text-gray-300 group">
-                  <div className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center border border-white/10 group-hover:border-cyan-500/50 transition-colors flex-shrink-0">
-                    <Mail className="w-4 h-4 text-cyan-400" />
+                  <div className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center border border-white/10 group-hover:border-white/30 transition-colors flex-shrink-0">
+                    <Mail className="w-4 h-4 text-slate-200" />
                   </div>
-                  <a href="mailto:amwaldman@sbcglobal.net" className="hover:text-cyan-400 transition-colors whitespace-nowrap text-sm font-medium">amwaldman@sbcglobal.net</a>
+                  <a href="mailto:amwaldman@sbcglobal.net" className="hover:text-white transition-colors whitespace-nowrap text-sm font-medium">amwaldman@sbcglobal.net</a>
                 </li>
                 <li className="flex items-center gap-3 text-gray-300 group">
-                  <div className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center border border-white/10 group-hover:border-cyan-500/50 transition-colors flex-shrink-0">
-                    <MapPin className="w-4 h-4 text-cyan-400" />
+                  <div className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center border border-white/10 group-hover:border-white/30 transition-colors flex-shrink-0">
+                    <MapPin className="w-4 h-4 text-slate-200" />
                   </div>
                   <span className="text-sm font-medium">470 3rd St.<br />San Francisco, CA 94107</span>
                 </li>
@@ -521,11 +581,11 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
                   href="https://www.linkedin.com/in/a-mark-waldman-814b119"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="ml-1 flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-white/5 transition-all hover:border-cyan-500/50 hover:bg-white/10"
+                  className="ml-1 flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-white/5 transition-all hover:border-white/30 hover:bg-white/10"
                   aria-label="LinkedIn"
                   data-testid="link-linkedin"
                 >
-                  <Linkedin className="w-4 h-4 text-gray-400 hover:text-cyan-300" />
+                  <Linkedin className="w-4 h-4 text-slate-300 hover:text-white" />
                 </a>
               </div>
             </div>

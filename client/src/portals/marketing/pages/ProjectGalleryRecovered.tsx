@@ -114,7 +114,7 @@ export default function ProjectGalleryRecovered() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-slate-50" data-testid="project-gallery-page">
+    <div className="min-h-screen bg-slate-50 project-gallery-surface" data-testid="project-gallery-page">
       <SEO
         title="Project Gallery - Pacific Engineering Portfolio | 100+ Completed Projects"
         description="Explore Pacific Engineering's portfolio of civil engineering, SWPPP, and construction projects across California. Airports, infrastructure, schools, and commercial developments."
@@ -183,7 +183,7 @@ export default function ProjectGalleryRecovered() {
               <div className="project-gallery-filter-header">
                 <div className="pe-stack-sm">
                   <span className="eyebrow">Filter Project Experience</span>
-                  <h2 className="pe-heading-3">Review project experience by scope, service, and county.</h2>
+                  <h2 className="pe-heading-3">Review project records by scope, service, and county.</h2>
                 </div>
                 <div className="project-gallery-results" data-testid="text-project-count">
                   <Filter className="h-4 w-4" />
@@ -284,12 +284,12 @@ export default function ProjectGalleryRecovered() {
                       <div className="pe-stack-sm">
                         <span className="eyebrow cool">County Coverage</span>
                         <h2 className="pe-heading-3">
-                          Trace Pacific Engineering project work across the Bay Area.
+                          Trace Pacific Engineering project records across Bay Area delivery corridors.
                         </h2>
                       </div>
                       <p className="project-gallery-stage-note">
-                        Select a marker or project card to focus the map and preview the
-                        project context before opening the full detail page.
+                        Select a marker or record card to focus the map and review project
+                        context before opening the full project page.
                       </p>
                     </div>
                     <ProjectGalleryMap
@@ -390,7 +390,7 @@ export default function ProjectGalleryRecovered() {
                         <img
                           src={project.image}
                           alt={project.title}
-                          className="h-full w-full object-cover transition-transform duration-500 hover:scale-[1.03]"
+                          className="h-full w-full object-cover transition-transform duration-300 hover:scale-[1.01]"
                         />
                         <div className="project-gallery-card-top">
                           <span className="pe-pill">{project.category}</span>

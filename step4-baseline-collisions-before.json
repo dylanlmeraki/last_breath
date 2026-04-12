@@ -1,0 +1,111 @@
+{
+  "capturedAt": "2026-04-12T05:46:56.949Z",
+  "baseUrl": "http://localhost:5100",
+  "results": [
+    {
+      "case": {
+        "route": "/contact",
+        "width": 390,
+        "height": 844,
+        "tag": "contact-390x844"
+      },
+      "result": {
+        "hasChatbot": true,
+        "chatbotRect": {
+          "left": 295,
+          "right": 351,
+          "top": 652,
+          "bottom": 708,
+          "width": 56,
+          "height": 56
+        },
+        "collisions": [
+          {
+            "tag": "input",
+            "id": "name",
+            "className": "flex w-full border bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-",
+            "text": "John Smith",
+            "rect": {
+              "left": 57,
+              "right": 330.25,
+              "top": 684.53125,
+              "bottom": 732.53125,
+              "width": 273.25,
+              "height": 48
+            }
+          }
+        ]
+      }
+    },
+    {
+      "case": {
+        "route": "/contact",
+        "width": 430,
+        "height": 932,
+        "tag": "contact-430x932"
+      },
+      "result": {
+        "hasChatbot": true,
+        "chatbotRect": {
+          "left": 335,
+          "right": 391,
+          "top": 740,
+          "bottom": 796,
+          "width": 56,
+          "height": 56
+        },
+        "collisions": [
+          {
+            "tag": "input",
+            "id": "email",
+            "className": "flex w-full border bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-",
+            "text": "john@company.com",
+            "rect": {
+              "left": 57,
+              "right": 358,
+              "top": 753.65625,
+              "bottom": 801.65625,
+              "width": 301,
+              "height": 48
+            }
+          }
+        ]
+      }
+    },
+    {
+      "case": {
+        "route": "/blog",
+        "width": 390,
+        "height": 844,
+        "tag": "blog-390x844"
+      },
+      "result": {
+        "hasChatbot": true,
+        "chatbotRect": {
+          "left": 295,
+          "right": 351,
+          "top": 652,
+          "bottom": 708,
+          "width": 56,
+          "height": 56
+        },
+        "collisions": [
+          {
+            "tag": "button",
+            "id": null,
+            "className": "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium focus-visible:outline-non",
+            "text": "Engineering",
+            "rect": {
+              "left": 193.921875,
+              "right": 332.21875,
+              "top": 635.53125,
+              "bottom": 677.53125,
+              "width": 138.296875,
+              "height": 42
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

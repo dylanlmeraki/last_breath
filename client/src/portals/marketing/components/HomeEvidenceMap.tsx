@@ -115,8 +115,8 @@ export default function HomeEvidenceMap({
     markerLayer.addTo(map);
     layerRef.current = markerLayer;
 
-    fitMapToMarkers(map, validMarkers, 0.2);
-  }, [validMarkers, activeMarkerId, onActivate]);
+    fitMapToMarkers(map, validMarkers, 0.16);
+  }, [validMarkers, onActivate]);
 
   useEffect(() => {
     markerRefs.current.forEach((mapMarker, markerId) => {
@@ -132,17 +132,33 @@ export default function HomeEvidenceMap({
     const map = mapRef.current;
     if (!activeMarker || !map) return;
 
-    map.flyTo(activeMarker.getLatLng(), Math.max(map.getZoom(), 9), {
-      animate: true,
-      duration: 0.55,
-    });
+    const markerLatLng = activeMarker.getLatLng();
+    if (!Number.isFinite(markerLatLng.lat) || !Number.isFinite(markerLatLng.lng)) {
+      return;
+    }
+
+    const container = map.getContainer();
+    const hasRenderableSize =
+      container.clientWidth > 0 && container.clientHeight > 0;
+
+    if (hasRenderableSize) {
+      const currentZoom = map.getZoom();
+      const targetZoom = Number.isFinite(currentZoom) ? Math.max(currentZoom, 9) : 9;
+      map.setView(markerLatLng, targetZoom, { animate: false });
+    }
+
     activeMarker.openPopup();
   }, [activeMarkerId, markerById]);
 
   return (
     <div className="home-evidence-map-shell pe-card">
+      <div className="home-evidence-map-header">
+        <span className="home-evidence-map-kicker">Bay Area map view</span>
+        <span className="home-evidence-map-note">
+          Select a marker to sync the active project record.
+        </span>
+      </div>
       <div ref={mapElementRef} className="home-evidence-map pe-map-toned" data-testid="home-evidence-map" />
-      <div className="home-evidence-map-overlay" aria-hidden="true" />
     </div>
   );
 }

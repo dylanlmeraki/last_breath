@@ -73,8 +73,10 @@ export default function ProjectSnippetRotator({
                   />
                 </div>
                 <div className="project-snippet-body">
-                  <p className="project-snippet-meta">{item.meta}</p>
                   <h3 className="project-snippet-title">{item.title}</h3>
+                  <p className="project-snippet-meta-label">Responsibility</p>
+                  <p className="project-snippet-meta">{item.meta}</p>
+                  <p className="project-snippet-proof-label">Scope</p>
                   <p className="project-snippet-proof">{item.proof}</p>
                 </div>
               </div>

@@ -113,6 +113,9 @@ export default function HomeProjectEvidence() {
     return null;
   }
 
+  const totalRecordCount = homeProjectSnippets.length;
+  const shortlistCount = Math.min(3, totalRecordCount);
+
   return (
     <section className="pe-section pe-section-tight section-surface-solid">
       <div className="pe-container-wide pe-stack">
@@ -122,10 +125,9 @@ export default function HomeProjectEvidence() {
             Representative Bay Area project records tied to real delivery conditions.
           </h2>
           <p className="pe-lead">
-            Infrastructure, institutional, utility, and aviation work surfaced
-            through location, responsibility, and field context so visitors can
-            read Pacific Engineering through the work itself rather than
-            through generic service language.
+            Infrastructure, institutional, utility, and aviation records organized
+            by location, responsibility, and field scope so project teams can
+            quickly gauge relevant experience.
           </p>
         </div>
 
@@ -133,31 +135,36 @@ export default function HomeProjectEvidence() {
           <div className="project-evidence-panel">
             <div className="project-evidence-toolbar">
               <div className="project-evidence-status">
-                <span className="project-evidence-kicker">Regional project shortlist</span>
+                <span className="project-evidence-kicker">Regional project records</span>
                 <span className="project-evidence-note">
                   {isAutoPaused
-                    ? "Selection held on the project record you chose"
-                    : "Curated records tied to location, field constraints, and delivery scope"}
+                    ? "Selection locked to the record you chose"
+                    : "Listing view tied to location, responsibility, and delivery constraints"}
                 </span>
               </div>
 
-              <div className="project-evidence-controls" aria-label="Project evidence controls">
-                <button
-                  type="button"
-                  className="project-evidence-control"
-                  onClick={() => stepProject(-1)}
-                  aria-label="Show previous project"
-                >
-                  <ArrowLeft size={16} />
-                </button>
-                <button
-                  type="button"
-                  className="project-evidence-control"
-                  onClick={() => stepProject(1)}
-                  aria-label="Show next project"
-                >
-                  <ArrowRight size={16} />
-                </button>
+              <div className="project-evidence-toolbar-meta">
+                <span className="project-evidence-count">
+                  {shortlistCount} of {totalRecordCount} records in view
+                </span>
+                <div className="project-evidence-controls" aria-label="Project evidence controls">
+                  <button
+                    type="button"
+                    className="project-evidence-control"
+                    onClick={() => stepProject(-1)}
+                    aria-label="Show previous project"
+                  >
+                    <ArrowLeft size={16} />
+                  </button>
+                  <button
+                    type="button"
+                    className="project-evidence-control"
+                    onClick={() => stepProject(1)}
+                    aria-label="Show next project"
+                  >
+                    <ArrowRight size={16} />
+                  </button>
+                </div>
               </div>
             </div>
 
@@ -216,8 +223,7 @@ export default function HomeProjectEvidence() {
 
         <div className="project-evidence-cta-row">
           <p className="project-evidence-cta-copy">
-            Review the shortlist, confirm the location on the map, and then open
-            the full project record for the broader delivery story.
+            Review records, confirm location on the map, and open the full project page for detailed scope and outcomes.
           </p>
           <Link to={createPageUrl("ProjectGallery")} className="pe-link-inline">
             View all project experience

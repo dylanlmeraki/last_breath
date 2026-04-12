@@ -15,6 +15,7 @@ type Props = {
   onActivate: (id: string) => void;
 };
 
+// Legacy synthetic map fallback only. Active Home evidence uses HomeEvidenceMap (Leaflet).
 export default function ProjectMiniMap({
   markers,
   activeMarkerId,

@@ -23,7 +23,7 @@ export function createMarketingMap(
     zoomControl: false,
     scrollWheelZoom,
     attributionControl: false,
-    preferCanvas: true,
+    renderer: L.svg(),
   });
 
   if (zoomControl) {
@@ -55,10 +55,10 @@ export function markerStyle(
     return {
       color: palette.stroke,
       fillColor: palette.fill,
-      fillOpacity: isActive ? 1 : 0.88,
+      fillOpacity: isActive ? 0.94 : 0.84,
       opacity: 1,
-      radius: isActive ? 7.5 : 5.8,
-      weight: isActive ? 2.5 : 2,
+      radius: isActive ? 6.4 : 4.9,
+      weight: isActive ? 2 : 1.6,
     };
   }
 

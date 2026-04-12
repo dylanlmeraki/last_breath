@@ -1,0 +1,27 @@
+{
+  "generatedAt": "2026-04-12T06:32:23.903Z",
+  "baseUrl": "http://localhost:5100",
+  "routes": ["/", "/about", "/project-gallery", "/contact", "/blog"],
+  "viewports": [
+    { "width": 390, "height": 844 },
+    { "width": 430, "height": 932 },
+    { "width": 1100, "height": 760 },
+    { "width": 1280, "height": 800 },
+    { "width": 1440, "height": 900 },
+    { "width": 1728, "height": 1117 }
+  ],
+  "summary": {
+    "totalSamples": 30,
+    "consoleErrorSamples": 0,
+    "pageErrorSamples": 0,
+    "overflowSamples": 0,
+    "stickyOverlapSamples": 0,
+    "collisionSamples": 0,
+    "dropdownHookSamples": 5,
+    "minHeaderContrast": 17.85
+  },
+  "notes": [
+    "Collision probing in this matrix is scoped to mobile contexts (viewport width <= 480), matching the chatbot overlap bug profile.",
+    "Desktop dropdown hook checks are verified where the menu is visible and discoverable."
+  ]
+}

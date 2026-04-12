@@ -19,7 +19,7 @@ function buildPopupMarkup(project: MarketingGalleryProject): string {
         <h3 class="project-gallery-popup-title">${escapeHtml(project.title)}</h3>
         <p class="project-gallery-popup-location">${escapeHtml(project.location)}</p>
         <p class="project-gallery-popup-summary">${escapeHtml(project.popupSummary)}</p>
-        <a class="project-gallery-popup-link" href="/project/${project.slug}">View project</a>
+        <a class="project-gallery-popup-link" href="/project/${project.slug}">Open project record</a>
       </div>
     </article>
   `;
@@ -105,9 +105,9 @@ export default function ProjectGalleryMap({
         lat: project.coordinates.lat,
         lng: project.coordinates.lng,
       })),
-      0.24,
+      0.2,
     );
-  }, [projects, activeSlug, onSelectProject]);
+  }, [projects, onSelectProject]);
 
   useEffect(() => {
     markerRefs.current.forEach((marker, slug) => {
@@ -129,10 +129,21 @@ export default function ProjectGalleryMap({
       return;
     }
 
-    map.flyTo(activeMarker.getLatLng(), Math.max(map.getZoom(), 9), {
-      animate: true,
-      duration: 0.75,
-    });
+    const markerLatLng = activeMarker.getLatLng();
+    if (!Number.isFinite(markerLatLng.lat) || !Number.isFinite(markerLatLng.lng)) {
+      return;
+    }
+
+    const container = map.getContainer();
+    const hasRenderableSize =
+      container.clientWidth > 0 && container.clientHeight > 0;
+
+    if (hasRenderableSize) {
+      const currentZoom = map.getZoom();
+      const targetZoom = Number.isFinite(currentZoom) ? Math.max(currentZoom, 9) : 9;
+      map.setView(markerLatLng, targetZoom, { animate: false });
+    }
+
     activeMarker.openPopup();
   }, [activeSlug, projectBySlug]);
 
