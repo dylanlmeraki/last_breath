@@ -186,7 +186,7 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
       data-shell-profile={shellState.profile}
       data-shell-touch={shellState.isTouchLike ? "true" : "false"}
     >
-      <header className={`fixed top-0 left-0 right-0 z-40 border-b border-slate-200 bg-white transition-[box-shadow] duration-200 ${isScrolled ? "shadow-[0_8px_18px_rgba(15,23,42,0.08)]" : "shadow-[0_2px_10px_rgba(15,23,42,0.05)]"}`}>
+      <header className={`fixed top-0 left-0 right-0 z-40 border-b border-slate-300/80 bg-white transition-[box-shadow] duration-200 ${isScrolled ? "shadow-[0_10px_24px_rgba(15,23,42,0.09)]" : "shadow-[0_2px_10px_rgba(15,23,42,0.05)]"}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="flex items-center justify-between" style={{ height: "var(--pe-shell-header-height)" }}>
             <Link to={createPageUrl("Home")} className="flex items-center gap-3 group" data-testid="link-logo">
@@ -218,12 +218,12 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
 
             {isFullDesktop ? (
               <nav className="flex h-full items-center gap-1.5" data-testid="nav-main">
-                <Link to={createPageUrl("Home")} className="flex h-full items-center px-3 text-[13px] font-semibold tracking-[0.08em] text-slate-800 transition-colors hover:text-slate-950 xl:px-3.5" data-testid="nav-home">Home</Link>
+                <Link to={createPageUrl("Home")} className="flex h-full items-center px-3 text-[13px] font-semibold tracking-[0.07em] text-slate-900 transition-colors hover:text-slate-950 xl:px-3.5" data-testid="nav-home">Home</Link>
 
                 <div className="relative group h-full flex items-center" onMouseEnter={() => setServicesDropdownOpen(true)} onMouseLeave={() => setServicesDropdownOpen(false)}>
                   <Link
                     to={createPageUrl("ServicesOverview")}
-                    className="flex h-full items-center gap-1 px-3 text-[13px] font-semibold tracking-[0.08em] text-slate-800 transition-colors hover:text-slate-950 xl:px-3.5"
+                    className="flex h-full items-center gap-1 px-3 text-[13px] font-semibold tracking-[0.07em] text-slate-900 transition-colors hover:text-slate-950 xl:px-3.5"
                     data-testid="nav-services"
                     aria-haspopup="menu"
                     aria-expanded={servicesDropdownOpen}
@@ -235,14 +235,14 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
                   {servicesDropdownOpen && (
                     <div className="absolute left-0 top-full pt-3">
                       <div
-                        className="w-72 overflow-hidden rounded-md border border-slate-200 bg-white py-2 shadow-[0_12px_24px_rgba(15,23,42,0.10)]"
+                        className="w-72 overflow-hidden rounded-md border border-slate-300 bg-white py-2 shadow-[0_16px_28px_rgba(15,23,42,0.11)]"
                         data-testid="menu-services"
                         role="menu"
                         aria-label="Services menu"
                       >
                         <Link
                           to={createPageUrl("ServicesOverview")}
-                          className="block border-b border-slate-200 px-5 py-3 text-left text-[12px] font-bold uppercase tracking-[0.14em] text-slate-900 hover:bg-slate-50"
+                          className="block border-b border-slate-200 px-5 py-3 text-left text-[12px] font-bold uppercase tracking-[0.13em] text-slate-900 hover:bg-slate-50"
                           data-testid="nav-services-overview"
                           role="menuitem"
                         >
@@ -252,7 +252,7 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
                           <Link
                             key={item.path}
                             to={item.path}
-                            className="block px-5 py-3 text-left text-sm font-medium text-slate-800 transition-colors hover:bg-slate-50 hover:text-slate-950"
+                            className="block px-5 py-3 text-left text-sm font-medium text-slate-900 transition-colors hover:bg-slate-50 hover:text-slate-950"
                             data-testid={`nav-service-${item.name.toLowerCase().replace(/\s+/g, "-")}`}
                             role="menuitem"
                           >
@@ -267,7 +267,7 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
                 <div className="relative group h-full flex items-center" onMouseEnter={() => setAboutDropdownOpen(true)} onMouseLeave={() => setAboutDropdownOpen(false)}>
                   <Link
                     to={createPageUrl("About")}
-                    className="flex h-full items-center gap-1 px-3 text-[13px] font-semibold tracking-[0.08em] text-slate-800 transition-colors hover:text-slate-950 xl:px-3.5"
+                    className="flex h-full items-center gap-1 px-3 text-[13px] font-semibold tracking-[0.07em] text-slate-900 transition-colors hover:text-slate-950 xl:px-3.5"
                     data-testid="nav-about"
                     aria-haspopup="menu"
                     aria-expanded={aboutDropdownOpen}
@@ -279,7 +279,7 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
                   {aboutDropdownOpen && (
                     <div className="absolute left-0 top-full pt-3">
                       <div
-                        className="w-60 overflow-hidden rounded-md border border-slate-200 bg-white py-2 shadow-[0_12px_24px_rgba(15,23,42,0.10)]"
+                        className="w-60 overflow-hidden rounded-md border border-slate-300 bg-white py-2 shadow-[0_16px_28px_rgba(15,23,42,0.11)]"
                         data-testid="menu-about"
                         role="menu"
                         aria-label="About menu"
@@ -288,7 +288,7 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
                           <Link
                             key={item.path}
                             to={item.path}
-                            className="block px-5 py-3 text-left text-sm font-medium text-slate-800 transition-colors hover:bg-slate-50 hover:text-slate-950"
+                            className="block px-5 py-3 text-left text-sm font-medium text-slate-900 transition-colors hover:bg-slate-50 hover:text-slate-950"
                             data-testid={`nav-about-${item.name.toLowerCase().replace(/\s+/g, "-")}`}
                             role="menuitem"
                           >
@@ -300,7 +300,7 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
                   )}
                 </div>
 
-                <Link to={createPageUrl("Contact")} className="flex h-full items-center px-3 text-[13px] font-semibold tracking-[0.08em] text-slate-800 transition-colors hover:text-slate-950 xl:px-3.5" data-testid="nav-contact">Contact</Link>
+                <Link to={createPageUrl("Contact")} className="flex h-full items-center px-3 text-[13px] font-semibold tracking-[0.07em] text-slate-900 transition-colors hover:text-slate-950 xl:px-3.5" data-testid="nav-contact">Contact</Link>
 
                 <div className="ml-3 flex h-full items-center gap-3">
                   <Link to={createPageUrl("SWPPPChecker")} className="pe-shell-button" data-testid="nav-consultation">

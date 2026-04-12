@@ -76,7 +76,7 @@ export default function Blog() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50" data-testid="blog-page">
+    <div className="min-h-screen bg-slate-50 blog-page-surface" data-testid="blog-page">
       <Helmet>
         <title>Blog | Pacific Engineering & Construction</title>
         <meta name="description" content="Expert insights on stormwater management, construction compliance, engineering best practices, and environmental regulations from Pacific Engineering's team of licensed professionals." />
@@ -101,9 +101,9 @@ export default function Blog() {
         titleTestId="text-blog-title"
       />
 
-      <section className="py-12 px-6 bg-white border-b border-slate-200">
+      <section className="pe-section pe-section-tight section-surface-solid blog-filter-section">
         <AnimatedSection direction="up" delay={0.1}>
-          <div className="max-w-7xl mx-auto">
+          <div className="pe-container-wide">
             <div className="flex flex-wrap justify-center gap-4">
               {categories.map((cat) => (
                 <Button
@@ -111,11 +111,11 @@ export default function Blog() {
                   onClick={() => setSelectedCategory(cat.value)}
                   variant={selectedCategory === cat.value ? "default" : "outline"}
                   data-testid={`button-filter-${cat.value}`}
-                  className={`${
+                  className={`blog-filter-chip ${
                     selectedCategory === cat.value
-                      ? "bg-blue-600 text-white"
+                      ? "is-active bg-blue-700 text-white"
                       : "bg-white text-gray-700"
-                  } px-6`}
+                  }`}
                 >
                   {cat.label}
                 </Button>
@@ -136,17 +136,17 @@ export default function Blog() {
       ) : (
         <>
           {selectedCategory === "all" && featuredPost && (
-            <section className="py-20 px-6 bg-slate-50">
+            <section className="pe-section section-surface-soft blog-featured-section">
               <AnimatedSection direction="up" delay={0.2}>
-                <div className="max-w-7xl mx-auto">
+                <div className="pe-container-wide">
                   <div className="mb-8">
-                    <span className="bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-medium">
+                    <span className="blog-featured-badge">
                       Featured Article
                     </span>
                   </div>
                   
                   <Link to={`/blog/${featuredPost.slug}`} data-testid={`link-featured-post-${featuredPost.slug}`}>
-                    <Card className="overflow-hidden border border-slate-200 shadow-xl transition-all duration-300 cursor-pointer group rounded-md bg-white">
+                    <Card className="blog-featured-card overflow-hidden border border-slate-200 transition-all duration-300 cursor-pointer group rounded-md bg-white">
                     <div className="grid lg:grid-cols-2 gap-0">
                     {featuredPost.featured_image && (
                       <div className="relative h-96 lg:h-auto overflow-hidden">
@@ -158,9 +158,9 @@ export default function Blog() {
                         />
                       </div>
                     )}
-                    <div className="p-8 lg:p-12 flex flex-col justify-center bg-gradient-to-br from-white to-slate-50">
+                    <div className="blog-featured-panel p-8 lg:p-12 flex flex-col justify-center">
                           <div className="flex items-center gap-4 mb-4">
-                            <Badge className="bg-blue-100 text-blue-700 capitalize">
+                            <Badge className="bg-blue-50 text-blue-700 capitalize">
                               {featuredPost.category.replace('-', ' ')}
                             </Badge>
                             <div className="flex items-center gap-2 text-gray-600 text-sm">
@@ -169,11 +169,11 @@ export default function Blog() {
                             </div>
                           </div>
                           
-                          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors" data-testid="text-featured-title">
+                          <h2 className="pe-heading-2 text-slate-900 mb-4 group-hover:text-blue-700 transition-colors" data-testid="text-featured-title">
                             {featuredPost.seo_optimized_title || featuredPost.title}
                           </h2>
                           
-                          <p className="text-gray-700 text-lg mb-6 leading-relaxed">
+                          <p className="pe-copy text-base mb-6">
                             {featuredPost.meta_description || featuredPost.excerpt}
                           </p>
                           
@@ -200,7 +200,7 @@ export default function Blog() {
                             </div>
                           )}
                           
-                          <Button size="lg" className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white w-full lg:w-auto rounded-md shadow-lg transition-all duration-300 group">
+                          <Button size="lg" className="pe-button w-full lg:w-auto transition-all duration-300 group">
                             Read Full Article
                             <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
                           </Button>
@@ -214,10 +214,10 @@ export default function Blog() {
           )}
 
           {regularPosts.length > 0 && (
-            <section className="py-20 px-6 bg-white border-t border-slate-200">
-                <div className="max-w-7xl mx-auto">
+            <section className="pe-section section-surface-solid blog-list-section">
+                <div className="pe-container-wide">
                   <AnimatedSection direction="up" className="text-center mb-16">
-                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-6 tracking-tight">
+                    <h2 className="pe-heading-2 text-slate-900 mb-6">
                       Latest Articles
                     </h2>
                     <div className="w-20 sm:w-32 h-1 bg-gradient-to-r from-cyan-200 via-blue-500 to-cyan-200 mx-auto rounded-full"></div>
@@ -226,7 +226,7 @@ export default function Blog() {
                   <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {regularPosts.map((post: BlogPostData) => (
                       <Link to={`/blog/${post.slug}`} key={post.id} data-testid={`link-blog-post-${post.slug}`}>
-                        <Card className="group overflow-hidden border border-slate-200 shadow-lg transition-all duration-300 cursor-pointer h-full flex flex-col rounded-md">
+                        <Card className="group blog-post-card overflow-hidden border border-slate-200 transition-all duration-300 cursor-pointer h-full flex flex-col rounded-md">
                           {post.featured_image && (
                             <div className="relative h-56 overflow-hidden">
                               <img
@@ -256,7 +256,7 @@ export default function Blog() {
                               )}
                             </div>
                             
-                            <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors line-clamp-2" data-testid={`text-post-title-${post.id}`}>
+                            <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-700 transition-colors line-clamp-2" data-testid={`text-post-title-${post.id}`}>
                               {post.seo_optimized_title || post.title}
                             </h3>
                             
@@ -296,14 +296,14 @@ export default function Blog() {
         </>
       )}
 
-      <section className="py-20 px-6 bg-slate-50 border-t border-slate-200">
+      <section className="pe-section section-surface-soft blog-consult-band">
         <AnimatedSection direction="up">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-6 tracking-tight">
+          <div className="pe-container text-center">
+            <h2 className="pe-heading-2 text-slate-900 mb-6">
               Need a Practical Read on Project Requirements?
             </h2>
             <div className="w-20 sm:w-32 h-1 bg-gradient-to-r from-cyan-200 via-blue-500 to-cyan-200 mx-auto mb-8 rounded-full"></div>
-            <p className="text-lg text-slate-600 mb-8 leading-relaxed">
+            <p className="pe-lead mx-auto mb-8">
               Talk to Pacific Engineering if you need project-specific guidance on compliance, permitting, or field coordination rather than general updates.
             </p>
             

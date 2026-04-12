@@ -12,7 +12,6 @@ import {
 import AnimatedSection from "../components/AnimatedSection";
 import AnimatedCounter from "../components/AnimatedCounter";
 import BlueprintBackground from "../components/BlueprintBackground";
-import AnimatedGridBackground from "../components/AnimatedGridBackground";
 import CTASection from "../components/CTASection";
 import FeaturedProjectCards from "../components/FeaturedProjectCards";
 import HomeProjectEvidence from "../components/HomeProjectEvidence";
@@ -74,22 +73,15 @@ export default function HomeRecovered() {
           loop
           playsInline
           preload="auto"
-          className="absolute inset-0 h-full w-full object-cover opacity-24"
+          className="absolute inset-0 h-full w-full object-cover opacity-18"
         >
           <source src="/images/hero-ggb-draft.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/72 via-slate-950/80 to-slate-950/92" />
-        <div className="absolute inset-0 bg-gradient-to-r from-cyan-950/5 via-transparent to-orange-950/3" />
-        <AnimatedGridBackground
-          baseOpacity={0.05}
-          gridSize={40}
-          triggerInterval={500}
-          animationDuration={2500}
-          className="hidden opacity-5 sm:block"
-        />
-        <BlueprintBackground className="opacity-10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/64 via-slate-950/74 to-slate-950/86" />
+        <div className="absolute inset-0 bg-gradient-to-r from-cyan-950/4 via-transparent to-orange-950/2" />
+        <BlueprintBackground className="opacity-7" />
 
-        <div className="relative z-10 pe-container-wide py-12 sm:py-16 lg:py-24">
+        <div className="relative z-10 pe-container-wide py-10 sm:py-14 lg:py-20">
           <div className="home-hero-shell">
             <div className="home-hero-copy pe-inverse">
               <div className="max-w-3xl pe-stack-sm">
@@ -120,7 +112,7 @@ export default function HomeRecovered() {
               </div>
 
               <motion.div
-                className="home-hero-actions mt-6 flex flex-col gap-3 sm:flex-row"
+                className="home-hero-actions mt-5 flex flex-col gap-3 sm:flex-row"
                 initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={
@@ -137,7 +129,7 @@ export default function HomeRecovered() {
                 </Link>
               </motion.div>
 
-                <div className="home-hero-trust mt-6 flex flex-wrap gap-4 text-sm text-slate-200">
+                <div className="home-hero-trust mt-5 flex flex-wrap gap-4 text-sm text-slate-200">
                 {HERO_TRUST_POINTS.map((point) => (
                   <div key={point} className="inline-flex items-center gap-2">
                     <CheckCircle2 className="h-4 w-4 text-cyan-300" />
@@ -275,15 +267,15 @@ export default function HomeRecovered() {
             <div className="pe-stack-sm">
               <span className="eyebrow">Why Pacific Engineering</span>
               <h2 className="pe-heading-2">
-                Engineering judgment that stays useful in the field.
+                One partner from permit pressure to field turnover.
               </h2>
               <p className="pe-lead">
                 Pacific Engineering keeps engineering, compliance, and construction
-                coordination in one conversation so teams get a practical path
-                forward instead of disconnected handoffs.
+                coordination in one accountable thread so owners and project teams
+                get direct answers they can execute on site.
               </p>
               <Link to={createPageUrl("About")} className="pe-link-inline">
-                Meet the team
+                See how Pacific works with teams
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </div>

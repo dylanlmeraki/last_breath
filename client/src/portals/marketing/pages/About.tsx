@@ -58,7 +58,7 @@ const OPERATING_PRINCIPLES = [
 
 export default function About() {
   return (
-    <div className="min-h-screen bg-slate-50" data-testid="page-about">
+    <div className="min-h-screen bg-slate-50 about-page-surface" data-testid="page-about">
       <SEO
         title="About Pacific Engineering & Construction Inc."
         description="Pacific Engineering & Construction Inc. brings engineering, construction, inspections, surveying, and compliance support together for Bay Area and Northern California project teams."
@@ -79,9 +79,9 @@ export default function About() {
         <div className="pe-container-wide pe-stack">
           <div className="about-overview-grid pe-grid-2">
             <AnimatedSection direction="left">
-              <div className="pe-stack-sm about-overview-copy">
-                <span className="eyebrow">Who We Are</span>
-                <h2 className="pe-heading-2">Engineering judgment built to stay useful in the field.</h2>
+            <div className="pe-stack-sm about-overview-copy">
+              <span className="eyebrow">Who We Are</span>
+              <h2 className="pe-heading-2">Engineering judgment built to stay useful once the site is active.</h2>
                 <p className="pe-lead">
                   Founded in 2001, Pacific Engineering & Construction Inc. has supported civil,
                   environmental, surveying, inspection, stormwater, and construction scopes across
@@ -129,9 +129,9 @@ export default function About() {
 
       <section className="pe-section pe-section-tight section-surface-soft" data-testid="section-team">
         <div className="pe-container-wide pe-stack">
-          <div className="pe-stack-sm about-team-intro">
-            <span className="eyebrow cool">Our Team</span>
-            <h2 className="pe-heading-2">Leadership and field specialists who keep work moving.</h2>
+            <div className="pe-stack-sm about-team-intro">
+              <span className="eyebrow cool">Our Team</span>
+              <h2 className="pe-heading-2">Leadership and field specialists focused on project momentum.</h2>
             <p className="pe-lead">
               Engineering, surveying, geology, construction supervision, estimating, and project controls
               represented in one practical bench so teams can work with people who understand both
@@ -187,9 +187,9 @@ export default function About() {
 
       <section className="pe-section pe-section-tight section-surface-soft" data-testid="section-what-we-do">
         <div className="pe-container-wide pe-stack">
-          <div className="pe-stack-sm" style={{ maxWidth: "54rem" }}>
-            <span className="eyebrow">What We Do</span>
-            <h2 className="pe-heading-2">Service coverage built around project delivery, not category language.</h2>
+            <div className="pe-stack-sm" style={{ maxWidth: "54rem" }}>
+              <span className="eyebrow">What We Do</span>
+              <h2 className="pe-heading-2">Service coverage organized around delivery outcomes, not category language.</h2>
             <p className="pe-lead">
               Engineering consulting, construction support, inspections, and stormwater planning
               kept in one connected service stack so scope, compliance, and execution stay aligned.

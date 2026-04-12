@@ -4,17 +4,9 @@ Date: 2026-04-12
 Execution mode: Playwright-first, seam-safe hardening
 
 ## Scope
-- Completed full Step 4 post-pass E2E closure cycle.
+- Completed final Step 4 closure verification cycle after desktop-first polish packets.
 - Kept backend/public/internal seams intact.
-- Defaulted to marketing-client validation and low-drift triage behavior.
-
-## Skills Applied
-- `sequential-workbench`: run trace + evidence ledger.
-- `build-error-triage`: classify failures and separate signal from noise.
-- `conservative-code-remediator`: low-drift remediation posture.
-- `component-build-stabilizer`: React component-state/contract guardrail.
-- `multi-pass-safe-repair-orchestrator`: staged execution (preflight -> matrix -> flows -> seam checks -> closure).
-- `codex-claude-loop-handoff`: not needed (no repeat no-progress loop detected).
+- Kept contract behavior stable while validating visual/rhythm changes on marketing routes.
 
 ## Seam Guardrails Enforced
 - Public contract URLs preserved unchanged:
@@ -29,19 +21,16 @@ Execution mode: Playwright-first, seam-safe hardening
   - `GET /api/projects`
   - `GET /api/form-submissions` (auth-gated internal path)
   - `GET /api/users`
-- No contract-locked server/shared/api-client files were changed in this run.
+- No contract-locked server/shared/api-client files were changed in this closure pass.
 
 ## Preflight Gates
 - `npm run check`: pass
-- `npm run build`: pass
+- `npm run build`: pass (known PostCSS `from` warning still visible by design)
 - `npm run check:repo-hygiene`: pass
-
-Known unchanged technical debt (still visible, not suppressed):
-- PostCSS warning: plugin missing `from` in `postcss.parse`.
 
 ## Route Surface Snapshot
 - Captured `/api` route/method surface from `server/routes.ts`.
-- Stored at `artifacts/e2e/20260412-0421/route-surface-snapshot.txt`.
+- Stored at `artifacts/e2e/20260412-0734/route-surface-snapshot.txt`.
 
 ## Playwright Matrix
 Routes:
@@ -69,8 +58,9 @@ Summary:
 - dropdown opacity failures: `0`
 
 Artifacts:
-- `artifacts/e2e/20260412-0421/step4-baseline-collisions-before.json`
-- `artifacts/e2e/20260412-0421/step4-qa-after-summary.json`
+- `artifacts/e2e/20260412-0734/step4-baseline-collisions-before.json`
+- `artifacts/e2e/20260412-0734/step4-qa-after-summary.json`
+- `artifacts/e2e/20260412-0734/screenshots/` (30-route/viewport screenshot pack)
 
 ## Functional E2E Flows
 Executed and passed:
@@ -79,7 +69,7 @@ Executed and passed:
 - sticky CTA visibility + route persistence
 - chatbot open/close + non-obstruction safety
 - Home listing/map record sync
-- Gallery shortlist/map sync
+- Gallery category filter/shortlist/map sync with **dynamic** category discovery (`button-category-*`)
 - blog mobile interaction safety
 
 Summary:
@@ -88,7 +78,7 @@ Summary:
 - failed: `0`
 
 Artifact:
-- `artifacts/e2e/20260412-0421/functional-checks.json`
+- `artifacts/e2e/20260412-0734/functional-checks.json`
 
 ## Focused Stability Loops (5 rounds each)
 Scenarios:
@@ -103,7 +93,7 @@ Summary:
 - console/page/overflow/collision/sticky-overlap failures: `0`
 
 Artifact:
-- `artifacts/e2e/20260412-0421/step4-focused-5round-after.json`
+- `artifacts/e2e/20260412-0734/step4-focused-5round-after.json`
 
 ## API + Internal Seam Reverify
 - Pre/post snapshots captured with derived valid slugs from list endpoints.
@@ -112,15 +102,15 @@ Artifact:
 - Internal auth-gated endpoints remained `401` unauth (unchanged seam behavior).
 
 Artifacts:
-- `artifacts/e2e/20260412-0421/api-baseline-pre.json`
-- `artifacts/e2e/20260412-0421/api-baseline-post.json`
-- `artifacts/e2e/20260412-0421/seam-diff-summary.json`
+- `artifacts/e2e/20260412-0734/api-baseline-pre.json`
+- `artifacts/e2e/20260412-0734/api-baseline-post.json`
+- `artifacts/e2e/20260412-0734/seam-diff-summary.json`
 
 ## Severity Summary
 - `S0`: 0
 - `S1`: 0
 - `S2`: 0
-- `S3`: 2 (non-blocking debt/process gaps)
+- `S3`: 0 open blockers (`POSTCSS` moved to explicit tracked debt ownership; gallery category drift closed)
 - `S4`: 0
 
 Detailed ranked items are in:
@@ -130,8 +120,7 @@ Detailed ranked items are in:
 - Closure criteria met:
   - `0` open `S0/S1`
   - `0` focused-loop failures
-  - `0` matrix console/page/overflow failures
+  - `0` matrix console/page/overflow/collision failures
   - public API contract surface unchanged
   - internal seam smoke unchanged
-- Remaining items are low-severity tracked debt, not blockers.
-
+- Step 4 is closed for runtime/seam and visual-polish acceptance; remaining PostCSS warning is documented tracked debt and intentionally visible.

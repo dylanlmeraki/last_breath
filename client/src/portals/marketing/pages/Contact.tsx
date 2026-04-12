@@ -204,7 +204,7 @@ export default function Contact() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50" data-testid="page-contact">
+    <div className="min-h-screen bg-slate-50 contact-page-surface" data-testid="page-contact">
       <SEO 
         title="Contact Pacific Engineering - Get Your Free Consultation"
         description="Contact Pacific Engineering for civil engineering, SWPPP, construction, and inspection services. Located in San Francisco. Call (415)-689-4428 or request a free consultation today."
@@ -220,20 +220,19 @@ export default function Contact() {
         titleTestId="text-contact-title"
       />
 
-      <section className="py-20 px-6 bg-slate-50">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12">
+      <section className="pe-section section-surface-soft">
+        <div className="pe-container-wide">
+          <div className="contact-layout pe-grid-2">
             <AnimatedSection direction="up" delay={0.1}>
-              <Card className="p-8 border border-slate-200 shadow-xl bg-white rounded-md overflow-hidden" data-testid="card-contact-form">
-                <div className="h-2 bg-gradient-to-r from-blue-600 to-cyan-500 -mx-8 -mt-8 mb-8" />
-                <h2 className="text-slate-900 mb-8 text-3xl font-bold text-center tracking-tight">Send Us a Message</h2>
+              <Card className="contact-form-card pe-card pe-card-pad overflow-hidden" data-testid="card-contact-form">
+                <h2 className="pe-heading-3 text-center">Send Us a Message</h2>
                 
                 {submitted ?
                 <div className="text-center py-12" data-testid="text-submission-success">
                     <div className="w-20 h-20 bg-blue-100 rounded-md flex items-center justify-center mx-auto mb-6">
                       <CheckCircle className="w-10 h-10 text-blue-600" />
                     </div>
-                    <h3 className="text-2xl font-bold text-slate-900 mb-3 uppercase tracking-wide">
+                    <h3 className="text-2xl font-bold text-slate-900 mb-3">
                       Message Sent Successfully!
                     </h3>
                     <p className="text-slate-600 mb-6">
@@ -242,7 +241,7 @@ export default function Contact() {
                     <Button onClick={() => {
                       setSubmitted(false);
                       setSubmissionMessage("");
-                    }} variant="outline" className="border-slate-300 text-slate-700 hover:bg-gradient-to-r hover:from-slate-50 hover:to-slate-100 rounded-md uppercase tracking-wide font-bold" data-testid="button-send-another">
+                    }} variant="outline" className="contact-send-another" data-testid="button-send-another">
                       Send Another Message
                     </Button>
                   </div> :
@@ -250,7 +249,7 @@ export default function Contact() {
                   <form onSubmit={handleSubmit} className="space-y-6" data-testid="form-contact">
                       <div className="grid md:grid-cols-2 gap-6">
                         <div>
-                          <Label htmlFor="name" className="text-slate-700 font-bold mb-2 block uppercase text-xs tracking-wider">
+                          <Label htmlFor="name" className="contact-field-label">
                             Full Name *
                           </Label>
                           <Input
@@ -260,7 +259,7 @@ export default function Contact() {
                           onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleFieldChange('name', e.target.value)}
                           onBlur={() => handleFieldBlur('name')}
                           placeholder="John Smith"
-                          className={`h-12 rounded-md border-slate-300 focus:border-blue-500 focus:ring-blue-500 ${validationErrors.name && touchedFields.name ? 'border-red-500' : ''}`}
+                          className={`contact-input ${validationErrors.name && touchedFields.name ? 'border-red-500' : ''}`}
                           data-testid="input-name" />
                           {validationErrors.name && touchedFields.name && (
                             <p className="text-red-600 text-xs mt-1 font-medium" data-testid="text-error-name">{validationErrors.name}</p>
@@ -268,7 +267,7 @@ export default function Contact() {
                         </div>
                         
                         <div>
-                          <Label htmlFor="email" className="text-slate-700 font-bold mb-2 block uppercase text-xs tracking-wider">
+                          <Label htmlFor="email" className="contact-field-label">
                             Email Address *
                           </Label>
                           <Input
@@ -279,7 +278,7 @@ export default function Contact() {
                           onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleFieldChange('email', e.target.value)}
                           onBlur={() => handleFieldBlur('email')}
                           placeholder="john@company.com"
-                          className={`h-12 rounded-md border-slate-300 focus:border-blue-500 focus:ring-blue-500 ${validationErrors.email && touchedFields.email ? 'border-red-500' : ''}`}
+                          className={`contact-input ${validationErrors.email && touchedFields.email ? 'border-red-500' : ''}`}
                           data-testid="input-email" />
                           {validationErrors.email && touchedFields.email && (
                             <p className="text-red-600 text-xs mt-1 font-medium" data-testid="text-error-email">{validationErrors.email}</p>
@@ -289,7 +288,7 @@ export default function Contact() {
 
                       <div className="grid md:grid-cols-2 gap-6">
                         <div>
-                          <Label htmlFor="phone" className="text-slate-700 font-bold mb-2 block uppercase text-xs tracking-wider">
+                          <Label htmlFor="phone" className="contact-field-label">
                             Phone Number
                           </Label>
                           <Input
@@ -299,7 +298,7 @@ export default function Contact() {
                           onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleFieldChange('phone', e.target.value)}
                           onBlur={() => handleFieldBlur('phone')}
                           placeholder="(555) 123-4567"
-                          className={`h-12 rounded-md border-slate-300 focus:border-blue-500 focus:ring-blue-500 ${validationErrors.phone && touchedFields.phone ? 'border-red-500' : ''}`}
+                          className={`contact-input ${validationErrors.phone && touchedFields.phone ? 'border-red-500' : ''}`}
                           data-testid="input-phone" />
                           {validationErrors.phone && touchedFields.phone && (
                             <p className="text-red-600 text-xs mt-1 font-medium" data-testid="text-error-phone">{validationErrors.phone}</p>
@@ -307,7 +306,7 @@ export default function Contact() {
                         </div>
                         
                         <div>
-                          <Label htmlFor="company" className="text-slate-700 font-bold mb-2 block uppercase text-xs tracking-wider">
+                          <Label htmlFor="company" className="contact-field-label">
                             Company Name
                           </Label>
                           <Input
@@ -315,13 +314,13 @@ export default function Contact() {
                           value={formData.company}
                           onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFormData({ ...formData, company: e.target.value })}
                           placeholder="ABC Construction"
-                          className="h-12 rounded-md border-slate-300 focus:border-blue-500 focus:ring-blue-500"
+                          className="contact-input"
                           data-testid="input-company" />
                         </div>
                       </div>
 
                       <div>
-                        <Label htmlFor="serviceInterest" className="text-slate-700 font-bold mb-2 block uppercase text-xs tracking-wider">
+                        <Label htmlFor="serviceInterest" className="contact-field-label">
                           Service Interest *
                         </Label>
                         <Select
@@ -332,10 +331,10 @@ export default function Contact() {
                           }}
                           required
                         >
-                          <SelectTrigger className={`h-12 bg-white rounded-md border-slate-300 focus:border-blue-500 focus:ring-blue-500 ${validationErrors.serviceInterest && touchedFields.serviceInterest ? 'border-red-500' : ''}`} data-testid="select-service-interest">
+                          <SelectTrigger className={`contact-input ${validationErrors.serviceInterest && touchedFields.serviceInterest ? 'border-red-500' : ''}`} data-testid="select-service-interest">
                             <SelectValue placeholder="Select service you're interested in" />
                           </SelectTrigger>
-                          <SelectContent className="rounded-md border-slate-200">
+                          <SelectContent className="contact-select-content">
                             {serviceOptions.map((option) => (
                               <SelectItem key={option.value} value={option.value}>
                                 {option.label}
@@ -350,17 +349,17 @@ export default function Contact() {
 
                       {formData.serviceInterest && formData.serviceInterest !== 'other' && (
                         <div>
-                          <Label htmlFor="projectType" className="text-slate-700 font-bold mb-2 block uppercase text-xs tracking-wider">
+                          <Label htmlFor="projectType" className="contact-field-label">
                             Project Type
                           </Label>
                           <Select
                             value={formData.projectType}
                             onValueChange={(value: string) => handleFieldChange('projectType', value)}
                           >
-                            <SelectTrigger className="h-12 bg-white rounded-md border-slate-300 focus:border-blue-500 focus:ring-blue-500" data-testid="select-project-type">
+                            <SelectTrigger className="contact-input" data-testid="select-project-type">
                               <SelectValue placeholder="Select project type" />
                             </SelectTrigger>
-                            <SelectContent className="rounded-md border-slate-200">
+                            <SelectContent className="contact-select-content">
                               <SelectItem value="commercial">Commercial</SelectItem>
                               <SelectItem value="residential">Residential</SelectItem>
                               <SelectItem value="infrastructure">Infrastructure</SelectItem>
@@ -373,7 +372,7 @@ export default function Contact() {
                       )}
 
                       <div>
-                        <Label htmlFor="message" className="text-slate-700 font-bold mb-2 block uppercase text-xs tracking-wider">
+                        <Label htmlFor="message" className="contact-field-label">
                           Message *
                         </Label>
                         <Textarea
@@ -383,7 +382,7 @@ export default function Contact() {
                         onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => handleFieldChange('message', e.target.value)}
                         onBlur={() => handleFieldBlur('message')}
                         placeholder="Tell us about your project and how we can help..."
-                        className={`min-h-[150px] rounded-md border-slate-300 focus:border-blue-500 focus:ring-blue-500 ${validationErrors.message && touchedFields.message ? 'border-red-500' : ''}`}
+                        className={`contact-textarea ${validationErrors.message && touchedFields.message ? 'border-red-500' : ''}`}
                         data-testid="input-message" />
                         {validationErrors.message && touchedFields.message && (
                           <p className="text-red-600 text-xs mt-1 font-medium" data-testid="text-error-message">{validationErrors.message}</p>
@@ -391,10 +390,10 @@ export default function Contact() {
                       </div>
 
                       <div>
-                        <Label className="text-slate-700 font-bold mb-2 block uppercase text-xs tracking-wider">
+                        <Label className="contact-field-label">
                           Attachments (Optional)
                         </Label>
-                        <div className="border-2 border-dashed border-slate-300 rounded-md p-6 text-center hover:border-blue-500 transition-colors">
+                        <div className="contact-upload-shell">
                           <input
                             type="file"
                             multiple
@@ -436,7 +435,7 @@ export default function Contact() {
                       <Button
                         type="submit"
                         disabled={isSubmitting}
-                        className="w-full h-14 bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white font-bold text-lg rounded-md shadow-lg transition-all duration-300"
+                        className="pe-button contact-submit-button"
                         data-testid="button-submit-contact"
                       >
                         {isSubmitting ? (
@@ -458,8 +457,8 @@ export default function Contact() {
 
             <AnimatedSection direction="up" delay={0.2}>
               <div className="space-y-8">
-                <Card className="p-8 border border-slate-200 shadow-xl bg-white rounded-md" data-testid="card-contact-info">
-                  <h3 className="text-2xl font-bold text-slate-900 mb-6 tracking-tight">Contact Information</h3>
+                <Card className="contact-info-card pe-card pe-card-pad" data-testid="card-contact-info">
+                  <h3 className="pe-heading-3">Contact Information</h3>
                   
                   <div className="space-y-6">
                     <div className="flex items-start gap-4">
@@ -502,13 +501,13 @@ export default function Contact() {
                   </div>
                 </Card>
 
-                <Card className="p-8 border border-slate-200 shadow-xl bg-gradient-to-br from-blue-600 to-cyan-500 rounded-md text-white" data-testid="card-service-help">
-                  <h3 className="text-2xl font-bold mb-4 tracking-tight">Need Help Choosing a Service?</h3>
-                  <p className="text-blue-100 mb-6">
+                <Card className="contact-help-card pe-card pe-card-pad text-white" data-testid="card-service-help">
+                  <h3 className="pe-heading-3 text-white">Need Help Choosing a Service?</h3>
+                  <p className="text-slate-200 mb-6">
                     Not sure which service is right for your project? Our team can help you identify the best solution.
                   </p>
                   <div className="space-y-3">
-                    <p className="text-blue-50 text-sm">
+                    <p className="text-slate-200 text-sm">
                       Call us at <a href="tel:+14156894428" className="font-bold underline" data-testid="link-help-phone">(415) 689-4428</a> for a free consultation, or describe your project in the form and we'll recommend the right services.
                     </p>
                   </div>

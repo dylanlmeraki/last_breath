@@ -183,7 +183,7 @@ export default function ProjectGalleryRecovered() {
               <div className="project-gallery-filter-header">
                 <div className="pe-stack-sm">
                   <span className="eyebrow">Filter Project Experience</span>
-                  <h2 className="pe-heading-3">Review project records by scope, service, and county.</h2>
+                  <h2 className="pe-heading-3">Filter project records by scope, service thread, and county.</h2>
                 </div>
                 <div
                   className="project-gallery-results"
@@ -293,8 +293,8 @@ export default function ProjectGalleryRecovered() {
                         </h2>
                       </div>
                       <p className="project-gallery-stage-note">
-                        Select a marker or record card to focus the map and review project
-                        context before opening the full project page.
+                        Select a marker or shortlist record to focus the map and
+                        review project context before opening the full project page.
                       </p>
                     </div>
                     <ProjectGalleryMap
