@@ -185,9 +185,14 @@ export default function ProjectGalleryRecovered() {
                   <span className="eyebrow">Filter Project Experience</span>
                   <h2 className="pe-heading-3">Review project records by scope, service, and county.</h2>
                 </div>
-                <div className="project-gallery-results" data-testid="text-project-count">
+                <div
+                  className="project-gallery-results"
+                  data-testid="text-project-count"
+                  aria-label={`${filteredProjects.length} projects shown`}
+                >
                   <Filter className="h-4 w-4" />
                   <span>{filteredProjects.length}</span>
+                  <span aria-hidden="true"> </span>
                   <span>projects shown</span>
                 </div>
               </div>
