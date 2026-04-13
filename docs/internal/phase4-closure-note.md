@@ -22,20 +22,21 @@ Branch: `chillin_v2`
   - card/map visual cohesion
 - Aligned Contact/Blog route styling to `pe-*` token hierarchy and calmer surface treatment.
 - Preserved all existing form behavior and test IDs.
+- Closed remaining Phase 1 build-pipeline debt by resolving the PostCSS `from` warning at source.
 
 ## S3 Closure Status
 - `STEP4-E2E-S3-GALLERY-CATEGORY-DRIFT`: **closed**.
   - Verification now discovers the first non-`all` `button-category-*` dynamically.
   - Functional proof captured in:
     - `artifacts/e2e/20260412-0734/functional-checks.json`
-- `STEP4-E2E-S3-POSTCSS-FROM`: **closed as tracked debt** (non-blocking, visible warning retained).
-  - Dependency/source evidence and owner window documented in:
+- `STEP4-E2E-S3-POSTCSS-FROM`: **closed (resolved)**.
+  - Root cause, fix, and validation evidence documented in:
     - `docs/internal/POSTCSS-FROM-WARNING.md`
 
 ## Verification Evidence
 - Preflight gates:
   - `npm run check` pass
-  - `npm run build` pass (known PostCSS warning still visible)
+  - `npm run build` pass (PostCSS `from` warning removed)
   - `npm run check:repo-hygiene` pass
 - Phase 4 matrix and loops:
   - `artifacts/e2e/20260412-0734/step4-qa-after-summary.json`
@@ -61,8 +62,9 @@ Branch: `chillin_v2`
 - [x] Matrix run completed on required viewport set with zero console/page/overflow/collision failures.
 - [x] Focused 5-round loops completed with zero failures.
 - [x] S3 gallery-category drift closed with dynamic assertion approach.
-- [x] PostCSS warning ownership/mitigation captured without suppression.
+- [x] PostCSS `from` warning resolved at source without suppression.
+- [x] Phase 1 build-pipeline restoration is now fully complete (`100%`).
 
 ## Final Phase 4 Decision
 - **Phase 4 complete** for visual polish + reliability closure scope.
-- Remaining technical debt is documented, owned, non-blocking, and intentionally deferred to Phase 5+.
+- Remaining technical debt is documented, owned, and intentionally deferred to Phase 5+ (excluding Phase 1, which is now fully closed).
