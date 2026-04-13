@@ -8,6 +8,7 @@ import AnimatedSection from "../components/AnimatedSection";
 import SEO from "../components/SEO";
 import CTASection from "../components/CTASection";
 import MarketingPageHero from "../components/MarketingPageHero";
+import { marketingRouteImages } from "@shared/marketing-asset-manifest";
 
 export default function Services() {
   const [isInfoExpanded, setIsInfoExpanded] = useState(false);
@@ -23,7 +24,7 @@ export default function Services() {
       <MarketingPageHero
         title="Stormwater Planning & SWPPP Services"
         description="Pacific Engineering supports stormwater planning, implementation, and closeout with in-house PE, QSD, and QSP expertise shaped around compliance, sequencing, and field conditions."
-        backgroundImage="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=1600"
+        backgroundImage={marketingRouteImages.servicesHero}
         sectionTestId="section-services-hero"
         titleTestId="text-services-title"
       />
@@ -75,7 +76,7 @@ export default function Services() {
                 <div className="relative order-2 lg:order-1 h-96 lg:h-auto">
                   <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-cyan-600/10" />
                   <img 
-                    src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800"
+                    src={marketingRouteImages.servicesDetailQsd}
                     alt="San Francisco commercial construction planning" 
                     className="w-full h-full object-cover" 
                   />
@@ -205,7 +206,7 @@ export default function Services() {
                 <div className="relative h-96 lg:h-auto">
                   <div className="absolute inset-0 bg-gradient-to-br from-cyan-600/10 to-teal-600/10" />
                   <img
-                    src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800"
+                    src={marketingRouteImages.servicesDetailQsp}
                     alt="Bay Area construction site implementation"
                     className="w-full h-full object-cover" 
                   />

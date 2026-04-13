@@ -7,7 +7,7 @@ import { ServiceCardsGrid } from "../components/ServiceCards";
 import SEO from "../components/SEO";
 import CTASection from "../components/CTASection";
 import MarketingPageHero from "../components/MarketingPageHero";
-import bayBridgeImg from "@assets/bay-bridge-sunrise_1773821710974.jpg";
+import { marketingRouteImages } from "@shared/marketing-asset-manifest";
 
 const ABOUT_STATS = [
   {
@@ -69,7 +69,7 @@ export default function About() {
       <MarketingPageHero
         title="About Pacific Engineering"
         description="Pacific Engineering & Construction Inc. supports Bay Area and Northern California project teams with engineering, surveying, inspections, stormwater compliance, and construction-minded coordination shaped by real field conditions."
-        backgroundImage={bayBridgeImg}
+        backgroundImage={marketingRouteImages.aboutHero}
         eyebrow="Pacific Engineering"
         sectionTestId="section-about-hero"
         titleTestId="text-about-title"

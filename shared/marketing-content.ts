@@ -1,4 +1,7 @@
-import { createGeneratedProjectVisuals } from "./project-visuals";
+import {
+  getMarketingBlogAsset,
+  getMarketingProjectAsset,
+} from "./marketing-asset-manifest";
 
 export type MarketingSubmissionType =
   | "contact"
@@ -284,22 +287,15 @@ const baseMarketingGalleryProjects: BaseMarketingGalleryProject[] = [
 ];
 
 export const marketingGalleryProjects: MarketingGalleryProject[] =
-  baseMarketingGalleryProjects.map((project) => ({
-    ...project,
-    ...createGeneratedProjectVisuals({
-      title: project.title,
-      slug: project.slug,
-      category: project.category,
-      location: project.location,
-      county: project.county,
-      date: project.date,
-      services: project.services,
-      popupSummary: project.popupSummary,
-      status: project.status,
-      visualPrompt: project.visualPrompt,
-      coordinates: project.coordinates,
-    }),
-  }));
+  baseMarketingGalleryProjects.map((project) => {
+    const asset = getMarketingProjectAsset(project.slug);
+
+    return {
+      ...project,
+      image: asset.image,
+      images: asset.images,
+    };
+  });
 
 export const marketingFeaturedProjectSlugs = [
   "port-of-san-francisco-portwide-demolition",
@@ -352,8 +348,9 @@ We treat SWPPP planning as part of delivery strategy, not as paperwork. That mea
     tags: ["SWPPP", "Preconstruction", "Permit Readiness"],
     keywords: ["SWPPP planning", "Bay Area stormwater", "permit coordination"],
     author: "Pacific Engineering Team",
-    featured_image:
-      "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1600&q=80",
+    featured_image: getMarketingBlogAsset(
+      "what-bay-area-teams-miss-when-swppp-planning-starts-too-late",
+    ).featuredImage,
     read_time: "5 min read",
     published: true,
     published_date: "2026-03-20T17:00:00.000Z",
@@ -392,8 +389,9 @@ When inspection reporting is timely and field-aware, it reduces uncertainty for 
     tags: ["Special Inspections", "Construction Coordination", "Scheduling"],
     keywords: ["special inspections", "inspection coordination", "construction schedule"],
     author: "Pacific Engineering Team",
-    featured_image:
-      "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1600&q=80",
+    featured_image: getMarketingBlogAsset(
+      "special-inspection-coordination-that-actually-helps-the-schedule",
+    ).featuredImage,
     read_time: "4 min read",
     published: true,
     published_date: "2026-03-14T17:00:00.000Z",
@@ -428,8 +426,9 @@ Pacific approaches design, inspection, and compliance as one delivery conversati
     tags: ["Engineering", "Constructability", "Project Delivery"],
     keywords: ["field driven engineering", "constructability", "project delivery"],
     author: "Pacific Engineering Team",
-    featured_image:
-      "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1600&q=80",
+    featured_image: getMarketingBlogAsset(
+      "field-driven-engineering-decisions-save-more-than-redlines",
+    ).featuredImage,
     read_time: "4 min read",
     published: true,
     published_date: "2026-03-08T17:00:00.000Z",

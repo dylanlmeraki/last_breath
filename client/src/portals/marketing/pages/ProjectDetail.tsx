@@ -430,7 +430,10 @@ export default function ProjectDetail() {
       <section className="py-20 px-6 bg-slate-900 relative overflow-hidden">
         <div
           className="absolute inset-0 opacity-10 pointer-events-none"
-          style={{ backgroundImage: "url('https://www.transparenttextures.com/patterns/carbon-fibre.png')" }}
+          style={{
+            backgroundImage:
+              "linear-gradient(135deg, rgba(56,189,248,0.28) 0%, rgba(15,23,42,0) 55%)",
+          }}
         ></div>
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <AnimatedSection direction="up">

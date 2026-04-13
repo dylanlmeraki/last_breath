@@ -12,6 +12,7 @@ import { ServiceCardsGrid } from "../components/ServiceCards";
 import SEO from "../components/SEO";
 import CTASection from "../components/CTASection";
 import MarketingPageHero from "../components/MarketingPageHero";
+import { marketingRouteImages } from "@shared/marketing-asset-manifest";
 
 export default function ServicesOverview() {
 
@@ -27,7 +28,7 @@ export default function ServicesOverview() {
       <MarketingPageHero
         title="Pacific Engineering Services"
         description="Engineering, construction, inspections, and compliance services organized around how Bay Area projects actually move from scope through field execution."
-        backgroundImage="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600"
+        backgroundImage={marketingRouteImages.servicesOverviewHero}
         sectionTestId="section-services-hero"
         titleTestId="text-services-hero-title"
       />

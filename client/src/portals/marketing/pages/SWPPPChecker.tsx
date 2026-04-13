@@ -13,6 +13,7 @@ import { format } from "date-fns";
 import SEO from "../components/SEO";
 import MarketingPageHero from "../components/MarketingPageHero";
 import { submitMarketingIntake } from "../lib/stubApi";
+import { marketingRouteImages } from "@shared/marketing-asset-manifest";
 
 interface AddressEntry {
   addressLine: string;
@@ -216,7 +217,7 @@ Files Attached: ${uploadedFiles.length}`;
       <MarketingPageHero
         title="Project Consultation"
         description="Give Pacific Engineering the project context, location, schedule, and service needs so our team can recommend a practical next step with engineering, compliance, inspection, or construction support."
-        backgroundImage="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=1600"
+        backgroundImage={marketingRouteImages.consultationHero}
         sectionTestId="section-consultation-hero"
         titleTestId="text-consultation-title"
       />

@@ -20,7 +20,7 @@ import SEO from "../components/SEO";
 import { ServiceCardsGrid } from "../components/ServiceCards";
 import WhyPacific from "../components/WhyPacific";
 import { createPageUrl } from "../lib/utils";
-import bayBridgeImg from "@assets/bay-bridge-sunrise_1773821710974.jpg";
+import { marketingRouteImages } from "@shared/marketing-asset-manifest";
 
 const HERO_TRUST_POINTS = [
   "Public, institutional, utility, and waterfront scopes",
@@ -292,7 +292,7 @@ export default function HomeRecovered() {
         primaryButtonText="Book Consultation"
         primaryButtonLink={createPageUrl("Consultation")}
         testIdPrefix="home-final-cta"
-        backgroundImage={bayBridgeImg}
+        backgroundImage={marketingRouteImages.homeCta}
       />
     </div>
   );

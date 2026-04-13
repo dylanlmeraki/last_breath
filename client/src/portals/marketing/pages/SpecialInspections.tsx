@@ -6,6 +6,7 @@ import AnimatedSection from "../components/AnimatedSection";
 import SEO from "../components/SEO";
 import CTASection from "../components/CTASection";
 import MarketingPageHero from "../components/MarketingPageHero";
+import { marketingRouteImages } from "@shared/marketing-asset-manifest";
 
 export default function SpecialInspections() {
   return (
@@ -19,7 +20,7 @@ export default function SpecialInspections() {
       <MarketingPageHero
         title="Special Inspections"
         description="Pacific Engineering performs engineer-backed special inspections focused on structural integrity, documentation discipline, and code compliance for critical building systems."
-        backgroundImage="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1600"
+        backgroundImage={marketingRouteImages.specialInspectionsHero}
         sectionTestId="section-special-inspections-hero"
         titleTestId="text-special-inspections-title"
       />
@@ -31,7 +32,7 @@ export default function SpecialInspections() {
               <div className="relative">
                 <div className="aspect-[4/3] rounded-md overflow-hidden shadow-2xl border-4 border-slate-100">
                   <img
-                    src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800"
+                    src={marketingRouteImages.specialInspectionsLead}
                     alt="Construction inspection"
                     className="w-full h-full object-cover" />
                 </div>
@@ -439,7 +440,7 @@ export default function SpecialInspections() {
                 <div className="grid lg:grid-cols-2 gap-0">
                   <div className="relative h-80 lg:h-auto overflow-hidden">
                     <img
-                      src="https://images.unsplash.com/photo-1572195831884-bae1f2012e3c?w=800"
+                      src={marketingRouteImages.specialInspectionsCaseSteel}
                       alt="Steel structure inspection"
                       className="w-full h-full object-cover"
                     />
@@ -515,7 +516,7 @@ export default function SpecialInspections() {
                 <div className="grid lg:grid-cols-2 gap-0">
                   <div className="relative h-80 lg:h-auto overflow-hidden lg:order-2">
                     <img
-                      src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800"
+                      src={marketingRouteImages.specialInspectionsCaseSeismic}
                       alt="Seismic system inspection"
                       className="w-full h-full object-cover"
                     />

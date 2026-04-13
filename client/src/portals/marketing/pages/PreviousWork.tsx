@@ -9,6 +9,10 @@ import AnimatedSection from "../components/AnimatedSection";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import CTASection from "../components/CTASection";
 import MarketingPageHero from "../components/MarketingPageHero";
+import {
+  marketingPreviousWorkImageMap,
+  marketingRouteImages,
+} from "@shared/marketing-asset-manifest";
 
 interface Project {
   id: number;
@@ -50,7 +54,7 @@ export default function PreviousWork() {
       description: "PECI was the lead engineering firm for development of the Port of San Francisco construction cost estimate for the removal and disposal of dilapidated piers and wharfs along the San Francisco waterfront. Piers and wharfs inspected and costs for demolition/removal included piers \u00BD, 2, 24, 30, 31, 32, 54, 60, 64, 70 (wharf 6, 7, & 8), 84, & 88. The cost estimate was subsequently provided to the U.S. Army Corps of Engineers as part of documentation required for funding. The construction cost estimate was developed by thoroughly inspecting the piers and wharfs from both the landside and water site. PECI also provided roof inspections and structural engineering consulting for the placement of solar panels on Port of San Francisco Property.",
       category: "Infrastructure",
       services: ["Structural Engineering", "Cost Estimation", "Inspection"],
-      image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800",
+      image: marketingPreviousWorkImageMap.portwideDemolition,
       agencies: ["Port of San Francisco", "U.S. Army Corps of Engineers", "California Regional Water Quality Control Board"]
     },
     {
@@ -62,7 +66,7 @@ export default function PreviousWork() {
       description: "PECI has been awarded various contracts by Caltrans for work along Northern California Highways. PECI completed the design and reconstruction of a stormwater drainage basin along the toe of the embankment at Highway 80 adjacent to American Canyon Blvd. This work included developing adequate field surveys and designs to properly collect, contain and direct all stormwater away from Highway 80 and the surrounding drainage basin to existing culverts passing under Highway 80. PECI also completed construction of a new emergency guardrail along Highway 780 and upgrades to ADA access, signal lighting and striping in Palo Alto. PECI provided all necessary field construction crews and equipment to self-perform the work.",
       category: "Infrastructure",
       services: ["SWPPP", "Civil Engineering", "Construction"],
-      image: "https://images.unsplash.com/photo-1581094271901-8022df4466f9?w=800",
+      image: marketingPreviousWorkImageMap.caltransStormwater,
       agencies: ["Caltrans"]
     },
     {
@@ -74,7 +78,7 @@ export default function PreviousWork() {
       description: "Since 2007 PECI has been providing civil, environmental and surveying services to the San Francisco Unified School District as part of the District Prop A and Prop B, 2006 and 2011 Bond Programs. During this project PECI has completed over 25 detailed topographic and underground surveys, civil grading plans for ADA access and for new and rehabilitation building construction for 15 San Francisco elementary, middle, and high schools, and developed comprehensive designs for stormwater treatment and disposal.",
       category: "Education",
       services: ["Civil Engineering", "Surveying", "Stormwater Treatment"],
-      image: "https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=800",
+      image: marketingPreviousWorkImageMap.sfusdBond,
       agencies: ["San Francisco Unified School District", "California Regional Quality Control Board", "Department of the State Architect", "San Francisco Fire Department", "San Francisco DPW"]
     },
     {
@@ -86,7 +90,7 @@ export default function PreviousWork() {
       description: "PECI has provided construction and construction management services including demolition, asbestos abatement, hazardous materials abatement, excavation and tree removal for the SFPUC upgrade of the Crystal Springs/San Andreas Pipeline located in San Mateo and Harry Tracy Water Treatment Plant located in San Bruno. PECI prepared the required Hazardous Materials Management Plan, Health and Safety Plan, Demolition work plans, Debris and Disposal plan and worker safety plans. PECI has also provided construction services including excavation, paving, utility installation, concrete placement and roadway grading for the SFPUC's installation of microwave towers.",
       category: "Infrastructure",
       services: ["Construction Management", "Hazardous Materials Abatement", "Excavation"],
-      image: "https://images.unsplash.com/photo-1532601224476-15c79f2f7a51?w=800",
+      image: marketingPreviousWorkImageMap.sfpucMicrowave,
       agencies: ["San Francisco Public Utilities Commission", "US Forest Service", "Yosemite National Park"]
     },
     {
@@ -99,7 +103,7 @@ export default function PreviousWork() {
       description: "PECI was selected as part of the design build team for design and construction of the new Terminal 3/Boarding Area E and Data Center recently completed at the San Francisco International Airport. PECI was responsible for all civil related aspects of the project including but not limited to preparation of the stormwater pollution prevention plan, erosion control plan, grading plan, utility plan, specifications, details, topographic and underground surveying and construction administration related to the civil design.",
       category: "Airport",
       services: ["SWPPP", "Civil Engineering", "Surveying", "Construction Administration"],
-      image: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800",
+      image: marketingPreviousWorkImageMap.sfoTerminal3,
       agencies: ["San Francisco International Airport"]
     },
     {
@@ -111,7 +115,7 @@ export default function PreviousWork() {
       description: "PECI was selected as part of the construction team to build the new San Francisco Office of the Chief Medical Examiner Building. PECI's tasks included providing all survey construction staking, utility potholing investigation and surveying, and excavation for new footings, pile caps and grade beams.",
       category: "Municipal",
       services: ["Construction Staking", "Utility Investigation", "Excavation"],
-      image: "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800",
+      image: marketingPreviousWorkImageMap.chiefMedicalExaminer,
       agencies: ["San Francisco Department of Public Works"]
     },
     {
@@ -121,7 +125,7 @@ export default function PreviousWork() {
       description: "Rim Fire and Project Coordinator for HHWP/HSIP. Provided comprehensive project coordination and safety improvement consulting.",
       category: "Infrastructure",
       services: ["Project Coordination", "Safety Consulting"],
-      image: "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=800",
+      image: marketingPreviousWorkImageMap.hetchHetchy,
       agencies: ["San Francisco Public Utilities Commission"]
     },
     {
@@ -131,7 +135,7 @@ export default function PreviousWork() {
       description: "Responsible Design Engineer for communication system upgrades in the San Joaquin Valley.",
       category: "Infrastructure",
       services: ["Design Engineering", "Communication Systems"],
-      image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800",
+      image: marketingPreviousWorkImageMap.sfpucDb124,
       agencies: ["San Francisco Public Utilities Commission"]
     },
     {
@@ -141,7 +145,7 @@ export default function PreviousWork() {
       description: "Project Management Support Services with Hill International, Inc. for critical airport security infrastructure.",
       category: "Airport",
       services: ["Project Management", "Security Infrastructure"],
-      image: "https://images.unsplash.com/photo-1542296332-2e44a99cfef9?w=800",
+      image: marketingPreviousWorkImageMap.temporaryBoardingAreaB,
       agencies: ["City & County of San Francisco Airport Commission"]
     },
     {
@@ -151,7 +155,7 @@ export default function PreviousWork() {
       description: "Engineering Consulting and Construction Services with Hunt Construction Group for major utility replacement.",
       category: "Airport",
       services: ["Engineering Consulting", "Construction Services", "Utility Replacement"],
-      image: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800",
+      image: marketingPreviousWorkImageMap.ductBankUtility,
       agencies: ["San Francisco International Airport"]
     },
     {
@@ -161,7 +165,7 @@ export default function PreviousWork() {
       description: "Environmental Consulting and Construction Services with Hensel Phelps Construction Company for the iconic SFO control tower.",
       category: "Airport",
       services: ["Environmental Consulting", "Construction Services"],
-      image: "https://images.unsplash.com/photo-1570737593286-6282806e5787?w=800",
+      image: marketingPreviousWorkImageMap.sfoTowerAtct,
       agencies: ["San Francisco International Airport"]
     }
   ];
@@ -196,11 +200,14 @@ export default function PreviousWork() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50" data-testid="page-previous-work">
+    <div
+      className="min-h-screen overflow-x-hidden bg-slate-50"
+      data-testid="page-previous-work"
+    >
       <MarketingPageHero
         title="Previous Work"
         description="Selected Pacific Engineering work across Bay Area and Northern California infrastructure, institutional, airport, and commercial scopes."
-        backgroundImage="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1600"
+        backgroundImage={marketingRouteImages.previousWorkHero}
         sectionTestId="section-previous-work-hero"
         titleTestId="text-previous-work-title"
       />

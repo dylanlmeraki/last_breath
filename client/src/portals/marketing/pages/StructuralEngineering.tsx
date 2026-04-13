@@ -6,6 +6,7 @@ import AnimatedSection from "../components/AnimatedSection";
 import SEO from "../components/SEO";
 import CTASection from "../components/CTASection";
 import MarketingPageHero from "../components/MarketingPageHero";
+import { marketingRouteImages } from "@shared/marketing-asset-manifest";
 
 export default function StructuralEngineering() {
   return (
@@ -20,7 +21,7 @@ export default function StructuralEngineering() {
       <MarketingPageHero
         title="Civil & Structural Engineering Consulting"
         description="Pacific Engineering provides civil and structural consulting informed by constructability, jurisdictional requirements, and the realities of delivery across Bay Area project types."
-        backgroundImage="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1600"
+        backgroundImage={marketingRouteImages.structuralHero}
         sectionTestId="section-engineering-hero"
         titleTestId="text-engineering-title"
       />
@@ -45,7 +46,7 @@ export default function StructuralEngineering() {
               <div className="relative">
                 <div className="aspect-[4/3] rounded-md overflow-hidden shadow-2xl border-4 border-slate-100">
                   <img
-                    src="https://images.unsplash.com/photo-1488972685288-c3fd157d7c7a?w=800"
+                    src={marketingRouteImages.structuralLead}
                     alt="Structural engineering"
                     className="w-full h-full object-cover" />
                 </div>

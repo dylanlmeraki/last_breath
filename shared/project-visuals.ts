@@ -1,5 +1,9 @@
 export type ProjectVisualVariant = "poster" | "blueprint" | "spotlight";
 
+// Phase 5 note: generated project visuals are retained only as a legacy fallback helper.
+// Active production marketing flow now resolves project/blog/team imagery via
+// shared/marketing-asset-manifest.ts and serves public assets from client/public/images.
+
 export type ProjectVisualSeed = {
   title: string;
   slug: string;

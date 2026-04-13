@@ -6,6 +6,7 @@ import AnimatedSection from "../components/AnimatedSection";
 import SEO from "../components/SEO";
 import CTASection from "../components/CTASection";
 import MarketingPageHero from "../components/MarketingPageHero";
+import { marketingRouteImages } from "@shared/marketing-asset-manifest";
 
 export default function Construction() {
   return (
@@ -19,7 +20,7 @@ export default function Construction() {
       <MarketingPageHero
         title="Construction Services"
         description="Pacific Engineering supports residential, commercial, public works, and infrastructure scopes with Class A and Class B contractor capability tied to practical field execution."
-        backgroundImage="https://images.unsplash.com/photo-1590856029826-c7a73142bbf1?w=1600"
+        backgroundImage={marketingRouteImages.constructionHero}
         sectionTestId="section-construction-hero"
         titleTestId="text-construction-title"
       />
@@ -31,7 +32,7 @@ export default function Construction() {
               <div className="relative">
                 <div className="aspect-[4/3] rounded-md overflow-hidden shadow-2xl border-4 border-slate-100">
                   <img
-                    src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800"
+                    src={marketingRouteImages.constructionDetailOne}
                     alt="Construction site"
                     className="w-full h-full object-cover"
                     data-testid="img-construction-hero" />
@@ -235,7 +236,7 @@ export default function Construction() {
                 <div className="grid lg:grid-cols-2 gap-0">
                   <div className="relative h-80 lg:h-auto overflow-hidden">
                     <img
-                      src="/images/eddy-francisco.jpg"
+                      src={marketingRouteImages.constructionDetailOne}
                       alt="Eddy & Francisco Commercial Project"
                       className="w-full h-full object-cover" />
                     
@@ -311,7 +312,7 @@ export default function Construction() {
                 <div className="grid lg:grid-cols-2 gap-0">
                   <div className="relative h-80 lg:h-auto overflow-hidden lg:order-1">
                     <img
-                      src="/images/san-rafael-drain.jpg"
+                      src={marketingRouteImages.constructionDetailTwo}
                       alt="San Rafael Storm Drain Project"
                       className="w-full h-full object-cover" />
                     
@@ -387,7 +388,7 @@ export default function Construction() {
                 <div className="grid lg:grid-cols-2 gap-0">
                   <div className="relative h-80 lg:h-auto overflow-hidden">
                     <img
-                      src="/images/telegraph-hill.jpg"
+                      src={marketingRouteImages.constructionDetailThree}
                       alt="Telegraph Hill Residential Project"
                       className="w-full h-full object-cover" />
                     

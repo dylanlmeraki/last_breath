@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import AnimatedSection from "../components/AnimatedSection";
 import CTASection from "../components/CTASection";
 import MarketingPageHero from "../components/MarketingPageHero";
+import { marketingRouteImages } from "@shared/marketing-asset-manifest";
 
 interface BlogPostData {
   id: string;
@@ -96,7 +97,7 @@ export default function Blog() {
       <MarketingPageHero
         title="Pacific Engineering Insights"
         description="Practical guidance on compliance, engineering coordination, inspections, and Bay Area project delivery from Pacific Engineering’s field-informed perspective."
-        backgroundImage="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1600"
+        backgroundImage={marketingRouteImages.blogHero}
         sectionTestId="section-blog-hero"
         titleTestId="text-blog-title"
       />

@@ -7,6 +7,7 @@ import AnimatedSection from "../components/AnimatedSection";
 import SEO from "../components/SEO";
 import CTASection from "../components/CTASection";
 import MarketingPageHero from "../components/MarketingPageHero";
+import { marketingRouteImages } from "@shared/marketing-asset-manifest";
 
 export default function InspectionsTesting() {
   return (
@@ -20,7 +21,7 @@ export default function InspectionsTesting() {
       <MarketingPageHero
         title="Testing & Inspection Services"
         description="Pacific Engineering provides field and lab testing support that keeps compliance visible, documentation organized, and active work moving with fewer surprises."
-        backgroundImage="https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=1600"
+        backgroundImage={marketingRouteImages.inspectionsHero}
         sectionTestId="section-inspections-hero"
         titleTestId="text-inspections-title"
       />

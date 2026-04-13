@@ -10,6 +10,7 @@ import AnimatedSection from "../components/AnimatedSection";
 import SEO from "../components/SEO";
 import MarketingPageHero from "../components/MarketingPageHero";
 import { submitMarketingIntake } from "../lib/stubApi";
+import { marketingRouteImages } from "@shared/marketing-asset-manifest";
 
 interface ContactFormData {
   name: string;
@@ -215,7 +216,7 @@ export default function Contact() {
       <MarketingPageHero
         title="Contact Pacific Engineering"
         description="Discuss engineering, compliance, inspections, or construction support with Pacific Engineering and get a practical next-step conversation started."
-        backgroundImage="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600"
+        backgroundImage={marketingRouteImages.contactHero}
         sectionTestId="section-contact-hero"
         titleTestId="text-contact-title"
       />
