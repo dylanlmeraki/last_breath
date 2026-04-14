@@ -2,7 +2,7 @@
 
 Date: 2026-04-13  
 Branch: `chillin_v2`  
-Pass: Production imagery source migration (Phase 5)
+Pass: Production imagery source migration + curation uplift (Phase 5 / Phase 5B)
 
 ## Baseline Classification Snapshot
 
@@ -13,11 +13,23 @@ Pass: Production imagery source migration (Phase 5)
 | active generated project visual path usage (`createGeneratedProjectVisuals`) | 2 | 0 |
 | active external texture URL (`transparenttextures.com`) | 1 | 0 |
 
+## Phase 5B Curation Delta
+
+| Metric | Count |
+| --- | ---: |
+| manifest project entries promoted `provisional -> approved` | 6 |
+| manifest project entries still provisional | 0 |
+| manifest blog entries still provisional | 3 |
+| manifest team entries still provisional | 6 |
+| explicitly deferred image family | team headshots |
+
+Phase 5B source pack used: `example-projects-completed.pdf` (user-provided), with project-specific page provenance captured in `shared/marketing-asset-manifest.ts`.
+
 ## Source Families (Current)
 
 | Family | File Source | Current Value Source | Classification | Status |
 | --- | --- | --- | --- | --- |
-| project gallery/media | `shared/marketing-content.ts` | `shared/marketing-asset-manifest.ts` -> `/images/projects/...` | production-safe local | provisional |
+| project gallery/media | `shared/marketing-content.ts` | `shared/marketing-asset-manifest.ts` -> `/images/projects/...` | production-safe local | approved (Tier 1) |
 | blog featured images | `shared/marketing-content.ts` | `shared/marketing-asset-manifest.ts` -> `/images/blog/...` | production-safe local | provisional |
 | team profile images | `client/src/portals/marketing/data/aboutTeamProfiles.ts` | `shared/marketing-asset-manifest.ts` -> `/images/team/...` | production-safe local | provisional |
 | route hero/support imagery | marketing page files | `shared/marketing-asset-manifest.ts` -> `/images/routes/...` | production-safe local | provisional |
@@ -49,15 +61,15 @@ Pass: Production imagery source migration (Phase 5)
 
 | Item | Current Status | Owner | Next Action |
 | --- | --- | --- | --- |
-| approved project photography pack | deferred | design + content | ingest final approved pack and update manifest statuses to `approved` |
-| approved team headshots | deferred | design + leadership | replace logo fallback profile images |
-| approved blog-specific imagery | deferred | content | replace provisional blog hero images per post |
+| additional route/blog curation pack (optional uplift) | deferred | design + content | replace remaining provisional route/blog variants where stronger editorial picks become available |
+| approved team headshots | deferred | design + leadership | replace logo fallback profile images (`/images/team/*`) and promote team entries from `provisional` |
+| approved blog-specific imagery | deferred | content | replace provisional blog hero images per post and promote blog entries from `provisional` |
 | generated helper code (`project-visuals.ts`) | quarantined legacy | frontend/platform | remove only after fallback removal window closes |
 
 ## Validation Artifacts
 
-- artifact root: `artifacts/e2e/20260413-phase5`
-- route summary: `artifacts/e2e/20260413-phase5/phase5-route-summary.json`
-- source policy report: `artifacts/e2e/20260413-phase5/phase5-source-policy-report.json`
-- seam diff summary: `artifacts/e2e/20260413-phase5/seam-diff-summary.json`
-- inventory json: `artifacts/e2e/20260413-phase5/phase5-image-inventory.json`
+- artifact root: `artifacts/e2e/20260413-phase5b`
+- route summary + screenshots: `artifacts/e2e/20260413-phase5b/phase5b-route-summary.json`
+- source policy report: `artifacts/e2e/20260413-phase5b/phase5b-source-policy-report.json`
+- seam diff summary: `artifacts/e2e/20260413-phase5b/seam-diff-summary.json`
+- inventory json: `artifacts/e2e/20260413-phase5b/phase5-image-inventory.json`

@@ -15,12 +15,12 @@ Manifest authority: `shared/marketing-asset-manifest.ts`
 
 | Family | Key | Public URL(s) | Alt | Status | Fallback |
 | --- | --- | --- | --- | --- | --- |
-| projects | `port-of-san-francisco-portwide-demolition` | `/images/projects/port-of-san-francisco-portwide-demolition-01.jpg`, `-02.jpg` | Port of San Francisco infrastructure support visual for demolition and inspection planning. | provisional | `/images/routes/bay-bridge-fallback.jpg` |
-| projects | `caltrans-stormwater-ada-improvements` | `/images/projects/caltrans-stormwater-ada-improvements-01.jpg`, `-02.jpg` | Caltrans corridor infrastructure visual for stormwater and ADA improvement work. | provisional | `/images/routes/bay-bridge-fallback.jpg` |
-| projects | `sfusd-bond-program-civil-stormwater` | `/images/projects/sfusd-bond-program-civil-stormwater-01.jpg`, `-02.jpg` | SFUSD modernization visual for civil, grading, and stormwater coordination work. | provisional | `/images/routes/bay-bridge-fallback.jpg` |
-| projects | `sfpuc-water-infrastructure-swppp` | `/images/projects/sfpuc-water-infrastructure-swppp-01.jpg`, `-02.jpg` | SFPUC utility infrastructure support visual for excavation, utility, and SWPPP monitoring. | provisional | `/images/routes/bay-bridge-fallback.jpg` |
-| projects | `sfo-terminal-3-boarding-area-e` | `/images/projects/sfo-terminal-3-boarding-area-e-01.jpg`, `-02.jpg` | SFO Terminal 3 project visual for civil coordination, survey, and utility sequencing. | provisional | `/images/routes/bay-bridge-fallback.jpg` |
-| projects | `chief-medical-examiner-building` | `/images/projects/chief-medical-examiner-building-01.jpg`, `-02.jpg` | Chief Medical Examiner Building support visual for survey staking and excavation work. | provisional | `/images/routes/bay-bridge-fallback.jpg` |
+| projects | `port-of-san-francisco-portwide-demolition` | `/images/projects/port-of-san-francisco-portwide-demolition-01.jpg`, `-02.jpg` | Port of San Francisco waterfront demolition support showing active pier and equipment context. | approved | `/images/routes/bay-bridge-fallback.jpg` |
+| projects | `caltrans-stormwater-ada-improvements` | `/images/projects/caltrans-stormwater-ada-improvements-01.jpg`, `-02.jpg` | Caltrans corridor construction scene showing drainage and access-improvement field conditions. | approved | `/images/routes/bay-bridge-fallback.jpg` |
+| projects | `sfusd-bond-program-civil-stormwater` | `/images/projects/sfusd-bond-program-civil-stormwater-01.jpg`, `-02.jpg` | SFUSD bond-program civil coordination visual with campus planning and grading documentation context. | approved | `/images/routes/bay-bridge-fallback.jpg` |
+| projects | `sfpuc-water-infrastructure-swppp` | `/images/projects/sfpuc-water-infrastructure-swppp-01.jpg`, `-02.jpg` | SFPUC utility construction scene with excavation and public-water infrastructure field work. | approved | `/images/routes/bay-bridge-fallback.jpg` |
+| projects | `sfo-terminal-3-boarding-area-e` | `/images/projects/sfo-terminal-3-boarding-area-e-01.jpg`, `-02.jpg` | SFO Terminal 3 airside/terminal visual supporting design-build civil and utility sequencing context. | approved | `/images/routes/bay-bridge-fallback.jpg` |
+| projects | `chief-medical-examiner-building` | `/images/projects/chief-medical-examiner-building-01.jpg`, `-02.jpg` | Chief Medical Examiner Building visual with survey and excavation support documentation context. | approved | `/images/routes/bay-bridge-fallback.jpg` |
 
 ## Tier 2 (About / Previous Work / Route Support)
 
@@ -50,7 +50,7 @@ Manifest authority: `shared/marketing-asset-manifest.ts`
 - Public-serving image URLs now resolve from `client/public/images/...`.
 - `attached_assets` remains source/reference only.
 - External stock URLs, generated data-URI visuals, and `@assets` marketing image serving were removed from active flow.
-- Final curation uplift (status transition `provisional` -> `approved`) requires approved image pack ingestion and manifest update only.
+- Tier 1 project imagery now uses curated crops from `example-projects-completed.pdf` and was promoted to `approved` in the shared manifest.
 
 ## Generated Visual Status
 

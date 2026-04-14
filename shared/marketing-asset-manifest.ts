@@ -27,8 +27,11 @@ export interface MarketingBlogAssetEntry extends MarketingAssetEntry {
   featuredImage: string;
 }
 
+const PHASE5B_PDF_SOURCE =
+  "example-projects-completed.pdf (user-provided source pack, extracted on 2026-04-13)";
+
 const PHASE5_PROVISIONAL_SOURCE_NOTE =
-  "Phase 5 provisional local image sourced from approved fallback assets while final project photography pack is pending.";
+  "Phase 5B provisional local image derived from project-document source imagery and approved fallback assets pending final curation pack.";
 
 const PHASE5_TEAM_SOURCE_NOTE =
   "Phase 5 provisional local profile visual sourced from approved PECI logo fallback pending approved team headshots.";
@@ -106,10 +109,11 @@ export const marketingProjectAssetManifest: Record<
       "/images/projects/port-of-san-francisco-portwide-demolition-01.jpg",
       "/images/projects/port-of-san-francisco-portwide-demolition-02.jpg",
     ],
-    alt: "Port of San Francisco infrastructure support visual for demolition and inspection planning.",
-    caption: "Port of San Francisco support scope.",
-    sourceNote: PHASE5_PROVISIONAL_SOURCE_NOTE,
-    status: "provisional",
+    alt: "Port of San Francisco waterfront demolition support showing active pier and equipment context.",
+    caption: "Portwide demolition estimate and roof inspection support for solar panel planning.",
+    sourceNote:
+      `${PHASE5B_PDF_SOURCE}; page 1 project sheet: Port of San Francisco portwide demolition estimate and roof inspection support.`,
+    status: "approved",
     fallbackKey: "route-bay-bridge-fallback",
   },
   "caltrans-stormwater-ada-improvements": {
@@ -122,10 +126,11 @@ export const marketingProjectAssetManifest: Record<
       "/images/projects/caltrans-stormwater-ada-improvements-01.jpg",
       "/images/projects/caltrans-stormwater-ada-improvements-02.jpg",
     ],
-    alt: "Caltrans corridor infrastructure visual for stormwater and ADA improvement work.",
-    caption: "Caltrans drainage and ADA support scope.",
-    sourceNote: PHASE5_PROVISIONAL_SOURCE_NOTE,
-    status: "provisional",
+    alt: "Caltrans corridor construction scene showing drainage and access-improvement field conditions.",
+    caption: "Caltrans drainage reconstruction, ADA upgrades, and erosion-control support.",
+    sourceNote:
+      `${PHASE5B_PDF_SOURCE}; page 2 project sheet: Caltrans transportation improvement packages including stormwater and ADA scope.`,
+    status: "approved",
     fallbackKey: "route-bay-bridge-fallback",
   },
   "sfusd-bond-program-civil-stormwater": {
@@ -138,10 +143,11 @@ export const marketingProjectAssetManifest: Record<
       "/images/projects/sfusd-bond-program-civil-stormwater-01.jpg",
       "/images/projects/sfusd-bond-program-civil-stormwater-02.jpg",
     ],
-    alt: "SFUSD modernization visual for civil, grading, and stormwater coordination work.",
-    caption: "SFUSD bond program support scope.",
-    sourceNote: PHASE5_PROVISIONAL_SOURCE_NOTE,
-    status: "provisional",
+    alt: "SFUSD bond-program civil coordination visual with campus planning and grading documentation context.",
+    caption: "SFUSD modernization support with survey, grading, ADA access, and stormwater coordination.",
+    sourceNote:
+      `${PHASE5B_PDF_SOURCE}; page 3 project sheet: SFUSD bond program civil and stormwater support across campus modernization work.`,
+    status: "approved",
     fallbackKey: "route-bay-bridge-fallback",
   },
   "sfpuc-water-infrastructure-swppp": {
@@ -154,10 +160,11 @@ export const marketingProjectAssetManifest: Record<
       "/images/projects/sfpuc-water-infrastructure-swppp-01.jpg",
       "/images/projects/sfpuc-water-infrastructure-swppp-02.jpg",
     ],
-    alt: "SFPUC utility infrastructure support visual for excavation, utility, and SWPPP monitoring.",
-    caption: "SFPUC water infrastructure support scope.",
-    sourceNote: PHASE5_PROVISIONAL_SOURCE_NOTE,
-    status: "provisional",
+    alt: "SFPUC utility construction scene with excavation and public-water infrastructure field work.",
+    caption: "SFPUC utility installation support with excavation planning and SWPPP monitoring.",
+    sourceNote:
+      `${PHASE5B_PDF_SOURCE}; page 4 project sheet: SFPUC water infrastructure support including utility work and SWPPP monitoring.`,
+    status: "approved",
     fallbackKey: "route-bay-bridge-fallback",
   },
   "sfo-terminal-3-boarding-area-e": {
@@ -170,10 +177,11 @@ export const marketingProjectAssetManifest: Record<
       "/images/projects/sfo-terminal-3-boarding-area-e-01.jpg",
       "/images/projects/sfo-terminal-3-boarding-area-e-02.jpg",
     ],
-    alt: "SFO Terminal 3 project visual for civil coordination, survey, and utility sequencing.",
-    caption: "SFO Terminal 3 Boarding Area E support scope.",
-    sourceNote: PHASE5_PROVISIONAL_SOURCE_NOTE,
-    status: "provisional",
+    alt: "SFO Terminal 3 airside/terminal visual supporting design-build civil and utility sequencing context.",
+    caption: "SFO Terminal 3 Boarding Area E design-build civil and survey support.",
+    sourceNote:
+      `${PHASE5B_PDF_SOURCE}; page 5 project sheet: SFO Terminal 3 Boarding Area E civil design, survey, and utility coordination support.`,
+    status: "approved",
     fallbackKey: "route-bay-bridge-fallback",
   },
   "chief-medical-examiner-building": {
@@ -186,10 +194,11 @@ export const marketingProjectAssetManifest: Record<
       "/images/projects/chief-medical-examiner-building-01.jpg",
       "/images/projects/chief-medical-examiner-building-02.jpg",
     ],
-    alt: "Chief Medical Examiner Building support visual for survey staking and excavation work.",
-    caption: "Chief Medical Examiner Building support scope.",
-    sourceNote: PHASE5_PROVISIONAL_SOURCE_NOTE,
-    status: "provisional",
+    alt: "Chief Medical Examiner Building project visual with survey and excavation support documentation context.",
+    caption: "Chief Medical Examiner Building survey staking and excavation support.",
+    sourceNote:
+      `${PHASE5B_PDF_SOURCE}; page 6 project sheet: San Francisco Office of Chief Medical Examiner Building survey and excavation support.`,
+    status: "approved",
     fallbackKey: "route-bay-bridge-fallback",
   },
 };
@@ -279,7 +288,8 @@ export const marketingBlogAssetManifest: Record<BlogSlug, MarketingBlogAssetEntr
       "/images/blog/what-bay-area-teams-miss-when-swppp-planning-starts-too-late-hero.jpg",
     alt: "Stormwater compliance planning visual for Bay Area preconstruction sequencing.",
     caption: "SWPPP planning guidance.",
-    sourceNote: PHASE5_PROVISIONAL_SOURCE_NOTE,
+    sourceNote:
+      `${PHASE5B_PDF_SOURCE}; derived editorial crop from Caltrans/SFPUC stormwater-focused source imagery.`,
     status: "provisional",
     fallbackKey: "route-bay-bridge-fallback",
   },
@@ -293,7 +303,8 @@ export const marketingBlogAssetManifest: Record<BlogSlug, MarketingBlogAssetEntr
       "/images/blog/special-inspection-coordination-that-actually-helps-the-schedule-hero.jpg",
     alt: "Special inspections coordination visual focused on schedule reliability.",
     caption: "Special inspection coordination guidance.",
-    sourceNote: PHASE5_PROVISIONAL_SOURCE_NOTE,
+    sourceNote:
+      `${PHASE5B_PDF_SOURCE}; derived editorial crop from SFPUC utility field-coordination source imagery.`,
     status: "provisional",
     fallbackKey: "route-bay-bridge-fallback",
   },
@@ -306,7 +317,8 @@ export const marketingBlogAssetManifest: Record<BlogSlug, MarketingBlogAssetEntr
       "/images/blog/field-driven-engineering-decisions-save-more-than-redlines-hero.jpg",
     alt: "Field-driven engineering visual for constructability-focused project decisions.",
     caption: "Field-driven engineering guidance.",
-    sourceNote: PHASE5_PROVISIONAL_SOURCE_NOTE,
+    sourceNote:
+      `${PHASE5B_PDF_SOURCE}; derived editorial crop from project-sheet engineering documentation imagery.`,
     status: "provisional",
     fallbackKey: "route-bay-bridge-fallback",
   },
