@@ -1,4 +1,7 @@
-import { getMarketingTeamAsset } from "@shared/marketing-asset-manifest";
+import {
+  getMarketingTeamAsset,
+  type MarketingAssetStatus,
+} from "@shared/marketing-asset-manifest";
 
 export type AboutTeamProfile = {
   id: string;
@@ -9,7 +12,15 @@ export type AboutTeamProfile = {
   summary: string;
   credentials: string[];
   image: string;
+  status: MarketingAssetStatus;
 };
+
+const markAsset = getMarketingTeamAsset("mark-waldman");
+const barryAsset = getMarketingTeamAsset("barry-buckley");
+const milesAsset = getMarketingTeamAsset("miles-grant");
+const angieAsset = getMarketingTeamAsset("angie-aylsworth");
+const jackAsset = getMarketingTeamAsset("jack-smith");
+const mikeAsset = getMarketingTeamAsset("mike-johnson");
 
 export const aboutTeamProfiles: AboutTeamProfile[] = [
   {
@@ -21,7 +32,8 @@ export const aboutTeamProfiles: AboutTeamProfile[] = [
     summary:
       "Leads civil, environmental, and project-management scopes for airports, schools, municipal sites, waterfront facilities, grading, utility design, and permitting-driven Bay Area work.",
     credentials: ["PE (Civil)", "Registered Environmental Assessor", "Board Certified Environmental Engineer"],
-    image: getMarketingTeamAsset("mark-waldman").image,
+    image: markAsset.image,
+    status: markAsset.status,
   },
   {
     id: "barry-buckley",
@@ -32,7 +44,8 @@ export const aboutTeamProfiles: AboutTeamProfile[] = [
     summary:
       "Oversees field construction operations and cost estimating for waterfront, demolition, and infrastructure scopes where sequencing, site conditions, and practical delivery judgment matter most.",
     credentials: ["OSHA 30", "CA General Contractor"],
-    image: getMarketingTeamAsset("barry-buckley").image,
+    image: barryAsset.image,
+    status: barryAsset.status,
   },
   {
     id: "miles-grant",
@@ -43,7 +56,8 @@ export const aboutTeamProfiles: AboutTeamProfile[] = [
     summary:
       "Supports geologic and environmental investigations, remediation-related scopes, and hazardous-material review with field-grounded technical judgment and clear reporting.",
     credentials: ["Certified Engineering Geologist", "HAZWOPER 40"],
-    image: getMarketingTeamAsset("miles-grant").image,
+    image: milesAsset.image,
+    status: milesAsset.status,
   },
   {
     id: "angie-aylsworth",
@@ -54,7 +68,8 @@ export const aboutTeamProfiles: AboutTeamProfile[] = [
     summary:
       "Coordinates design support, schedule awareness, and project controls for infrastructure and public work where documentation discipline and clear sequencing keep teams moving.",
     credentials: ["Project Controls", "Civil Design Support"],
-    image: getMarketingTeamAsset("angie-aylsworth").image,
+    image: angieAsset.image,
+    status: angieAsset.status,
   },
   {
     id: "jack-smith",
@@ -65,7 +80,8 @@ export const aboutTeamProfiles: AboutTeamProfile[] = [
     summary:
       "Leads surveying support spanning topographic, boundary, right-of-way, ALTA, and construction staking work where dependable field layout directly affects project momentum.",
     credentials: ["Professional Land Surveyor", "Construction Staking"],
-    image: getMarketingTeamAsset("jack-smith").image,
+    image: jackAsset.image,
+    status: jackAsset.status,
   },
   {
     id: "mike-johnson",
@@ -76,6 +92,7 @@ export const aboutTeamProfiles: AboutTeamProfile[] = [
     summary:
       "Manages water-infrastructure and utility scopes with field leadership shaped by site logistics, safety coordination, demolition support, and closeout accountability.",
     credentials: ["Water Infrastructure", "Field Coordination"],
-    image: getMarketingTeamAsset("mike-johnson").image,
+    image: mikeAsset.image,
+    status: mikeAsset.status,
   },
 ];

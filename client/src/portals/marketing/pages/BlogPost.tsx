@@ -127,7 +127,7 @@ export default function BlogPost() {
         </script>
       </Helmet>
 
-      <section className="py-6 px-6 bg-white border-b border-slate-200">
+      <section className="py-6 px-6 bg-white border-b border-slate-200 blog-post-backband">
         <div className="max-w-4xl mx-auto">
           <Link to={createPageUrl("Blog")} data-testid="link-back-to-blog">
             <Button variant="ghost" className="gap-2">
@@ -139,21 +139,21 @@ export default function BlogPost() {
       </section>
 
       {post.featured_image && (
-        <section className="relative h-96 bg-slate-900">
+        <section className="blog-post-hero relative h-72 sm:h-80 md:h-96 bg-slate-900">
           <img
             src={post.featured_image}
             alt={post.title}
-            className="w-full h-full object-cover opacity-80"
+            className="blog-post-hero-image w-full h-full object-cover opacity-75"
             data-testid="img-blog-post-hero"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent" />
         </section>
       )}
 
-      <article className="py-12 px-6">
+      <article className="py-12 px-6 blog-post-article">
         <div className="max-w-4xl mx-auto">
           <AnimatedSection direction="up">
-            <Badge className="mb-6 bg-blue-600 text-white text-sm" data-testid="badge-category">
+            <Badge className="mb-6 blog-post-category text-sm" data-testid="badge-category">
               {post.category}
             </Badge>
 
@@ -161,7 +161,7 @@ export default function BlogPost() {
               {post.title}
             </h1>
 
-            <div className="flex flex-wrap items-center gap-6 text-slate-600 mb-8 pb-8 border-b border-slate-200">
+            <div className="blog-post-meta flex flex-wrap items-center gap-6 text-slate-600 mb-8 pb-8 border-b border-slate-200">
               <div className="flex items-center gap-2">
                 <User className="w-4 h-4" />
                 <span className="text-sm font-medium" data-testid="text-author">{post.author || "Pacific Engineering Team"}</span>
@@ -185,14 +185,14 @@ export default function BlogPost() {
             </div>
 
             {post.excerpt && (
-              <div className="bg-blue-50 border-l-4 border-blue-600 p-6 mb-12 rounded-r-md">
+              <div className="blog-post-excerpt p-6 mb-12 rounded-r-md">
                 <p className="text-lg text-slate-700 leading-relaxed italic">
                   {post.excerpt}
                 </p>
               </div>
             )}
 
-            <div className="prose prose-lg prose-slate max-w-none mb-12" data-testid="blog-post-content">
+            <div className="blog-post-content prose prose-lg prose-slate max-w-none mb-12" data-testid="blog-post-content">
               <ReactMarkdown
                 components={{
                   h1: ({ ...props }) => <h1 className="text-3xl font-bold text-slate-900 mt-12 mb-6" {...props} />,
@@ -229,7 +229,7 @@ export default function BlogPost() {
         </div>
       </article>
 
-      <section className="py-16 px-6 bg-slate-900">
+      <section className="py-16 px-6 bg-slate-900 blog-post-cta">
         <div className="max-w-4xl mx-auto text-center">
           <AnimatedSection direction="up">
             <h2 className="text-3xl font-bold text-white mb-4">

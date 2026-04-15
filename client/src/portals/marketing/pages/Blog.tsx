@@ -140,7 +140,7 @@ export default function Blog() {
             <section className="pe-section section-surface-soft blog-featured-section">
               <AnimatedSection direction="up" delay={0.2}>
                 <div className="pe-container-wide">
-                  <div className="mb-8">
+                  <div className="mb-6">
                     <span className="blog-featured-badge">
                       Featured Article
                     </span>
@@ -150,16 +150,16 @@ export default function Blog() {
                     <Card className="blog-featured-card overflow-hidden border border-slate-200 transition-all duration-300 cursor-pointer group rounded-md bg-white">
                     <div className="grid lg:grid-cols-2 gap-0">
                     {featuredPost.featured_image && (
-                      <div className="relative h-96 lg:h-auto overflow-hidden">
+                      <div className="blog-featured-media relative overflow-hidden">
                         <img
                           src={featuredPost.featured_image}
                           alt={featuredPost.title}
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                          className="blog-featured-image w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700"
                           data-testid="img-featured-post"
                         />
                       </div>
                     )}
-                    <div className="blog-featured-panel p-8 lg:p-12 flex flex-col justify-center">
+                    <div className="blog-featured-panel blog-featured-content p-7 lg:p-10 flex flex-col justify-center">
                           <div className="flex items-center gap-4 mb-4">
                             <Badge className="bg-blue-50 text-blue-700 capitalize">
                               {featuredPost.category.replace('-', ' ')}
@@ -217,23 +217,25 @@ export default function Blog() {
           {regularPosts.length > 0 && (
             <section className="pe-section section-surface-solid blog-list-section">
                 <div className="pe-container-wide">
-                  <AnimatedSection direction="up" className="text-center mb-16">
-                    <h2 className="pe-heading-2 text-slate-900 mb-6">
+                  <AnimatedSection direction="up" className="text-center mb-12">
+                    <h2 className="pe-heading-2 text-slate-900 mb-3">
                       Latest Articles
                     </h2>
-                    <div className="w-20 sm:w-32 h-1 bg-gradient-to-r from-cyan-200 via-blue-500 to-cyan-200 mx-auto rounded-full"></div>
+                    <p className="blog-list-note">
+                      Short field-informed reads while the full editorial library is still in progress.
+                    </p>
                   </AnimatedSection>
                   
                   <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {regularPosts.map((post: BlogPostData) => (
                       <Link to={`/blog/${post.slug}`} key={post.id} data-testid={`link-blog-post-${post.slug}`}>
-                        <Card className="group blog-post-card overflow-hidden border border-slate-200 transition-all duration-300 cursor-pointer h-full flex flex-col rounded-md">
+                        <Card className="group blog-post-card overflow-hidden border border-slate-200 transition-all duration-300 cursor-pointer h-full flex flex-col rounded-md bg-white">
                           {post.featured_image && (
-                            <div className="relative h-56 overflow-hidden">
+                            <div className="blog-post-media relative overflow-hidden">
                               <img
                                 src={post.featured_image}
                                 alt={post.title}
-                                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                className="blog-post-image w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
                               />
                               <div className="absolute top-4 left-4">
                                 <Badge className="bg-white/90 backdrop-blur-sm capitalize">
@@ -303,7 +305,6 @@ export default function Blog() {
             <h2 className="pe-heading-2 text-slate-900 mb-6">
               Need a Practical Read on Project Requirements?
             </h2>
-            <div className="w-20 sm:w-32 h-1 bg-gradient-to-r from-cyan-200 via-blue-500 to-cyan-200 mx-auto mb-8 rounded-full"></div>
             <p className="pe-lead mx-auto mb-8">
               Talk to Pacific Engineering if you need project-specific guidance on compliance, permitting, or field coordination rather than general updates.
             </p>
