@@ -3593,3 +3593,146 @@
     scroll-behavior: auto !important;
   }
 }
+/* ========================================================================
+   P6-002 Workstream 1 - Fixed-layer collision cleanup
+   ======================================================================== */
+
+.marketing-portal[data-route-profile="form-led"] .pe-shell-main {
+  padding-bottom: max(calc(var(--pe-shell-sticky-height) + 1.5rem), 1.5rem);
+}
+
+.marketing-portal[data-route-profile="form-led"][data-shell-profile="mobile"] [data-testid="mobile-sticky-bar"] {
+  opacity: 0.9;
+}
+
+.marketing-portal[data-shell-has-sticky-dock="1"] [data-testid="button-chatbot-open"] {
+  bottom: max(var(--pe-chatbot-mobile-bottom, 136px), 112px);
+}
+
+.marketing-portal .leaflet-top,
+.marketing-portal .leaflet-bottom {
+  z-index: 15;
+}
+
+.marketing-portal .leaflet-bottom.leaflet-right {
+  bottom: 8px;
+  right: 8px;
+}
+
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .marketing-portal [data-testid="mobile-sticky-bar"] {
+    padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+  }
+}
+
+.marketing-portal .pe-shell-main {
+  min-height: calc(100vh - var(--pe-shell-header-height));
+}
+
+@media (min-width: 1280px) {
+  .marketing-portal [data-testid="button-chatbot-open"],
+  .marketing-portal [data-testid="chatbot-panel"] {
+    /* allow natural scroll-lift positioning on full desktop */
+  }
+}
+
+/* ========================================================================
+   P6-002 Workstream 2 - Hover/focus stabilization
+   ======================================================================== */
+
+.marketing-portal .service-card:hover,
+.marketing-portal .about-principle-card:hover,
+.marketing-portal .about-team-capability:hover {
+  transform: none !important;
+}
+
+.marketing-portal .project-card:hover .project-card-media img,
+.marketing-portal .project-gallery-card:hover .project-gallery-card-media img {
+  transform: scale(1.02);
+  transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.marketing-portal .project-card,
+.marketing-portal .project-gallery-card {
+  contain: layout style;
+  transform: none;
+  transition: box-shadow 200ms ease, border-color 200ms ease;
+}
+
+.marketing-portal .project-card:hover,
+.marketing-portal .project-gallery-card:hover {
+  transform: none;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.09);
+}
+
+.marketing-portal .project-gallery-chip {
+  will-change: background-color, border-color, color;
+}
+
+.marketing-portal .pe-button:hover,
+.marketing-portal .pe-button-secondary:hover {
+  transform: none;
+  box-shadow: 0 4px 12px rgba(34, 83, 218, 0.18);
+}
+
+.marketing-portal .pe-shell-button:hover {
+  transform: none;
+}
+
+.marketing-portal a:focus-visible,
+.marketing-portal button:focus-visible,
+.marketing-portal [role="button"]:focus-visible {
+  outline: 2px solid var(--pe-cyan);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marketing-portal .project-card:hover .project-card-media img,
+  .marketing-portal .project-gallery-card:hover .project-gallery-card-media img {
+    transform: none;
+    transition: none;
+  }
+
+  .marketing-portal .pe-button,
+  .marketing-portal .pe-button-secondary,
+  .marketing-portal .pe-shell-button,
+  .marketing-portal .project-gallery-chip,
+  .marketing-portal .project-snippet {
+    transition: none !important;
+  }
+}
+
+.marketing-portal .project-gallery-sidebar-item:hover {
+  transform: none;
+}
+
+.marketing-portal .project-snippet:hover {
+  transform: none;
+}
+
+/* ========================================================================
+   P6-002 Workstream 3 - Map component refinements
+   ======================================================================== */
+
+.marketing-portal .home-evidence-map-shell {
+  overflow: hidden;
+}
+
+.marketing-portal .project-gallery-popup-card {
+  border-radius: 0;
+}
+
+.marketing-portal .project-gallery-popup-image {
+  display: block;
+  filter: saturate(0.82) contrast(0.96);
+}
+
+.marketing-portal .home-evidence-popup-shell .leaflet-popup-content-wrapper {
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+}
+
+.marketing-portal .project-gallery-map-shell .leaflet-tile-pane {
+  filter: saturate(0.38) brightness(1.02) contrast(0.90);
+}

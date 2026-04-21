@@ -1,4 +1,4 @@
-import { useState, useEffect, ReactNode, CSSProperties } from "react";
+import { useState, useEffect, ReactNode, CSSProperties, useMemo } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { createPageUrl } from "../lib/utils";
 import { Menu, X, Phone, Mail, MapPin, ChevronDown, PhoneCall, Linkedin } from "lucide-react";
@@ -72,6 +72,17 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [mobileAboutOpen, setMobileAboutOpen] = useState(false);
   const location = useLocation();
+
+  // Route profile for form-led vs map-led vs hero-led routes
+  const routeProfile = useMemo(() => {
+    const path = location.pathname;
+    if (path === '/contact') return 'form-led';
+    if (path === '/consultation') return 'form-led';
+    if (path === '/swppp-checker') return 'form-led';
+    if (path === '/project-gallery') return 'map-led';
+    if (path === '/') return 'map-led';
+    return 'standard';
+  }, [location.pathname]);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -185,6 +196,8 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
       style={shellStyle}
       data-shell-profile={shellState.profile}
       data-shell-touch={shellState.isTouchLike ? "true" : "false"}
+      data-route-profile={routeProfile}
+      data-shell-has-sticky-dock={mobileStickyHeight > 0 ? "1" : "0"}
     >
       <header className={`fixed top-0 left-0 right-0 z-40 border-b border-slate-300/80 bg-white transition-[box-shadow] duration-200 ${isScrolled ? "shadow-[0_10px_24px_rgba(15,23,42,0.09)]" : "shadow-[0_2px_10px_rgba(15,23,42,0.05)]"}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
