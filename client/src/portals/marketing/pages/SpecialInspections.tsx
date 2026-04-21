@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+﻿import { Link } from "react-router-dom";
 import { createPageUrl } from "../lib/utils";
 import { ArrowRight, CheckCircle, Hammer, Layers, Shield, ClipboardCheck, HardHat, Target, TrendingUp } from "lucide-react";
 import { Card } from "@/components/ui/card";
@@ -18,9 +18,9 @@ export default function SpecialInspections() {
         url="/special-inspections"
       />
       <MarketingPageHero
+        heroType="text-first"
         title="Special Inspections"
         description="Pacific Engineering performs engineer-backed special inspections focused on structural integrity, documentation discipline, and code compliance for critical building systems."
-        backgroundImage={marketingRouteImages.specialInspectionsHero}
         sectionTestId="section-special-inspections-hero"
         titleTestId="text-special-inspections-title"
       />

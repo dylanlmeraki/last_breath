@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+﻿import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -214,9 +214,9 @@ export default function Contact() {
         url="/contact"
       />
       <MarketingPageHero
+        heroType="text-first"
         title="Contact Pacific Engineering"
         description="Discuss engineering, compliance, inspections, or construction support with Pacific Engineering and get a practical next-step conversation started."
-        backgroundImage={marketingRouteImages.contactHero}
         sectionTestId="section-contact-hero"
         titleTestId="text-contact-title"
       />

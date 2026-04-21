@@ -1,4 +1,4 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import { Link } from "react-router-dom";
 import { createPageUrl } from "../lib/utils";
 import { FileText, Shield, ArrowRight, Check, Droplets, ClipboardCheck, Users, Zap, CheckCircle, Info, Plus, X } from "lucide-react";
@@ -22,9 +22,11 @@ export default function Services() {
         url="/services"
       />
       <MarketingPageHero
+        heroType="split"
+        splitImage={marketingRouteImages.servicesHero}
+        splitImageAlt="SFPUC utility construction and SWPPP field work in the Bay Area."
         title="Stormwater Planning & SWPPP Services"
         description="Pacific Engineering supports stormwater planning, implementation, and closeout with in-house PE, QSD, and QSP expertise shaped around compliance, sequencing, and field conditions."
-        backgroundImage={marketingRouteImages.servicesHero}
         sectionTestId="section-services-hero"
         titleTestId="text-services-title"
       />

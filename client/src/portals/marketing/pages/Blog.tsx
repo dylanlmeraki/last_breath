@@ -1,4 +1,4 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { createPageUrl } from "../lib/utils";
@@ -95,9 +95,11 @@ export default function Blog() {
       </Helmet>
 
       <MarketingPageHero
+        heroType="split"
+        splitImage={marketingRouteImages.blogHero}
+        splitImageAlt="Bay Area engineering and field work context supporting practical compliance guidance."
         title="Pacific Engineering Insights"
-        description="Practical guidance on compliance, engineering coordination, inspections, and Bay Area project delivery from Pacific Engineering’s field-informed perspective."
-        backgroundImage={marketingRouteImages.blogHero}
+        description="Practical guidance on compliance, engineering coordination, inspections, and Bay Area project delivery from Pacific Engineering's field-informed perspective."
         sectionTestId="section-blog-hero"
         titleTestId="text-blog-title"
       />

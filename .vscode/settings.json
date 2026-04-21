@@ -1,4 +1,5 @@
 {
+    "editor.formatOnSave": false,
     "chat.mcp.serverSampling": {
         "repo-root (config only)/.vscode/mcp.json: figma": {
             "allowedModels": [

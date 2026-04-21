@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+﻿import { Link } from "react-router-dom";
 import { createPageUrl } from "../lib/utils";
 import {
   ClipboardCheck,
@@ -26,9 +26,11 @@ export default function ServicesOverview() {
       />
       
       <MarketingPageHero
+        heroType="split"
+        splitImage={marketingRouteImages.servicesOverviewHero}
+        splitImageAlt="SFO Terminal 3 civil design-build work supporting Bay Area service coordination."
         title="Pacific Engineering Services"
         description="Engineering, construction, inspections, and compliance services organized around how Bay Area projects actually move from scope through field execution."
-        backgroundImage={marketingRouteImages.servicesOverviewHero}
         sectionTestId="section-services-hero"
         titleTestId="text-services-hero-title"
       />

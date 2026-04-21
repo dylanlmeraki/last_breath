@@ -1,4 +1,4 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
@@ -215,9 +215,9 @@ Files Attached: ${uploadedFiles.length}`;
       />
       
       <MarketingPageHero
+        heroType="text-first"
         title="Project Consultation"
         description="Give Pacific Engineering the project context, location, schedule, and service needs so our team can recommend a practical next step with engineering, compliance, inspection, or construction support."
-        backgroundImage={marketingRouteImages.consultationHero}
         sectionTestId="section-consultation-hero"
         titleTestId="text-consultation-title"
       />

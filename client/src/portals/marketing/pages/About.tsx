@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+﻿import { Link } from "react-router-dom";
 import { ArrowRight, Building2, ClipboardCheck, HardHat, Shield, Users } from "lucide-react";
 import { createPageUrl } from "../lib/utils";
 import AnimatedSection from "../components/AnimatedSection";
@@ -67,9 +67,9 @@ export default function About() {
       />
 
       <MarketingPageHero
+        heroType="text-first"
         title="About Pacific Engineering"
         description="Pacific Engineering & Construction Inc. supports Bay Area and Northern California project teams with engineering, surveying, inspections, stormwater compliance, and construction-minded coordination shaped by real field conditions."
-        backgroundImage={marketingRouteImages.aboutHero}
         eyebrow="Pacific Engineering"
         sectionTestId="section-about-hero"
         titleTestId="text-about-title"

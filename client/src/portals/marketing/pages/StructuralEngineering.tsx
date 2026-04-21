@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+﻿import { Link } from "react-router-dom";
 import { createPageUrl } from "../lib/utils";
 import { Building2, PenTool, Layers, ArrowRight, CheckCircle, Target, TrendingUp } from "lucide-react";
 import { Card } from "@/components/ui/card";
@@ -19,9 +19,9 @@ export default function StructuralEngineering() {
       />
       
       <MarketingPageHero
+        heroType="text-first"
         title="Civil & Structural Engineering Consulting"
         description="Pacific Engineering provides civil and structural consulting informed by constructability, jurisdictional requirements, and the realities of delivery across Bay Area project types."
-        backgroundImage={marketingRouteImages.structuralHero}
         sectionTestId="section-engineering-hero"
         titleTestId="text-engineering-title"
       />

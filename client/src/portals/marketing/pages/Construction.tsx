@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+﻿import { Link } from "react-router-dom";
 import { createPageUrl } from "../lib/utils";
 import { HardHat, Truck, Wrench, Users, ArrowRight, CheckCircle, Building2, Layers } from "lucide-react";
 import { Card } from "@/components/ui/card";
@@ -18,9 +18,11 @@ export default function Construction() {
         url="/construction"
       />
       <MarketingPageHero
+        heroType="split"
+        splitImage={marketingRouteImages.constructionHero}
+        splitImageAlt="Active Bay Area utility construction showing Class A contractor field execution."
         title="Construction Services"
         description="Pacific Engineering supports residential, commercial, public works, and infrastructure scopes with Class A and Class B contractor capability tied to practical field execution."
-        backgroundImage={marketingRouteImages.constructionHero}
         sectionTestId="section-construction-hero"
         titleTestId="text-construction-title"
       />

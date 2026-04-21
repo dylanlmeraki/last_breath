@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+﻿import { Link } from "react-router-dom";
 import { createPageUrl } from "../lib/utils";
 import { Beaker, CheckCircle, BadgeCheck, ShieldCheck, Droplets, FlaskConical, ArrowRight, Target, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -19,9 +19,11 @@ export default function InspectionsTesting() {
         url="/inspections-testing"
       />
       <MarketingPageHero
+        heroType="split"
+        splitImage={marketingRouteImages.inspectionsHero}
+        splitImageAlt="Bay Area construction inspection and materials testing field documentation."
         title="Testing & Inspection Services"
         description="Pacific Engineering provides field and lab testing support that keeps compliance visible, documentation organized, and active work moving with fewer surprises."
-        backgroundImage={marketingRouteImages.inspectionsHero}
         sectionTestId="section-inspections-hero"
         titleTestId="text-inspections-title"
       />

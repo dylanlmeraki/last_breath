@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet-async";
+﻿import { Helmet } from "react-helmet-async";
 import { useQuery } from "@tanstack/react-query";
 import { Link, useParams } from "react-router-dom";
 import { createPageUrl } from "../lib/utils";
@@ -139,14 +139,14 @@ export default function BlogPost() {
       </section>
 
       {post.featured_image && (
-        <section className="blog-post-hero relative h-72 sm:h-80 md:h-96 bg-slate-900">
+        <section className="blog-post-hero relative h-60 sm:h-64 md:h-72 bg-slate-900">
           <img
             src={post.featured_image}
             alt={post.title}
-            className="blog-post-hero-image w-full h-full object-cover opacity-75"
+            className="blog-post-hero-image w-full h-full object-cover"
             data-testid="img-blog-post-hero"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/70 to-slate-900/20" />
         </section>
       )}
 
