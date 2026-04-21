@@ -2969,6 +2969,18 @@
   opacity: 0.22;
 }
 
+/* Text-first desktop balance (P6-001 finishing pass)
+   Widens and centers the text panel on desktop so negative space is
+   distributed symmetrically rather than pooled on the right.
+   Mobile (<= 720px) is untouched — the existing mobile block below handles it.
+   Split heroes are untouched — they use pe-secondary-hero-shell--split. */
+@media (min-width: 721px) {
+  .marketing-portal .pe-secondary-hero--text-first .pe-secondary-hero-panel {
+    max-width: 64rem;
+    margin-inline: auto;
+  }
+}
+
 /* split hero
    Two-column layout: copy left, contained image panel right.
    Used for service / proof-context routes. */
